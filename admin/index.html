@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarFrame Admin Dashboard</title>
+    <meta name="description" content="Admin dashboard for StarFrame Animation Studio">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <!-- Socket.IO for real-time features -->
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:;">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner">
+            <i class="fas fa-cog fa-spin"></i>
+        </div>
+        <div class="loading-text">Loading Admin Dashboard...</div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen hidden">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>StarFrame Admin</h1>
+                <p>Secure Dashboard Access</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                
+                <div id="twoFactorGroup" class="form-group hidden">
+                    <label for="twoFactorCode">2FA Code</label>
+                    <input type="text" id="twoFactorCode" name="twoFactorCode" maxlength="6" placeholder="000000">
+                </div>
+                
+                <button type="submit" id="loginButton" class="login-button">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Sign In
+                </button>
+                
+                <div id="loginError" class="error-message hidden"></div>
+            </form>
+            
+            <div class="login-footer">
+                <div class="security-info">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure Connection</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="dashboard hidden">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>StarFrame</h2>
+                <span class="admin-badge">Admin</span>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="#dashboard-overview" class="menu-item active" data-section="overview">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a></li>
+                <li><a href="#analytics" class="menu-item" data-section="analytics">
+                    <i class="fas fa-chart-bar"></i>
+                    Analytics
+                </a></li>
+                <li><a href="#visitors" class="menu-item" data-section="visitors">
+                    <i class="fas fa-users"></i>
+                    Visitors
+                </a></li>
+                <li><a href="#security" class="menu-item" data-section="security">
+                    <i class="fas fa-shield-alt"></i>
+                    Security
+                </a></li>
+                <li><a href="#clients" class="menu-item" data-section="clients">
+                    <i class="fas fa-user-tie"></i>
+                    Clients
+                </a></li>
+                <li><a href="#payments" class="menu-item" data-section="payments">
+                    <i class="fas fa-credit-card"></i>
+                    Payments
+                </a></li>
+                <li><a href="#content" class="menu-item" data-section="content">
+                    <i class="fas fa-edit"></i>
+                    Content
+                </a></li>
+                <li><a href="#system" class="menu-item" data-section="system">
+                    <i class="fas fa-cogs"></i>
+                    System
+                </a></li>
+                <li><a href="#logs" class="menu-item" data-section="logs">
+                    <i class="fas fa-file-alt"></i>
+                    Logs
+                </a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="currentUsername">Admin</span>
+                </div>
+                <button id="logoutButton" class="logout-button">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button id="sidebarToggle" class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="pageTitle">Dashboard Overview</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="header-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-circle text-green"></i>
+                            <span>System Online</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <span id="liveVisitors">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button class="user-menu-toggle">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="userMenuName">Admin</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-menu-dropdown hidden">
+                            <a href="#" id="profileSettings"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#" id="securitySettings"><i class="fas fa-shield-alt"></i> Security</a>
+                            <a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Sections -->
+            <div class="content-wrapper">
+                <!-- Overview Section -->
+                <section id="overview-section" class="content-section active">
+                    <div class="overview-grid">
+                        <!-- Quick Stats -->
+                        <div class="stats-row">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-value" id="totalVisitors">0</div>
+                                    <div class="stat-label">Total Visitors</div>
+                                    <div class="stat-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span id="visitorsChange">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-value" id="securityAlerts">0</div>
+                                    <div class="stat-label">Security Alerts</div>
+                                    <div class="stat-change" id="alertsChange">
+                                        <i class="fas fa-minus"></i>
+                                        <span>No change</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-value" id="newInquiries">0</div>
+                                    <div class="stat-label">New Inquiries</div>
+                                    <div class="stat-change positive">
+                                        <i class="fas fa-plus"></i>
+                                        <span id="inquiriesChange">0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-value" id="systemUptime">99.9%</div>
+                                    <div class="stat-label">System Uptime</div>
+                                    <div class="stat-change positive">
+                                        <i class="fas fa-check"></i>
+                                        <span>Excellent</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div class="charts-row">
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3>Visitor Analytics</h3>
+                                    <div class="chart-controls">
+                                        <select id="visitorsTimeframe">
+                                            <option value="24h">Last 24 Hours</option>
+                                            <option value="7d">Last 7 Days</option>
+                                            <option value="30d">Last 30 Days</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="visitorsChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3>Security Events</h3>
+                                    <div class="chart-controls">
+                                        <select id="securityTimeframe">
+                                            <option value="24h">Last 24 Hours</option>
+                                            <option value="7d">Last 7 Days</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="securityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="activity-row">
+                            <div class="activity-card">
+                                <div class="card-header">
+                                    <h3>Recent Activities</h3>
+                                    <a href="#logs" class="view-all">View All</a>
+                                </div>
+                                <div class="activity-list" id="recentActivities">
+                                    <div class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <div class="activity-text">System initialized</div>
+                                            <div class="activity-time">Just now</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="quick-actions-card">
+                                <div class="card-header">
+                                    <h3>Quick Actions</h3>
+                                </div>
+                                <div class="quick-actions">
+                                    <button class="quick-action" data-action="backup">
+                                        <i class="fas fa-download"></i>
+                                        <span>Create Backup</span>
+                                    </button>
+                                    <button class="quick-action" data-action="security-scan">
+                                        <i class="fas fa-search"></i>
+                                        <span>Security Scan</span>
+                                    </button>
+                                    <button class="quick-action" data-action="clear-cache">
+                                        <i class="fas fa-broom"></i>
+                                        <span>Clear Cache</span>
+                                    </button>
+                                    <button class="quick-action" data-action="update-content">
+                                        <i class="fas fa-sync"></i>
+                                        <span>Update Content</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Other sections will be loaded dynamically -->
+                <section id="analytics-section" class="content-section">
+                    <div class="section-placeholder">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Analytics Section</h3>
+                        <p>Detailed analytics and reporting will be displayed here.</p>
+                    </div>
+                </section>
+
+                <section id="security-section" class="content-section">
+                    <div class="section-placeholder">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Security Management</h3>
+                        <p>Security monitoring and threat management tools.</p>
+                    </div>
+                </section>
+
+                <section id="system-section" class="content-section">
+                    <div class="section-placeholder">
+                        <i class="fas fa-cogs"></i>
+                        <h3>System Management</h3>
+                        <p>System configuration and maintenance tools.</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="notification hidden">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <div class="notification-text"></div>
+        </div>
+        <button class="notification-close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modalContainer" class="modal-container hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Modal Title</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Dynamic content -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-cancel">Cancel</button>
+                <button class="btn btn-primary modal-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

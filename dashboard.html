@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your StarFrame Dashboard - Personalized Experience</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style-new.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Socket.IO for real-time features -->
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <style>
+        .dashboard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.3);
+            margin: 0 auto 1rem;
+        }
+        
+        .dashboard-nav {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .dashboard-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .preference-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .preference-item:last-child {
+            border-bottom: none;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background-color: #ccc;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle-switch.active {
+            background-color: #667eea;
+        }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            top: 2.5px;
+            left: 2.5px;
+            transition: transform 0.3s;
+        }
+        
+        .toggle-switch.active::after {
+            transform: translateX(25px);
+        }
+        
+        .activity-feed {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .activity-item:hover {
+            background: #e9ecef;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            background: #667eea;
+            color: white;
+        }
+        
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .project-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .status-online {
+            color: #28a745;
+        }
+        
+        .status-offline {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>StarFrame</h1>
+                <span class="nav-tagline">Your Personal Studio</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">My Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#activity" class="nav-link">Activity</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#preferences" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:void(0)" onclick="logout()" class="nav-link" style="color: #dc3545;">Logout</a>
+                </li>
+            </ul>
+            <div class="user-profile" id="userProfile">
+                <!-- User profile will be loaded here -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <img id="userAvatar" class="user-avatar" src="" alt="User Avatar" style="display: none;">
+            <h1 id="welcomeMessage">Welcome to Your Personal StarFrame Experience!</h1>
+            <p id="userEmail" class="lead"></p>
+            <div class="status-indicator">
+                <span class="status-online">
+                    <i class="fas fa-circle"></i> Online
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-content">
+        <!-- Quick Actions -->
+        <section id="dashboard" class="dashboard-card">
+            <h2><i class="fas fa-tachometer-alt"></i> Quick Actions</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <a href="commission.html" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> New Project
+                </a>
+                <a href="#projects" class="btn btn-secondary">
+                    <i class="fas fa-folder"></i> View Projects
+                </a>
+                <a href="#activity" class="btn btn-outline">
+                    <i class="fas fa-chart-line"></i> My Activity
+                </a>
+                <a href="/" class="btn btn-outline">
+                    <i class="fas fa-home"></i> Main Site
+                </a>
+            </div>
+        </section>
+
+        <!-- Personal Projects -->
+        <section id="projects" class="dashboard-card">
+            <h2><i class="fas fa-folder-open"></i> Your Projects</h2>
+            <p>Here are your commissioned projects and their current status.</p>
+            
+            <div class="project-gallery">
+                <!-- Projects will be loaded dynamically -->
+                <div class="project-item">
+                    <div class="project-info">
+                        <h4>No Projects Yet</h4>
+                        <p>Ready to start your first animation project?</p>
+                        <a href="commission.html" class="btn btn-primary btn-sm">Commission Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity Feed -->
+        <section id="activity" class="dashboard-card">
+            <h2><i class="fas fa-history"></i> Your Activity</h2>
+            <div class="activity-feed" id="activityFeed">
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                    <div>
+                        <strong>Logged in to your dashboard</strong>
+                        <div style="font-size: 0.9em; color: #666;">Just now</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preferences -->
+        <section id="preferences" class="dashboard-card">
+            <h2><i class="fas fa-cog"></i> Preferences</h2>
+            <div class="preferences-container">
+                <div class="preference-item">
+                    <div>
+                        <strong>Email Notifications</strong>
+                        <p style="margin: 0; font-size: 0.9em; color: #666;">Receive updates about your projects</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="togglePreference('emailNotifications')"></div>
+                </div>
+                
+                <div class="preference-item">
+                    <div>
+                        <strong>Real-time Updates</strong>
+                        <p style="margin: 0; font-size: 0.9em; color: #666;">Get instant notifications about project progress</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="togglePreference('realTimeUpdates')"></div>
+                </div>
+                
+                <div class="preference-item">
+                    <div>
+                        <strong>Marketing Communications</strong>
+                        <p style="margin: 0; font-size: 0.9em; color: #666;">Receive news and offers from StarFrame</p>
+                    </div>
+                    <div class="toggle-switch" onclick="togglePreference('marketing')"></div>
+                </div>
+                
+                <div class="preference-item">
+                    <div>
+                        <strong>Activity Tracking</strong>
+                        <p style="margin: 0; font-size: 0.9em; color: #666;">Allow us to track your activity for better service</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="togglePreference('activityTracking')"></div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <button onclick="savePreferences()" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Preferences
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <h3>StarFrame</h3>
+                        <p class="footer-tagline">Your personal animation studio experience</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 StarFrame Animation Studio. All rights reserved. Personalized for <span id="footerUserName"></span>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let socket;
+        let userPreferences = {
+            emailNotifications: true,
+            realTimeUpdates: true,
+            marketing: false,
+            activityTracking: true
+        };
+        let currentUser = null;
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSocket();
+            loadUserInfo();
+            trackPageVisit();
+            
+            // Get welcome parameter from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('welcome') === 'true') {
+                showWelcomeMessage();
+            }
+        });
+
+        // Initialize Socket.IO connection
+        function initializeSocket() {
+            socket = io();
+            
+            socket.on('connect', function() {
+                console.log('Connected to real-time server');
+                
+                // Authenticate user with socket
+                if (currentUser) {
+                    socket.emit('user-authenticated', {
+                        userId: currentUser.id
+                    });
+                }
+            });
+            
+            socket.on('project-update', function(data) {
+                if (userPreferences.realTimeUpdates) {
+                    showNotification('Project Update', data.message, 'info');
+                    updateActivityFeed(data);
+                }
+            });
+            
+            socket.on('admin-message', function(data) {
+                showNotification('Message from StarFrame', data.message, 'info');
+                updateActivityFeed(data);
+            });
+            
+            socket.on('disconnect', function() {
+                console.log('Disconnected from real-time server');
+            });
+        }
+
+        // Load user information
+        async function loadUserInfo() {
+            try {
+                const response = await fetch('/api/auth/oauth/me');
+                if (response.ok) {
+                    const data = await response.json();
+                    currentUser = data.user;
+                    displayUserInfo(data.user);
+                    userPreferences = { ...userPreferences, ...data.user.preferences };
+                    updatePreferencesUI();
+                } else {
+                    // User not authenticated, redirect to login
+                    window.location.href = '/login.html';
+                }
+            } catch (error) {
+                console.error('Error loading user info:', error);
+                window.location.href = '/login.html';
+            }
+        }
+
+        // Display user information
+        function displayUserInfo(user) {
+            document.getElementById('welcomeMessage').textContent = `Welcome back, ${user.name}!`;
+            document.getElementById('userEmail').textContent = user.email;
+            document.getElementById('footerUserName').textContent = user.name;
+            
+            if (user.picture) {
+                const avatar = document.getElementById('userAvatar');
+                avatar.src = user.picture;
+                avatar.style.display = 'block';
+            }
+            
+            // Update page title
+            document.title = `${user.name}'s StarFrame Dashboard`;
+        }
+
+        // Track page visit
+        function trackPageVisit() {
+            if (socket && socket.connected) {
+                socket.emit('page-visit', {
+                    page: 'dashboard',
+                    url: window.location.href,
+                    referrer: document.referrer,
+                    userAgent: navigator.userAgent,
+                    userId: currentUser ? currentUser.id : null
+                });
+            }
+        }
+
+        // Track user actions
+        function trackAction(action, target, value = null) {
+            if (socket && socket.connected && userPreferences.activityTracking) {
+                socket.emit('user-action', {
+                    action: action,
+                    target: target,
+                    value: value,
+                    page: 'dashboard',
+                    userId: currentUser ? currentUser.id : null
+                });
+            }
+        }
+
+        // Toggle preference
+        function togglePreference(preference) {
+            const toggle = event.target;
+            toggle.classList.toggle('active');
+            userPreferences[preference] = toggle.classList.contains('active');
+            
+            trackAction('toggle-preference', preference, userPreferences[preference]);
+        }
+
+        // Update preferences UI
+        function updatePreferencesUI() {
+            Object.keys(userPreferences).forEach(pref => {
+                const element = document.querySelector(`[onclick="togglePreference('${pref}')"]`);
+                if (element) {
+                    if (userPreferences[pref]) {
+                        element.classList.add('active');
+                    } else {
+                        element.classList.remove('active');
+                    }
+                }
+            });
+        }
+
+        // Save preferences
+        async function savePreferences() {
+            try {
+                const response = await fetch('/api/auth/oauth/preferences', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ preferences: userPreferences })
+                });
+                
+                if (response.ok) {
+                    showNotification('Success', 'Preferences saved successfully!', 'success');
+                    trackAction('save-preferences', 'preferences', JSON.stringify(userPreferences));
+                } else {
+                    throw new Error('Failed to save preferences');
+                }
+            } catch (error) {
+                console.error('Error saving preferences:', error);
+                showNotification('Error', 'Failed to save preferences. Please try again.', 'error');
+            }
+        }
+
+        // Logout function
+        async function logout() {
+            try {
+                trackAction('logout', 'auth-system');
+                
+                const response = await fetch('/api/auth/oauth/logout', {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    window.location.href = '/';
+                } else {
+                    throw new Error('Logout failed');
+                }
+            } catch (error) {
+                console.error('Logout error:', error);
+                // Force redirect even if logout request fails
+                window.location.href = '/';
+            }
+        }
+
+        // Show welcome message for new logins
+        function showWelcomeMessage() {
+            setTimeout(() => {
+                showNotification('Welcome!', 'You have successfully logged in to your personalized StarFrame experience!', 'success');
+            }, 1000);
+        }
+
+        // Show notification
+        function showNotification(title, message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#007bff'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                max-width: 300px;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <strong>${title}</strong>
+                        <div style="margin-top: 0.25rem; font-size: 0.9em;">${message}</div>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; font-size: 1.2em; cursor: pointer; margin-left: 1rem;">&times;</button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // Update activity feed
+        function updateActivityFeed(data) {
+            const feed = document.getElementById('activityFeed');
+            const item = document.createElement('div');
+            item.className = 'activity-item';
+            item.style.animation = 'fadeInUp 0.3s ease-out';
+            
+            const icon = getActivityIcon(data.type);
+            const time = new Date().toLocaleTimeString();
+            
+            item.innerHTML = `
+                <div class="activity-icon">
+                    <i class="${icon}"></i>
+                </div>
+                <div>
+                    <strong>${data.title || 'Activity Update'}</strong>
+                    <div style="font-size: 0.9em; color: #666;">${time}</div>
+                </div>
+            `;
+            
+            feed.insertBefore(item, feed.firstChild);
+            
+            // Keep only last 10 items
+            while (feed.children.length > 10) {
+                feed.removeChild(feed.lastChild);
+            }
+        }
+
+        // Get activity icon based on type
+        function getActivityIcon(type) {
+            const icons = {
+                'project-update': 'fas fa-project-diagram',
+                'message': 'fas fa-envelope',
+                'login': 'fas fa-sign-in-alt',
+                'preference-change': 'fas fa-cog',
+                'default': 'fas fa-bell'
+            };
+            
+            return icons[type] || icons['default'];
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    transform: translateY(10px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add click tracking to all interactive elements
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a, button, .nav-link, .btn')) {
+                const target = e.target.textContent.trim() || e.target.className;
+                trackAction('click', target);
+            }
+        });
+    </script>
+</body>
+</html>
