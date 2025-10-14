@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
+    ,"sharp": "^0.32.1"
   },
   "keywords": [
     "admin",
