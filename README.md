@@ -1,4 +1,76 @@
-<<<<<<< HEAD
+# StarFrame Animation Studio — Website & Admin
+
+This repository contains the StarFrame Animation Studio front-end website and an accompanying Node.js admin backend used for commissions, analytics, and administrative workflows.
+
+This README provides a formal project overview and includes screenshots of the current site pages.
+
+## Project overview
+
+- Public static site built with HTML, CSS, and vanilla JavaScript.
+- Admin and API routes implemented with Node.js and Express (in `server/`).
+- Commission system with client-side invoice generation and server-side email support (serverless endpoints under `api/` for Vercel).
+
+## Key features
+
+- Commission form with service selection, budget ranges and payment options.
+- Invoice generation and PDF emailing (via server or serverless functions).
+- Admin dashboard and analytics routes (in `server/admin` and `server/routes`).
+- Static portfolio pages and supporting assets (images, CSS, JS).
+
+## Running locally (development)
+
+Prerequisites: Node.js (14+), npm
+
+1. Install dependencies:
+
+```powershell
+npm install
+```
+
+2. Start the server in development mode (uses `server/server.js`):
+
+```powershell
+npm run dev
+```
+
+Open `http://localhost:3001` in your browser and navigate to pages such as `/commission.html`.
+
+Notes:
+- Environment variables are used for session secrets and SMTP credentials. See `VERCEL_README.md` for production / Vercel guidance.
+
+## Deployment
+
+You can deploy the static site and serverless endpoints to Vercel (a `vercel.json` has been added). For larger, stateful server deployments consider Render, Railway, or a VPS.
+
+## Screenshots
+
+The repository includes screenshot image files under `assets/screenshots/`.
+
+Displayed screenshots (if the files exist):
+
+![Homepage](assets/screenshots/homepage.png)
+![About section](assets/screenshots/about.png)
+
+If you'd like, I can capture live screenshots of running pages and add them into `assets/screenshots/` for you.
+
+## Contributing
+
+If you'd like to contribute:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Open a pull request describing the change.
+
+Please avoid committing large binaries (build artifacts or node_modules). Consider adding entries to `.gitignore` to keep the repository clean.
+
+## License
+
+This project is provided under the terms in the repository `LICENSE` file.
+
+## Contact
+
+For questions or to request help with deployment, email: samarthrao34@gmail.com
+![alt text](image.png)<<<<<<< HEAD
 # starframe
 Official website of Starframe Animation Studios
 =======
