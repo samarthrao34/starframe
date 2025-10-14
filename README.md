@@ -51,18 +51,19 @@ You can deploy the static site and serverless endpoints to Vercel (a `vercel.jso
 
 ## Screenshots
 
-Below are screenshots showing the site pages from this repository. Images are embedded from the `images/StarFrame Animation Studio` directory.
+The repository README previously referenced in-repo image files. Those have been removed from this section and replaced with two dedicated screenshot slots. Please add the actual screenshot image files to `assets/screenshots/` with the filenames below so they render here.
 
-Gallery (click to view full size):
+Recommended filenames:
 
-![Homepage](images/StarFrame%20Animation%20Studio/3587bd37-4ea4-4b6f-be36-0da7f99c8384.jpeg)
-![Portfolio sample](images/StarFrame%20Animation%20Studio/3ee90258-34ad-4610-8f4e-03ff7631346c.jpeg)
-![Hero / Landscape](images/StarFrame%20Animation%20Studio/landscape.jpeg)
-![Perspective shot](images/StarFrame%20Animation%20Studio/perspective.jpeg)
-![Character art](images/StarFrame%20Animation%20Studio/fat-oldman.jpeg)
-![Commission sample or mockup](images/StarFrame%20Animation%20Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg)
+- `assets/screenshots/homepage.png`  — homepage / hero section
+- `assets/screenshots/about.png`     — about / philosophy section
 
-If you want additional specific page screenshots (for example: commission flow modals, admin dashboard screens), let me know which pages and I will capture and add them.
+Once those files exist in the repository the images below will display automatically:
+
+![Homepage](assets/screenshots/homepage.png)
+![About section](assets/screenshots/about.png)
+
+If you'd like, I can help capture live screenshots of running pages and add them into `assets/screenshots/` for you — let me know if you want me to do that (I can run a headless browser locally and push the generated images).
 
 ## Contributing
 
