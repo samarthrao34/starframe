@@ -1,75 +1,83 @@
 # StarFrame Animation Studio — Website & Admin
 
-This repository contains the StarFrame Animation Studio front-end website and an accompanying Node.js admin backend used for commissions, analytics, and administrative workflows.
 
-This README provides a formal project overview and includes screenshots of the current site pages.
+This repository contains the StarFrame public website (static HTML/CSS/JS) and an optional Node.js admin/API backend used for commissions and administrative workflows.
 
-## Project overview
+Overview
+--------
+- Static public site: HTML, CSS, and JavaScript (top-level HTML files).
+- Optional backend: Express-based admin/API server located under `server/` (used for authenticated admin routes, commission persistence, and internal utilities).
+- Serverless support: small API handlers suitable for Vercel are present under `api/` (invoice token and emailing handlers).
 
-- Public static site built with HTML, CSS, and vanilla JavaScript.
-- Admin and API routes implemented with Node.js and Express (in `server/`).
-- Commission system with client-side invoice generation and server-side email support (serverless endpoints under `api/` for Vercel).
+Highlights
+----------
+- Commission intake form with pricing and payment options.
+- Invoice generation (client-side PDF) and server/serverless email delivery.
+- Admin routes and basic analytics utilities (see `server/routes/`).
 
-## Key features
-
-- Commission form with service selection, budget ranges and payment options.
-- Invoice generation and PDF emailing (via server or serverless functions).
-- Admin dashboard and analytics routes (in `server/admin` and `server/routes`).
-- Static portfolio pages and supporting assets (images, CSS, JS).
-
-## Running locally (development)
-
-Prerequisites: Node.js (14+), npm
-
+Quick start (development)
+-------------------------
 1. Install dependencies:
 
 ```powershell
 npm install
 ```
 
-2. Start the server in development mode (uses `server/server.js`):
+2. Run in development mode:
 
 ```powershell
 npm run dev
 ```
 
-Open `http://localhost:3001` in your browser and navigate to pages such as `/commission.html`.
+3. Visit the site locally:
 
-Notes:
-- Environment variables are used for session secrets and SMTP credentials. See `VERCEL_README.md` for production / Vercel guidance.
+Open `http://localhost:3001` and test pages such as `/commission.html`.
 
-## Deployment
+Configuration / Environment
+---------------------------
+Set these environment variables for production use (examples):
 
-You can deploy the static site and serverless endpoints to Vercel (a `vercel.json` has been added). For larger, stateful server deployments consider Render, Railway, or a VPS.
+- `SESSION_SECRET` — strong secret for session cookies
+- `INVOICE_JWT_SECRET` — signing secret for short-lived invoice tokens
+- `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USER`, `EMAIL_PASS`, `EMAIL_FROM` — SMTP settings for invoice emails
 
-## Screenshots
+For Vercel deployment, add the same variables in the project settings.
 
-The repository includes screenshot image files under `assets/screenshots/`.
+Deployment
+----------
+- Vercel: static files + serverless `api/` functions work out-of-the-box (see `vercel.json`).
+- Alternatives for a full server: Render, Railway, or a VPS (Docker-friendly).
 
-Displayed screenshots (if the files exist):
+APIs / Endpoints
+----------------
+- `GET /api/invoice/token` — issues a short-lived token for sending invoices (serverless handler).
+- `POST /api/invoice/send` — accepts HTML and recipient address; generates PDF and emails it (requires token).
 
-![Homepage](assets/screenshots/homepage.png)
-![About section](assets/screenshots/about.png)
+Screenshots
+-----------
+Place visual assets in `assets/screenshots/` and reference them in this README. Current placeholders expect:
 
-If you'd like, I can capture live screenshots of running pages and add them into `assets/screenshots/` for you.
+- `assets/screenshots/homepage.png`
+- `assets/screenshots/about.png`
 
-## Contributing
+Security and privacy
+--------------------
+- Do not commit passwords, private keys, or SMTP credentials to the repository.
+- Ensure `SESSION_SECRET` and `INVOICE_JWT_SECRET` are set to strong, unguessable values in production.
+- If the site accepts payments, use HTTPS and a proper payment provider with server-side webhook verification.
 
-If you'd like to contribute:
+Contributing
+------------
+- Fork, branch, and open a pull request. Keep commits focused and include tests or screenshots when applicable.
 
-1. Fork the repository.
-2. Create a feature branch.
-3. Open a pull request describing the change.
+License
+-------
+See the repository `LICENSE` file for license terms.
 
-Please avoid committing large binaries (build artifacts or node_modules). Consider adding entries to `.gitignore` to keep the repository clean.
+Contact
+-------
+For deployment or commercial inquiries: samarthrao34@gmail.com
 
-## License
-
-This project is provided under the terms in the repository `LICENSE` file.
-
-## Contact
-
-For questions or to request help with deployment, email: samarthrao34@gmail.com
 ![alt text](image.png)<<<<<<< HEAD
 # starframe
 Official website of Starframe Animation Studios
