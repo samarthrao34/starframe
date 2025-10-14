@@ -258,11 +258,17 @@ class AdminDashboard {
             security: 'Security Center',
             clients: 'Client Management',
             payments: 'Payment Tracking',
+            commissions: 'Commission Requests',
             content: 'Content Management',
             system: 'System Management',
             logs: 'System Logs'
         };
         document.getElementById('pageTitle').textContent = titles[section] || 'Dashboard';
+
+        if (section === 'commissions') {
+            this.loadCommissions();
+            this.setupCommissionsEventListeners();
+        }
     }
 
     async handleQuickAction(action) {
@@ -616,6 +622,55 @@ class AdminDashboard {
         }
         return activity.action;
     }
+
+    async loadCommissions() {
+        try {
+            const commissions = await this.apiCall('/api/commissions');
+            this.displayCommissions(commissions);
+        } catch (error) {
+            console.error('Failed to load commissions:', error);
+            this.showNotification('Failed to load commissions', 'error');
+        }
+    }
+
+    displayCommissions(commissions) {
+        const tableBody = document.getElementById('commissionsTableBody');
+        if (!tableBody) return;
+
+        tableBody.innerHTML = commissions.map(commission => `
+            <tr>
+                <td>${commission.id}</td>
+                <td>${commission.name}</td>
+                <td>${commission.email}</td>
+                <td>${commission.service}</td>
+                <td>${commission.budget}</td>
+                <td><span class="status status-${commission.status?.toLowerCase() || 'pending'}">${commission.status || 'Pending'}</span></td>
+                <td class="actions">
+                    <button class="btn-action" data-id="${commission.id}" data-action="view"><i class="fas fa-eye"></i></button>
+                    <button class="btn-action" data-id="${commission.id}" data-action="approve"><i class="fas fa-check"></i></button>
+                    <button class="btn-action" data-id="${commission.id}" data-action="reject"><i class="fas fa-times"></i></button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    setupCommissionsEventListeners() {
+        const searchInput = document.getElementById('commissionSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const tableRows = document.querySelectorAll('#commissionsTableBody tr');
+                tableRows.forEach(row => {
+                    const commissionId = row.cells[0].textContent.toLowerCase();
+                    if (commissionId.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        }
+    }
 }
 
 // Real-time functionality extension
@@ -873,3 +928,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 2000);
 });
+
+// Back to top button
+const backToTopButton = document.getElementById("back-to-top-btn");
+
+window.onscroll = function() {
+    scrollFunction();
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        backToTopButton.style.display = "block";
+    } else {
+        backToTopButton.style.display = "none";
+    }
+}
+
+backToTopButton.addEventListener("click", backToTop);
+
+function backToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}

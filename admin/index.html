@@ -105,6 +105,10 @@
                     <i class="fas fa-credit-card"></i>
                     Payments
                 </a></li>
+                <li><a href="#commissions" class="menu-item" data-section="commissions">
+                    <i class="fas fa-file-invoice"></i>
+                    Commissions
+                </a></li>
                 <li><a href="#content" class="menu-item" data-section="content">
                     <i class="fas fa-edit"></i>
                     Content
@@ -338,6 +342,34 @@
                         <p>System configuration and maintenance tools.</p>
                     </div>
                 </section>
+
+                <section id="commissions-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Commission Requests</h2>
+                        <div class="search-bar">
+                            <input type="text" id="commissionSearch" placeholder="Search by ID...">
+                            <button id="commissionSearchBtn"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="commission-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Service</th>
+                                    <th>Budget</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="commissionsTableBody">
+                                <!-- Commission rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
             </div>
         </main>
     </div>
@@ -372,6 +404,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top-btn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>

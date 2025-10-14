@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="css/style-new.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -45,6 +47,7 @@
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="index.html#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="index.html#reviews" class="nav-link">Reviews</a></li>
                 <li class="nav-item"><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
                 <li class="nav-item"><a href="index.html#team" class="nav-link">Team</a></li>
                 <li class="nav-item"><a href="commission.html" class="nav-link commission-btn">Commission</a></li>
@@ -64,54 +67,49 @@
             <div class="pricing-section">
                 <h3 class="pricing-title">Our Service Packages</h3>
                 <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h4>Illustration</h4>
+                            <div class="price-badge">Price range</div>
+                            <div class="price">₹1,200 – ₹3,500</div>
+                            <div class="price-desc">(USD $15–$40) • One polished full-color digital piece</div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i>High-resolution JPG/PNG delivery</li>
+                            <li><i class="fas fa-check"></i>Polished, print-ready artwork</li>
+                            <li><i class="fas fa-check"></i>Personal use license (commercial available upon request)</li>
+                            <li><i class="fas fa-check"></i>2 revision rounds</li>
+                        </ul>
+                    </div>
+
                     <div class="pricing-card featured">
                         <div class="pricing-header">
                             <h4>2D Animation</h4>
-                            <div class="price-badge">Starting from</div>
-                            <div class="price">₹8,000</div>
-                            <div class="price-desc">per 30-second animation</div>
+                            <div class="price-badge">Price range</div>
+                            <div class="price">₹2,500 – ₹7,500</div>
+                            <div class="price-desc">(USD $30–$90) • 5–10 sec hand-drawn looping animation</div>
                         </div>
                         <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i>Custom character animation</li>
-                            <li><i class="fas fa-check"></i>Professional voice-over coordination</li>
-                            <li><i class="fas fa-check"></i>Background music & sound effects</li>
-                            <li><i class="fas fa-check"></i>3 revision rounds included</li>
-                            <li><i class="fas fa-check"></i>HD video delivery (1080p)</li>
-                            <li><i class="fas fa-check"></i>Commercial usage rights</li>
+                            <li><i class="fas fa-check"></i>Hand-drawn looping animation (5–10 sec)</li>
+                            <li><i class="fas fa-check"></i>Basic background included</li>
+                            <li><i class="fas fa-check"></i>Personal and commercial licensing options</li>
+                            <li><i class="fas fa-check"></i>1–2 revision rounds (depending on package)</li>
+                            <li><i class="fas fa-check"></i>HD delivery options</li>
                         </ul>
                     </div>
-                    
+
                     <div class="pricing-card">
                         <div class="pricing-header">
                             <h4>Character Design</h4>
-                            <div class="price-badge">Starting from</div>
-                            <div class="price">₹4,000</div>
-                            <div class="price-desc">per character set</div>
+                            <div class="price-badge">Price range</div>
+                            <div class="price">₹1,800 – ₹4,000</div>
+                            <div class="price-desc">(USD $22–$48) • Concept sketches to final turnaround</div>
                         </div>
                         <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i>3-4 character poses/expressions</li>
-                            <li><i class="fas fa-check"></i>Color variations</li>
-                            <li><i class="fas fa-check"></i>High-resolution files (PNG/PSD)</li>
-                            <li><i class="fas fa-check"></i>Character reference sheet</li>
-                            <li><i class="fas fa-check"></i>2 revision rounds</li>
-                            <li><i class="fas fa-check"></i>Commercial usage rights</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h4>Digital Illustration</h4>
-                            <div class="price-badge">Starting from</div>
-                            <div class="price">₹2,500</div>
-                            <div class="price-desc">per illustration</div>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i>Custom digital artwork</li>
-                            <li><i class="fas fa-check"></i>Multiple format delivery</li>
-                            <li><i class="fas fa-check"></i>High-resolution files</li>
-                            <li><i class="fas fa-check"></i>Print-ready quality</li>
-                            <li><i class="fas fa-check"></i>2 revision rounds</li>
-                            <li><i class="fas fa-check"></i>Commercial usage rights</li>
+                            <li><i class="fas fa-check"></i>Concept sketches and exploration</li>
+                            <li><i class="fas fa-check"></i>1–2 revision rounds</li>
+                            <li><i class="fas fa-check"></i>Final colored turnaround sheet</li>
+                            <li><i class="fas fa-check"></i>High-resolution source files (PNG/PSD)</li>
                         </ul>
                     </div>
                 </div>
@@ -119,27 +117,22 @@
 
             <!-- Payment Information -->
             <div class="payment-section">
-                <h3>Easy Payment Options for Indian Clients</h3>
+                <h3>Easy Payment Options</h3>
                 <div class="payment-grid">
                     <div class="payment-method">
-                        <i class="fas fa-university"></i>
-                        <h4>Bank Transfer (NEFT/RTGS)</h4>
-                        <p>Direct bank transfers with secure processing</p>
+                        <i class="fab fa-paypal"></i>
+                        <h4>PayPal</h4>
+                        <p>Global payments with PayPal</p>
                     </div>
                     <div class="payment-method">
                         <i class="fas fa-mobile-alt"></i>
-                        <h4>UPI Payments</h4>
-                        <p>Google Pay, PhonePe, Paytm & all major UPI apps</p>
+                        <h4>UPI ID</h4>
+                        <p>starframe@upi</p>
                     </div>
                     <div class="payment-method">
-                        <i class="fas fa-credit-card"></i>
-                        <h4>Online Payments</h4>
-                        <p>Credit/Debit cards via secure payment gateway</p>
-                    </div>
-                    <div class="payment-method">
-                        <i class="fas fa-wallet"></i>
-                        <h4>Digital Wallets</h4>
-                        <p>Paytm, Amazon Pay, and other digital wallets</p>
+                        <i class="fas fa-qrcode"></i>
+                        <h4>QR Code</h4>
+                        <p>Scan to pay with any UPI app</p>
                     </div>
                 </div>
                 <div class="payment-terms">
@@ -252,6 +245,10 @@
                             <input type="checkbox" id="gst" name="gst">
                             <label for="gst">I need GST invoice for business purposes</label>
                         </div>
+                        <div id="gstDetails" style="display: none; margin-top: 10px;">
+                            <label for="gstin">GSTIN (if applicable)</label>
+                            <input type="text" id="gstin" name="gstin" placeholder="Enter GSTIN for invoicing (optional)">
+                        </div>
                         
                         <div class="form-checkbox">
                             <input type="checkbox" id="terms" name="terms" required>
@@ -283,7 +280,7 @@
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <h4>Email</h4>
-                        <p>hello@starframe.studio</p>
+                        <p style="word-break: break-all;"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=starframeanimationstudios@gmail.com" target="_blank" rel="noopener">starframeanimationstudios@gmail.com</a></p>
                         <small>Detailed project discussions</small>
                     </div>
                     <div class="contact-item">
@@ -303,6 +300,61 @@
         </div>
     </section>
 
+    <!-- Payment Modal -->
+    <div id="paymentModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fff; margin: 8% auto; padding: 20px; border: 1px solid #ddd; width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+            <span id="closePayment" style="color: #888; float: right; font-size: 26px; font-weight: bold; cursor: pointer;">&times;</span>
+            <div id="paymentContent">
+                <h2 style="margin-top: 0;">Payment Options</h2>
+                <p id="payServiceSummary" style="font-weight: 600;"></p>
+                <p><strong>Suggested deposit (50%):</strong> <span id="suggestedDeposit">₹0</span></p>
+                <div style="margin: 10px 0;">
+                    <label for="payAmount">Amount to pay now (INR)</label>
+                    <input type="number" id="payAmount" style="width: 200px; padding: 8px; margin-left: 10px;" min="1">
+                    <button id="unlockAmountBtn" class="btn" style="margin-left:8px; padding:8px 10px;">Edit</button>
+                </div>
+
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+                    <button id="paypalPayBtn" class="btn btn-primary">Pay with PayPal</button>
+                    <button id="showUpiBtn" class="btn">Show UPI / QR</button>
+                    <button id="markPaidBtn" class="btn">I have paid (Confirm)</button>
+                    <button id="genInvoiceNoPay" class="btn">Generate Invoice (No payment)</button>
+                </div>
+
+                <div id="upiArea" style="display:none; margin-top: 18px;">
+                    <h4>UPI Payment</h4>
+                    <p><strong>UPI ID:</strong> <span id="upiIdText">starframe@upi</span></p>
+                    <p>Scan the QR code with your UPI app or click the Pay URI link.</p>
+                    <img id="upiQrImg" alt="UPI QR" style="width:240px; height:240px; border:1px solid #eee; display:block; margin-bottom:8px;" />
+                    <p><a id="upiUriLink" href="#" target="_blank">Open UPI link</a></p>
+                </div>
+
+                <div style="margin-top:12px; color:#666; font-size:90%;">
+                    <p><strong>Note:</strong> After completing the payment in your chosen app, click "I have paid (Confirm)" and enter any transaction reference. We'll then generate an official invoice which you can download as PDF. For full payment reconciliation, please share your transaction reference with us.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invoice Modal -->
+    <div id="invoiceModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 6% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 900px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
+            <span id="closeInvoice" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <div id="invoiceContent">
+                <!-- Invoice will be generated here -->
+            </div>
+            <div style="display:flex; gap:10px; margin-top: 18px;">
+                <button id="downloadInvoice" class="btn btn-primary">Download PDF</button>
+                <button id="closeInvoiceBtn" class="btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top-btn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -315,13 +367,13 @@
                     </div>
                     <div class="footer-contact">
                         <h4>Let's Connect</h4>
-                        <p><i class="fas fa-envelope"></i> hello@starframe.studio</p>
+                        <p><i class="fas fa-envelope"></i> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=starframeanimationstudios@gmail.com" target="_blank" rel="noopener" class="footer-email">starframeanimationstudios@gmail.com</a></p>
                         <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-x-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.instagram.com/starframe.studio/" target="_blank" rel="noopener" aria-label="Starframe on Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://x.com/StarFrameStudio" target="_blank" rel="noopener" aria-label="Starframe on X"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/starframe-studio/" target="_blank" rel="noopener" aria-label="Starframe on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.youtube.com/@StarframeAnimation" target="_blank" rel="noopener" aria-label="Starframe on YouTube"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -374,5 +426,348 @@
     </footer>
 
     <script src="js/script-new.js"></script>
+    <script>
+        // Service-specific price ranges (INR)
+        const servicePriceRanges = {
+            'digital-illustration': { min: 1200, max: 3500 },
+            '2d-animation': { min: 2500, max: 7500 },
+            'character-design': { min: 1800, max: 4000 },
+            // fallback for combination or unknown services
+            'combination': { min: 1200, max: 7500 }
+        };
+
+        // Parse budget select value like '2500-8000' or '50000+' or 'lets-discuss'
+        function parseBudgetRange(val) {
+            if (!val || val === 'lets-discuss') return { min: 2500, max: Infinity };
+            if (val.endsWith('+')) {
+                const n = parseInt(val.replace('+',''), 10);
+                return { min: isNaN(n) ? 50000 : n, max: Infinity };
+            }
+            const parts = val.split('-').map(s => parseInt(s.replace(/[^0-9]/g,''), 10)).filter(Number.isFinite);
+            if (parts.length === 2) return { min: parts[0], max: parts[1] };
+            if (parts.length === 1) return { min: parts[0], max: parts[0] };
+            return { min: 2500, max: Infinity };
+        }
+
+        // Compute an estimated amount based on service price range and selected budget
+        function computeEstimatedForService(serviceValue, budgetValue) {
+            const svcKey = (serviceValue === 'digital-illustration' || serviceValue === 'digital-illustration') ? serviceValue : serviceValue;
+            const svcRange = servicePriceRanges[svcKey] || servicePriceRanges['combination'];
+            const svcMid = Math.round((svcRange.min + svcRange.max) / 2);
+
+            const budgetRange = parseBudgetRange(budgetValue);
+
+            // Clamp service midpoint to budget range where applicable
+            let estimated = svcMid;
+            if (budgetRange.max !== Infinity) {
+                if (estimated < budgetRange.min) estimated = Math.max(svcRange.min, budgetRange.min);
+                if (estimated > budgetRange.max) estimated = Math.min(svcRange.max, budgetRange.max);
+            } else {
+                // no upper bound -> ensure at least service min
+                if (estimated < budgetRange.min) estimated = Math.max(svcRange.min, budgetRange.min);
+            }
+
+            // Final safety clamps
+            estimated = Math.max(estimated, svcRange.min);
+            estimated = Math.min(estimated, svcRange.max || estimated);
+            return estimated;
+        }
+
+        // Toggle GSTIN input
+        const gstCheckbox = document.getElementById('gst');
+        const gstDetails = document.getElementById('gstDetails');
+        gstCheckbox.addEventListener('change', () => {
+            gstDetails.style.display = gstCheckbox.checked ? 'block' : 'none';
+        });
+
+        // Elements
+        const commissionForm = document.getElementById('commissionForm');
+        const paymentModal = document.getElementById('paymentModal');
+        const closePayment = document.getElementById('closePayment');
+        const payServiceSummary = document.getElementById('payServiceSummary');
+        const suggestedDepositSpan = document.getElementById('suggestedDeposit');
+        const payAmountInput = document.getElementById('payAmount');
+    const unlockAmountBtn = document.getElementById('unlockAmountBtn');
+        const paypalPayBtn = document.getElementById('paypalPayBtn');
+        const showUpiBtn = document.getElementById('showUpiBtn');
+        const upiArea = document.getElementById('upiArea');
+        const upiQrImg = document.getElementById('upiQrImg');
+        const upiUriLink = document.getElementById('upiUriLink');
+        const upiIdText = document.getElementById('upiIdText');
+        const markPaidBtn = document.getElementById('markPaidBtn');
+        const genInvoiceNoPay = document.getElementById('genInvoiceNoPay');
+
+        // Invoice modal elements
+        const invoiceModal = document.getElementById('invoiceModal');
+        const invoiceContent = document.getElementById('invoiceContent');
+        const closeInvoice = document.getElementById('closeInvoice');
+        const closeInvoiceBtn = document.getElementById('closeInvoiceBtn');
+        const downloadInvoice = document.getElementById('downloadInvoice');
+
+        // Studio details (shown on invoice)
+        const studio = {
+            name: 'StarFrame Animation Studio',
+            address: 'Varanasi, India',
+            email: 'starframeanimationstudios@gmail.com',
+            phone: '+91-8960356600',
+            gstin: '' // fill if you want to display studio GSTIN
+        };
+
+        // When the form is submitted, open payment modal with suggested deposit
+        commissionForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Gather form values
+            const formData = new FormData(commissionForm);
+            const data = Object.fromEntries(formData.entries());
+            data.serviceLabel = document.getElementById('service').selectedOptions[0].text;
+            data.budgetLabel = document.getElementById('budget').selectedOptions[0].text;
+            data.timelineLabel = document.getElementById('timeline').selectedOptions[0].text;
+            data.purposeLabel = document.getElementById('purpose').selectedOptions[0].text;
+            data.gstNeeded = document.getElementById('gst').checked;
+            data.gstin = document.getElementById('gstin').value || '';
+
+            // Compute an estimated amount based on selected service and budget
+            const serviceValue = document.getElementById('service').value;
+            const budgetValue = document.getElementById('budget').value;
+            const estimated = computeEstimatedForService(serviceValue, budgetValue);
+            const suggestedDeposit = Math.max( Math.round(estimated * 0.5), 100 );
+
+            // Store on modal for later invoice generation
+            paymentModal._formData = data;
+            paymentModal._estimated = estimated;
+            paymentModal._suggestedDeposit = suggestedDeposit;
+
+            // Update modal UI
+            payServiceSummary.textContent = `${data.serviceLabel} — Estimated project amount: ₹${estimated}`;
+            suggestedDepositSpan.textContent = `₹${suggestedDeposit}`;
+            payAmountInput.value = suggestedDeposit;
+            // Lock the amount by default and allow unlocking
+            payAmountInput.readOnly = true;
+            unlockAmountBtn.textContent = 'Edit';
+
+            unlockAmountBtn.onclick = () => {
+                if (payAmountInput.readOnly) {
+                    payAmountInput.readOnly = false;
+                    payAmountInput.focus();
+                    unlockAmountBtn.textContent = 'Lock';
+                } else {
+                    payAmountInput.readOnly = true;
+                    unlockAmountBtn.textContent = 'Edit';
+                }
+            };
+
+            // Reset UPI area
+            upiArea.style.display = 'none';
+
+            // Show modal
+            paymentModal.style.display = 'block';
+        });
+
+        closePayment.addEventListener('click', () => paymentModal.style.display = 'none');
+
+        // Show UPI area and generate QR using external QR service
+        showUpiBtn.addEventListener('click', () => {
+            const amount = parseFloat(payAmountInput.value) || paymentModal._suggestedDeposit || 0;
+            const upiId = upiIdText.textContent.trim();
+            const payUri = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(studio.name)}&am=${encodeURIComponent(amount)}&cu=INR`;
+            upiUriLink.href = payUri;
+            // Use free qr generation service (loads in client browser)
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(payUri)}`;
+            upiQrImg.src = qrUrl;
+            upiArea.style.display = 'block';
+        });
+
+        // PayPal flow: open PayPal.me link with converted USD amount (approximate)
+        paypalPayBtn.addEventListener('click', () => {
+            const inr = parseFloat(payAmountInput.value) || paymentModal._suggestedDeposit || 0;
+            const usd = (inr / 83).toFixed(2); // simple approx conversion
+            // Replace 'StarFrameStudio' with your actual PayPal.me username if available
+            const paypalLink = `https://www.paypal.com/paypalme/StarFrameStudio/${usd}`;
+            window.open(paypalLink, '_blank');
+            alert('A new window/tab will open to PayPal. After completing payment, click "I have paid (Confirm)" and enter the transaction reference.');
+        });
+
+        // Mark paid: ask for transaction details, then generate invoice marked Paid
+        markPaidBtn.addEventListener('click', () => {
+            const method = prompt('Enter payment method used (e.g., UPI, PayPal, Bank Transfer):', 'UPI');
+            if (!method) return;
+            const tx = prompt('Enter transaction reference / UPI txn id (optional):', '');
+            const paidAmount = parseFloat(payAmountInput.value) || paymentModal._suggestedDeposit || 0;
+            const paidOn = new Date().toLocaleString();
+
+            const paymentInfo = { method, tx, paidAmount, paidOn };
+            generateInvoice(paymentModal._formData, paymentInfo, paymentModal._estimated);
+
+            paymentModal.style.display = 'none';
+        });
+
+        // Generate invoice without payment (Pending)
+        genInvoiceNoPay.addEventListener('click', () => {
+            const paymentInfo = { method: 'Not paid', tx: '', paidAmount: 0, paidOn: '' };
+            generateInvoice(paymentModal._formData, paymentInfo, paymentModal._estimated);
+            paymentModal.style.display = 'none';
+        });
+
+        // Generate invoice HTML and show modal
+    async function generateInvoice(formData, paymentInfo, estimatedAmount) {
+            const invoiceId = 'SF-' + Date.now();
+            const dateStr = new Date().toLocaleDateString();
+            const nowStr = new Date().toLocaleString();
+            const paid = (paymentInfo && paymentInfo.paidAmount && paymentInfo.paidAmount > 0) ? paymentInfo.paidAmount : 0;
+            const due = Math.max((estimatedAmount || 0) - paid, 0);
+
+            const gstLine = formData.gstNeeded ? `<p><strong>Client GSTIN:</strong> ${formData.gstin || '—'}</p>` : '';
+
+            const invoiceHTML = `
+                <div style="font-family: Inter, Arial, sans-serif; color: #222;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <h2 style="margin:0; color:#d4a574;">${studio.name}</h2>
+                            <div style="font-size:90%; color:#555;">${studio.address}</div>
+                            <div style="font-size:90%; color:#555;">Email: ${studio.email} | Phone: ${studio.phone}</div>
+                            ${studio.gstin ? `<div style="font-size:90%; color:#555;">GSTIN: ${studio.gstin}</div>` : ''}
+                        </div>
+                        <div style="text-align:right">
+                            <h3 style="margin:0;">Invoice</h3>
+                            <div><strong>ID:</strong> ${invoiceId}</div>
+                            <div><strong>Date:</strong> ${dateStr}</div>
+                        </div>
+                    </div>
+
+                    <hr style="margin:12px 0; border:none; border-top:1px solid #eee;" />
+
+                    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                        <div style="flex:1; min-width:220px;">
+                            <h4 style="margin-bottom:6px;">Bill To</h4>
+                            <p style="margin:0;"><strong>${formData.name}</strong></p>
+                            <p style="margin:0;">${formData.email}</p>
+                            <p style="margin:0;">${formData.phone}</p>
+                            <p style="margin:0;">${formData.location || ''}</p>
+                            ${gstLine}
+                        </div>
+                        <div style="flex:1; min-width:220px;">
+                            <h4 style="margin-bottom:6px;">Project</h4>
+                            <p style="margin:0;"><strong>Service:</strong> ${formData.serviceLabel}</p>
+                            <p style="margin:0;"><strong>Estimated:</strong> ₹${estimatedAmount}</p>
+                            <p style="margin:0;"><strong>Budget:</strong> ${formData.budgetLabel}</p>
+                            <p style="margin:0;"><strong>Timeline:</strong> ${formData.timelineLabel}</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:12px;">
+                        <h4>Description</h4>
+                        <div style="white-space:pre-wrap; color:#333;">${formData.description || '—'}</div>
+                        <div style="margin-top:8px; color:#666; font-size:90%;"><strong>References:</strong> ${formData.references || '—'}</div>
+                    </div>
+
+                    <table style="width:100%; margin-top:12px; border-collapse:collapse;">
+                        <thead>
+                            <tr style="background:#faf7f3; color:#222;">
+                                <th style="text-align:left; padding:8px; border:1px solid #eee;">Item</th>
+                                <th style="text-align:right; padding:8px; border:1px solid #eee;">Amount (INR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding:8px; border:1px solid #eee;">Estimated Project Fee</td>
+                                <td style="padding:8px; border:1px solid #eee; text-align:right;">₹${estimatedAmount}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px; border:1px solid #eee;">Amount Paid</td>
+                                <td style="padding:8px; border:1px solid #eee; text-align:right;">₹${paid}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px; border:1px solid #eee;"><strong>Amount Due</strong></td>
+                                <td style="padding:8px; border:1px solid #eee; text-align:right;"><strong>₹${due}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top:12px;">
+                        <h4>Payment Details</h4>
+                        <p style="margin:0;"><strong>Method:</strong> ${paymentInfo.method || '—'}</p>
+                        <p style="margin:0;"><strong>Transaction / Reference:</strong> ${paymentInfo.tx || '—'}</p>
+                        <p style="margin:0;"><strong>Paid on:</strong> ${paymentInfo.paidOn || '—'}</p>
+                    </div>
+
+                    <div style="margin-top:14px; font-size:90%; color:#555;">
+                        <p><strong>Terms:</strong> 50% advance, 50% on completion. Prices are indicative and may vary based on final scope. Please retain this invoice for your records.</p>
+                        <p>If you require an official GST invoice, please provide your GSTIN. For queries contact ${studio.email} or ${studio.phone}.</p>
+                    </div>
+
+                    <div style="margin-top:18px; display:flex; justify-content:space-between; align-items:center;">
+                        <div style="font-size:90%; color:#555;">Generated: ${nowStr}</div>
+                        <div style="text-align:right; font-size:90%; color:#555;">Thank you for commissioning StarFrame.</div>
+                    </div>
+                </div>
+            `;
+
+                invoiceContent.innerHTML = invoiceHTML;
+                invoiceModal.style.display = 'block';
+
+                // Attempt to send the invoice via server email endpoint
+                try {
+                    // Request a short-lived token
+                    const tResp = await fetch('/api/invoice/token');
+                    if (tResp.ok) {
+                        const { token } = await tResp.json();
+
+                        const resp = await fetch('/api/invoice/send', {
+                            method: 'POST',
+                            headers: { 
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                to: formData.email,
+                                subject: `StarFrame Invoice - ${invoiceId}`,
+                                html: invoiceHTML,
+                                plainText: `Hello ${formData.name},\n\nPlease find attached your invoice from StarFrame. Invoice ID: ${invoiceId}`
+                            })
+                        });
+
+                        if (resp.ok) {
+                            console.log('Invoice emailed successfully');
+                        } else {
+                            console.warn('Failed to email invoice');
+                        }
+                    } else {
+                        console.warn('Could not get invoice token');
+                    }
+                } catch (err) {
+                    console.warn('Could not reach invoice email endpoint:', err);
+                }
+        }
+
+        // Close invoice modal
+        closeInvoice.addEventListener('click', () => invoiceModal.style.display = 'none');
+        closeInvoiceBtn.addEventListener('click', () => invoiceModal.style.display = 'none');
+
+        // Download invoice as PDF using html2canvas + jsPDF
+        downloadInvoice.addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const el = invoiceContent;
+            // temporarily expand invoice for good rendering
+            html2canvas(el, { scale: 2 }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save(`invoice-${Date.now()}.pdf`);
+            }).catch(err => {
+                console.error(err);
+                alert('Error generating PDF. Please try again.');
+            });
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === paymentModal) paymentModal.style.display = 'none';
+            if (e.target === invoiceModal) invoiceModal.style.display = 'none';
+        });
+    </script>
 </body>
 </html>

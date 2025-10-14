@@ -9,34 +9,37 @@ class Database {
     }
 
     async init() {
-        try {
-            // Ensure data directory exists
-            const dataDir = path.join(__dirname, '../../data');
-            if (!fs.existsSync(dataDir)) {
-                fs.mkdirSync(dataDir, { recursive: true });
-            }
-
-            const dbPath = process.env.DATABASE_PATH || path.join(dataDir, 'starframe.db');
-            
-            this.db = new sqlite3.Database(dbPath, (err) => {
-                if (err) {
-                    logger.error('Error opening database:', err);
-                    throw err;
+        return new Promise((resolve, reject) => {
+            try {
+                // Ensure data directory exists
+                const dataDir = path.join(__dirname, '../../data');
+                if (!fs.existsSync(dataDir)) {
+                    fs.mkdirSync(dataDir, { recursive: true });
                 }
-                logger.info('Connected to SQLite database');
-            });
 
-            // Enable foreign keys
-            await this.run('PRAGMA foreign_keys = ON');
-            
-            // Create tables
-            await this.createTables();
-            
-            logger.info('Database initialized successfully');
-        } catch (error) {
-            logger.error('Database initialization failed:', error);
-            throw error;
-        }
+                const dbPath = process.env.DATABASE_PATH || path.join(dataDir, 'starframe.db');
+                
+                this.db = new sqlite3.Database(dbPath, async (err) => {
+                    if (err) {
+                        logger.error('Error opening database:', err);
+                        return reject(err);
+                    }
+                    logger.info('Connected to SQLite database');
+
+                    // Enable foreign keys
+                    await this.run('PRAGMA foreign_keys = ON');
+                    
+                    // Create tables
+                    await this.createTables();
+                    
+                    logger.info('Database initialized successfully');
+                    resolve();
+                });
+            } catch (error) {
+                logger.error('Database initialization failed:', error);
+                reject(error);
+            }
+        });
     }
 
     async createTables() {
@@ -248,6 +251,21 @@ class Database {
                 page TEXT,
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES oauth_users (id)
+            )`,
+
+            `CREATE TABLE IF NOT EXISTS commissions (
+                id TEXT PRIMARY KEY,
+                name TEXT,
+                email TEXT,
+                phone TEXT,
+                location TEXT,
+                service TEXT,
+                budget TEXT,
+                timeline TEXT,
+                purpose TEXT,
+                description TEXT,
+                reference_links TEXT,
+                gst BOOLEAN
             )`
         ];
 

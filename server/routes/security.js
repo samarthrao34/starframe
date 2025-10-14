@@ -8,7 +8,26 @@ const router = express.Router();
 // Get security dashboard data
 router.get('/dashboard', async (req, res) => {
     try {
-        const stats = security.getSecurityStats();
+        const highCriticalThreats = await Database.get(`
+            SELECT COUNT(*) as count FROM security_logs 
+            WHERE severity IN ('high', 'critical') AND timestamp >= datetime('now', '-24 hours')
+        `);
+
+        const blockedIPs = await Database.get(`
+            SELECT COUNT(*) as count FROM security_logs 
+            WHERE event_type = 'ip_blocked'
+        `);
+
+        const loginFailures = await Database.get(`
+            SELECT COUNT(*) as count FROM security_logs 
+            WHERE event_type = 'failed_login' AND timestamp >= datetime('now', '-24 hours')
+        `);
+
+        const stats = {
+            highCriticalThreats: highCriticalThreats.count,
+            blockedIPs: blockedIPs.count,
+            loginFailures: loginFailures.count
+        };
         
         const recentThreats = await Database.all(`
             SELECT * FROM security_logs 

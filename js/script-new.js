@@ -8,7 +8,127 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initParallaxEffect();
     initScrollProgress();
+    initReviews();
+    initHeadingAnimation();
 });
+
+function initHeadingAnimation() {
+    const sections = document.querySelectorAll('section[id]');
+    let animating = false;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animating) {
+                const heading = entry.target.querySelector('.section-title');
+                if (heading) {
+                    animating = true;
+                    animateStarsAroundHeading(heading, () => {
+                        animating = false;
+                    });
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+function createSparkle(x, y) {
+    const container = document.querySelector('.sparkle-container');
+    if (!container) return;
+    const sparkle = document.createElement('div');
+    const isStar = Math.random() > 0.5;
+    sparkle.className = isStar ? 'sparkle star-sparkle' : 'sparkle circle-sparkle';
+    sparkle.style.left = `${x}px`;
+    sparkle.style.top = `${y}px`;
+    const size = Math.random() * 3 + 1;
+    sparkle.style.width = `${size}px`;
+    sparkle.style.height = `${size}px`;
+    const color = `hsl(${Math.random() * 10 + 35}, 100%, ${Math.random() * 25 + 50}%)`;
+    sparkle.style.backgroundColor = color;
+    sparkle.style.boxShadow = `0 0 ${Math.random() * 5 + 5}px ${color}`;
+    container.appendChild(sparkle);
+
+    setTimeout(() => {
+        sparkle.remove();
+    }, 1200);
+}
+
+function animateStarsAroundHeading(heading, onComplete) {
+    if (!window.starAnimation) return;
+
+    const starsToAnimate = window.starAnimation.smallStars.slice(0, 2);
+    if (starsToAnimate.some(star => star.dataset.animating === 'true')) {
+        if(onComplete) onComplete();
+        return;
+    }
+
+    const startPositions = starsToAnimate.map(star => {
+        const transform = star.style.transform;
+        const [x, y] = transform.match(/-?[\d\.]+/g).map(Number);
+        return { x, y };
+    });
+
+    starsToAnimate.forEach(star => {
+        star.dataset.animating = 'true';
+    });
+
+    const headingRect = heading.getBoundingClientRect();
+    const headingCenter = {
+        x: headingRect.left + headingRect.width / 2,
+        y: headingRect.top + headingRect.height / 2
+    };
+
+    // Create a burst of sparkles
+    for (let i = 0; i < 10; i++) {
+        createSparkle(headingCenter.x, headingCenter.y);
+    }
+
+    const animationDuration = 4000; // 4 seconds
+    const startTime = Date.now();
+
+    function animate() {
+        const elapsedTime = Date.now() - startTime;
+        const progress = Math.min(elapsedTime / animationDuration, 1);
+        const easeOutQuart = 1 - (--progress) * progress * progress * progress;
+
+        starsToAnimate.forEach((star, index) => {
+            const angle = (elapsedTime / 1000) * (index === 0 ? 1.2 : -1.5) * 2 * Math.PI / 2;
+            const radius = (headingRect.width / 2 + 50) + 15 * Math.sin((elapsedTime / 1000) * (index === 0 ? 2 : 2.5));
+
+            let targetX, targetY;
+
+            if (progress < 0.9) {
+                targetX = headingCenter.x + radius * Math.cos(angle) + 10 * Math.sin((elapsedTime / 1000) * (index === 0 ? 3 : 3.5));
+                targetY = headingCenter.y + radius * Math.sin(angle) + 10 * Math.cos((elapsedTime / 1000) * (index === 0 ? 3 : 3.5));
+            } else {
+                const returnProgress = (progress - 0.9) / 0.1;
+                const currentTargetX = headingCenter.x + radius * Math.cos(angle);
+                const currentTargetY = headingCenter.y + radius * Math.sin(angle);
+                targetX = currentTargetX + (startPositions[index].x - currentTargetX) * returnProgress;
+                targetY = currentTargetY + (startPositions[index].y - currentTargetY) * returnProgress;
+            }
+
+            const currentX = startPositions[index].x + (targetX - startPositions[index].x) * easeOutQuart;
+            const currentY = startPositions[index].y + (targetY - startPositions[index].y) * easeOutQuart;
+
+            star.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${angle * 150}deg)`;
+        });
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            starsToAnimate.forEach(star => {
+                delete star.dataset.animating;
+            });
+            if (onComplete) onComplete();
+        }
+    }
+
+    animate();
+}
 
 // Navigation functionality
 function initNavigation() {
@@ -92,10 +212,7 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // Add different animation classes based on element type
-                if (entry.target.classList.contains('service-card')) {
-                    entry.target.style.transform = 'translateY(0)';
-                    entry.target.style.opacity = '1';
-                } else if (entry.target.classList.contains('team-member')) {
+                if (entry.target.classList.contains('team-member')) {
                     entry.target.style.transform = 'translateY(0)';
                     entry.target.style.opacity = '1';
                 } else if (entry.target.classList.contains('portfolio-item')) {
@@ -117,12 +234,11 @@ function initScrollAnimations() {
 
     // Observe sections and cards
     const animatedElements = document.querySelectorAll(
-        '.about-text, .about-visual, .service-card, .team-member, .portfolio-item, .commission-content, .section-header'
+        '.about-text, .about-visual, .team-member, .portfolio-item, .commission-content, .section-header'
     );
     
     animatedElements.forEach((el, index) => {
-        if (el.classList.contains('service-card') || 
-            el.classList.contains('team-member') || 
+        if (el.classList.contains('team-member') || 
             el.classList.contains('portfolio-item')) {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
@@ -228,6 +344,108 @@ function initCommissionForm() {
             input.addEventListener('blur', validateField);
             input.addEventListener('input', clearFieldError);
         });
+    }
+}
+
+// Reviews form functionality
+function initReviews() {
+    const form = document.getElementById('reviewForm');
+    const reviewList = document.getElementById('reviewList');
+
+    if (!form || !reviewList) {
+        return;
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const nameInput = form.querySelector('#reviewerName');
+        const cityInput = form.querySelector('#reviewerCity');
+        const ratingSelect = form.querySelector('#reviewerRating');
+        const messageInput = form.querySelector('#reviewerMessage');
+
+        const name = nameInput.value.trim();
+        const city = cityInput.value.trim();
+        const rating = parseInt(ratingSelect.value, 10);
+        const message = messageInput.value.trim();
+
+        if (!name || !message || !rating) {
+            showNotification('Please share your name, rating, and experience before submitting.', 'error');
+            return;
+        }
+
+        if (message.length < 10) {
+            showNotification('Please share a little more detail in your review (minimum 10 characters).', 'error');
+            return;
+        }
+
+        const reviewCard = document.createElement('article');
+        reviewCard.className = 'review-card new-review';
+
+        const ratingEl = document.createElement('div');
+        ratingEl.className = 'review-rating';
+        ratingEl.setAttribute('aria-label', `${rating} star rating`);
+
+        for (let i = 0; i < 5; i++) {
+            const star = document.createElement('i');
+            if (i < rating) {
+                star.className = 'fas fa-star';
+            } else {
+                star.className = 'far fa-star';
+            }
+            ratingEl.appendChild(star);
+        }
+
+        const quote = document.createElement('p');
+        quote.className = 'review-quote';
+        quote.textContent = `“${message}”`;
+
+        const meta = document.createElement('div');
+        meta.className = 'reviewer-meta';
+
+        const initials = document.createElement('div');
+        initials.className = 'reviewer-initials';
+        initials.textContent = getInitials(name);
+
+        const detailWrap = document.createElement('div');
+
+        const nameEl = document.createElement('span');
+        nameEl.className = 'reviewer-name';
+        nameEl.textContent = name;
+
+        const roleEl = document.createElement('span');
+        roleEl.className = 'reviewer-role';
+        roleEl.textContent = city || 'Shared via website';
+
+        detailWrap.appendChild(nameEl);
+        detailWrap.appendChild(roleEl);
+
+        meta.appendChild(initials);
+        meta.appendChild(detailWrap);
+
+        reviewCard.appendChild(ratingEl);
+        reviewCard.appendChild(quote);
+        reviewCard.appendChild(meta);
+
+        reviewList.prepend(reviewCard);
+
+        form.reset();
+
+        if (typeof showNotification === 'function') {
+            showNotification('Thank you for reviewing Starframe! ✨', 'success');
+        }
+
+        // Remove highlight class after animation to reset state
+        setTimeout(() => {
+            reviewCard.classList.remove('new-review');
+        }, 2000);
+    });
+
+    function getInitials(fullName) {
+        const parts = fullName.split(' ').filter(Boolean);
+        if (parts.length === 0) return 'SF';
+        if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+        return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
     }
 }
 
@@ -389,13 +607,13 @@ function initParallaxEffect() {
         });
     }
     
-    // Mouse parallax for service cards
+    // Mouse parallax for team cards
     document.addEventListener('mousemove', (e) => {
-        const serviceCards = document.querySelectorAll('.service-card, .team-member');
+        const interactiveCards = document.querySelectorAll('.team-member');
         const mouseX = e.clientX / window.innerWidth;
         const mouseY = e.clientY / window.innerHeight;
         
-        serviceCards.forEach((card, index) => {
+        interactiveCards.forEach((card) => {
             const rect = card.getBoundingClientRect();
             const cardX = rect.left + rect.width / 2;
             const cardY = rect.top + rect.height / 2;
@@ -434,23 +652,6 @@ function initScrollProgress() {
         progressBar.style.width = scrolled + '%';
     });
 }
-
-// Service card interactions
-document.addEventListener('DOMContentLoaded', () => {
-    const serviceCards = document.querySelectorAll('.service-card');
-    
-    serviceCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-12px) scale(1.02)';
-            this.style.boxShadow = '0 25px 60px rgba(60, 60, 60, 0.25)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '0 8px 25px rgba(60, 60, 60, 0.12)';
-        });
-    });
-});
 
 // Team member card interactions
 document.addEventListener('DOMContentLoaded', () => {
@@ -1135,4 +1336,26 @@ document.addEventListener('DOMContentLoaded', function() {
         initBackToTopButton();
     }, 1500);
 });
+
+// Back to top button
+const backToTopButton = document.getElementById("back-to-top-btn");
+
+window.onscroll = function() {
+    scrollFunction();
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        backToTopButton.style.display = "block";
+    } else {
+        backToTopButton.style.display = "none";
+    }
+}
+
+backToTopButton.addEventListener("click", backToTop);
+
+function backToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
 

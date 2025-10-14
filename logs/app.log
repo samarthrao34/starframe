@@ -1569,3 +1569,141 @@
 2025-10-02 18:21:15 [INFO]: Socket disconnected: rtbvsFF9WtoKrlhQAAAP {"service":"starframe-admin"}
 2025-10-02 18:21:15 [INFO]: Socket connected: UyiXE3k0ip1b1VufAAAR {"service":"starframe-admin"}
 2025-10-02 18:21:15 [INFO]: Page visit tracked: home - UyiXE3k0ip1b1VufAAAR {"service":"starframe-admin"}
+2025-10-02 23:21:05 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-10-02 23:21:05 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-10-02 23:21:05 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-10-02 23:21:05 [INFO]: ✅ StarFrame Admin System running on port 3000 {"service":"starframe-admin"}
+2025-10-02 23:21:05 [INFO]: ✅ Admin dashboard: http://localhost:3000/admin {"service":"starframe-admin"}
+2025-10-02 23:21:05 [INFO]: ✅ OAuth login: http://localhost:3000/api/auth/google {"service":"starframe-admin"}
+2025-10-02 23:21:05 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-10-02 23:21:05 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2025-10-02 23:22:21 [INFO]: GET /api/auth/google/callback - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:44 [INFO]: GET / - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: GET /images/StarFrame%20Animation%20Studio/landscape.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.03%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.05%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.14%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: GET /images/StarFrame%20Animation%20Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: GET /api/auth/oauth/me - ::1 {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: Socket connected: IzB4mnDQTvKyOc16AAAB {"service":"starframe-admin"}
+2025-10-02 23:22:45 [INFO]: Page visit tracked: home - IzB4mnDQTvKyOc16AAAB {"service":"starframe-admin"}
+2025-10-02 23:22:46 [INFO]: GET /favicon.ico - ::1 {"service":"starframe-admin"}
+2025-10-02 23:24:13 [INFO]: GET /images/StarFrame%20Animation%20Studio/fat-oldman.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:24:13 [INFO]: GET /images/StarFrame%20Animation%20Studio/hounted-house.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:25:22 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.03%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2025-10-02 23:25:33 [INFO]: GET /images/StarFrame%20Animation%20Studio/perspective.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:25:33 [INFO]: GET /images/StarFrame%20Animation%20Studio/bf76fc47-09d6-4fc2-9c3c-1b498411c3e9.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:25:37 [INFO]: GET /images/StarFrame%20Animation%20Studio/654e2ada-a1f1-409b-b473-ee5c390dc56f.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:25:54 [INFO]: GET /images/StarFrame%20Animation%20Studio/52129dbd-7499-4455-ab47-2dda8e0736f6.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:25:55 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.05%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2025-10-02 23:25:59 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.14%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2025-10-02 23:26:00 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Image%202025-08-13%20at%207.35.06%20PM.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:26:00 [INFO]: GET /images/StarFrame%20Animation%20Studio/f0b9cc3f-8782-4be1-9c19-044c5aedc84d.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:26:00 [INFO]: GET /images/StarFrame%20Animation%20Studio/3587bd37-4ea4-4b6f-be36-0da7f99c8384.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-02 23:49:29 [INFO]: Socket disconnected: IzB4mnDQTvKyOc16AAAB {"service":"starframe-admin"}
+2025-10-06 11:49:38 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-10-06 11:49:38 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-10-06 11:49:38 [ERROR]: Database run error: SQLITE_ERROR: near "references": syntax error {"service":"starframe-admin","errno":1,"code":"SQLITE_ERROR","__augmented":true,"stack":"Error: SQLITE_ERROR: near \"references\": syntax error\n--> in Database#run('CREATE TABLE IF NOT EXISTS commissions (\\n' +\n  '                id TEXT PRIMARY KEY,\\n' +\n  '                name TEXT,\\n' +\n  '                email TEXT,\\n' +\n  '                phone TEXT,\\n' +\n  '                location TEXT,\\n' +\n  '                service TEXT,\\n' +\n  '                budget TEXT,\\n' +\n  '                timeline TEXT,\\n' +\n  '                purpose TEXT,\\n' +\n  '                description TEXT,\\n' +\n  '                references TEXT,\\n' +\n  '                gst BOOLEAN\\n' +\n  '            )', [], [Function (anonymous)])\n    at D:\\starframe\\server\\models\\Database.js:295:21\n    at new Promise (<anonymous>)\n    at Database.run (D:\\starframe\\server\\models\\Database.js:294:16)\n    at Database.createTables (D:\\starframe\\server\\models\\Database.js:273:24)\n    at async Database.<anonymous> (D:\\starframe\\server\\models\\Database.js:33:21)"}
+2025-10-06 11:49:38 [ERROR]: Unhandled Rejection at: {"service":"starframe-admin"}
+2025-10-06 11:50:29 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-10-06 11:50:29 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-10-06 11:50:29 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-10-06 11:50:29 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-10-06 11:50:29 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2025-10-06 11:50:29 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2025-10-06 11:50:29 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2025-10-06 11:50:29 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-10-06 11:50:29 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2025-10-06 11:57:32 [INFO]: SIGINT received, shutting down gracefully {"service":"starframe-admin"}
+2025-10-08 10:13:42 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-10-08 10:13:42 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-10-08 10:13:42 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-10-08 10:13:42 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-10-08 10:13:42 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2025-10-08 10:13:42 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2025-10-08 10:13:42 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2025-10-08 10:13:42 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-10-08 10:13:42 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2025-10-08 10:14:06 [ERROR]: Unhandled error: secret option required for sessions {"service":"starframe-admin","stack":"Error: secret option required for sessions\n    at session (D:\\starframe\\node_modules\\express-session\\index.js:204:12)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at cors (D:\\starframe\\node_modules\\cors\\lib\\index.js:188:7)\n    at D:\\starframe\\node_modules\\cors\\lib\\index.js:224:17\n    at origin (D:\\starframe\\server\\server.js:170:21)\n    at D:\\starframe\\node_modules\\cors\\lib\\index.js:219:13"}
+2025-10-08 10:14:07 [ERROR]: Unhandled error: secret option required for sessions {"service":"starframe-admin","stack":"Error: secret option required for sessions\n    at session (D:\\starframe\\node_modules\\express-session\\index.js:204:12)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at cors (D:\\starframe\\node_modules\\cors\\lib\\index.js:188:7)\n    at D:\\starframe\\node_modules\\cors\\lib\\index.js:224:17\n    at origin (D:\\starframe\\server\\server.js:170:21)\n    at D:\\starframe\\node_modules\\cors\\lib\\index.js:219:13"}
+2025-10-08 10:14:17 [INFO]: SIGINT received, shutting down gracefully {"service":"starframe-admin"}
+2025-10-08 10:14:50 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-10-08 10:14:50 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-10-08 10:14:50 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-10-08 10:14:50 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-10-08 10:14:50 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2025-10-08 10:14:50 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2025-10-08 10:14:50 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2025-10-08 10:14:50 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-10-08 10:14:50 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2025-10-08 10:15:10 [ERROR]: Unhandled error: secret option required for sessions {"service":"starframe-admin","stack":"Error: secret option required for sessions\n    at session (D:\\starframe\\node_modules\\express-session\\index.js:204:12)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at cors (D:\\starframe\\node_modules\\cors\\lib\\index.js:188:7)\n    at D:\\starframe\\node_modules\\cors\\lib\\index.js:224:17\n    at origin (D:\\starframe\\server\\server.js:170:21)\n    at D:\\starframe\\node_modules\\cors\\lib\\index.js:219:13"}
+2025-10-08 10:15:10 [ERROR]: Unhandled error: secret option required for sessions {"service":"starframe-admin","stack":"Error: secret option required for sessions\n    at session (D:\\starframe\\node_modules\\express-session\\index.js:204:12)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at cors (D:\\starframe\\node_modules\\cors\\lib\\index.js:188:7)\n    at D:\\starframe\\node_modules\\cors\\lib\\index.js:224:17\n    at origin (D:\\starframe\\server\\server.js:170:21)\n    at D:\\starframe\\node_modules\\cors\\lib\\index.js:219:13"}
+2025-10-08 10:15:44 [INFO]: SIGINT received, shutting down gracefully {"service":"starframe-admin"}
+2025-10-08 10:16:05 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-10-08 10:16:05 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-10-08 10:16:05 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-10-08 10:16:05 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-10-08 10:16:05 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2025-10-08 10:16:05 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2025-10-08 10:16:05 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2025-10-08 10:16:05 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2025-10-08 10:16:05 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-10-08 10:16:05 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2025-10-08 10:16:21 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-10-08 10:16:21 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-10-08 10:16:21 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-10-08 10:16:21 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-10-08 10:16:21 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2025-10-08 10:16:21 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2025-10-08 10:16:21 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2025-10-08 10:16:21 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2025-10-08 10:16:21 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-10-08 10:16:21 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2025-10-08 10:16:27 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:27 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:27 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:30 [INFO]: GET /favicon.ico - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:30 [INFO]: GET /favicon-32x32.png - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:30 [INFO]: GET /favicon-16x16.png - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:31 [INFO]: GET /index.html - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:31 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:31 [INFO]: GET /images/StarFrame%20Animation%20Studio/landscape.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:31 [INFO]: GET /js/sparkle-star.js - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:31 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:31 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.03%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:31 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.05%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:31 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.14%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:32 [INFO]: GET /images/StarFrame%20Animation%20Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:32 [INFO]: GET /api/auth/oauth/me - ::1 {"service":"starframe-admin"}
+2025-10-08 10:16:32 [INFO]: Socket connected: _BDZ6ZX26tVnTxcXAAAB {"service":"starframe-admin"}
+2025-10-08 10:16:32 [INFO]: Page visit tracked: home - _BDZ6ZX26tVnTxcXAAAB {"service":"starframe-admin"}
+2025-10-08 10:22:34 [INFO]: SIGINT received, shutting down gracefully {"service":"starframe-admin"}
+2025-10-08 10:23:38 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-10-08 10:23:38 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-10-08 10:23:38 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-10-08 10:23:38 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-10-08 10:23:38 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2025-10-08 10:23:38 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2025-10-08 10:23:38 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2025-10-08 10:23:38 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2025-10-08 10:23:38 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-10-08 10:23:38 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2025-10-08 10:24:13 [INFO]: SIGINT received, shutting down gracefully {"service":"starframe-admin"}
+2025-10-08 10:33:11 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-10-08 10:33:11 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-10-08 10:33:11 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-10-08 10:33:11 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-10-08 10:33:11 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2025-10-08 10:33:11 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2025-10-08 10:33:11 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2025-10-08 10:33:11 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2025-10-08 10:33:11 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-10-08 10:33:11 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2025-10-08 10:34:00 [INFO]: Socket connected: Zd-h3Bw3MculfRkIAAAB {"service":"starframe-admin"}
+2025-10-08 10:34:00 [INFO]: Page visit tracked: home - Zd-h3Bw3MculfRkIAAAB {"service":"starframe-admin"}
+2025-10-08 10:34:06 [INFO]: Socket disconnected: Zd-h3Bw3MculfRkIAAAB {"service":"starframe-admin"}
+2025-10-08 10:34:15 [INFO]: Socket connected: GoLGt0EW2xbQtZ_gAAAD {"service":"starframe-admin"}
+2025-10-08 10:34:15 [INFO]: Page visit tracked: home - GoLGt0EW2xbQtZ_gAAAD {"service":"starframe-admin"}
+2025-10-08 10:35:19 [INFO]: SIGINT received, shutting down gracefully {"service":"starframe-admin"}

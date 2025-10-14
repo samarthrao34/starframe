@@ -15,7 +15,6 @@
     
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -23,12 +22,26 @@
             margin: 0;
             font-family: 'Inter', sans-serif;
         }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        .hero-bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
         
         .login-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: transparent;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             padding: 3rem;
             width: 100%;
             max-width: 400px;
@@ -40,13 +53,13 @@
         }
         
         .login-header h1 {
-            color: #333;
+            color: black;
             font-size: 2rem;
             margin-bottom: 0.5rem;
         }
         
         .login-header p {
-            color: #666;
+            color: black;
             font-size: 1rem;
         }
         
@@ -61,23 +74,22 @@
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            background: #fff;
-            color: #333;
-            border: 2px solid #ddd;
+            background: transparent;
+            color: black;
+            border: 2px solid black;
             padding: 1rem 1.5rem;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
         .google-login-btn:hover {
-            background: #f8f9fa;
-            border-color: #667eea;
+            background: black;
+            color: white;
+            border: 2px solid black;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         
         .google-icon {
@@ -89,7 +101,7 @@
             display: flex;
             align-items: center;
             margin: 1.5rem 0;
-            color: #666;
+            color: black;
         }
         
         .divider::before,
@@ -97,7 +109,7 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: #ddd;
+            background: black;
         }
         
         .divider span {
@@ -106,9 +118,9 @@
         }
         
         .admin-login-btn {
-            background: #667eea;
-            color: white;
-            border: none;
+            background: transparent;
+            color: black;
+            border: 2px solid black;
             padding: 1rem 1.5rem;
             border-radius: 12px;
             text-decoration: none;
@@ -122,22 +134,23 @@
         }
         
         .admin-login-btn:hover {
-            background: #5a6fd8;
+            background: black;
+            color: white;
+            border: 2px solid black;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
         }
         
         .features-list {
             text-align: left;
             margin: 2rem 0;
             padding: 1.5rem;
-            background: rgba(102, 126, 234, 0.1);
+            background: transparent;
             border-radius: 12px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid transparent;
         }
         
         .features-list h3 {
-            color: #333;
+            color: black;
             font-size: 1.1rem;
             margin-bottom: 1rem;
         }
@@ -150,14 +163,14 @@
         
         .features-list li {
             padding: 0.5rem 0;
-            color: #666;
+            color: black;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
         
         .features-list li i {
-            color: #667eea;
+            color: black;
             width: 16px;
         }
         
@@ -170,41 +183,7 @@
             margin-bottom: 1rem;
             display: none;
         }
-        
-        .back-home {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-        
-        .back-home:hover {
-            opacity: 0.8;
-        }
-        
-        @media (max-width: 768px) {
-            .login-container {
-                margin: 1rem;
-                padding: 2rem;
-            }
-            
-            .back-home {
-                position: static;
-                margin-bottom: 2rem;
-                justify-content: center;
-            }
-            
-            body {
-                padding: 1rem 0;
-                align-items: flex-start;
-            }
-        }
+
         
         .sparkles {
             position: absolute;
@@ -234,15 +213,39 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(254, 252, 248, 0.85) 0%,
+                rgba(249, 246, 242, 0.75) 50%,
+                rgba(212, 165, 116, 0.25) 100%
+            );
+            z-index: -1;
+        }
+    </style>
+    <style>
+        .btn-secondary:hover {
+            background-color: black !important;
+            color: white !important;
+        }
     </style>
 </head>
 <body>
-    <div class="sparkles" id="sparkles"></div>
-    
-    <a href="/" class="back-home">
-        <i class="fas fa-arrow-left"></i> Back to StarFrame
+    <a href="/" class="btn btn-secondary" style="position: absolute; top: 2rem; left: 2rem; color: black; border-color: black;">
+        <i class="fas fa-arrow-left"></i> Back to Home
     </a>
-    
+    <div class="hero-background">
+        <img src="images/StarFrame Animation Studio/landscape.jpeg" alt="Hero Background" class="hero-bg-image">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="sparkles" id="sparkles"></div>
+
     <div class="login-container">
         <div class="login-header">
             <h1>Welcome to StarFrame</h1>
@@ -403,5 +406,7 @@
         `;
         document.head.appendChild(style);
     </script>
+
+
 </body>
 </html>

@@ -65,8 +65,10 @@
     <nav class="navbar" id="navbar" aria-label="Primary">
         <div class="nav-container">
             <div class="nav-logo">
-                <h1>StarFrame</h1>
-                <span class="nav-tagline">Animation Studio</span>
+                <a href="#home" class="nav-logo-link" aria-label="StarFrame Animation Studio home">
+                    <h1>StarFrame</h1>
+                    <span class="nav-tagline">Animation Studio</span>
+                </a>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
@@ -79,13 +81,10 @@
                     <a href="#services" class="nav-link">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#process" class="nav-link">Process</a>
+                    <a href="#reviews" class="nav-link">Reviews</a>
                 </li>
                 <li class="nav-item">
                     <a href="#portfolio" class="nav-link">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#testimonials" class="nav-link">Testimonials</a>
                 </li>
                 <li class="nav-item">
                     <a href="#team" class="nav-link">Team</a>
@@ -120,43 +119,12 @@
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
+        <a href="#about" class="scroll-indicator-link">
+            <div class="scroll-indicator">
             <div class="scroll-text">Scroll to explore</div>
             <div class="scroll-arrow"></div>
         </div>
-    </section>
-
-    <!-- Highlights Section -->
-    <section id="highlights" class="highlights">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Crafting Animation With Purpose</h2>
-                <p class="section-subtitle">Meaningful milestones that reflect the magic we co-create with studios, startups, and storytellers around the world.</p>
-            </div>
-
-            <div class="highlights-grid">
-                <div class="highlight-card">
-                    <span class="highlight-value">120+</span>
-                    <p class="highlight-label">Story-driven sequences delivered for films, games, education, and indie universes.</p>
-                    <small class="highlight-meta">Each one sculpted frame by frame for emotional resonance.</small>
-                </div>
-                <div class="highlight-card">
-                    <span class="highlight-value">35</span>
-                    <p class="highlight-label">Original character worlds developed from blank page to living lore.</p>
-                    <small class="highlight-meta">We nurture art direction, lore, and narrative arcs in sync.</small>
-                </div>
-                <div class="highlight-card">
-                    <span class="highlight-value">95%</span>
-                    <p class="highlight-label">Repeat collaborations with returning clients throughout 2024.</p>
-                    <small class="highlight-meta">Trusted for consistency, clarity, and heart-first communication.</small>
-                </div>
-                <div class="highlight-card">
-                    <span class="highlight-value">12</span>
-                    <p class="highlight-label">Countries reached with localized, inclusive storytelling.</p>
-                    <small class="highlight-meta">From Varanasi to Vancouver—stories carry far when they resonate.</small>
-                </div>
-            </div>
-        </div>
+    </a>
     </section>
 
     <!-- About Section -->
@@ -196,80 +164,174 @@
 
             <div class="services-grid">
                 <div class="service-card" data-service="2d">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>2D Animation</h3>
-                    <p>Hand-crafted animations that bring characters to life with fluid movements and emotional depth. From character-driven stories to whimsical adventures, we create animations that resonate with hearts.</p>
-                    <div class="service-examples">
-                        <video autoplay loop muted playsinline preload="metadata">
-                            <source src="images/StarFrame Animation Studio/WhatsApp Video 2025-08-13 at 7.35.03 PM.mp4" type="video/mp4">
-                        </video>
+                    <div class="service-card-inner">
+                        <div class="service-card-face service-card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h3>2D Animation</h3>
+                            <p>Hand-crafted animations that bring characters to life with fluid movements and emotional depth. From character-driven stories to whimsical adventures, we create animations that resonate with hearts.</p>
+                            <div class="service-examples">
+                                <video autoplay loop muted playsinline preload="metadata">
+                                    <source src="images/StarFrame Animation Studio/WhatsApp Video 2025-08-13 at 7.35.03 PM.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        <div class="service-card-face service-card-back">
+                            <div class="service-back-content">
+                                <span class="service-back-label">2D Animation</span>
+                                <h3>Starframe Animation Studios</h3>
+                                <p>Animating heartfelt Indian stories with handcrafted frames, sweeping motion, and cinematic polish.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="service-card" data-service="character">
-                    <div class="service-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h3>Character Design</h3>
-                    <p>Every character we design has a story to tell. From concept sketches to final designs, we create memorable characters that become beloved by audiences and carry emotional weight in every scene.</p>
-                    <div class="service-examples">
-                        <img src="images/StarFrame Animation Studio/fat-oldman.jpeg" alt="Character Design Example" loading="lazy">
+                    <div class="service-card-inner">
+                        <div class="service-card-face service-card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <h3>Character Design</h3>
+                            <p>Every character we design has a story to tell. From concept sketches to final designs, we create memorable characters that become beloved by audiences and carry emotional weight in every scene.</p>
+                            <div class="service-examples">
+                                <img src="images/StarFrame Animation Studio/fat-oldman.jpeg" alt="Character Design Example" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="service-card-face service-card-back">
+                            <div class="service-back-content">
+                                <span class="service-back-label">Character Design</span>
+                                <h3>Starframe Animation Studios</h3>
+                                <p>Illustrating expressive personalities and wardrobes that feel rooted in Indian culture and global appeal.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="service-card" data-service="illustration">
-                    <div class="service-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>Digital Illustrations</h3>
-                    <p>Beautiful, detailed illustrations that capture moments, moods, and stories. Whether for books, concepts, or standalone art pieces, our illustrations are crafted with love and attention to detail.</p>
-                    <div class="service-examples">
-                        <img src="images/StarFrame Animation Studio/hounted-house.jpeg" alt="Digital Illustration Example" loading="lazy">
+                    <div class="service-card-inner">
+                        <div class="service-card-face service-card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3>Digital Illustrations</h3>
+                            <p>Beautiful, detailed illustrations that capture moments, moods, and stories. Whether for books, concepts, or standalone art pieces, our illustrations are crafted with love and attention to detail.</p>
+                            <div class="service-examples">
+                                <img src="images/StarFrame Animation Studio/hounted-house.jpeg" alt="Digital Illustration Example" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="service-card-face service-card-back">
+                            <div class="service-back-content">
+                                <span class="service-back-label">Digital Illustration</span>
+                                <h3>Starframe Animation Studios</h3>
+                                <p>Painting rich, golden-toned visuals that celebrate imagination and spotlight every detail.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section id="process" class="process">
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">How We Shape Your Story</h2>
-                <p class="section-subtitle">A collaborative workflow that keeps every frame aligned with your vision, from first sketch to final delivery.</p>
+                <h2 class="section-title">Reviews From India & Beyond</h2>
+                <p class="section-subtitle">Creators across India already love our storytelling. Share how Starframe brought your vision to life.</p>
             </div>
 
-            <div class="process-grid">
-                <div class="process-step">
-                    <div class="step-icon"><i class="fas fa-compass"></i></div>
-                    <span class="step-number">01</span>
-                    <h3>Discover & Align</h3>
-                    <p>We listen deeply, gather references, and define mood, rhythm, and audience goals so every creative decision feels intentional.</p>
-                    <span class="step-note">Deliverables: Creative brief, tone board, production roadmap.</span>
+            <div class="reviews-layout">
+                <div class="reviews-grid" id="reviewList">
+                    <article class="review-card">
+                        <div class="review-rating" aria-label="5 star rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-quote">“Starframe delivered an emotional 2D film for our Diwali campaign. Their timing, color, and empathy surpassed expectations.”</p>
+                        <div class="reviewer-meta">
+                            <div class="reviewer-initials" aria-hidden="true">AS</div>
+                            <div>
+                                <span class="reviewer-name">Aarav Sharma</span>
+                                <span class="reviewer-role">Founder, Harmony Homes — Mumbai</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <div class="review-rating" aria-label="5 star rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-quote">“They shaped our ed-tech characters with warmth that resonated with classrooms across Gujarat. Revisions were swift and thoughtful.”</p>
+                        <div class="reviewer-meta">
+                            <div class="reviewer-initials" aria-hidden="true">MP</div>
+                            <div>
+                                <span class="reviewer-name">Meera Patel</span>
+                                <span class="reviewer-role">Curriculum Head, LearnLeap — Ahmedabad</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <div class="review-rating" aria-label="5 star rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-quote">“Our indie game needed standout portraits. Starframe’s illustration team captured Bengal’s textures and gave us production-ready art.”</p>
+                        <div class="reviewer-meta">
+                            <div class="reviewer-initials" aria-hidden="true">RB</div>
+                            <div>
+                                <span class="reviewer-name">Ritvika Bose</span>
+                                <span class="reviewer-role">Producer, PixelKatha — Kolkata</span>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <div class="process-step">
-                    <div class="step-icon"><i class="fas fa-pencil-ruler"></i></div>
-                    <span class="step-number">02</span>
-                    <h3>Design & World-Build</h3>
-                    <p>Concept art, character sheets, and layout explorations evolve collaboratively—iterating until the world feels alive and expressive.</p>
-                    <span class="step-note">Deliverables: Character packs, environment explorations, motion tests.</span>
-                </div>
-                <div class="process-step">
-                    <div class="step-icon"><i class="fas fa-film"></i></div>
-                    <span class="step-number">03</span>
-                    <h3>Animate & Emotion Map</h3>
-                    <p>Our animators infuse movement with feeling, blending timing, acting choices, and lighting to carry the emotional beat of your story.</p>
-                    <span class="step-note">Deliverables: Animatics, polished sequences, review-ready previews.</span>
-                </div>
-                <div class="process-step">
-                    <div class="step-icon"><i class="fas fa-rocket"></i></div>
-                    <span class="step-number">04</span>
-                    <h3>Polish & Launch</h3>
-                    <p>Final composites, sound passes, and platform-ready exports arrive with clear documentation, so you launch confidently and on time.</p>
-                    <span class="step-note">Deliverables: Final exports, brand assets, usage guidelines.</span>
-                </div>
+
+                <aside class="review-form-wrapper">
+                    <div class="review-form-card">
+                        <h3>Share Your Review</h3>
+                        <p>Tell us how our team supported your story. Your words guide new dreamers to collaborate with us.</p>
+                        <form id="reviewForm" novalidate>
+                            <div class="form-group">
+                                <label for="reviewerName">Your Name *</label>
+                                <input type="text" id="reviewerName" name="reviewerName" required placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="reviewerCity">City / Organisation</label>
+                                <input type="text" id="reviewerCity" name="reviewerCity" placeholder="e.g., Delhi, India or Studio Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="reviewerRating">Your Rating *</label>
+                                <select id="reviewerRating" name="reviewerRating" required>
+                                    <option value="">Select rating</option>
+                                    <option value="5">★★★★★ - Outstanding</option>
+                                    <option value="4">★★★★☆ - Great</option>
+                                    <option value="3">★★★☆☆ - Good</option>
+                                    <option value="2">★★☆☆☆ - Needs Work</option>
+                                    <option value="1">★☆☆☆☆ - Unsatisfied</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reviewerMessage">Your Experience *</label>
+                                <textarea id="reviewerMessage" name="reviewerMessage" rows="4" required placeholder="Share your thoughts about working with Starframe..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Submit Review</button>
+                            <small class="review-disclaimer">By sharing, you agree that your feedback may appear on our website.</small>
+                        </form>
+                    </div>
+                </aside>
             </div>
         </div>
     </section>
@@ -363,43 +425,6 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Voices From Our Partners</h2>
-                <p class="section-subtitle">Stories from founders, studios, and educators who trusted StarFrame to translate heart into motion.</p>
-            </div>
-
-            <div class="testimonials-grid">
-                <article class="testimonial-card">
-                    <div class="testimonial-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-quote">“StarFrame took our scrap of an idea and returned a fully breathing world. Every review call felt like a celebration of craft and empathy.”</p>
-                    <div class="testimonial-author">
-                        <span class="author-name">Ananya Bose</span>
-                        <span class="author-role">Creative Producer, Moonbeam Media</span>
-                    </div>
-                </article>
-                <article class="testimonial-card">
-                    <div class="testimonial-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-quote">“Their character design packs were so thorough that our in-house animators slipped straight into production—no friction, just flow.”</p>
-                    <div class="testimonial-author">
-                        <span class="author-name">Leo Martínez</span>
-                        <span class="author-role">Animation Supervisor, Aurora Games</span>
-                    </div>
-                </article>
-                <article class="testimonial-card">
-                    <div class="testimonial-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-quote">“We needed sensitive storytelling for a learning platform. StarFrame balanced pedagogy and wonder in a way our students adored.”</p>
-                    <div class="testimonial-author">
-                        <span class="author-name">Dr. Meera Kaul</span>
-                        <span class="author-role">Founder, Firefly Learning Lab</span>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
     <!-- Team Section -->
     <section id="team" class="team">
         <div class="floating-particles">
@@ -420,9 +445,9 @@
                         <img src="images/StarFrame Animation Studio/WhatsApp Image 2025-08-13 at 7.35.06 PM.jpeg" alt="Vipshyana" loading="lazy">
                         <div class="member-overlay">
                             <div class="member-social">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-behance"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://www.instagram.com/starframeanimationstudios/" target="_blank" rel="noopener" aria-label="Starframe on Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/in/vipshyana-5-vip/" target="_blank" rel="noopener" aria-label="Starframe on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://x.com/StarFrame1527" target="_blank" rel="noopener" aria-label="Starframe on X"><i class="fab fa-twitter"></i></a>
                             </div>
                         </div>
                     </div>
@@ -442,9 +467,9 @@
                         <img src="images/StarFrame Animation Studio/f0b9cc3f-8782-4be1-9c19-044c5aedc84d.jpeg" alt="Poulomi" loading="lazy">
                         <div class="member-overlay">
                             <div class="member-social">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-dribbble"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.instagram.com/starframeanimationstudios/" target="_blank" rel="noopener" aria-label="Starframe on Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://dribbble.com/starframeanimation" target="_blank" rel="noopener" aria-label="Starframe on Dribbble"><i class="fab fa-dribbble"></i></a>
+                                <a href="https://x.com/StarFrame1527" target="_blank" rel="noopener" aria-label="Starframe on X"><i class="fab fa-twitter"></i></a>
                             </div>
                         </div>
                     </div>
@@ -464,9 +489,9 @@
                         <img src="images/StarFrame Animation Studio/3587bd37-4ea4-4b6f-be36-0da7f99c8384.jpeg" alt="Samarth" loading="lazy">
                         <div class="member-overlay">
                             <div class="member-social">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/in/samarth-rao-24620a1ab/" target="_blank" rel="noopener" aria-label="Samarth on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/samarthrao34" target="_blank" rel="noopener" aria-label="Starframe on GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://x.com/StarFrame1527" target="_blank" rel="noopener" aria-label="Starframe on X"><i class="fab fa-twitter"></i></a>
                             </div>
                         </div>
                     </div>
@@ -475,8 +500,8 @@
                         <h3>Samarth</h3>
                         <p class="member-role">Technical Producer & Manager</p>
                         <div class="member-description">
-                            <p>The organizational anchor of StarFrame. Sam handles timelines, client communication, contracts, and technical workflows. From managing software to ensuring smooth deliveries, they make sure the creative team can focus on what they do best.</p>
-                            <p>Creating the technical foundation that allows creativity to flourish, Sam ensures every project flows seamlessly from concept to completion.</p>
+                            <p>The organizational anchor of StarFrame. Samarth handles timelines, client communication, contracts, and technical workflows. From managing software to ensuring smooth deliveries, he make sure the creative team can focus on what they do best.</p>
+                            <p>Creating the technical foundation that allows creativity to flourish, he ensures every project flows seamlessly from concept to completion.</p>
                         </div>
                     </div>
                 </div>
@@ -493,7 +518,7 @@
                 <p>Share your dream with us and we will craft a tailored production plan—timelines, moodboards, and pricing clarity included.</p>
                 <div class="cta-actions">
                     <a href="commission.html" class="btn btn-primary">Start a Project</a>
-                    <a href="mailto:hello@starframe.studio" class="btn btn-secondary">Email the Studio</a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=starframeanimationstudios@gmail.com" class="btn btn-secondary" target="_blank" rel="noopener">Email the Studio</a>
                 </div>
                 <ul class="cta-highlights">
                     <li><i class="fas fa-check"></i>Detailed proposals within 48 hours</li>
@@ -561,6 +586,10 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <button id="back-to-top-btn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -573,13 +602,13 @@
                     </div>
                     <div class="footer-contact">
                         <h4>Let's Connect</h4>
-                        <p><i class="fas fa-envelope"></i> hello@starframe.studio</p>
+                        <p><i class="fas fa-envelope"></i> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=starframeanimationstudios@gmail.com" target="_blank" rel="noopener" class="footer-email">starframeanimationstudios@gmail.com</a></p>
                         <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-x-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.instagram.com/starframeanimationstudios/" target="_blank" rel="noopener" aria-label="Starframe on Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://x.com/StarFrame1527" target="_blank" rel="noopener" aria-label="Starframe on X"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="Starframe on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://youtu.be/syFZfO_wfMQ?si=exHG76rg43jndMEN" target="_blank" rel="noopener" aria-label="Starframe on YouTube"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -626,25 +655,35 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 StarFrame Animation Studio. All rights reserved. Made with ❤️ for dreamers everywhere.</p>
+                <p>&copy; 2025 StarFrame Animation Studio. All rights reserved. Made with ❤️ for artists everywhere.</p>
             </div>
         </div>
     </footer>
 
     <!-- Floating Sparkle Star -->
-    <div id="sparkle-star" class="sparkle-star">
-        <i class="fas fa-star"></i>
-        <div class="sparkle-particles">
-            <span class="sparkle sparkle-1">✨</span>
-            <span class="sparkle sparkle-2">✨</span>
-            <span class="sparkle sparkle-3">⭐</span>
-            <span class="sparkle sparkle-4">✨</span>
-            <span class="sparkle sparkle-5">🌟</span>
-            <span class="sparkle sparkle-6">✨</span>
+    <div class="sparkle-container">
+        <div id="big-star" class="star">
+            <i class="fas fa-star fa-2x"></i>
         </div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
+        <div class="small-star star"><i class="fas fa-star"></i></div>
     </div>
 
 
+    <script src="js/sparkle-star.js"></script>
     <script src="js/script-new.js"></script>
     
     <!-- Socket.IO for real-time visitor tracking -->
@@ -826,7 +865,7 @@
                         position: fixed;
                         bottom: 20px;
                         right: 20px;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        background: linear-gradient(135deg, var(--primary-warm) 0%, var(--primary-dark) 100%);
                         color: white;
                         padding: 1rem 1.5rem;
                         border-radius: 12px;

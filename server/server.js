@@ -17,6 +17,8 @@ const Database = require('./models/Database');
 
 // Load routes
 const authRoutes = require('./routes/auth');
+const commissionRoutes = require('./routes/commission');
+const invoiceRoutes = require('./routes/invoice');
 
 const app = express();
 const server = http.createServer(app);
@@ -38,41 +40,45 @@ const io = socketIo(server, {
 });
 
 // Passport configuration
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK_URL || `http://localhost:${PORT}/api/auth/google/callback`
-}, async (accessToken, refreshToken, profile, done) => {
-    try {
-        const userData = {
-            googleId: profile.id,
-            email: profile.emails[0].value,
-            name: profile.displayName,
-            picture: profile.photos[0].value,
-            accessToken,
-            refreshToken
-        };
-        
-        const user = await Database.upsertUser(userData);
-        
-        // Emit real-time notification to admin
-        io.emit('user-login', {
-            user: {
-                id: user.id,
-                name: user.name,
-                email: user.email,
-                picture: user.picture,
-                loginTime: new Date().toISOString()
-            },
-            type: 'google_login'
-        });
-        
-        return done(null, user);
-    } catch (error) {
-        logger.error('Google OAuth error:', error);
-        return done(error, null);
-    }
-}));
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+    passport.use(new GoogleStrategy({
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: process.env.GOOGLE_CALLBACK_URL || `http://localhost:${PORT}/api/auth/google/callback`
+    }, async (accessToken, refreshToken, profile, done) => {
+        try {
+            const userData = {
+                googleId: profile.id,
+                email: profile.emails[0].value,
+                name: profile.displayName,
+                picture: profile.photos[0].value,
+                accessToken,
+                refreshToken
+            };
+            
+            const user = await Database.upsertUser(userData);
+            
+            // Emit real-time notification to admin
+            io.emit('user-login', {
+                user: {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    picture: user.picture,
+                    loginTime: new Date().toISOString()
+                },
+                type: 'google_login'
+            });
+            
+            return done(null, user);
+        } catch (error) {
+            logger.error('Google OAuth error:', error);
+            return done(error, null);
+        }
+    }));
+} else {
+    logger.info('Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login.');
+}
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -170,12 +176,17 @@ async function startServer() {
         }));
 
         // Session configuration
+        const sessionSecret = process.env.SESSION_SECRET || 'dev-session-secret-change-me';
+        if (!process.env.SESSION_SECRET) {
+            logger.warn('SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production.');
+        }
+
         app.use(session({
             store: new SQLiteStore({
                 db: 'sessions.db',
                 dir: './data'
             }),
-            secret: process.env.SESSION_SECRET,
+            secret: sessionSecret,
             resave: false,
             saveUninitialized: false,
             cookie: {
@@ -207,6 +218,8 @@ async function startServer() {
 
         // Routes
         app.use('/api/auth', authRoutes);
+app.use('/api/commission', commissionRoutes);
+        app.use('/api/invoice', invoiceRoutes);
 
         // Health check
         app.get('/api/health', (req, res) => {

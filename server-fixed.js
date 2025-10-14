@@ -17,6 +17,12 @@ const Database = require('./server/models/Database');
 
 // Load routes
 const authRoutes = require('./server/routes/auth');
+const adminRoutes = require('./server/routes/admin');
+const analyticsRoutes = require('./server/routes/analytics');
+const commissionRoutes = require('./server/routes/commission');
+const contactRoutes = require('./server/routes/contact');
+const securityRoutes = require('./server/routes/security');
+const systemRoutes = require('./server/routes/system');
 
 const app = express();
 const server = http.createServer(app);
@@ -130,6 +136,7 @@ app.set('io', io);
 
 // Async function to start server
 async function startServer() {
+    console.log('Starting server...');
     try {
         // Initialize database
         await Database.init();
@@ -151,21 +158,7 @@ async function startServer() {
 
         // CORS configuration
         app.use(cors({
-            origin: function(origin, callback) {
-                const allowedOrigins = [
-                    'http://localhost:8000',
-                    'http://localhost:3000',
-                    'http://localhost:3001',
-                    'http://127.0.0.1:8000',
-                    'http://127.0.0.1:3001',
-                    'http://0.0.0.0:8000'
-                ];
-                if (!origin || allowedOrigins.includes(origin)) {
-                    callback(null, true);
-                } else {
-                    callback(new Error('Not allowed by CORS'));
-                }
-            },
+            origin: '*',
             credentials: true
         }));
 
@@ -179,7 +172,7 @@ async function startServer() {
             resave: false,
             saveUninitialized: false,
             cookie: {
-                secure: process.env.NODE_ENV === 'production',
+                secure: false,
                 httpOnly: true,
                 maxAge: parseInt(process.env.SESSION_TIMEOUT) || 3600000
             }
@@ -207,6 +200,12 @@ async function startServer() {
 
         // Routes
         app.use('/api/auth', authRoutes);
+        app.use('/api/admin', adminRoutes);
+        app.use('/api/analytics', analyticsRoutes);
+        app.use('/api/commissions', commissionRoutes);
+        app.use('/api/contact', contactRoutes);
+        app.use('/api/security', securityRoutes);
+        app.use('/api/system', systemRoutes);
 
         // Health check
         app.get('/api/health', (req, res) => {

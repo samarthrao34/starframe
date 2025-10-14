@@ -96,23 +96,7 @@ router.get('/overview', async (req, res) => {
     }
 });
 
-// Get visitor trends for charts
-router.get('/trends', async (req, res) => {
-    try {
-        const { hours = 24 } = req.query;
-        const trends = await analytics.getVisitorTrends(parseInt(hours));
-        
-        res.json({
-            trends,
-            hours: parseInt(hours),
-            lastUpdate: new Date().toISOString()
-        });
-        
-    } catch (error) {
-        logger.error('Visitor trends error:', error);
-        res.status(500).json({ error: 'Failed to fetch visitor trends' });
-    }
-});
+
 
 // Real-time tracking endpoint (receives client-side events)
 router.post('/track', async (req, res) => {
