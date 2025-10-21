@@ -347,7 +347,7 @@ function initCommissionForm() {
     }
 }
 
-// Reviews form functionality
+// Reviews form functionality (server-backed with real-time updates)
 function initReviews() {
     const form = document.getElementById('reviewForm');
     const reviewList = document.getElementById('reviewList');
@@ -356,7 +356,20 @@ function initReviews() {
         return;
     }
 
-    form.addEventListener('submit', function(e) {
+    // Load existing reviews from server
+    fetch('/api/reviews')
+        .then(r => r.json())
+        .then(data => {
+            if (Array.isArray(data.reviews)) {
+                data.reviews.forEach(renderReviewCard);
+            }
+        })
+        .catch(() => {});
+
+    // Setup realtime listeners for new/deleted reviews
+    setupReviewRealtime();
+
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
 
         const nameInput = form.querySelector('#reviewerName');
@@ -373,73 +386,101 @@ function initReviews() {
             showNotification('Please share your name, rating, and experience before submitting.', 'error');
             return;
         }
-
         if (message.length < 10) {
             showNotification('Please share a little more detail in your review (minimum 10 characters).', 'error');
             return;
         }
 
-        const reviewCard = document.createElement('article');
-        reviewCard.className = 'review-card new-review';
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+        try {
+            const res = await fetch('/api/reviews', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, city, rating, message })
+            });
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.error || 'Failed to submit review');
+            }
+            form.reset();
+            showNotification('Thank you for reviewing Starframe! ✨', 'success');
+            // Rely on realtime event to render the new review for everyone
+        } catch (err) {
+            showNotification(err.message || 'Submission failed', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        }
+    });
+
+    function renderReviewCard(r) {
+        // r: {id, name, city, rating, message, created_at}
+        const card = document.createElement('article');
+        card.className = 'review-card';
+        card.dataset.reviewId = r.id;
 
         const ratingEl = document.createElement('div');
         ratingEl.className = 'review-rating';
-        ratingEl.setAttribute('aria-label', `${rating} star rating`);
-
+        ratingEl.setAttribute('aria-label', `${r.rating} star rating`);
         for (let i = 0; i < 5; i++) {
             const star = document.createElement('i');
-            if (i < rating) {
-                star.className = 'fas fa-star';
-            } else {
-                star.className = 'far fa-star';
-            }
+            star.className = i < r.rating ? 'fas fa-star' : 'far fa-star';
             ratingEl.appendChild(star);
         }
 
         const quote = document.createElement('p');
         quote.className = 'review-quote';
-        quote.textContent = `“${message}”`;
+        quote.textContent = `“${r.message}”`;
 
         const meta = document.createElement('div');
         meta.className = 'reviewer-meta';
 
         const initials = document.createElement('div');
         initials.className = 'reviewer-initials';
-        initials.textContent = getInitials(name);
+        initials.textContent = getInitials(r.name);
 
         const detailWrap = document.createElement('div');
-
         const nameEl = document.createElement('span');
         nameEl.className = 'reviewer-name';
-        nameEl.textContent = name;
-
+        nameEl.textContent = r.name;
         const roleEl = document.createElement('span');
         roleEl.className = 'reviewer-role';
-        roleEl.textContent = city || 'Shared via website';
+        roleEl.textContent = r.city || 'Shared via website';
 
         detailWrap.appendChild(nameEl);
         detailWrap.appendChild(roleEl);
-
         meta.appendChild(initials);
         meta.appendChild(detailWrap);
 
-        reviewCard.appendChild(ratingEl);
-        reviewCard.appendChild(quote);
-        reviewCard.appendChild(meta);
+        card.appendChild(ratingEl);
+        card.appendChild(quote);
+        card.appendChild(meta);
 
-        reviewList.prepend(reviewCard);
+        reviewList.prepend(card);
+    }
 
-        form.reset();
-
-        if (typeof showNotification === 'function') {
-            showNotification('Thank you for reviewing Starframe! ✨', 'success');
-        }
-
-        // Remove highlight class after animation to reset state
-        setTimeout(() => {
-            reviewCard.classList.remove('new-review');
-        }, 2000);
-    });
+    function setupReviewRealtime() {
+        try {
+            if (typeof io === 'undefined') return;
+            if (!window.reviewsSocket) {
+                window.reviewsSocket = io();
+            }
+            const socket = window.reviewsSocket;
+            socket.off && socket.off('review-created');
+            socket.off && socket.off('review-deleted');
+            socket.on('review-created', (review) => {
+                renderReviewCard(review);
+            });
+            socket.on('review-deleted', ({ id }) => {
+                const el = reviewList.querySelector(`[data-review-id="${id}"]`);
+                if (el) el.remove();
+            });
+        } catch (e) { /* noop */ }
+    }
 
     function getInitials(fullName) {
         const parts = fullName.split(' ').filter(Boolean);

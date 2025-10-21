@@ -11,6 +11,7 @@
     "migrate": "node server/migrations/migrate.js"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^1.2.0",
     "bcryptjs": "^2.4.3",
     "connect-sqlite3": "^0.9.13",
     "cors": "^2.8.5",
@@ -37,8 +38,8 @@
     "winston": "^3.10.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
-    ,"sharp": "^0.32.1"
+    "nodemon": "^3.0.1",
+    "sharp": "^0.32.1"
   },
   "keywords": [
     "admin",

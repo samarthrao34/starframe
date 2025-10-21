@@ -266,6 +266,18 @@ class Database {
                 description TEXT,
                 reference_links TEXT,
                 gst BOOLEAN
+            )`,
+
+            // Reviews table
+            `CREATE TABLE IF NOT EXISTS reviews (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                city TEXT,
+                rating INTEGER NOT NULL CHECK(rating BETWEEN 1 AND 5),
+                message TEXT NOT NULL,
+                ip_address TEXT,
+                user_agent TEXT,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )`
         ];
 
@@ -282,7 +294,8 @@ class Database {
             'CREATE INDEX IF NOT EXISTS idx_activity_logs_timestamp ON activity_logs(timestamp)',
             'CREATE INDEX IF NOT EXISTS idx_activity_logs_user ON activity_logs(user_id)',
             'CREATE INDEX IF NOT EXISTS idx_client_inquiries_status ON client_inquiries(status)',
-            'CREATE INDEX IF NOT EXISTS idx_payment_transactions_status ON payment_transactions(status)'
+            'CREATE INDEX IF NOT EXISTS idx_payment_transactions_status ON payment_transactions(status)',
+            'CREATE INDEX IF NOT EXISTS idx_reviews_created_at ON reviews(created_at)'
         ];
 
         for (const indexSQL of indexes) {
@@ -498,6 +511,24 @@ class Database {
         `);
         
         return { visitors, pageViews, userActions };
+    }
+
+    // Reviews helpers
+    async createReview({ name, city, rating, message, ip_address = null, user_agent = null }) {
+        return await this.run(
+            'INSERT INTO reviews (name, city, rating, message, ip_address, user_agent) VALUES (?, ?, ?, ?, ?, ?)',
+            [name, city || null, rating, message, ip_address, user_agent]
+        );
+    }
+
+    async getRecentReviews(limit = 50) {
+        return await this.all(
+            'SELECT id, name, city, rating, message, created_at FROM reviews ORDER BY created_at DESC LIMIT ?',[limit]
+        );
+    }
+
+    async deleteReview(id) {
+        return await this.run('DELETE FROM reviews WHERE id = ?', [id]);
     }
 
     async getUserAnalytics(timeframe = '24h') {

@@ -19,6 +19,7 @@ const Database = require('./models/Database');
 const authRoutes = require('./routes/auth');
 const commissionRoutes = require('./routes/commission');
 const invoiceRoutes = require('./routes/invoice');
+const reviewsRoutes = require('./routes/reviews');
 
 const app = express();
 const server = http.createServer(app);
@@ -148,9 +149,9 @@ async function startServer() {
                     defaultSrc: ["'self'"],
                     styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://fonts.googleapis.com"],
                     fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
-                    scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
+                    scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://vitals.vercel-insights.com"],
                     imgSrc: ["'self'", "data:", "https:"],
-                    connectSrc: ["'self'"]
+                    connectSrc: ["'self'", "http://localhost:" + PORT, "https://vitals.vercel-insights.com"]
                 }
             }
         }));
@@ -162,9 +163,9 @@ async function startServer() {
                     'http://localhost:8000',
                     'http://localhost:3000',
                     'http://localhost:3001',
-                    'http://127.0.0.1:8000',
-                    'http://127.0.0.1:3001',
-                    'http://0.0.0.0:8000'
+                    // 'http://127.0.0.1:8000',
+                    // 'http://127.0.0.1:3001',
+                    // 'http://0.0.0.0:8000'
                 ];
                 if (!origin || allowedOrigins.includes(origin)) {
                     callback(null, true);
@@ -220,6 +221,7 @@ async function startServer() {
         app.use('/api/auth', authRoutes);
 app.use('/api/commission', commissionRoutes);
         app.use('/api/invoice', invoiceRoutes);
+        app.use('/api/reviews', reviewsRoutes);
 
         // Health check
         app.get('/api/health', (req, res) => {

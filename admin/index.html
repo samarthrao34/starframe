@@ -109,6 +109,10 @@
                     <i class="fas fa-file-invoice"></i>
                     Commissions
                 </a></li>
+                <li><a href="#reviews" class="menu-item" data-section="reviews">
+                    <i class="fas fa-comments"></i>
+                    Reviews
+                </a></li>
                 <li><a href="#content" class="menu-item" data-section="content">
                     <i class="fas fa-edit"></i>
                     Content
@@ -366,6 +370,34 @@
                             </thead>
                             <tbody id="commissionsTableBody">
                                 <!-- Commission rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="reviews-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Website Reviews</h2>
+                        <div class="search-bar">
+                            <input type="text" id="reviewSearch" placeholder="Search by name/city...">
+                            <button id="reviewSearchBtn"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="commission-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>City</th>
+                                    <th>Rating</th>
+                                    <th>Message</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reviewsTableBody">
+                                <!-- Review rows will be inserted here -->
                             </tbody>
                         </table>
                     </div>
