@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); // Load environment variables
 
 const express = require('express');
 const path = require('path');
@@ -20,6 +20,7 @@ const authRoutes = require('./routes/auth');
 const commissionRoutes = require('./routes/commission');
 const invoiceRoutes = require('./routes/invoice');
 const reviewsRoutes = require('./routes/reviews');
+const paymentRoutes = require('./routes/payment');
 
 const app = express();
 const server = http.createServer(app);
@@ -222,6 +223,7 @@ async function startServer() {
 app.use('/api/commission', commissionRoutes);
         app.use('/api/invoice', invoiceRoutes);
         app.use('/api/reviews', reviewsRoutes);
+        app.use('/api/payment', paymentRoutes);
 
         // Health check
         app.get('/api/health', (req, res) => {

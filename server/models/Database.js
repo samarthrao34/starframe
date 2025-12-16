@@ -278,6 +278,17 @@ class Database {
                 ip_address TEXT,
                 user_agent TEXT,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )`,
+
+            // Policy pages management
+            `CREATE TABLE IF NOT EXISTS policy_pages (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                page_name TEXT UNIQUE NOT NULL,
+                content TEXT NOT NULL,
+                updated_by INTEGER,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (updated_by) REFERENCES admin_users (id)
             )`
         ];
 
@@ -625,6 +636,62 @@ class Database {
         stats.userActivity = userActivity;
         
         return stats;
+    }
+
+    // Review management methods
+    async createReview(reviewData) {
+        const { name, city, rating, message, ip_address, user_agent } = reviewData;
+        return await this.run(
+            'INSERT INTO reviews (name, city, rating, message, ip_address, user_agent) VALUES (?, ?, ?, ?, ?, ?)',
+            [name, city, rating, message, ip_address, user_agent]
+        );
+    }
+
+    async getAllReviews() {
+        return await this.all('SELECT * FROM reviews ORDER BY created_at DESC');
+    }
+
+    async getRecentReviews(limit = 50) {
+        return await this.all('SELECT * FROM reviews ORDER BY created_at DESC LIMIT ?', [limit]);
+    }
+
+    async getReview(id) {
+        return await this.get('SELECT * FROM reviews WHERE id = ?', [id]);
+    }
+
+    async deleteReview(id) {
+        return await this.run('DELETE FROM reviews WHERE id = ?', [id]);
+    }
+
+    // Policy pages management
+    async updatePolicyPage(pageData) {
+        const { page_name, content, updated_by } = pageData;
+        
+        // Check if policy page record exists
+        const existing = await this.get(
+            'SELECT * FROM policy_pages WHERE page_name = ?',
+            [page_name]
+        );
+
+        if (existing) {
+            return await this.run(
+                'UPDATE policy_pages SET content = ?, updated_by = ?, updated_at = CURRENT_TIMESTAMP WHERE page_name = ?',
+                [content, updated_by, page_name]
+            );
+        } else {
+            return await this.run(
+                'INSERT INTO policy_pages (page_name, content, updated_by) VALUES (?, ?, ?)',
+                [page_name, content, updated_by]
+            );
+        }
+    }
+
+    async getPolicyPage(page_name) {
+        return await this.get('SELECT * FROM policy_pages WHERE page_name = ?', [page_name]);
+    }
+
+    async getAllPolicyPages() {
+        return await this.all('SELECT * FROM policy_pages ORDER BY updated_at DESC');
     }
 }
 

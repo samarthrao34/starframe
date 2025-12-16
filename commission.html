@@ -32,6 +32,254 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Razorpay SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <style>
+        /* Modern Redesign Overrides */
+        :root {
+            --primary-color: #d4a574;
+            --secondary-color: #1a1a1a;
+            --bg-light: #f9f9f9;
+            --text-dark: #333;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #fff;
+            color: var(--text-dark);
+        }
+
+        .commission-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #fff5eb 0%, #fff 100%);
+            text-align: center;
+        }
+
+        .commission-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .commission-hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .pricing-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border-color: var(--primary-color);
+        }
+
+        .pricing-card.featured {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .pricing-card.featured h4, 
+        .pricing-card.featured .price,
+        .pricing-card.featured .price-desc {
+            color: #fff;
+        }
+
+        .pricing-card.featured .pricing-features li {
+            color: #ccc;
+        }
+
+        .pricing-header h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 15px 0;
+        }
+
+        .price-desc {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pricing-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+        }
+
+        .pricing-features i {
+            color: var(--primary-color);
+        }
+
+        /* Payment Section Redesign */
+        .payment-section {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .payment-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .payment-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .qr-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .qr-image-wrapper img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .payment-methods-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .payment-method-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .payment-method-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .payment-method-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Form Redesign */
+        .commission-form-section {
+            padding: 80px 0;
+        }
+
+        .commission-form {
+            background: #fff;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        .btn-full {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Modal Improvements */
+        .modal-content {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .razorpay-btn {
+            background-color: #3399cc;
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .razorpay-btn:hover {
+            background-color: #2288bb;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -47,313 +295,338 @@
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="index.html#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                <li class="nav-item"><a href="pricing-guide.html" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="buyer-guide.html" class="nav-link">Guide</a></li>
                 <li class="nav-item"><a href="index.html#reviews" class="nav-link">Reviews</a></li>
                 <li class="nav-item"><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
                 <li class="nav-item"><a href="index.html#team" class="nav-link">Team</a></li>
                 <li class="nav-item"><a href="commission.html" class="nav-link commission-btn">Commission</a></li>
             </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
     </nav>
 
-    <!-- Commission Section -->
-    <section id="commission" class="commission">
+    <!-- Hero Section -->
+    <section class="commission-hero">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Commission Your Dream Animation</h2>
-                <p class="section-subtitle">Professional animation services crafted for Indian creators, businesses, and dreamers</p>
+            <h1>Bring Your Vision to Life</h1>
+            <p>Professional animation services crafted for creators, businesses, and dreamers worldwide. From concept to final frame, we make it happen.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <h2 class="section-title">Service Packages</h2>
+                <p class="section-subtitle">Transparent pricing for every stage of your project</p>
             </div>
 
-            <!-- Pricing Cards -->
-            <div class="pricing-section">
-                <h3 class="pricing-title">Our Service Packages</h3>
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h4>Illustration</h4>
-                            <div class="price-badge">Price range</div>
-                            <div class="price">₹1,200 – ₹3,500</div>
-                            <div class="price-desc">(USD $15–$40) • One polished full-color digital piece</div>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i>High-resolution JPG/PNG delivery</li>
-                            <li><i class="fas fa-check"></i>Polished, print-ready artwork</li>
-                            <li><i class="fas fa-check"></i>Personal use license (commercial available upon request)</li>
-                            <li><i class="fas fa-check"></i>2 revision rounds</li>
-                        </ul>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h4>Illustration</h4>
+                        <div class="price">₹1,200 – ₹3,500</div>
+                        <div class="price-desc">(USD $15–$40) • One polished full-color digital piece</div>
                     </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i>High-resolution JPG/PNG delivery</li>
+                        <li><i class="fas fa-check"></i>Polished, print-ready artwork</li>
+                        <li><i class="fas fa-check"></i>Personal use license</li>
+                        <li><i class="fas fa-check"></i>2 revision rounds</li>
+                    </ul>
+                </div>
 
-                    <div class="pricing-card featured">
-                        <div class="pricing-header">
-                            <h4>2D Animation</h4>
-                            <div class="price-badge">Price range</div>
-                            <div class="price">₹2,500 – ₹7,500</div>
-                            <div class="price-desc">(USD $30–$90) • 5–10 sec hand-drawn looping animation</div>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i>Hand-drawn looping animation (5–10 sec)</li>
-                            <li><i class="fas fa-check"></i>Basic background included</li>
-                            <li><i class="fas fa-check"></i>Personal and commercial licensing options</li>
-                            <li><i class="fas fa-check"></i>1–2 revision rounds (depending on package)</li>
-                            <li><i class="fas fa-check"></i>HD delivery options</li>
-                        </ul>
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h4>2D Animation</h4>
+                        <div class="price">₹2,500 – ₹7,500</div>
+                        <div class="price-desc">(USD $30–$90) • 5–10 sec hand-drawn looping animation</div>
                     </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i>Hand-drawn looping animation</li>
+                        <li><i class="fas fa-check"></i>Basic background included</li>
+                        <li><i class="fas fa-check"></i>Commercial licensing options</li>
+                        <li><i class="fas fa-check"></i>HD delivery options</li>
+                    </ul>
+                </div>
 
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h4>Character Design</h4>
-                            <div class="price-badge">Price range</div>
-                            <div class="price">₹1,800 – ₹4,000</div>
-                            <div class="price-desc">(USD $22–$48) • Concept sketches to final turnaround</div>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i>Concept sketches and exploration</li>
-                            <li><i class="fas fa-check"></i>1–2 revision rounds</li>
-                            <li><i class="fas fa-check"></i>Final colored turnaround sheet</li>
-                            <li><i class="fas fa-check"></i>High-resolution source files (PNG/PSD)</li>
-                        </ul>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h4>Character Design</h4>
+                        <div class="price">₹1,800 – ₹4,000</div>
+                        <div class="price-desc">(USD $22–$48) • Concept sketches to final turnaround</div>
                     </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i>Concept sketches and exploration</li>
+                        <li><i class="fas fa-check"></i>Final colored turnaround sheet</li>
+                        <li><i class="fas fa-check"></i>High-resolution source files</li>
+                        <li><i class="fas fa-check"></i>1–2 revision rounds</li>
+                    </ul>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Payment Information -->
-            <div class="payment-section">
-                <h3>Easy Payment Options</h3>
-                <div class="payment-grid">
-                    <div class="payment-method">
-                        <i class="fab fa-paypal"></i>
-                        <h4>PayPal</h4>
-                        <p>Global payments with PayPal</p>
-                    </div>
-                    <div class="payment-method">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h4>UPI ID</h4>
-                        <p>starframe@upi</p>
-                    </div>
-                    <div class="payment-method">
-                        <i class="fas fa-qrcode"></i>
-                        <h4>QR Code</h4>
-                        <p>Scan to pay with any UPI app</p>
-                    </div>
-                </div>
-                <div class="payment-terms">
-                    <p><strong>Payment Terms:</strong> 50% advance, 50% on completion | GST included in all quotes | Invoice provided for business clients</p>
-                </div>
+    <!-- Payment Section (QR + Razorpay Info) -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+                <h2 class="section-title">Secure Payment Options</h2>
+                <p class="section-subtitle">Multiple ways to pay, designed for your convenience</p>
             </div>
 
-            <!-- Commission Form -->
-            <div class="commission-form-container">
-                <div class="commission-form">
-                    <form id="commissionForm">
-                        <h3>Request Your Custom Quote</h3>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Full Name *</label>
-                                <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-                            </div>
+            <div class="payment-container">
+                <!-- QR Code Section (Preserved) -->
+                <div class="qr-card">
+                    <h3>Scan & Pay via UPI</h3>
+                    <p style="margin-bottom: 20px; color: #666;">Use any UPI app (GPay, PhonePe, Paytm)</p>
+                    
+                    <div class="qr-image-wrapper">
+                        <img src="qrcode.png" alt="Universal Payment QR Code" class="universal-qr-code">
+                    </div>
+                    
+                    <div class="qr-details">
+                        <p class="upi-id" style="background: #f5f5f5; padding: 10px; border-radius: 8px; display: inline-block;">
+                            UPI ID: <strong>mvp102719-1@okhdfcbank</strong>
+                        </p>
+                        <div style="margin-top: 15px;">
+                            <button class="btn btn-secondary copy-btn" onclick="copyUpiId()" title="Copy UPI ID" style="padding: 8px 15px; font-size: 0.9rem;">
+                                <i class="fas fa-copy"></i> Copy ID
+                            </button>
                         </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="phone">WhatsApp Number *</label>
-                                <input type="tel" id="phone" name="phone" required placeholder="+91 9876543210">
-                            </div>
-                            <div class="form-group">
-                                <label for="location">City/State</label>
-                                <input type="text" id="location" name="location" placeholder="e.g., Mumbai, Maharashtra">
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="service">Service Required *</label>
-                                <select id="service" name="service" required>
-                                    <option value="">Select your service</option>
-                                    <option value="2d-animation">2D Animation</option>
-                                    <option value="character-design">Character Design</option>
-                                    <option value="digital-illustration">Digital Illustration</option>
-                                    <option value="combination">Multiple Services</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="budget">Budget Range (INR) *</label>
-                                <select id="budget" name="budget" required>
-                                    <option value="">Select your budget</option>
-                                    <option value="2500-8000">₹2,500 - ₹8,000</option>
-                                    <option value="8000-15000">₹8,000 - ₹15,000</option>
-                                    <option value="15000-25000">₹15,000 - ₹25,000</option>
-                                    <option value="25000-50000">₹25,000 - ₹50,000</option>
-                                    <option value="50000+">₹50,000+</option>
-                                    <option value="lets-discuss">Let's discuss</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="timeline">Project Timeline *</label>
-                                <select id="timeline" name="timeline" required>
-                                    <option value="">Select timeline</option>
-                                    <option value="urgent">Urgent (1-2 weeks)</option>
-                                    <option value="standard">Standard (2-4 weeks)</option>
-                                    <option value="extended">Extended (1-2 months)</option>
-                                    <option value="flexible">I'm flexible</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="purpose">Project Purpose</label>
-                                <select id="purpose" name="purpose">
-                                    <option value="">Select purpose</option>
-                                    <option value="animation-short">Short Film/Animation</option>
-                                    <option value="character-development">Character Development</option>
-                                    <option value="book-illustration">Book/Story Illustration</option>
-                                    <option value="brand-mascot">Brand Mascot/Logo</option>
-                                    <option value="game-assets">Game Art/Assets</option>
-                                    <option value="concept-art">Concept Art</option>
-                                    <option value="personal-commission">Personal Commission</option>
-                                    <option value="portfolio-piece">Portfolio Piece</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="description">Project Description *</label>
-                            <textarea id="description" name="description" rows="6" required placeholder="Please describe your project in detail:
-• What's your vision/story?
-• Target audience
-• Key message or theme
-• Any reference materials or inspiration
-• Specific requirements or preferences
-• Intended use (social media, website, presentation, etc.)"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="references">Reference Links (Optional)</label>
-                            <textarea id="references" name="references" rows="3" placeholder="Share any reference links, inspiration, or similar work you'd like us to consider:
-• YouTube videos
-• Behance/Dribbble links
-• Pinterest boards
-• Any other references"></textarea>
-                        </div>
-                        
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="gst" name="gst">
-                            <label for="gst">I need GST invoice for business purposes</label>
-                        </div>
-                        <div id="gstDetails" style="display: none; margin-top: 10px;">
-                            <label for="gstin">GSTIN (if applicable)</label>
-                            <input type="text" id="gstin" name="gstin" placeholder="Enter GSTIN for invoicing (optional)">
-                        </div>
-                        
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">I agree to the payment terms (50% advance, 50% on completion) and understand that pricing may vary based on project complexity *</label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-full">
-                            Get My Custom Quote
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                        
-                        <div class="form-note">
-                            <p><i class="fas fa-info-circle"></i> We'll respond within 24 hours with a detailed quote and timeline. For urgent projects, WhatsApp us directly!</p>
-                        </div>
-                    </form>
+                        <span id="manualUpiId" style="display:none;">mvp102719-1@okhdfcbank</span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Contact Information -->
-            <div class="contact-section">
-                <h3>Get In Touch</h3>
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        <i class="fab fa-whatsapp"></i>
-                        <h4>WhatsApp</h4>
-                        <p>+91-8960356600</p>
-                        <small>Quick responses & instant communication</small>
+                <!-- Payment Methods Info -->
+                <div class="payment-info">
+                    <h3>Flexible Payment Methods</h3>
+                    <p>We accept payments from clients worldwide. Choose the method that works best for you.</p>
+                    
+                    <div class="payment-methods-grid">
+                        <div class="payment-method-item">
+                            <i class="fas fa-credit-card"></i>
+                            <h4>Razorpay</h4>
+                            <p>Credit/Debit Cards, Netbanking</p>
+                        </div>
+                        <div class="payment-method-item">
+                            <i class="fab fa-google-pay"></i>
+                            <h4>UPI Apps</h4>
+                            <p>GPay, PhonePe, Paytm</p>
+                        </div>
+                        <div class="payment-method-item">
+                            <i class="fab fa-paypal"></i>
+                            <h4>PayPal</h4>
+                            <p>International Clients</p>
+                        </div>
+                        <div class="payment-method-item">
+                            <i class="fas fa-university"></i>
+                            <h4>Bank Transfer</h4>
+                            <p>Direct Bank Deposit</p>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <h4>Email</h4>
-                        <p style="word-break: break-all;"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=starframeanimationstudios@gmail.com" target="_blank" rel="noopener">starframeanimationstudios@gmail.com</a></p>
-                        <small>Detailed project discussions</small>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <h4>Response Time</h4>
-                        <p>Within 24 hours</p>
-                        <small>Monday to Saturday, 10 AM - 7 PM IST</small>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h4>Based in India</h4>
-                        <p>Serving clients globally</p>
-                        <small>GST registered • Invoice provided</small>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background: #fff; border-radius: 10px; border-left: 4px solid var(--primary-color);">
+                        <p><strong>Payment Terms:</strong> 50% advance to start, 50% on completion. GST invoice available for business clients.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Commission Form Section -->
+    <section class="commission-form-section">
+        <div class="container">
+            <div class="commission-form">
+                <form id="commissionForm">
+                    <div class="form-header">
+                        <i class="fas fa-paint-brush" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                        <h3>Request Your Custom Artwork</h3>
+                        <p>Share your vision and we'll bring it to life</p>
+                    </div>
+                    
+                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label for="phone">WhatsApp Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+91 9876543210">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">City/State</label>
+                            <input type="text" id="location" name="location" placeholder="e.g., Mumbai, Maharashtra">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label for="service">Service Required *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select your service</option>
+                                <option value="2d-animation">2D Animation</option>
+                                <option value="character-design">Character Design</option>
+                                <option value="digital-illustration">Digital Illustration</option>
+                                <option value="combination">Multiple Services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget Range (INR) *</label>
+                            <select id="budget" name="budget" required>
+                                <option value="">Select your budget</option>
+                                <option value="2500-8000">₹2,500 - ₹8,000</option>
+                                <option value="8000-15000">₹8,000 - ₹15,000</option>
+                                <option value="15000-25000">₹15,000 - ₹25,000</option>
+                                <option value="25000-50000">₹25,000 - ₹50,000</option>
+                                <option value="50000+">₹50,000+</option>
+                                <option value="lets-discuss">Let's discuss</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label for="timeline">Project Timeline *</label>
+                            <select id="timeline" name="timeline" required>
+                                <option value="">Select timeline</option>
+                                <option value="urgent">Urgent (1-2 weeks)</option>
+                                <option value="standard">Standard (2-4 weeks)</option>
+                                <option value="extended">Extended (1-2 months)</option>
+                                <option value="flexible">I'm flexible</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="purpose">Project Purpose</label>
+                            <select id="purpose" name="purpose">
+                                <option value="">Select purpose</option>
+                                <option value="animation-short">Short Film/Animation</option>
+                                <option value="character-development">Character Development</option>
+                                <option value="book-illustration">Book/Story Illustration</option>
+                                <option value="brand-mascot">Brand Mascot/Logo</option>
+                                <option value="game-assets">Game Art/Assets</option>
+                                <option value="concept-art">Concept Art</option>
+                                <option value="personal-commission">Personal Commission</option>
+                                <option value="portfolio-piece">Portfolio Piece</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Your Vision *</label>
+                        <textarea id="description" name="description" rows="6" required placeholder="Tell us about your project:
+• What's your creative vision?
+• Who is your target audience?
+• What style or mood are you aiming for?
+• Any specific references or inspirations?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="references">Reference Links</label>
+                        <textarea id="references" name="references" rows="2" placeholder="Share inspiration links (Pinterest, Behance, YouTube, etc.)"></textarea>
+                    </div>
+                    
+                    <div class="form-checkbox" style="margin-bottom: 15px;">
+                        <input type="checkbox" id="gst" name="gst">
+                        <label for="gst">I need GST invoice for business purposes</label>
+                    </div>
+                    <div id="gstDetails" style="display: none; margin-bottom: 20px;">
+                        <label for="gstin">GSTIN (if applicable)</label>
+                        <input type="text" id="gstin" name="gstin" placeholder="Enter GSTIN for invoicing (optional)">
+                    </div>
+                    
+                    <div class="form-checkbox" style="margin-bottom: 30px;">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the payment terms (50% advance) and understand that pricing may vary based on project complexity *</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Commission Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Payment Modal -->
-    <div id="paymentModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-        <div style="background-color: #fff; margin: 8% auto; padding: 20px; border: 1px solid #ddd; width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
-            <span id="closePayment" style="color: #888; float: right; font-size: 26px; font-weight: bold; cursor: pointer;">&times;</span>
+    <div id="paymentModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px);">
+        <div style="background-color: #fff; margin: 5% auto; padding: 30px; border: none; width: 90%; max-width: 700px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);">
+            <span id="closePayment" style="color: #888; float: right; font-size: 28px; font-weight: bold; cursor: pointer; transition: 0.3s;">&times;</span>
             <div id="paymentContent">
-                <h2 style="margin-top: 0;">Payment Options</h2>
-                <p id="payServiceSummary" style="font-weight: 600;"></p>
-                <p><strong>Suggested deposit (50%):</strong> <span id="suggestedDeposit">₹0</span></p>
-                <div style="margin: 10px 0;">
-                    <label for="payAmount">Amount to pay now (INR)</label>
-                    <input type="number" id="payAmount" style="width: 200px; padding: 8px; margin-left: 10px;" min="1">
-                    <button id="unlockAmountBtn" class="btn" style="margin-left:8px; padding:8px 10px;">Edit</button>
+                <h2 style="margin-top: 0; color: var(--secondary-color);">Complete Your Request</h2>
+                <p id="payServiceSummary" style="font-weight: 600; color: var(--primary-color); font-size: 1.1rem;"></p>
+                
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <p style="margin-bottom: 10px;"><strong>Suggested deposit (50%):</strong> <span id="suggestedDeposit" style="font-size: 1.2rem; font-weight: 700;">₹0</span></p>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <label for="payAmount">Amount to pay now (INR):</label>
+                        <input type="number" id="payAmount" style="width: 150px; padding: 8px; border-radius: 5px; border: 1px solid #ddd;" min="1">
+                        <button id="unlockAmountBtn" class="btn btn-secondary" style="padding: 8px 15px; font-size: 0.9rem;">Edit</button>
+                    </div>
                 </div>
 
-                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-                    <button id="paypalPayBtn" class="btn btn-primary">Pay with PayPal</button>
-                    <button id="showUpiBtn" class="btn">Show UPI / QR</button>
-                    <button id="markPaidBtn" class="btn">I have paid (Confirm)</button>
-                    <button id="genInvoiceNoPay" class="btn">Generate Invoice (No payment)</button>
+                <h4 style="margin-bottom: 15px;">Choose Payment Method:</h4>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
+                    <button id="razorpayPayBtn" class="btn razorpay-btn" style="padding: 15px;">
+                        <i class="fas fa-credit-card"></i> Pay with Razorpay
+                    </button>
+                    <button id="showUpiBtn" class="btn btn-secondary" style="padding: 15px;">
+                        <i class="fas fa-qrcode"></i> Show UPI QR
+                    </button>
+                    <button id="paypalPayBtn" class="btn" style="background: #003087; color: white; padding: 15px;">
+                        <i class="fab fa-paypal"></i> Pay with PayPal
+                    </button>
+                    <button id="markPaidBtn" class="btn" style="background: #28a745; color: white; padding: 15px;">
+                        <i class="fas fa-check-circle"></i> I have paid (Manual)
+                    </button>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button id="genInvoiceNoPay" class="btn" style="background: transparent; color: #666; text-decoration: underline; border: none;">Skip payment & Generate Invoice</button>
                 </div>
 
-                <div id="upiArea" style="display:none; margin-top: 18px;">
-                    <h4>UPI Payment</h4>
-                    <p><strong>UPI ID:</strong> <span id="upiIdText">starframe@upi</span></p>
-                    <p>Scan the QR code with your UPI app or click the Pay URI link.</p>
-                    <img id="upiQrImg" alt="UPI QR" style="width:240px; height:240px; border:1px solid #eee; display:block; margin-bottom:8px;" />
-                    <p><a id="upiUriLink" href="#" target="_blank">Open UPI link</a></p>
+                <div id="upiArea" style="display:none; margin-top: 20px; text-align: center; background: #f5f5f5; padding: 20px; border-radius: 10px;">
+                    <h4>Scan to Pay</h4>
+                    <p><strong>UPI ID:</strong> <span id="upiIdText">mvp102719-1@okhdfcbank</span></p>
+                    <img id="upiQrImg" alt="UPI QR" style="width:200px; height:200px; border:1px solid #eee; display:inline-block; margin: 10px 0; border-radius: 10px;" />
+                    <p><a id="upiUriLink" href="#" target="_blank" class="btn btn-primary" style="display: inline-block; margin-top: 10px;">Open UPI App</a></p>
                 </div>
 
-                <div style="margin-top:12px; color:#666; font-size:90%;">
-                    <p><strong>Note:</strong> After completing the payment in your chosen app, click "I have paid (Confirm)" and enter any transaction reference. We'll then generate an official invoice which you can download as PDF. For full payment reconciliation, please share your transaction reference with us.</p>
+                <div style="margin-top:20px; color:#666; font-size:0.9rem; text-align: center;">
+                    <p>Secure payments powered by Razorpay & UPI. Invoice generated automatically after payment.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Invoice Modal -->
-    <div id="invoiceModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-        <div style="background-color: #fefefe; margin: 6% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 900px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
+    <!-- Invoice Modal (Preserved Logic) -->
+    <div id="invoiceModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px);">
+        <div style="background-color: #fefefe; margin: 5% auto; padding: 30px; border: none; width: 90%; max-width: 900px; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
             <span id="closeInvoice" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
             <div id="invoiceContent">
                 <!-- Invoice will be generated here -->
             </div>
-            <div style="display:flex; gap:10px; margin-top: 18px;">
-                <button id="downloadInvoice" class="btn btn-primary">Download PDF</button>
-                <button id="closeInvoiceBtn" class="btn">Close</button>
+            <div style="display:flex; gap:10px; margin-top: 20px; justify-content: flex-end;">
+                <button id="downloadInvoice" class="btn btn-primary"><i class="fas fa-download"></i> Download PDF</button>
+                <button id="closeInvoiceBtn" class="btn btn-secondary">Close</button>
             </div>
         </div>
     </div>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top-btn" title="Go to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
 
     <!-- Footer -->
     <footer class="footer">
@@ -363,80 +636,50 @@
                     <div class="footer-brand">
                         <h3>StarFrame</h3>
                         <p class="footer-tagline">Where imagination and emotion come alive</p>
-                        <p>A warm, creative studio devoted to creating art and animation filled with soul, peace, and quiet magic.</p>
                     </div>
                     <div class="footer-contact">
                         <h4>Let's Connect</h4>
-                        <p><i class="fas fa-envelope"></i> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=starframeanimationstudios@gmail.com" target="_blank" rel="noopener" class="footer-email">starframeanimationstudios@gmail.com</a></p>
+                        <p><i class="fas fa-envelope"></i> starframeanimationstudios@gmail.com</p>
                         <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/starframe.studio/" target="_blank" rel="noopener" aria-label="Starframe on Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://x.com/StarFrameStudio" target="_blank" rel="noopener" aria-label="Starframe on X"><i class="fab fa-x-twitter"></i></a>
-                            <a href="https://www.linkedin.com/company/starframe-studio/" target="_blank" rel="noopener" aria-label="Starframe on LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://www.youtube.com/@StarframeAnimation" target="_blank" rel="noopener" aria-label="Starframe on YouTube"><i class="fab fa-youtube"></i></a>
-                        </div>
                     </div>
                 </div>
-                
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a href="index.html#services" aria-label="View our 2D Animation services">2D Animation</a></li>
-                            <li><a href="index.html#services" aria-label="View our Character Design services">Character Design</a></li>
-                            <li><a href="index.html#services" aria-label="View our Digital Illustration services">Digital Illustrations</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Studio</h4>
-                        <ul>
-                            <li><a href="index.html#about" aria-label="Learn about our story and philosophy">Our Story</a></li>
-                            <li><a href="index.html#team" aria-label="Meet our creative team">Meet the Team</a></li>
-                            <li><a href="index.html#portfolio" aria-label="View our portfolio and work samples">Portfolio</a></li>
-                            <li><a href="commission.html" aria-label="Commission your dream animation">Commission Work</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="privacy-policy.html" aria-label="Read our privacy policy">Privacy Policy</a></li>
-                            <li><a href="terms-of-service.html" aria-label="Read our terms of service">Terms of Service</a></li>
-                            <li><a href="refund-policy.html" aria-label="Read our refund policy">Refund Policy</a></li>
-                            <li><a href="accessibility.html" aria-label="Learn about our accessibility commitment">Accessibility</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Quick Actions</h4>
-                        <ul>
-                            <li><a href="commission.html" class="footer-cta" aria-label="Get instant quote for your project">Get Instant Quote</a></li>
-                            <li><a href="https://wa.me/918960356600" class="footer-cta" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">WhatsApp Us</a></li>
-                            <li><a href="tel:+918960356600" class="footer-cta" aria-label="Call us directly">Call Now</a></li>
-                        </ul>
-                    </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 StarFrame Animation Studio. All rights reserved.</p>
                 </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 StarFrame Animation Studio. All rights reserved. Made with ❤️ for dreamers everywhere.</p>
             </div>
         </div>
     </footer>
 
     <script src="js/script-new.js"></script>
     <script>
+        // Copy UPI ID function
+        function copyUpiId() {
+            const upiId = document.getElementById('manualUpiId').textContent;
+            const btn = document.querySelector('.copy-btn');
+            
+            navigator.clipboard.writeText(upiId).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.style.background = '#4caf50';
+                btn.style.color = '#fff';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                alert('Copy failed. UPI ID: ' + upiId);
+            });
+        }
+
         // Service-specific price ranges (INR)
         const servicePriceRanges = {
             'digital-illustration': { min: 1200, max: 3500 },
             '2d-animation': { min: 2500, max: 7500 },
             'character-design': { min: 1800, max: 4000 },
-            // fallback for combination or unknown services
             'combination': { min: 1200, max: 7500 }
         };
 
-        // Parse budget select value like '2500-8000' or '50000+' or 'lets-discuss'
         function parseBudgetRange(val) {
             if (!val || val === 'lets-discuss') return { min: 2500, max: Infinity };
             if (val.endsWith('+')) {
@@ -449,25 +692,19 @@
             return { min: 2500, max: Infinity };
         }
 
-        // Compute an estimated amount based on service price range and selected budget
         function computeEstimatedForService(serviceValue, budgetValue) {
-            const svcKey = (serviceValue === 'digital-illustration' || serviceValue === 'digital-illustration') ? serviceValue : serviceValue;
-            const svcRange = servicePriceRanges[svcKey] || servicePriceRanges['combination'];
+            const svcKey = servicePriceRanges[serviceValue] ? serviceValue : 'combination';
+            const svcRange = servicePriceRanges[svcKey];
             const svcMid = Math.round((svcRange.min + svcRange.max) / 2);
-
             const budgetRange = parseBudgetRange(budgetValue);
 
-            // Clamp service midpoint to budget range where applicable
             let estimated = svcMid;
             if (budgetRange.max !== Infinity) {
                 if (estimated < budgetRange.min) estimated = Math.max(svcRange.min, budgetRange.min);
                 if (estimated > budgetRange.max) estimated = Math.min(svcRange.max, budgetRange.max);
             } else {
-                // no upper bound -> ensure at least service min
                 if (estimated < budgetRange.min) estimated = Math.max(svcRange.min, budgetRange.min);
             }
-
-            // Final safety clamps
             estimated = Math.max(estimated, svcRange.min);
             estimated = Math.min(estimated, svcRange.max || estimated);
             return estimated;
@@ -487,7 +724,8 @@
         const payServiceSummary = document.getElementById('payServiceSummary');
         const suggestedDepositSpan = document.getElementById('suggestedDeposit');
         const payAmountInput = document.getElementById('payAmount');
-    const unlockAmountBtn = document.getElementById('unlockAmountBtn');
+        const unlockAmountBtn = document.getElementById('unlockAmountBtn');
+        const razorpayPayBtn = document.getElementById('razorpayPayBtn');
         const paypalPayBtn = document.getElementById('paypalPayBtn');
         const showUpiBtn = document.getElementById('showUpiBtn');
         const upiArea = document.getElementById('upiArea');
@@ -504,20 +742,17 @@
         const closeInvoiceBtn = document.getElementById('closeInvoiceBtn');
         const downloadInvoice = document.getElementById('downloadInvoice');
 
-        // Studio details (shown on invoice)
         const studio = {
             name: 'StarFrame Animation Studio',
             address: 'Varanasi, India',
             email: 'starframeanimationstudios@gmail.com',
             phone: '+91-8960356600',
-            gstin: '' // fill if you want to display studio GSTIN
+            gstin: ''
         };
 
-        // When the form is submitted, open payment modal with suggested deposit
         commissionForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Gather form values
             const formData = new FormData(commissionForm);
             const data = Object.fromEntries(formData.entries());
             data.serviceLabel = document.getElementById('service').selectedOptions[0].text;
@@ -527,22 +762,18 @@
             data.gstNeeded = document.getElementById('gst').checked;
             data.gstin = document.getElementById('gstin').value || '';
 
-            // Compute an estimated amount based on selected service and budget
             const serviceValue = document.getElementById('service').value;
             const budgetValue = document.getElementById('budget').value;
             const estimated = computeEstimatedForService(serviceValue, budgetValue);
             const suggestedDeposit = Math.max( Math.round(estimated * 0.5), 100 );
 
-            // Store on modal for later invoice generation
             paymentModal._formData = data;
             paymentModal._estimated = estimated;
             paymentModal._suggestedDeposit = suggestedDeposit;
 
-            // Update modal UI
             payServiceSummary.textContent = `${data.serviceLabel} — Estimated project amount: ₹${estimated}`;
             suggestedDepositSpan.textContent = `₹${suggestedDeposit}`;
             payAmountInput.value = suggestedDeposit;
-            // Lock the amount by default and allow unlocking
             payAmountInput.readOnly = true;
             unlockAmountBtn.textContent = 'Edit';
 
@@ -557,38 +788,112 @@
                 }
             };
 
-            // Reset UPI area
             upiArea.style.display = 'none';
-
-            // Show modal
             paymentModal.style.display = 'block';
         });
 
         closePayment.addEventListener('click', () => paymentModal.style.display = 'none');
 
-        // Show UPI area and generate QR using external QR service
+        // Razorpay Payment Handler
+        razorpayPayBtn.addEventListener('click', async () => {
+            const amount = parseFloat(payAmountInput.value) || paymentModal._suggestedDeposit || 0;
+            
+            try {
+                // Create Order
+                const response = await fetch('/api/payment/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: amount,
+                        currency: 'INR',
+                        receipt: 'receipt_' + Date.now()
+                    })
+                });
+                
+                const order = await response.json();
+                
+                if (order.error) {
+                    alert('Error creating payment order. Please try another method.');
+                    return;
+                }
+
+                const options = {
+                    "key": "YOUR_RAZORPAY_KEY_ID", // Enter the Key ID generated from the Dashboard
+                    "amount": order.amount,
+                    "currency": order.currency,
+                    "name": "StarFrame Animation",
+                    "description": "Commission Deposit",
+                    "image": "images/StarFrame Animation Studio/logo.png", // Ensure this path is correct
+                    "order_id": order.id,
+                    "handler": async function (response){
+                        // Verify Payment
+                        const verifyResp = await fetch('/api/payment/verify-payment', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature
+                            })
+                        });
+                        
+                        const verifyData = await verifyResp.json();
+                        
+                        if (verifyData.status === 'success') {
+                            const paymentInfo = { 
+                                method: 'Razorpay', 
+                                tx: response.razorpay_payment_id, 
+                                paidAmount: amount, 
+                                paidOn: new Date().toLocaleString() 
+                            };
+                            generateInvoice(paymentModal._formData, paymentInfo, paymentModal._estimated);
+                            paymentModal.style.display = 'none';
+                            alert('Payment Successful! Invoice generated.');
+                        } else {
+                            alert('Payment verification failed.');
+                        }
+                    },
+                    "prefill": {
+                        "name": paymentModal._formData.name,
+                        "email": paymentModal._formData.email,
+                        "contact": paymentModal._formData.phone
+                    },
+                    "theme": {
+                        "color": "#d4a574"
+                    }
+                };
+                
+                const rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response){
+                    alert('Payment Failed: ' + response.error.description);
+                });
+                rzp1.open();
+                
+            } catch (err) {
+                console.error(err);
+                alert('Could not initiate Razorpay payment. Please check your connection or try another method.');
+            }
+        });
+
         showUpiBtn.addEventListener('click', () => {
             const amount = parseFloat(payAmountInput.value) || paymentModal._suggestedDeposit || 0;
-            const upiId = upiIdText.textContent.trim();
+            const upiId = 'mvp102719-1@okhdfcbank';
             const payUri = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(studio.name)}&am=${encodeURIComponent(amount)}&cu=INR`;
             upiUriLink.href = payUri;
-            // Use free qr generation service (loads in client browser)
             const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(payUri)}`;
             upiQrImg.src = qrUrl;
+            upiIdText.textContent = upiId;
             upiArea.style.display = 'block';
         });
 
-        // PayPal flow: open PayPal.me link with converted USD amount (approximate)
         paypalPayBtn.addEventListener('click', () => {
             const inr = parseFloat(payAmountInput.value) || paymentModal._suggestedDeposit || 0;
-            const usd = (inr / 83).toFixed(2); // simple approx conversion
-            // Replace 'StarFrameStudio' with your actual PayPal.me username if available
+            const usd = (inr / 83).toFixed(2);
             const paypalLink = `https://www.paypal.com/paypalme/StarFrameStudio/${usd}`;
             window.open(paypalLink, '_blank');
             alert('A new window/tab will open to PayPal. After completing payment, click "I have paid (Confirm)" and enter the transaction reference.');
         });
 
-        // Mark paid: ask for transaction details, then generate invoice marked Paid
         markPaidBtn.addEventListener('click', () => {
             const method = prompt('Enter payment method used (e.g., UPI, PayPal, Bank Transfer):', 'UPI');
             if (!method) return;
@@ -602,15 +907,13 @@
             paymentModal.style.display = 'none';
         });
 
-        // Generate invoice without payment (Pending)
         genInvoiceNoPay.addEventListener('click', () => {
             const paymentInfo = { method: 'Not paid', tx: '', paidAmount: 0, paidOn: '' };
             generateInvoice(paymentModal._formData, paymentInfo, paymentModal._estimated);
             paymentModal.style.display = 'none';
         });
 
-        // Generate invoice HTML and show modal
-    async function generateInvoice(formData, paymentInfo, estimatedAmount) {
+        async function generateInvoice(formData, paymentInfo, estimatedAmount) {
             const invoiceId = 'SF-' + Date.now();
             const dateStr = new Date().toLocaleDateString();
             const nowStr = new Date().toLocaleString();
@@ -703,52 +1006,38 @@
                 </div>
             `;
 
-                invoiceContent.innerHTML = invoiceHTML;
-                invoiceModal.style.display = 'block';
+            invoiceContent.innerHTML = invoiceHTML;
+            invoiceModal.style.display = 'block';
 
-                // Attempt to send the invoice via server email endpoint
-                try {
-                    // Request a short-lived token
-                    const tResp = await fetch('/api/invoice/token');
-                    if (tResp.ok) {
-                        const { token } = await tResp.json();
-
-                        const resp = await fetch('/api/invoice/send', {
-                            method: 'POST',
-                            headers: { 
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token}`
-                            },
-                            body: JSON.stringify({
-                                to: formData.email,
-                                subject: `StarFrame Invoice - ${invoiceId}`,
-                                html: invoiceHTML,
-                                plainText: `Hello ${formData.name},\n\nPlease find attached your invoice from StarFrame. Invoice ID: ${invoiceId}`
-                            })
-                        });
-
-                        if (resp.ok) {
-                            console.log('Invoice emailed successfully');
-                        } else {
-                            console.warn('Failed to email invoice');
-                        }
-                    } else {
-                        console.warn('Could not get invoice token');
-                    }
-                } catch (err) {
-                    console.warn('Could not reach invoice email endpoint:', err);
+            try {
+                const tResp = await fetch('/api/invoice/token');
+                if (tResp.ok) {
+                    const { token } = await tResp.json();
+                    await fetch('/api/invoice/send', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            to: formData.email,
+                            subject: `StarFrame Invoice - ${invoiceId}`,
+                            html: invoiceHTML,
+                            plainText: `Hello ${formData.name},\n\nPlease find attached your invoice from StarFrame. Invoice ID: ${invoiceId}`
+                        })
+                    });
                 }
+            } catch (err) {
+                console.warn('Could not reach invoice email endpoint:', err);
+            }
         }
 
-        // Close invoice modal
         closeInvoice.addEventListener('click', () => invoiceModal.style.display = 'none');
         closeInvoiceBtn.addEventListener('click', () => invoiceModal.style.display = 'none');
 
-        // Download invoice as PDF using html2canvas + jsPDF
         downloadInvoice.addEventListener('click', function() {
             const { jsPDF } = window.jspdf;
             const el = invoiceContent;
-            // temporarily expand invoice for good rendering
             html2canvas(el, { scale: 2 }).then(canvas => {
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF('p', 'mm', 'a4');
@@ -763,7 +1052,6 @@
             });
         });
 
-        // Close modals when clicking outside
         window.addEventListener('click', function(e) {
             if (e.target === paymentModal) paymentModal.style.display = 'none';
             if (e.target === invoiceModal) invoiceModal.style.display = 'none';

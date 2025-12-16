@@ -1006,6 +1006,13 @@ class RealTimeAdminExtension {
 
 // Initialize dashboard when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Add smooth page entrance animation
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+    }, 100);
+    
     window.adminDashboard = new AdminDashboard();
     
     // Initialize real-time features after dashboard is ready
@@ -1016,9 +1023,89 @@ document.addEventListener('DOMContentLoaded', () => {
             window.realTimeExtension = realTimeExtension;
         }
     }, 2000);
+    
+    // Add ripple effect to buttons
+    addRippleEffect();
+    
+    // Add floating animation to cards
+    addFloatingCards();
 });
 
-// Back to top button
+// Ripple effect for buttons and interactive elements
+function addRippleEffect() {
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('.btn, .quick-action, .menu-item, .stat-card')) {
+            const ripple = document.createElement('span');
+            const rect = e.target.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            e.target.style.position = 'relative';
+            e.target.style.overflow = 'hidden';
+            e.target.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        }
+    });
+    
+    // Add ripple animation if not exists
+    if (!document.getElementById('ripple-animation')) {
+        const style = document.createElement('style');
+        style.id = 'ripple-animation';
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2.5);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Floating animation for stat cards
+function addFloatingCards() {
+    const cards = document.querySelectorAll('.stat-card, .chart-card');
+    cards.forEach((card, index) => {
+        card.style.animation = `fadeInUp 0.6s ease-out ${index * 0.1}s both`;
+    });
+    
+    // Add floating animation keyframes
+    if (!document.getElementById('card-animations')) {
+        const style = document.createElement('style');
+        style.id = 'card-animations';
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Back to top button with smooth scroll
 const backToTopButton = document.getElementById("back-to-top-btn");
 
 window.onscroll = function() {
@@ -1026,8 +1113,9 @@ window.onscroll = function() {
 };
 
 function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        backToTopButton.style.display = "block";
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        backToTopButton.style.display = "flex";
+        backToTopButton.style.animation = "fadeInUp 0.3s ease-out";
     } else {
         backToTopButton.style.display = "none";
     }
@@ -1036,6 +1124,8 @@ function scrollFunction() {
 backToTopButton.addEventListener("click", backToTop);
 
 function backToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }

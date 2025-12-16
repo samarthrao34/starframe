@@ -12,7 +12,7 @@
     
     <!-- Stylesheets -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/admin.css">
     
     <!-- Socket.IO for real-time features -->
@@ -28,9 +28,9 @@
     <!-- Loading Screen -->
     <div id="loadingScreen" class="loading-screen">
         <div class="loading-spinner">
-            <i class="fas fa-cog fa-spin"></i>
+            <i class="fas fa-star fa-spin"></i>
         </div>
-        <div class="loading-text">Loading Admin Dashboard...</div>
+        <div class="loading-text">Loading StarFrame Admin...</div>
     </div>
 
     <!-- Login Screen -->
@@ -38,7 +38,7 @@
         <div class="login-container">
             <div class="login-header">
                 <h1>StarFrame Admin</h1>
-                <p>Secure Dashboard Access</p>
+                <p>Welcome back! Sign in to access your creative control center</p>
             </div>
             
             <form id="loginForm" class="login-form">
@@ -68,7 +68,7 @@
             <div class="login-footer">
                 <div class="security-info">
                     <i class="fas fa-shield-alt"></i>
-                    <span>Secure Connection</span>
+                    <span>Protected by Advanced Security</span>
                 </div>
             </div>
         </div>
@@ -79,17 +79,17 @@
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <h2>StarFrame</h2>
-                <span class="admin-badge">Admin</span>
+                <h2>✨ StarFrame</h2>
+                <span class="admin-badge">Admin Panel</span>
             </div>
             
             <ul class="sidebar-menu">
                 <li><a href="#dashboard-overview" class="menu-item active" data-section="overview">
-                    <i class="fas fa-tachometer-alt"></i>
+                    <i class="fas fa-sparkles"></i>
                     Dashboard
                 </a></li>
                 <li><a href="#analytics" class="menu-item" data-section="analytics">
-                    <i class="fas fa-chart-bar"></i>
+                    <i class="fas fa-chart-line"></i>
                     Analytics
                 </a></li>
                 <li><a href="#visitors" class="menu-item" data-section="visitors">
@@ -109,15 +109,15 @@
                     Payments
                 </a></li>
                 <li><a href="#commissions" class="menu-item" data-section="commissions">
-                    <i class="fas fa-file-invoice"></i>
+                    <i class="fas fa-palette"></i>
                     Commissions
                 </a></li>
                 <li><a href="#reviews" class="menu-item" data-section="reviews">
-                    <i class="fas fa-comments"></i>
+                    <i class="fas fa-star"></i>
                     Reviews
                 </a></li>
                 <li><a href="#content" class="menu-item" data-section="content">
-                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-pen-fancy"></i>
                     Content
                 </a></li>
                 <li><a href="#system" class="menu-item" data-section="system">
@@ -125,7 +125,7 @@
                     System
                 </a></li>
                 <li><a href="#logs" class="menu-item" data-section="logs">
-                    <i class="fas fa-file-alt"></i>
+                    <i class="fas fa-scroll"></i>
                     Logs
                 </a></li>
             </ul>
@@ -157,11 +157,11 @@
                     <div class="header-stats">
                         <div class="stat-item">
                             <i class="fas fa-circle text-green"></i>
-                            <span>System Online</span>
+                            <span>Online</span>
                         </div>
                         <div class="stat-item">
                             <i class="fas fa-users"></i>
-                            <span id="liveVisitors">0</span>
+                            <span id="liveVisitors">0</span> <small>live</small>
                         </div>
                     </div>
                     
@@ -196,27 +196,27 @@
                                     <div class="stat-label">Total Visitors</div>
                                     <div class="stat-change positive">
                                         <i class="fas fa-arrow-up"></i>
-                                        <span id="visitorsChange">0%</span>
+                                        <span id="visitorsChange">0%</span> from last week
                                     </div>
                                 </div>
                             </div>
 
                             <div class="stat-card">
-                                <div class="stat-icon">
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
                                     <i class="fas fa-shield-alt"></i>
                                 </div>
                                 <div class="stat-content">
                                     <div class="stat-value" id="securityAlerts">0</div>
                                     <div class="stat-label">Security Alerts</div>
                                     <div class="stat-change" id="alertsChange">
-                                        <i class="fas fa-minus"></i>
-                                        <span>No change</span>
+                                        <i class="fas fa-check"></i>
+                                        <span>All Clear</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="stat-card">
-                                <div class="stat-icon">
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="stat-content">
@@ -224,14 +224,14 @@
                                     <div class="stat-label">New Inquiries</div>
                                     <div class="stat-change positive">
                                         <i class="fas fa-plus"></i>
-                                        <span id="inquiriesChange">0</span>
+                                        <span id="inquiriesChange">0</span> today
                                     </div>
                                 </div>
                             </div>
 
                             <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-clock"></i>
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%);">
+                                    <i class="fas fa-server"></i>
                                 </div>
                                 <div class="stat-content">
                                     <div class="stat-value" id="systemUptime">99.9%</div>
@@ -317,7 +317,7 @@
                                     </button>
                                     <button class="quick-action" data-action="update-content">
                                         <i class="fas fa-sync"></i>
-                                        <span>Update Content</span>
+                                        <span>Sync Content</span>
                                     </button>
                                 </div>
                             </div>
@@ -328,17 +328,17 @@
                 <!-- Other sections will be loaded dynamically -->
                 <section id="analytics-section" class="content-section">
                     <div class="section-placeholder">
-                        <i class="fas fa-chart-bar"></i>
-                        <h3>Analytics Section</h3>
-                        <p>Detailed analytics and reporting will be displayed here.</p>
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Analytics & Insights</h3>
+                        <p>Comprehensive analytics and data visualization tools coming soon.</p>
                     </div>
                 </section>
 
                 <section id="security-section" class="content-section">
                     <div class="section-placeholder">
                         <i class="fas fa-shield-alt"></i>
-                        <h3>Security Management</h3>
-                        <p>Security monitoring and threat management tools.</p>
+                        <h3>Security Center</h3>
+                        <p>Advanced security monitoring and threat management dashboard.</p>
                     </div>
                 </section>
 
@@ -346,7 +346,7 @@
                     <div class="section-placeholder">
                         <i class="fas fa-cogs"></i>
                         <h3>System Management</h3>
-                        <p>System configuration and maintenance tools.</p>
+                        <p>System configuration and maintenance control panel.</p>
                     </div>
                 </section>
 
