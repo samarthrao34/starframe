@@ -810,15 +810,20 @@
                     })
                 });
                 
+                if (!response.ok) {
+                    const errText = await response.text();
+                    throw new Error(`Server error (${response.status}): ${errText}`);
+                }
+
                 const order = await response.json();
                 
                 if (order.error) {
-                    alert('Error creating payment order. Please try another method.');
+                    alert('Error creating payment order: ' + order.error.description);
                     return;
                 }
 
                 const options = {
-                    "key": "YOUR_RAZORPAY_KEY_ID", // Enter the Key ID generated from the Dashboard
+                    "key": order.key, // Use key from server response
                     "amount": order.amount,
                     "currency": order.currency,
                     "name": "StarFrame Animation",
@@ -871,7 +876,7 @@
                 
             } catch (err) {
                 console.error(err);
-                alert('Could not initiate Razorpay payment. Please check your connection or try another method.');
+                alert('Could not initiate Razorpay payment. Error: ' + err.message);
             }
         });
 
