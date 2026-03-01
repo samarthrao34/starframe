@@ -13,6 +13,7 @@
 - [ ] User accounts with order/commission history
 - [ ] Guest browsing preserved
 - [ ] Tech debt resolved
+- [ ] Portfolio gallery page fetching from Google Drive
 
 ## Phases
 
@@ -79,3 +80,17 @@
 - Digital file delivery system (secure download URLs)
 - Purchase history linked to user account
 - Admin product management (add/edit/delete art listings)
+
+### Phase 6: Portfolio Gallery
+**Status**: ⬜ Not Started
+**Objective**: Beautiful showcase of all StarFrame artworks, fetched from Google Drive
+**Depends on**: Phase 1
+**Scope**:
+- Portfolio/gallery page with responsive masonry or grid layout
+- Google Drive API integration to fetch images from [VIP Art&Animation folder](https://drive.google.com/drive/folders/1-kWwXckAlTxWPtF7YrIYFYWNr42JmMy7)
+- Server-side caching of Drive file list (avoid hitting API on every page load)
+- Optimized image loading: thumbnails via Drive API, lazy loading, progressive rendering
+- Lightbox/modal for full-size image viewing
+- Category/filter support (if folder has subfolders)
+- Image metadata display (title, dimensions)
+- Performance budget: gallery page must load under 3s on 3G

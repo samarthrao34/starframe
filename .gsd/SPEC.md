@@ -3,7 +3,7 @@
 > **Status**: `FINALIZED`
 
 ## Vision
-Transform the StarFrame Animation Studio website from a static portfolio with manual payment (UPI QR) into a fully functional e-commerce and commission platform — with proper payment processing, a digital art store with cart/checkout, streamlined commission intake with status tracking, and user accounts for a personalized client experience.
+Transform the StarFrame Animation Studio website from a static portfolio with manual payment (UPI QR) into a fully functional e-commerce and commission platform — with proper payment processing, a digital art store with cart/checkout, streamlined commission intake with status tracking, user accounts for a personalized client experience, and a beautiful portfolio gallery showcasing all artworks from Google Drive.
 
 ## Goals
 1. **Payment Integration** — Replace manual UPI QR payment with Razorpay checkout (keeping UPI as a payment method within Razorpay) + automatic invoice/receipt generation + payment status tracking in database
@@ -11,6 +11,7 @@ Transform the StarFrame Animation Studio website from a static portfolio with ma
 3. **Commission System** — Simplify the commission form (essential fields only), display custom pricing, and add client-facing commission status tracking (in progress → sketch ready → completed)
 4. **User Accounts** — Account creation for buyers/commission clients with order history, commission tracking, and personalized experience; guests can still browse freely
 5. **Tech Debt Cleanup** — Fix duplicate DB methods, split monolithic files, establish proper code organization as a foundation for new features
+6. **Portfolio Gallery** — A beautiful page showcasing all artworks fetched from Google Drive ([VIP Art&Animation folder](https://drive.google.com/drive/folders/1-kWwXckAlTxWPtF7YrIYFYWNr42JmMy7)), with optimized image loading (lazy load, thumbnails) so the site stays lightweight
 
 ## Non-Goals (Out of Scope)
 - Physical prints or merchandise
@@ -49,3 +50,5 @@ Transform the StarFrame Animation Studio website from a static portfolio with ma
 - [ ] User accounts with login, order history, and commission tracking
 - [ ] Guest browsing works without requiring account
 - [ ] Tech debt items resolved (duplicate methods, monolithic files)
+- [ ] Portfolio gallery page fetches and displays artworks from Google Drive
+- [ ] Gallery loads fast with lazy loading / optimized thumbnails
