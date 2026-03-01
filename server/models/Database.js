@@ -370,7 +370,9 @@ class Database {
         });
     }
 
-    // Helper methods for common operations
+    // ========================================
+    // === ADMIN USER METHODS ===
+    // ========================================
     async createUser(userData) {
         const { username, email, password_hash, two_factor_secret } = userData;
         return await this.run(
@@ -415,7 +417,9 @@ class Database {
         );
     }
 
-    // Google OAuth user methods
+    // ========================================
+    // === OAUTH USER METHODS ===
+    // ========================================
     async upsertUser(userData) {
         const { googleId, email, name, picture, accessToken, refreshToken } = userData;
         
@@ -461,7 +465,9 @@ class Database {
         );
     }
 
-    // Real-time visitor tracking methods
+    // ========================================
+    // === REAL-TIME TRACKING METHODS ===
+    // ========================================
     async trackVisitorRealtime(visitorData) {
         const { socketId, page, url, referrer, userAgent, ipAddress, userId } = visitorData;
         return await this.run(
@@ -478,7 +484,9 @@ class Database {
         );
     }
 
-    // Analytics methods for admin dashboard
+    // ========================================
+    // === ANALYTICS METHODS ===
+    // ========================================
     async getVisitorAnalytics(timeframe = '24h') {
         let timeCondition = '';
         switch (timeframe) {
@@ -524,23 +532,6 @@ class Database {
         return { visitors, pageViews, userActions };
     }
 
-    // Reviews helpers
-    async createReview({ name, city, rating, message, ip_address = null, user_agent = null }) {
-        return await this.run(
-            'INSERT INTO reviews (name, city, rating, message, ip_address, user_agent) VALUES (?, ?, ?, ?, ?, ?)',
-            [name, city || null, rating, message, ip_address, user_agent]
-        );
-    }
-
-    async getRecentReviews(limit = 50) {
-        return await this.all(
-            'SELECT id, name, city, rating, message, created_at FROM reviews ORDER BY created_at DESC LIMIT ?',[limit]
-        );
-    }
-
-    async deleteReview(id) {
-        return await this.run('DELETE FROM reviews WHERE id = ?', [id]);
-    }
 
     async getUserAnalytics(timeframe = '24h') {
         let timeCondition = '';
@@ -638,7 +629,9 @@ class Database {
         return stats;
     }
 
-    // Review management methods
+    // ========================================
+    // === REVIEW METHODS ===
+    // ========================================
     async createReview(reviewData) {
         const { name, city, rating, message, ip_address, user_agent } = reviewData;
         return await this.run(
@@ -663,7 +656,9 @@ class Database {
         return await this.run('DELETE FROM reviews WHERE id = ?', [id]);
     }
 
-    // Policy pages management
+    // ========================================
+    // === POLICY PAGE METHODS ===
+    // ========================================
     async updatePolicyPage(pageData) {
         const { page_name, content, updated_by } = pageData;
         
