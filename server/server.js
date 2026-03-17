@@ -19,7 +19,6 @@ const Database = require('./models/Database');
 const authRoutes = require('./routes/auth');
 const commissionRoutes = require('./routes/commission');
 const invoiceRoutes = require('./routes/invoice');
-const reviewsRoutes = require('./routes/reviews');
 const paymentRoutes = require('./routes/payment');
 
 const app = express();
@@ -222,7 +221,6 @@ async function startServer() {
         app.use('/api/auth', authRoutes);
 app.use('/api/commission', commissionRoutes);
         app.use('/api/invoice', invoiceRoutes);
-        app.use('/api/reviews', reviewsRoutes);
         app.use('/api/payment', paymentRoutes);
 
         // Health check

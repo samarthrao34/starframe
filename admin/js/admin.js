@@ -269,10 +269,6 @@ class AdminDashboard {
             this.loadCommissions();
             this.setupCommissionsEventListeners();
         }
-        if (section === 'reviews') {
-            this.loadReviews();
-            this.setupReviewsEventListeners();
-        }
     }
 
     async handleQuickAction(action) {
@@ -676,66 +672,6 @@ class AdminDashboard {
         }
     }
 
-    async loadReviews() {
-        try {
-            const { reviews } = await this.apiCall('/api/reviews');
-            this.displayReviews(reviews || []);
-        } catch (error) {
-            console.error('Failed to load reviews:', error);
-            this.showNotification('Failed to load reviews', 'error');
-        }
-    }
-
-    displayReviews(reviews) {
-        const tableBody = document.getElementById('reviewsTableBody');
-        if (!tableBody) return;
-        tableBody.innerHTML = reviews.map(r => `
-            <tr data-id="${r.id}">
-                <td>${r.id}</td>
-                <td>${this.escapeHtml(r.name)}</td>
-                <td>${this.escapeHtml(r.city || '')}</td>
-                <td>${r.rating} ⭐</td>
-                <td style=\"max-width:420px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;\" title=\"${this.escapeHtml(r.message)}\">${this.escapeHtml(r.message)}</td>
-                <td>${new Date(r.created_at).toLocaleString()}</td>
-                <td class="actions">
-                    <button class="btn-action btn-delete-review" data-id="${r.id}" title="Delete Review"><i class="fas fa-trash"></i></button>
-                </td>
-            </tr>
-        `).join('');
-    }
-
-    setupReviewsEventListeners() {
-        const searchInput = document.getElementById('reviewSearch');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                const rows = document.querySelectorAll('#reviewsTableBody tr');
-                rows.forEach(row => {
-                    const name = row.cells[1].textContent.toLowerCase();
-                    const city = row.cells[2].textContent.toLowerCase();
-                    row.style.display = (name.includes(term) || city.includes(term)) ? '' : 'none';
-                });
-            });
-        }
-
-        document.getElementById('reviewsTableBody')?.addEventListener('click', async (e) => {
-            const btn = e.target.closest('.btn-delete-review');
-            if (!btn) return;
-            const id = btn.dataset.id;
-            const confirmed = confirm('Delete this review? This cannot be undone.');
-            if (!confirmed) return;
-            try {
-                const res = await this.apiCall(`/api/reviews/${id}`, { method: 'DELETE' });
-                if (res.success) {
-                    document.querySelector(`#reviewsTableBody tr[data-id="${id}"]`)?.remove();
-                    this.showNotification('Review deleted', 'success');
-                }
-            } catch (err) {
-                this.showNotification(err.message || 'Failed to delete review', 'error');
-            }
-        });
-    }
-
     // Basic HTML escape to prevent XSS in table rendering
     escapeHtml(str) {
         if (str == null) return '';
@@ -823,19 +759,6 @@ class RealTimeAdminExtension {
         this.socket.on('user-disconnected', (data) => {
             this.realTimeData.authenticatedUsers = Math.max(0, this.realTimeData.authenticatedUsers - 1);
             this.updateLiveStats();
-        });
-
-        // Reviews realtime updates
-        this.socket.on('review-created', () => {
-            // If reviews section is active, refresh
-            if (document.getElementById('reviews-section')?.classList.contains('active')) {
-                this.dashboard.loadReviews();
-            }
-        });
-        this.socket.on('review-deleted', () => {
-            if (document.getElementById('reviews-section')?.classList.contains('active')) {
-                this.dashboard.loadReviews();
-            }
         });
     }
 
