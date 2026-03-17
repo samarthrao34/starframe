@@ -1,13 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "api/**", "use": "@vercel/node" },
-    { "src": "**/*.html", "use": "@vercel/static" },
-    { "src": "js/**", "use": "@vercel/static" },
-    { "src": "css/**", "use": "@vercel/static" },
-    { "src": "images/**", "use": "@vercel/static" },
-    { "src": "qrcode.png", "use": "@vercel/static" }
-  ],
   "routes": [
     { "src": "/api/invoice/(.*)", "dest": "/api/invoice/$1" },
     { "src": "/(.*)", "dest": "/$1" }
