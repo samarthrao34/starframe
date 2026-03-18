@@ -943,6 +943,9 @@
             <a href="shop.html" class="nav-link">Shop</a>
           </li>
           <li class="nav-item">
+            <a href="login.html" class="nav-link" id="authNavLink">Login</a>
+          </li>
+          <li class="nav-item">
             <a href="commission.html" class="nav-link commission-btn"
               >Commission</a
             >
@@ -1651,46 +1654,113 @@
           </div>
         </div>
       </div>
-
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="container">
-          <div class="footer-content">
-            <div class="footer-section">
-              <h3>StarFrame Animation Studio</h3>
-              <p>
-                Where imagination comes alive through handcrafted animation and
-                art.
-              </p>
-            </div>
-            <div class="footer-section">
-              <h4>Quick Links</h4>
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="commission.html">Commission</a></li>
-                <li><a href="pricing-guide.html">Pricing Guide</a></li>
-              </ul>
-            </div>
-            <div class="footer-section">
-              <h4>Contact</h4>
-              <p>
-                <i class="fas fa-envelope"></i>
-                starframeanimationstudio@gmail.com
-              </p>
-              <p><i class="fas fa-phone"></i> +91 8960356600</p>
-            </div>
-          </div>
-          <div class="footer-bottom">
-            <p>&copy; 2025 StarFrame Animation Studio. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-brand">
+              <h3>StarFrame</h3>
+              <span class="footer-tagline">Where imagination and emotion come alive</span>
+              <p>
+                A warm, creative studio devoted to creating art and animation
+                filled with soul, peace, and quiet magic. Rooted in heartfelt storytelling and whimsical imagination.
+              </p>
+              <div class="social-links">
+                <a href="https://www.instagram.com/starframeanimationstudios/" target="_blank" rel="noopener" aria-label="Starframe on Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/StarFrame1527" target="_blank" rel="noopener" aria-label="Starframe on X">
+                  <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="Starframe on LinkedIn">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.youtube.com/@StarFrameAnimation" target="_blank" rel="noopener" aria-label="Starframe on YouTube">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </div>
+            <div class="footer-contact">
+              <h4>Let's Connect</h4>
+              <p>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:starframeanimationstudios@gmail.com" class="footer-email">starframeanimationstudios@gmail.com</a>
+              </p>
+              <p><i class="fas fa-phone"></i> +91 8960356600</p>
+              <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
+              <div style="margin-top: 1.5rem;">
+                <a href="https://wa.me/918960356600" class="footer-cta" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-section">
+              <h4>Studio</h4>
+              <ul>
+                <li><a href="index.html#about">Our Story</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="shop.html">Art Shop</a></li>
+                <li><a href="commission.html">Commission</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                <li><a href="refund-policy.html">Refund Policy</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 StarFrame Animation Studio. All rights reserved. Made
+            with ❤️ for artists everywhere.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    
+    <!-- Scripts -->
+    <script src="js/script-new.js"></script>
     <script>
       let cart = [];
       let emptyStateElement = null;
+
+      (function initAuthNavigation() {
+        if (!window.starframeFirebase || !window.starframeFirebase.isConfigured) return;
+        
+        const auth = window.starframeFirebase.getAuth();
+        auth.onAuthStateChanged(function(user) {
+          const authNavLink = document.getElementById('authNavLink');
+          if (!authNavLink) return;
+          
+          if (user) {
+            authNavLink.textContent = window.starframeFirebase.isAdminEmail(user.email) ? 'Admin Panel' : 'My Dashboard';
+            authNavLink.href = window.starframeFirebase.isAdminEmail(user.email) ? 'admin/' : 'dashboard.html';
+          } else {
+            authNavLink.textContent = 'Login';
+            authNavLink.href = 'login.html';
+          }
+        });
+      })();
 
       function addToCart(id, name, price, category, image, format, button) {
         const existingItem = cart.find((item) => item.id === id);
@@ -1710,7 +1780,6 @@
           btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
           btn.style.background =
             "linear-gradient(135deg, var(--primary-warm), var(--primary-dark))";
-          ("linear-gradient(135deg, var(--primary-warm), var(--primary-dark))");
         }, 2000);
       }
 

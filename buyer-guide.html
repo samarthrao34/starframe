@@ -1,928 +1,1129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buyer's Guide - How to Commission Art & Why Invest in Animation | StarFrame</title>
-    <meta name="description" content="Complete guide for art buyers. Learn how to commission custom art, understand the value of handcrafted animation, and make informed decisions about your creative investments.">
-    <meta name="keywords" content="how to commission art, art buying guide, animation investment, custom artwork guide">
-    <meta name="robots" content="index, follow">
-    
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/style-new.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Buyer's Guide - How to Commission Art & Why Invest in Animation |
+      StarFrame
+    </title>
+    <meta
+      name="description"
+      content="Complete guide for art buyers. Learn how to commission custom art, understand the value of handcrafted animation, and make informed decisions about your creative investments."
+    />
+    <meta
+      name="keywords"
+      content="how to commission art, art buying guide, animation investment, custom artwork guide"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/style-new.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+
     <style>
-        .guide-hero {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 120px 0 80px;
-            text-align: center;
-            color: white;
-        }
-        
+      :root {
+        --guide-bg: #fbf6ee;
+        --guide-accent: var(--primary-warm);
+      }
+
+      .guide-page {
+        background-color: var(--guide-bg);
+        color: var(--text-dark);
+      }
+
+      .guide-hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark) 0%,
+          var(--text-dark) 100%
+        );
+        padding: 140px 0 80px;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .guide-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 80% 20%,
+          rgba(212, 165, 116, 0.15) 0%,
+          transparent 50%
+        );
+      }
+
+      .guide-hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .guide-hero p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        opacity: 0.9;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+      }
+
+      .guide-nav {
+        background: var(--white);
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow-soft);
+        border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+      }
+
+      .guide-nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .guide-nav-link {
+        padding: 10px 22px;
+        background: var(--background-warm);
+        color: var(--text-dark);
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+        border: 1px solid rgba(212, 165, 116, 0.1);
+      }
+
+      .guide-nav-link:hover {
+        background: var(--primary-warm);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(212, 165, 116, 0.2);
+      }
+
+      .guide-content {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+      }
+
+      .guide-section {
+        margin-bottom: 80px;
+        background: var(--white);
+        border-radius: 24px;
+        padding: 60px;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid rgba(212, 165, 116, 0.15);
+      }
+
+      .guide-section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .guide-section h2 i {
+        color: var(--primary-warm);
+      }
+
+      .guide-intro {
+        font-size: 1.2rem;
+        color: var(--text-medium);
+        margin-bottom: 50px;
+        line-height: 1.8;
+        padding-left: 25px;
+        border-left: 4px solid var(--primary-warm);
+      }
+
+      .step-by-step {
+        counter-reset: step-counter;
+      }
+
+      .step {
+        position: relative;
+        margin-bottom: 50px;
+        padding-left: 90px;
+        counter-increment: step-counter;
+      }
+
+      .step::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-warm) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+      }
+
+      .step h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+      }
+
+      .step p {
+        color: var(--text-medium);
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .step-tips {
+        background: var(--background-cream);
+        padding: 25px;
+        border-radius: 16px;
+        margin-top: 20px;
+        border: 1px solid rgba(212, 165, 116, 0.1);
+      }
+
+      .step-tips h4 {
+        color: var(--primary-dark);
+        margin-bottom: 12px;
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .step-tips ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .step-tips li {
+        padding: 6px 0;
+        color: var(--text-medium);
+        display: flex;
+        align-items: start;
+        gap: 10px;
+        font-size: 0.95rem;
+      }
+
+      .step-tips li::before {
+        content: "✓";
+        color: #71b87f;
+        font-weight: bold;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .benefit-card {
+        background: var(--background-cream);
+        padding: 40px;
+        border-radius: 20px;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(212, 165, 116, 0.05);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+        background: var(--white);
+        border-color: var(--primary-warm);
+      }
+
+      .benefit-icon {
+        font-size: 3rem;
+        color: var(--primary-warm);
+        margin-bottom: 25px;
+      }
+
+      .benefit-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+      }
+
+      .benefit-card p {
+        color: var(--text-medium);
+        line-height: 1.7;
+        font-size: 0.95rem;
+      }
+
+      .comparison-table-wrap {
+        overflow-x: auto;
+        margin-top: 40px;
+        border-radius: 20px;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--white);
+      }
+
+      .comparison-table th {
+        background: var(--primary-dark);
+        color: white;
+        padding: 20px;
+        text-align: left;
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+      }
+
+      .comparison-table td {
+        padding: 20px;
+        border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+        color: var(--text-medium);
+      }
+
+      .comparison-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .comparison-table tr:hover {
+        background: var(--background-cream);
+      }
+
+      .comparison-table .feature {
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      .comparison-table .stock-art {
+        color: #cc493d;
+      }
+
+      .comparison-table .custom-art {
+        color: #4b8f5a;
+        font-weight: 600;
+      }
+
+      .faq-item {
+        background: var(--background-cream);
+        margin-bottom: 20px;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s;
+        border: 1px solid rgba(212, 165, 116, 0.05);
+      }
+
+      .faq-question {
+        padding: 25px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--text-dark);
+        font-family: "Playfair Display", serif;
+      }
+
+      .faq-question:hover {
+        background: var(--white);
+      }
+
+      .faq-question i {
+        color: var(--primary-warm);
+        transition: transform 0.3s;
+      }
+
+      .faq-item.active {
+        background: var(--white);
+        border-color: var(--primary-warm);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 1000px;
+      }
+
+      .faq-answer-content {
+        padding: 0 25px 25px;
+        color: var(--text-medium);
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+
+      .dos-donts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .do-card,
+      .dont-card {
+        padding: 35px;
+        border-radius: 20px;
+      }
+
+      .do-card {
+        background: #f0f9f4;
+        border-left: 6px solid #71b87f;
+      }
+
+      .dont-card {
+        background: #fff5f5;
+        border-left: 6px solid #e74c3c;
+      }
+
+      .do-card h4,
+      .dont-card h4 {
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      .do-card h4 {
+        color: #2d5a3a;
+      }
+      .dont-card h4 {
+        color: #8e2a1e;
+      }
+
+      .do-card ul,
+      .dont-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .do-card li,
+      .dont-card li {
+        padding: 10px 0;
+        display: flex;
+        align-items: start;
+        gap: 12px;
+        font-size: 0.95rem;
+      }
+
+      .do-card li::before {
+        content: "✓";
+        font-weight: bold;
+        color: #71b87f;
+      }
+      .dont-card li::before {
+        content: "✕";
+        font-weight: bold;
+        color: #e74c3c;
+      }
+
+      .cta-box {
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark) 0%,
+          var(--text-dark) 100%
+        );
+        padding: 80px 50px;
+        border-radius: 32px;
+        text-align: center;
+        color: white;
+        margin-top: 100px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-box h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .cta-box p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-btn {
+        display: inline-block;
+        padding: 16px 45px;
+        background: var(--primary-warm);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        margin: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      @media (max-width: 768px) {
         .guide-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+          font-size: 2.2rem;
         }
-        
-        .guide-hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.95;
-        }
-        
-        .guide-nav {
-            background: white;
-            padding: 30px 0;
-            position: sticky;
-            top: 70px;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .guide-nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .guide-nav-link {
-            padding: 10px 25px;
-            background: #f8f9fa;
-            color: #333;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .guide-nav-link:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .guide-content {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-        
+
         .guide-section {
-            margin-bottom: 80px;
-            background: white;
-            border-radius: 16px;
-            padding: 50px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+          padding: 40px 25px;
         }
-        
-        .guide-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .guide-section h2 i {
-            color: #667eea;
-        }
-        
-        .guide-intro {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 40px;
-            line-height: 1.8;
-            padding-left: 20px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .step-by-step {
-            counter-reset: step-counter;
-        }
-        
+
         .step {
-            position: relative;
-            margin-bottom: 40px;
-            padding-left: 80px;
-            counter-increment: step-counter;
+          padding-left: 0;
+          padding-top: 80px;
+          text-align: center;
         }
-        
+
         .step::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
+          left: 50%;
+          transform: translateX(-50%);
         }
-        
-        .step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .step p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-        
-        .step-tips {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-        
-        .step-tips h4 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .step-tips ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .step-tips li {
-            padding: 5px 0;
-            color: #555;
-        }
-        
-        .step-tips li::before {
-            content: "✓ ";
-            color: #2ecc71;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .benefit-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 30px;
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-        
-        .benefit-icon {
-            font-size: 3rem;
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        
-        .benefit-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .benefit-card p {
-            color: #666;
-            line-height: 1.7;
-        }
-        
-        .comparison-table {
-            width: 100%;
-            margin-top: 40px;
-            border-collapse: collapse;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        
-        .comparison-table th {
-            background: #667eea;
-            color: white;
-            padding: 20px;
-            text-align: left;
-            font-size: 1.1rem;
-        }
-        
-        .comparison-table td {
-            padding: 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .comparison-table tr:hover {
-            background: #f8f9fa;
-        }
-        
-        .comparison-table .feature {
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .comparison-table .stock-art {
-            color: #ff4757;
-        }
-        
-        .comparison-table .custom-art {
-            color: #2ecc71;
-        }
-        
-        .faq-section {
-            margin-top: 40px;
-        }
-        
-        .faq-item {
-            background: #f8f9fa;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-        
-        .faq-question {
-            padding: 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #333;
-            transition: all 0.3s;
-        }
-        
-        .faq-question:hover {
-            background: #e9ecef;
-        }
-        
-        .faq-question i {
-            color: #667eea;
-            transition: transform 0.3s;
-        }
-        
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-        
-        .faq-answer-content {
-            padding: 0 25px 25px;
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .dos-donts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .do-card {
-            background: #d4edda;
-            border-left: 5px solid #28a745;
-            padding: 25px;
-            border-radius: 8px;
-        }
-        
-        .dont-card {
-            background: #f8d7da;
-            border-left: 5px solid #dc3545;
-            padding: 25px;
-            border-radius: 8px;
-        }
-        
-        .do-card h4 {
-            color: #155724;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        
-        .dont-card h4 {
-            color: #721c24;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        
-        .do-card ul, .dont-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .do-card li {
-            padding: 8px 0;
-            color: #155724;
-        }
-        
-        .dont-card li {
-            padding: 8px 0;
-            color: #721c24;
-        }
-        
-        .do-card li::before {
-            content: "✓ ";
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        
-        .dont-card li::before {
-            content: "✗ ";
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        
+
         .cta-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 50px;
-            border-radius: 16px;
-            text-align: center;
-            color: white;
-            margin-top: 60px;
+          padding: 60px 25px;
         }
-        
-        .cta-box h3 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .cta-box p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            margin: 0 10px;
-        }
-        
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-        
-        @media (max-width: 768px) {
-            .guide-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .guide-section {
-                padding: 30px 20px;
-            }
-            
-            .step {
-                padding-left: 0;
-                padding-top: 70px;
-            }
-            
-            .step::before {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body class="guide-page">
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <h1>StarFrame</h1>
-                    <span class="nav-tagline">Animation Studio</span>
-                </a>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
-                <li class="nav-item"><a href="pricing-guide.html" class="nav-link">Pricing</a></li>
-                <li class="nav-item"><a href="buyer-guide.html" class="nav-link">Buyer's Guide</a></li>
-                <li class="nav-item"><a href="commission.html" class="nav-link commission-btn">Commission</a></li>
-            </ul>
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <h1>StarFrame</h1>
+            <span class="nav-tagline">Animation Studio</span>
+          </a>
         </div>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item">
+            <a href="index.html#about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+          <li class="nav-item">
+            <a href="pricing-guide.html" class="nav-link">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a href="buyer-guide.html" class="nav-link">Guide</a>
+          </li>
+          <li class="nav-item">
+            <a href="login.html" class="nav-link" id="authNavLink">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="commission.html" class="nav-link commission-btn"
+              >Commission</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="guide-hero">
-        <div class="container">
-            <h1><i class="fas fa-book-open"></i> Complete Buyer's Guide</h1>
-            <p>Everything you need to know about commissioning custom art and investing in handcrafted animation. From first contact to final delivery, we'll guide you every step of the way.</p>
-        </div>
+      <div class="container">
+        <h1><i class="fas fa-book-open"></i> Complete Buyer's Guide</h1>
+        <p>
+          Everything you need to know about commissioning custom art and
+          investing in handcrafted animation. From first contact to final
+          delivery, we'll guide you every step of the way.
+        </p>
+      </div>
     </section>
 
     <!-- Quick Navigation -->
     <div class="guide-nav">
-        <div class="guide-nav-container">
-            <a href="#how-to-commission" class="guide-nav-link">How to Commission</a>
-            <a href="#why-invest" class="guide-nav-link">Why Invest</a>
-            <a href="#process" class="guide-nav-link">Our Process</a>
-            <a href="#faq" class="guide-nav-link">FAQ</a>
-        </div>
+      <div class="guide-nav-container">
+        <a href="#how-to-commission" class="guide-nav-link">How to Commission</a>
+        <a href="#why-invest" class="guide-nav-link">Why Invest</a>
+        <a href="#process" class="guide-nav-link">Our Process</a>
+        <a href="#faq" class="guide-nav-link">FAQ</a>
+      </div>
     </div>
 
     <!-- Main Content -->
     <div class="guide-content">
-        <!-- How to Commission Section -->
-        <section id="how-to-commission" class="guide-section">
-            <h2><i class="fas fa-palette"></i> How to Commission Art</h2>
-            <div class="guide-intro">
-                Commissioning custom art might seem daunting if you've never done it before. Don't worry! This step-by-step guide will walk you through the entire process, making it easy and enjoyable.
-            </div>
-
-            <div class="step-by-step">
-                <div class="step">
-                    <h3>Define Your Vision</h3>
-                    <p>Before reaching out, take time to clarify what you want. The more specific you are, the better the result will be.</p>
-                    <div class="step-tips">
-                        <h4>What to Consider:</h4>
-                        <ul>
-                            <li>What is the purpose? (personal, commercial, gift, etc.)</li>
-                            <li>What style appeals to you? (realistic, cartoon, anime, abstract)</li>
-                            <li>What's your budget range?</li>
-                            <li>When do you need it completed?</li>
-                            <li>What format do you need? (digital file, print, video)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <h3>Gather References</h3>
-                    <p>Visual references are incredibly helpful. Collect images that inspire you or show the style, mood, or elements you want.</p>
-                    <div class="step-tips">
-                        <h4>Where to Find References:</h4>
-                        <ul>
-                            <li>Pinterest boards with similar artwork</li>
-                            <li>Screenshots from shows or games you like</li>
-                            <li>Photos of characters, poses, or settings</li>
-                            <li>Color palettes or mood boards</li>
-                            <li>Examples from our portfolio that resonate with you</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <h3>Reach Out to Us</h3>
-                    <p>Contact us through your preferred method with your project details. We're friendly and happy to answer questions!</p>
-                    <div class="step-tips">
-                        <h4>How to Contact:</h4>
-                        <ul>
-                            <li>Fill out our commission form (fastest response)</li>
-                            <li>Email: starframeanimationstudio@gmail.com</li>
-                            <li>WhatsApp: +91 8960356600</li>
-                            <li>Instagram DM: @starframe.studio</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <h3>Discuss & Get a Quote</h3>
-                    <p>We'll review your request and provide a detailed quote with timeline estimates. Feel free to ask questions or request adjustments.</p>
-                    <div class="step-tips">
-                        <h4>What We'll Provide:</h4>
-                        <ul>
-                            <li>Detailed project breakdown</li>
-                            <li>Transparent pricing with no hidden fees</li>
-                            <li>Realistic timeline estimate</li>
-                            <li>Revision policy explanation</li>
-                            <li>Payment terms (50% advance, 50% on completion)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <h3>Approve & Pay Advance</h3>
-                    <p>Once you're happy with the quote, you'll pay the 50% advance to secure your slot. We'll send an invoice and payment details.</p>
-                    <div class="step-tips">
-                        <h4>Payment Options:</h4>
-                        <ul>
-                            <li>UPI for Indian clients (instant)</li>
-                            <li>PayPal for international clients</li>
-                            <li>Bank transfer available</li>
-                            <li>Invoice provided for all transactions</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <h3>Sketching & Revisions</h3>
-                    <p>We'll start with initial sketches or concepts. You'll have opportunities to request changes before we move to final artwork.</p>
-                    <div class="step-tips">
-                        <h4>Revision Process:</h4>
-                        <ul>
-                            <li>We'll share progress updates regularly</li>
-                            <li>Review and provide feedback on sketches</li>
-                            <li>Request changes during revision rounds</li>
-                            <li>Approve before we proceed to color/animation</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <h3>Final Approval & Payment</h3>
-                    <p>Once the artwork is complete, we'll send you a watermarked preview. After your approval and final payment, you'll receive the full files.</p>
-                    <div class="step-tips">
-                        <h4>What You'll Receive:</h4>
-                        <ul>
-                            <li>High-resolution final files</li>
-                            <li>Multiple formats (PNG, JPG, PSD, etc.)</li>
-                            <li>Usage license documentation</li>
-                            <li>Source files (if included in your package)</li>
-                            <li>Certificate of authenticity for premium commissions</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <h3>Enjoy Your Art!</h3>
-                    <p>Use your custom artwork however you planned. We'd love to see how you use it - tag us on social media!</p>
-                    <div class="step-tips">
-                        <h4>After Delivery:</h4>
-                        <ul>
-                            <li>We're available for minor tweaks if needed</li>
-                            <li>Share your art on social media (we love seeing it!)</li>
-                            <li>Leave us a review to help others</li>
-                            <li>Return for future projects (returning clients get 10% off!)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Invest Section -->
-        <section id="why-invest" class="guide-section">
-            <h2><i class="fas fa-gem"></i> Why Invest in Handcrafted Animation?</h2>
-            <div class="guide-intro">
-                In a world of templates and AI-generated content, why should you invest in custom, handcrafted art and animation? Here's why it's worth every rupee.
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-fingerprint"></i></div>
-                    <h3>100% Unique</h3>
-                    <p>Your artwork is created from scratch, exclusively for you. No one else in the world will have the same piece. It's truly one-of-a-kind, reflecting your specific vision and needs.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-heart"></i></div>
-                    <h3>Human Touch</h3>
-                    <p>Every frame is drawn by hand with care, emotion, and artistic intention. You'll feel the difference between soulless automation and artwork crafted with genuine passion.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-comments"></i></div>
-                    <h3>Direct Collaboration</h3>
-                    <p>Work directly with the artist throughout the process. Share ideas, request changes, and watch your vision come to life through iterative collaboration.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Brand Differentiation</h3>
-                    <p>Stand out from competitors using generic stock assets. Custom art gives your brand a unique identity that's memorable and professional.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-copyright"></i></div>
-                    <h3>Full Rights</h3>
-                    <p>You own the artwork. Use it commercially, modify it, print it - no ongoing licensing fees or restrictions (commercial license included).</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
-                    <h3>Support Independent Artists</h3>
-                    <p>Your investment directly supports independent creators and helps sustain the art community. You're empowering dreams and creative livelihoods.</p>
-                </div>
-            </div>
-
-            <h3 style="margin-top: 60px; font-size: 2rem; color: #333;">Custom vs Stock: The Real Comparison</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Stock/Template Art</th>
-                        <th>Custom Handcrafted Art</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="feature">Uniqueness</td>
-                        <td class="stock-art">❌ Used by thousands</td>
-                        <td class="custom-art">✅ Exclusive to you</td>
-                    </tr>
-                    <tr>
-                        <td class="feature">Customization</td>
-                        <td class="stock-art">❌ Limited or none</td>
-                        <td class="custom-art">✅ Fully tailored</td>
-                    </tr>
-                    <tr>
-                        <td class="feature">Brand Alignment</td>
-                        <td class="stock-art">❌ Generic fit</td>
-                        <td class="custom-art">✅ Perfect match</td>
-                    </tr>
-                    <tr>
-                        <td class="feature">Emotional Connection</td>
-                        <td class="stock-art">❌ Impersonal</td>
-                        <td class="custom-art">✅ Deeply personal</td>
-                    </tr>
-                    <tr>
-                        <td class="feature">Long-term Value</td>
-                        <td class="stock-art">❌ Depreciates</td>
-                        <td class="custom-art">✅ Appreciates</td>
-                    </tr>
-                    <tr>
-                        <td class="feature">Artist Collaboration</td>
-                        <td class="stock-art">❌ No interaction</td>
-                        <td class="custom-art">✅ Direct partnership</td>
-                    </tr>
-                    <tr>
-                        <td class="feature">Quality Control</td>
-                        <td class="stock-art">⚠️ Variable</td>
-                        <td class="custom-art">✅ Guaranteed excellence</td>
-                    </tr>
-                    <tr>
-                        <td class="feature">Cost</td>
-                        <td class="stock-art">✅ Cheaper initially</td>
-                        <td class="custom-art">✅ Better ROI long-term</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Process Section -->
-        <section id="process" class="guide-section">
-            <h2><i class="fas fa-tasks"></i> Our Creative Process</h2>
-            <div class="guide-intro">
-                Transparency is important to us. Here's exactly what happens behind the scenes when you commission from StarFrame.
-            </div>
-
-            <h3 style="margin-top: 40px; font-size: 1.8rem; color: #333;">What We Do:</h3>
-            <div class="dos-donts">
-                <div class="do-card">
-                    <h4><i class="fas fa-check-circle"></i> Do's</h4>
-                    <ul>
-                        <li>Communicate clearly and promptly</li>
-                        <li>Provide regular progress updates</li>
-                        <li>Honor quoted prices and timelines</li>
-                        <li>Deliver high-quality, polished work</li>
-                        <li>Offer revision rounds as promised</li>
-                        <li>Respect your vision and preferences</li>
-                        <li>Provide invoices and documentation</li>
-                    </ul>
-                </div>
-
-                <div class="dont-card">
-                    <h4><i class="fas fa-times-circle"></i> Don'ts</h4>
-                    <ul>
-                        <li>Ghost clients or delay unnecessarily</li>
-                        <li>Add hidden fees or surprise charges</li>
-                        <li>Rush work to meet unrealistic deadlines</li>
-                        <li>Reuse commissioned art for others</li>
-                        <li>Ignore feedback or revision requests</li>
-                        <li>Deliver without client approval</li>
-                        <li>Share your private project publicly without permission</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3 style="margin-top: 60px; font-size: 1.8rem; color: #333;">What We Need From You:</h3>
-            <div class="dos-donts">
-                <div class="do-card">
-                    <h4><i class="fas fa-check-circle"></i> Helpful Behaviors</h4>
-                    <ul>
-                        <li>Be specific about your requirements</li>
-                        <li>Provide references and inspiration</li>
-                        <li>Respond to progress updates promptly</li>
-                        <li>Trust our creative expertise</li>
-                        <li>Give constructive, clear feedback</li>
-                        <li>Respect revision limitations</li>
-                        <li>Make timely payments as agreed</li>
-                    </ul>
-                </div>
-
-                <div class="dont-card">
-                    <h4><i class="fas fa-times-circle"></i> Things to Avoid</h4>
-                    <ul>
-                        <li>Requesting endless revisions</li>
-                        <li>Changing project scope mid-way</li>
-                        <li>Being vague or unclear</li>
-                        <li>Expecting instant responses 24/7</li>
-                        <li>Comparing unfairly to other artists</li>
-                        <li>Asking for free extra work</li>
-                        <li>Disputing fair payment after approval</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section id="faq" class="guide-section">
-            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-            
-            <div class="faq-section">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        How long does a typical commission take?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            It depends on the complexity. Simple illustrations take 5-7 days, standard projects take 1-2 weeks, and complex animations can take 2-4 weeks. We'll give you a specific timeline when we quote your project. Rush delivery is available for an additional 30% fee.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        Can I use the art commercially?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Yes! Most packages include commercial rights, or you can add them for a small fee (typically ₹500-₹1000). This means you can use the artwork for business purposes, merchandise, advertising, etc. We'll provide a usage license document with your delivery.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        What if I don't like the final result?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            We work closely with you throughout the process with multiple checkpoints and revision rounds. You'll approve sketches before we proceed to final art. If there's still an issue, we'll work to make it right within the agreed revision policy. Client satisfaction is our priority.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        Do you work with international clients?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Absolutely! We work with clients worldwide. We accept PayPal, Wise, and international bank transfers. Prices are automatically converted to your currency, and we accommodate different time zones for communication.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        Can I request changes after final delivery?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Minor tweaks within 7 days of delivery are usually free (typo fixes, small color adjustments). Larger changes after final approval may incur additional fees depending on the scope. We're always happy to discuss what's needed!
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        What's your refund policy?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Once work begins, the advance (50%) is non-refundable as it reserves your slot and covers initial work. If we can't deliver due to circumstances on our end, you'll receive a full refund. See our full refund policy for detailed terms.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        Do you offer payment plans for large projects?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Yes! For projects over ₹25,000, we can arrange installment payments (e.g., 30% advance, 40% at midpoint, 30% on completion). This makes larger investments more manageable. Contact us to discuss options for your project.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        Will you share my commission publicly?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Only with your permission! We love showcasing our work in our portfolio, but we always ask first. If your project is private or confidential, we'll keep it completely under wraps. Your privacy is respected.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <div class="cta-box">
-            <h3>Ready to Commission Your Dream Art?</h3>
-            <p>Now that you know the process, let's bring your vision to life. We're excited to work with you!</p>
-            <div>
-                <a href="commission.html" class="cta-btn">Start Your Commission</a>
-                <a href="pricing-guide.html" class="cta-btn">View Pricing</a>
-            </div>
+      <!-- How to Commission Section -->
+      <section id="how-to-commission" class="guide-section">
+        <h2><i class="fas fa-palette"></i> How to Commission Art</h2>
+        <div class="guide-intro">
+          Commissioning custom art might seem daunting if you've never done it
+          before. Don't worry! This step-by-step guide will walk you through the
+          entire process, making it easy and enjoyable.
         </div>
+
+        <div class="step-by-step">
+          <div class="step">
+            <h3>Define Your Vision</h3>
+            <p>
+              Before reaching out, take time to clarify what you want. The more
+              specific you are, the better the result will be.
+            </p>
+            <div class="step-tips">
+              <h4>What to Consider:</h4>
+              <ul>
+                <li>What is the purpose? (personal, commercial, gift)</li>
+                <li>What style appeals to you? (cartoon, realistic, anime)</li>
+                <li>What's your budget range?</li>
+                <li>When do you need it completed?</li>
+                <li>What format do you need? (digital file, print, video)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Gather References</h3>
+            <p>
+              Visual references are incredibly helpful. Collect images that
+              inspire you or show the style, mood, or elements you want.
+            </p>
+            <div class="step-tips">
+              <h4>Where to Find References:</h4>
+              <ul>
+                <li>Pinterest boards with similar artwork</li>
+                <li>Screenshots from shows or games you like</li>
+                <li>Photos of characters, poses, or settings</li>
+                <li>Color palettes or mood boards</li>
+                <li>Examples from our portfolio</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Reach Out to Us</h3>
+            <p>
+              Contact us through our commission form or preferred method. We're
+              friendly and happy to answer any questions!
+            </p>
+            <div class="step-tips">
+              <h4>How to Contact:</h4>
+              <ul>
+                <li>Fill out our Commission Form (Recommended)</li>
+                <li>Email: starframeanimationstudios@gmail.com</li>
+                <li>WhatsApp: +91 8960356600</li>
+                <li>Instagram DM: @starframeanimationstudios</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Discuss & Get a Quote</h3>
+            <p>
+              We'll review your request and provide a detailed quote with
+              timeline estimates. Feel free to ask questions or request
+              adjustments.
+            </p>
+            <div class="step-tips">
+              <h4>What We'll Provide:</h4>
+              <ul>
+                <li>Detailed project breakdown</li>
+                <li>Transparent pricing with no hidden fees</li>
+                <li>Realistic timeline estimate</li>
+                <li>Revision policy explanation</li>
+                <li>Standard payment terms</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Approve & Pay Advance</h3>
+            <p>
+              Once you're happy with the quote, you'll pay the 50% advance to
+              secure your slot in our production schedule.
+            </p>
+            <div class="step-tips">
+              <h4>Payment Options:</h4>
+              <ul>
+                <li>UPI for Indian clients (instant)</li>
+                <li>PayPal for international clients</li>
+                <li>Direct Bank Transfer available</li>
+                <li>Full receipt and invoice provided</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Drafting & Revisions</h3>
+            <p>
+              We'll start with initial sketches or storyboards. You'll have
+              opportunities to request changes before we move to final art.
+            </p>
+            <div class="step-tips">
+              <h4>Revision Process:</h4>
+              <ul>
+                <li>Regular progress updates via email/WhatsApp</li>
+                <li>Provide feedback on initial sketches</li>
+                <li>Request changes during defined revision rounds</li>
+                <li>Approval required before final coloring/animation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Final Approval & Delivery</h3>
+            <p>
+              Once complete, we'll send a watermarked preview. After final
+              payment, you'll receive all high-resolution files.
+            </p>
+            <div class="step-tips">
+              <h4>What You'll Receive:</h4>
+              <ul>
+                <li>High-resolution final master files</li>
+                <li>Multiple formats optimized for your needs</li>
+                <li>Usage license documentation</li>
+                <li>Source files (for eligible packages)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Invest Section -->
+      <section id="why-invest" class="guide-section">
+        <h2><i class="fas fa-gem"></i> Why Invest in Handcrafted Art?</h2>
+        <div class="guide-intro">
+          In a world of templates and AI-generated content, why should you
+          invest in custom, handcrafted art? Here's why it's worth every rupee.
+        </div>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-fingerprint"></i></div>
+            <h3>100% Unique</h3>
+            <p>
+              Your artwork is created from scratch, exclusively for you. It's
+              truly one-of-a-kind, reflecting your specific vision and personality.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+            <h3>Human Emotion</h3>
+            <p>
+              Every frame is drawn by hand with care, soul, and artistic
+              intention. You'll feel the warmth that only a human artist can
+              provide.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-comments"></i></div>
+            <h3>Collaboration</h3>
+            <p>
+              Work directly with the artist. Share ideas, request tweaks, and
+              watch your vision evolve through genuine partnership.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Brand Identity</h3>
+            <p>
+              Stand out from the crowd using unique assets. Custom art gives
+              your brand a memorable and professional identity.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-copyright"></i></div>
+            <h3>Full Usage Rights</h3>
+            <p>
+              You own your commission. Use it commercially, print it, or modify
+              it—no ongoing licensing restrictions for your brand.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
+            <h3>Support Art</h3>
+            <p>
+              Your investment supports independent creators and helps sustain
+              the creative community. You're empowering dreams.
+            </p>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 60px; font-size: 2rem; color: var(--text-dark)">
+          Custom vs Stock Art
+        </h3>
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Stock/Template Art</th>
+                <th>StarFrame Custom Art</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="feature">Uniqueness</td>
+                <td class="stock-art">Used by thousands</td>
+                <td class="custom-art">Exclusive to you</td>
+              </tr>
+              <tr>
+                <td class="feature">Customization</td>
+                <td class="stock-art">Limited or none</td>
+                <td class="custom-art">Fully tailored</td>
+              </tr>
+              <tr>
+                <td class="feature">Brand Alignment</td>
+                <td class="stock-art">Generic fit</td>
+                <td class="custom-art">Perfect match</td>
+              </tr>
+              <tr>
+                <td class="feature">Emotional Impact</td>
+                <td class="stock-art">Impersonal</td>
+                <td class="custom-art">Deeply personal</td>
+              </tr>
+              <tr>
+                <td class="feature">Long-term Value</td>
+                <td class="stock-art">Depreciates</td>
+                <td class="custom-art">Appreciates</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section id="process" class="guide-section">
+        <h2><i class="fas fa-tasks"></i> Our Creative Process</h2>
+        <div class="guide-intro">
+          Transparency is foundational to our studio. Here's exactly what
+          happens behind the scenes at StarFrame.
+        </div>
+
+        <div class="dos-donts">
+          <div class="do-card">
+            <h4><i class="fas fa-check-circle"></i> What We Do</h4>
+            <ul>
+              <li>Communicate clearly and promptly</li>
+              <li>Provide regular progress updates</li>
+              <li>Honor quoted prices and timelines</li>
+              <li>Deliver high-quality, polished work</li>
+              <li>Respect your vision and preferences</li>
+              <li>Provide clear invoices and licenses</li>
+            </ul>
+          </div>
+
+          <div class="dont-card">
+            <h4><i class="fas fa-times-circle"></i> What We Don'ts</h4>
+            <ul>
+              <li>Add hidden fees or surprise charges</li>
+              <li>Rush work to meet unrealistic deadlines</li>
+              <li>Reuse your private commission for others</li>
+              <li>Ignore feedback or revision requests</li>
+              <li>Deliver without your explicit approval</li>
+              <li>Share private projects without permission</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="faq" class="guide-section">
+        <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+
+        <div class="faq-section">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              How long does a typical commission take?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Complexity determines the timeline. Simple illustrations take
+                5-7 days, standard projects take 1-2 weeks, and complex
+                animations take 2-4 weeks. Rush delivery is available for an
+                additional fee.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              Can I use the art commercially?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Yes! Most packages include commercial rights, or they can be
+                added for a small fee. This allows you to use the art for
+                business, merchandise, advertising, and more.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              What if I don't like the final result?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                We work closely with you via checkpoints and revision rounds.
+                You approve sketches before we move to final art. If there's
+                still an issue, we'll work to make it right within our policy.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              Do you work with international clients?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Absolutely! We work with clients worldwide. We accept PayPal,
+                Wise, and international transfers. We accommodate all time zones
+                for communication.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              What's your refund policy?
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Once work begins, the 50% advance is non-refundable as it
+                reserves your slot and covers initial drafting. If we cannot
+                deliver due to studio issues, a full refund is provided.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <div class="cta-box">
+        <h3>Ready to Commission Your Dream Art?</h3>
+        <p>
+          Now that you know the process, let's bring your vision to life. We're
+          excited to work with you!
+        </p>
+        <div>
+          <a href="commission.html" class="cta-btn">Start Your Commission</a>
+          <a href="pricing-guide.html" class="cta-btn">View Pricing</a>
+        </div>
+      </div>
     </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>StarFrame Animation Studio</h3>
-                    <p>Empowering your creative vision through handcrafted art and animation.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="pricing-guide.html">Pricing Guide</a></li>
-                        <li><a href="buyer-guide.html">Buyer's Guide</a></li>
-                        <li><a href="commission.html">Commission</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-envelope"></i> starframeanimationstudio@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +91 8960356600</p>
-                </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-brand">
+              <h3>StarFrame</h3>
+              <span class="footer-tagline"
+                >Where imagination and emotion come alive</span
+              >
+              <p>
+                A warm, creative studio devoted to creating art and animation
+                filled with soul, peace, and quiet magic. Rooted in heartfelt
+                storytelling and whimsical imagination.
+              </p>
+              <div class="social-links">
+                <a
+                  href="https://www.instagram.com/starframeanimationstudios/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Starframe on Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                  href="https://x.com/StarFrame1527"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Starframe on X"
+                  ><i class="fab fa-x-twitter"></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Starframe on LinkedIn"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+                <a
+                  href="https://www.youtube.com/@StarFrameAnimation"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Starframe on YouTube"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+              </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 StarFrame Animation Studio. All rights reserved.</p>
+            <div class="footer-contact">
+              <h4>Let's Connect</h4>
+              <p>
+                <i class="fas fa-envelope"></i>
+                <a
+                  href="mailto:starframeanimationstudios@gmail.com"
+                  class="footer-email"
+                  >starframeanimationstudios@gmail.com</a
+                >
+              </p>
+              <p><i class="fas fa-phone"></i> +91 8960356600</p>
+              <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
+              <div style="margin-top: 1.5rem">
+                <a
+                  href="https://wa.me/918960356600"
+                  class="footer-cta"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+              </div>
             </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-section">
+              <h4>Studio</h4>
+              <ul>
+                <li><a href="index.html#about">Our Story</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="shop.html">Art Shop</a></li>
+                <li><a href="commission.html">Commission</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                <li><a href="refund-policy.html">Refund Policy</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 StarFrame Animation Studio. All rights reserved. Made
+            with ❤️ for artists everywhere.
+          </p>
+        </div>
+      </div>
     </footer>
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
     <script>
-        function toggleFAQ(element) {
-            const faqItem = element.parentElement;
-            const isActive = faqItem.classList.contains('active');
-            
-            // Close all FAQs
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Open clicked FAQ if it wasn't active
-            if (!isActive) {
-                faqItem.classList.add('active');
-            }
-        }
-        
-        // Smooth scroll for nav links
-        document.querySelectorAll('.guide-nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+      (function initAuthNavigation() {
+        if (!window.starframeFirebase || !window.starframeFirebase.isConfigured)
+          return;
+
+        const auth = window.starframeFirebase.getAuth();
+        auth.onAuthStateChanged(function (user) {
+          const authNavLink = document.getElementById("authNavLink");
+          if (!authNavLink) return;
+
+          if (user) {
+            authNavLink.textContent = window.starframeFirebase.isAdminEmail(
+              user.email,
+            )
+              ? "Admin Panel"
+              : "My Dashboard";
+            authNavLink.href = window.starframeFirebase.isAdminEmail(user.email)
+              ? "admin/"
+              : "dashboard.html";
+          } else {
+            authNavLink.textContent = "Login";
+            authNavLink.href = "login.html";
+          }
         });
+      })();
     </script>
-</body>
+    <script src="js/script-new.js"></script>
+
+    <script>
+      function toggleFAQ(element) {
+        const faqItem = element.parentElement;
+        const isActive = faqItem.classList.contains("active");
+
+        // Close all FAQs
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        // Open clicked FAQ if it wasn't active
+        if (!isActive) {
+          faqItem.classList.add("active");
+        }
+      }
+
+      // Smooth scroll for nav links
+      document.querySelectorAll(".guide-nav-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

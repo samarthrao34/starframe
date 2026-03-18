@@ -110,7 +110,8 @@
       <div class="nav-container">
         <div class="nav-logo">
           <a
-            href="#home"
+            href="javascript:void(0)"
+            onclick="window.location.href='index.html?reload=' + Date.now()"
             class="nav-logo-link"
             aria-label="StarFrame Animation Studio home"
           >
@@ -139,6 +140,9 @@
           </li>
           <li class="nav-item">
             <a href="#team" class="nav-link">Team</a>
+          </li>
+          <li class="nav-item">
+            <a href="login.html" class="nav-link" id="authNavLink">Login</a>
           </li>
           <li class="nav-item">
             <a href="commission.html" class="nav-link commission-btn"
@@ -790,10 +794,6 @@
       <i class="fas fa-arrow-up"></i>
     </button>
 
-    <button id="back-to-top-btn" title="Go to top">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
@@ -801,27 +801,11 @@
           <div class="footer-main">
             <div class="footer-brand">
               <h3>StarFrame</h3>
-              <p class="footer-tagline">
-                Where imagination and emotion come alive
-              </p>
+              <span class="footer-tagline">Where imagination and emotion come alive</span>
               <p>
                 A warm, creative studio devoted to creating art and animation
-                filled with soul, peace, and quiet magic.
+                filled with soul, peace, and quiet magic. Rooted in heartfelt storytelling and whimsical imagination.
               </p>
-            </div>
-            <div class="footer-contact">
-              <h4>Let's Connect</h4>
-              <p>
-                <i class="fas fa-envelope"></i>
-                <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=starframeanimationstudios@gmail.com"
-                  target="_blank"
-                  rel="noopener"
-                  class="footer-email"
-                  >starframeanimationstudios@gmail.com</a
-                >
-              </p>
-              <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
               <div class="social-links">
                 <a
                   href="https://www.instagram.com/starframeanimationstudios/"
@@ -845,7 +829,7 @@
                   ><i class="fab fa-linkedin"></i
                 ></a>
                 <a
-                  href="https://youtu.be/syFZfO_wfMQ?si=exHG76rg43jndMEN"
+                  href="https://www.youtube.com/@StarFrameAnimation"
                   target="_blank"
                   rel="noopener"
                   aria-label="Starframe on YouTube"
@@ -853,131 +837,45 @@
                 ></a>
               </div>
             </div>
+            <div class="footer-contact">
+              <h4>Let's Connect</h4>
+              <p>
+                <i class="fas fa-envelope"></i>
+                <a
+                  href="mailto:starframeanimationstudios@gmail.com"
+                  class="footer-email"
+                  >starframeanimationstudios@gmail.com</a
+                >
+              </p>
+              <p><i class="fas fa-phone"></i> +91 8960356600</p>
+              <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
+              <div style="margin-top: 1.5rem;">
+                <a href="https://wa.me/918960356600" class="footer-cta" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
 
           <div class="footer-links">
             <div class="footer-section">
-              <h4>Services</h4>
-              <ul>
-                <li>
-                  <a
-                    href="#services"
-                    aria-label="View our 2D Animation services"
-                    >2D Animation</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#services"
-                    aria-label="View our Character Design services"
-                    >Character Design</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#services"
-                    aria-label="View our Digital Illustration services"
-                    >Digital Illustrations</a
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div class="footer-section">
               <h4>Studio</h4>
               <ul>
-                <li>
-                  <a
-                    href="#about"
-                    aria-label="Learn about our story and philosophy"
-                    >Our Story</a
-                  >
-                </li>
-                <li>
-                  <a href="#team" aria-label="Meet our creative team"
-                    >Meet the Team</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#portfolio"
-                    aria-label="View our portfolio and work samples"
-                    >Portfolio</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="commission.html"
-                    aria-label="Commission your dream animation"
-                    >Commission</a
-                  >
-                </li>
+                <li><a href="#about">Our Story</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="shop.html">Art Shop</a></li>
+                <li><a href="commission.html">Commission</a></li>
               </ul>
             </div>
 
             <div class="footer-section">
               <h4>Legal</h4>
               <ul>
-                <li>
-                  <a
-                    href="privacy-policy.html"
-                    aria-label="Read our privacy policy"
-                    >Privacy Policy</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="terms-of-service.html"
-                    aria-label="Read our terms of service"
-                    >Terms of Service</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="refund-policy.html"
-                    aria-label="Read our refund policy"
-                    >Refund Policy</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="accessibility.html"
-                    aria-label="Learn about our accessibility commitment"
-                    >Accessibility</a
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div class="footer-section">
-              <h4>Quick Actions</h4>
-              <ul>
-                <li>
-                  <a
-                    href="commission.html"
-                    class="footer-cta"
-                    aria-label="Get instant quote for your project"
-                    >Get Instant Quote</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://wa.me/918960356600"
-                    class="footer-cta"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="Chat with us on WhatsApp"
-                    >WhatsApp Us</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="tel:+918960356600"
-                    class="footer-cta"
-                    aria-label="Call us directly"
-                    >Call Now</a
-                  >
-                </li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                <li><a href="refund-policy.html">Refund Policy</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
               </ul>
             </div>
           </div>
@@ -1014,12 +912,99 @@
       <div class="small-star star"><i class="fas fa-star"></i></div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
     <script src="js/sparkle-star.js"></script>
     <script src="js/script-new.js"></script>
 
     <!-- Socket.IO for real-time visitor tracking -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      (function initHomepageRealtimeContent() {
+        if (
+          !window.starframeFirebase ||
+          !window.starframeFirebase.isConfigured
+        ) {
+          return;
+        }
+
+        const auth = window.starframeFirebase.getAuth();
+        const db = window.starframeFirebase.getFirestore();
+
+        auth.onAuthStateChanged(function (user) {
+          const authNavLink = document.getElementById("authNavLink");
+          if (!authNavLink) return;
+
+          if (user) {
+            authNavLink.textContent = window.starframeFirebase.isAdminEmail(
+              user.email,
+            )
+              ? "Admin Panel"
+              : "My Dashboard";
+            authNavLink.href = window.starframeFirebase.isAdminEmail(user.email)
+              ? "admin/"
+              : "dashboard.html";
+            
+            // Check for login success param
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('login') === 'success') {
+              showWelcomeToast(user);
+              // Clean URL
+              window.history.replaceState({}, document.title, window.location.pathname);
+            }
+          } else {
+            authNavLink.textContent = "Login";
+            authNavLink.href = "login.html";
+          }
+        });
+
+        function showWelcomeToast(user) {
+          const toast = document.createElement("div");
+          toast.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-warm) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow-hover);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          `;
+          toast.innerHTML = `<i class="fas fa-magic"></i> <span>Welcome back, ${user.displayName || user.email.split('@')[0]}! ✨</span>`;
+          document.body.appendChild(toast);
+          
+          setTimeout(() => {
+            toast.style.animation = "fadeOut 0.5s ease-out forwards";
+            setTimeout(() => toast.remove(), 500);
+          }, 5000);
+        }
+
+        db.collection("siteContent")
+          .doc("home")
+          .onSnapshot(function (snapshot) {
+            if (!snapshot.exists) return;
+
+            const data = snapshot.data();
+            const titleElement = document.querySelector(".hero-title");
+            const subtitleElement = document.querySelector(".hero-subtitle");
+
+            if (titleElement && data.heroTitle) {
+              titleElement.textContent = data.heroTitle;
+            }
+
+            if (subtitleElement && data.heroSubtitle) {
+              subtitleElement.textContent = data.heroSubtitle;
+            }
+          });
+      })();
+
       // Real-time visitor tracking
       (function () {
         let socket;
@@ -1163,30 +1148,30 @@
           observer.observe(section);
         });
 
-        // Check if user is logged in via OAuth
+        // Check if user is logged in via Firebase
         function checkUserAuth() {
-          fetch("/api/auth/oauth/me")
-            .then((response) => {
-              if (response.ok) {
-                return response.json();
-              }
-              throw new Error("Not authenticated");
-            })
-            .then((data) => {
+          if (!window.starframeFirebase || !window.starframeFirebase.isConfigured) {
+            showLoginPrompt();
+            return;
+          }
+
+          const auth = window.starframeFirebase.getAuth();
+          auth.onAuthStateChanged(function(user) {
+            if (user) {
               // User is logged in, show personalized elements
-              showPersonalizedElements(data.user);
+              showPersonalizedElements(user);
 
               // Track authenticated user
               if (socket && isConnected) {
                 socket.emit("user-authenticated", {
-                  userId: data.user.id,
+                  userId: user.uid,
                 });
               }
-            })
-            .catch(() => {
+            } else {
               // User not logged in, show login options
               showLoginPrompt();
-            });
+            }
+          });
         }
 
         // Show personalized elements for logged-in users
@@ -1195,21 +1180,15 @@
           const heroTitle = document.querySelector(".hero-title");
           if (heroTitle && !heroTitle.dataset.personalized) {
             const originalText = heroTitle.textContent;
-            heroTitle.textContent = `Welcome back, ${user.name}! ${originalText}`;
+            heroTitle.textContent = `Welcome back, ${user.displayName || 'Creator'}! ${originalText}`;
             heroTitle.dataset.personalized = "true";
           }
 
-          // Add dashboard link to navigation
-          const navMenu = document.querySelector(".nav-menu");
-          if (navMenu && !document.querySelector(".dashboard-link")) {
-            const dashboardItem = document.createElement("li");
-            dashboardItem.className = "nav-item";
-            dashboardItem.innerHTML = `
-                        <a href="/dashboard" class="nav-link dashboard-link">
-                            <i class="fas fa-user-circle"></i> Dashboard
-                        </a>
-                    `;
-            navMenu.insertBefore(dashboardItem, navMenu.lastElementChild);
+          // Add dashboard link to navigation if not already there
+          const authNavLink = document.getElementById('authNavLink');
+          if (authNavLink) {
+            authNavLink.textContent = window.starframeFirebase.isAdminEmail(user.email) ? 'Admin Panel' : 'My Dashboard';
+            authNavLink.href = window.starframeFirebase.isAdminEmail(user.email) ? 'admin/' : 'dashboard.html';
           }
         }
 

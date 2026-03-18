@@ -1,810 +1,1062 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing Guide - Transparent Pricing for Art & Animation | StarFrame</title>
-    <meta name="description" content="Detailed pricing guide for animation, character design, and digital art services. Transparent pricing examples to help you plan your project budget.">
-    <meta name="keywords" content="animation pricing, art commission prices, character design cost, illustration rates">
-    <meta name="robots" content="index, follow">
-    
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/style-new.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Pricing Guide - Transparent Pricing for Art & Animation | StarFrame
+    </title>
+    <meta
+      name="description"
+      content="Detailed pricing guide for animation, character design, and digital art services. Transparent pricing examples to help you plan your project budget."
+    />
+    <meta
+      name="keywords"
+      content="animation pricing, art commission prices, character design cost, illustration rates"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/style-new.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+
     <style>
-        .pricing-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 120px 0 80px;
-            text-align: center;
-            color: white;
-        }
-        
+      :root {
+        --pricing-bg: #fbf6ee;
+        --pricing-accent: var(--primary-warm);
+        --pricing-card-bg: rgba(255, 255, 255, 0.8);
+      }
+
+      .pricing-page {
+        background-color: var(--pricing-bg);
+        color: var(--text-dark);
+      }
+
+      .pricing-hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark) 0%,
+          var(--text-dark) 100%
+        );
+        padding: 140px 0 80px;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pricing-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 20% 30%,
+          rgba(212, 165, 116, 0.15) 0%,
+          transparent 50%
+        );
+      }
+
+      .pricing-hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .pricing-hero p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+        line-height: 1.6;
+      }
+
+      .pricing-content {
+        max-width: 1200px;
+        margin: 80px auto;
+        padding: 0 20px;
+      }
+
+      .section-intro {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .section-intro h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+      }
+
+      .section-intro p {
+        font-size: 1.1rem;
+        color: var(--text-medium);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+
+      .pricing-category {
+        margin-bottom: 100px;
+        background: var(--white);
+        border-radius: 24px;
+        padding: 50px;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid rgba(212, 165, 116, 0.15);
+        position: relative;
+      }
+
+      .category-header {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 40px;
+        padding-bottom: 25px;
+        border-bottom: 2px solid rgba(212, 165, 116, 0.2);
+      }
+
+      .category-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-warm) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        box-shadow: 0 10px 20px rgba(212, 165, 116, 0.3);
+      }
+
+      .category-title {
+        flex: 1;
+      }
+
+      .category-title h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2rem;
+        margin-bottom: 5px;
+        color: var(--text-dark);
+      }
+
+      .category-title .price-range {
+        font-size: 1.3rem;
+        color: var(--primary-dark);
+        font-weight: 600;
+      }
+
+      .pricing-tiers {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .tier-card {
+        background: var(--background-cream);
+        border: 1px solid rgba(212, 165, 116, 0.1);
+        border-radius: 20px;
+        padding: 35px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .tier-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--primary-warm);
+        background: var(--white);
+      }
+
+      .tier-header {
+        margin-bottom: 25px;
+      }
+
+      .tier-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 10px;
+        font-family: "Playfair Display", serif;
+      }
+
+      .tier-price {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 5px;
+      }
+
+      .tier-price-usd {
+        font-size: 1rem;
+        color: var(--text-light);
+        font-weight: 500;
+      }
+
+      .tier-description {
+        color: var(--text-medium);
+        margin-bottom: 25px;
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .tier-features {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 30px;
+        flex-grow: 1;
+      }
+
+      .tier-features li {
+        padding: 10px 0;
+        color: var(--text-medium);
+        display: flex;
+        align-items: start;
+        gap: 12px;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(212, 165, 116, 0.05);
+      }
+
+      .tier-features li:last-child {
+        border-bottom: none;
+      }
+
+      .tier-features li i {
+        color: #71b87f;
+        margin-top: 4px;
+      }
+
+      .example-projects {
+        margin-top: 50px;
+        background: var(--background-warm);
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid rgba(212, 165, 116, 0.1);
+      }
+
+      .example-projects h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .example-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .example-card {
+        background: var(--white);
+        padding: 25px;
+        border-radius: 16px;
+        border-left: 5px solid var(--primary-warm);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .example-card h5 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+        color: var(--text-dark);
+        font-weight: 600;
+      }
+
+      .example-card .example-specs {
+        font-size: 0.9rem;
+        color: var(--text-medium);
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+
+      .example-card .example-price {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      .pricing-factors {
+        background: #fff9f0;
+        border-left: 5px solid var(--primary-warm);
+        padding: 30px;
+        border-radius: 16px;
+        margin-top: 40px;
+      }
+
+      .pricing-factors h4 {
+        color: var(--text-dark);
+        margin-bottom: 15px;
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+      }
+
+      .pricing-factors ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 10px;
+      }
+
+      .pricing-factors li {
+        padding: 8px 0;
+        color: var(--text-medium);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .pricing-factors li i {
+        color: var(--primary-warm);
+      }
+
+      .payment-info {
+        background: var(--background-warm);
+        padding: 60px;
+        border-radius: 32px;
+        margin-top: 80px;
+        border: 1px solid rgba(212, 165, 116, 0.1);
+      }
+
+      .payment-info h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+        text-align: center;
+      }
+
+      .payment-info > p {
+        text-align: center;
+        color: var(--text-medium);
+        margin-bottom: 40px;
+      }
+
+      .payment-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .payment-card {
+        background: var(--white);
+        padding: 35px;
+        border-radius: 20px;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid rgba(212, 165, 116, 0.05);
+      }
+
+      .payment-card h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .payment-card h4 i {
+        color: var(--primary-warm);
+      }
+
+      .payment-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .payment-card li {
+        padding: 10px 0;
+        color: var(--text-medium);
+        display: flex;
+        align-items: start;
+        gap: 12px;
+        line-height: 1.5;
+      }
+
+      .payment-card li i {
+        color: #71b87f;
+        margin-top: 4px;
+      }
+
+      .cta-section {
+        text-align: center;
+        padding: 80px 50px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark) 0%,
+          var(--text-dark) 100%
+        );
+        border-radius: 32px;
+        color: white;
+        margin-top: 100px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 165, 116, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      .cta-section h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-btn {
+        display: inline-block;
+        padding: 16px 45px;
+        background: var(--primary-warm);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        background: #c19365;
+      }
+
+      .cta-btn.secondary {
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+        box-shadow: none;
+      }
+
+      .cta-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 768px) {
         .pricing-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+          font-size: 2.2rem;
         }
-        
-        .pricing-hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.95;
-        }
-        
-        .pricing-content {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-        
-        .section-intro {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-intro h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .section-intro p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
+
         .pricing-category {
-            margin-bottom: 80px;
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+          padding: 30px 20px;
         }
-        
+
         .category-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #667eea;
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
         }
-        
+
         .category-icon {
-            font-size: 3rem;
-            color: #667eea;
+          margin: 0 auto;
         }
-        
-        .category-title {
-            flex: 1;
-        }
-        
-        .category-title h3 {
-            font-size: 2rem;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .category-title .price-range {
-            font-size: 1.3rem;
-            color: #667eea;
-            font-weight: 600;
-        }
-        
-        .pricing-tiers {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .tier-card {
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 30px;
-            transition: all 0.3s;
-        }
-        
-        .tier-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
-        }
-        
-        .tier-header {
-            margin-bottom: 20px;
-        }
-        
-        .tier-name {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .tier-price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-        
-        .tier-price-usd {
-            font-size: 1rem;
-            color: #999;
-        }
-        
-        .tier-description {
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .tier-features {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .tier-features li {
-            padding: 8px 0;
-            color: #555;
-            display: flex;
-            align-items: start;
-            gap: 10px;
-        }
-        
-        .tier-features li i {
-            color: #2ecc71;
-            margin-top: 4px;
-        }
-        
-        .example-projects {
-            margin-top: 40px;
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-        }
-        
-        .example-projects h4 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        
-        .example-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .example-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .example-card h5 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .example-card .example-specs {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        
-        .example-card .example-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-        
-        .pricing-factors {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 30px;
-        }
-        
-        .pricing-factors h4 {
-            color: #856404;
-            margin-bottom: 15px;
-        }
-        
-        .pricing-factors ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .pricing-factors li {
-            padding: 8px 0;
-            color: #856404;
-        }
-        
-        .pricing-factors li i {
-            margin-right: 10px;
-            color: #ffc107;
-        }
-        
+
         .payment-info {
-            background: #e3f2fd;
-            padding: 40px;
-            border-radius: 12px;
-            margin-top: 60px;
+          padding: 40px 20px;
         }
-        
-        .payment-info h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #1976d2;
-        }
-        
-        .payment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .payment-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-        }
-        
-        .payment-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .payment-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .payment-card li {
-            padding: 8px 0;
-            color: #666;
-        }
-        
-        .payment-card li i {
-            color: #1976d2;
-            margin-right: 10px;
-        }
-        
+
         .cta-section {
-            text-align: center;
-            padding: 60px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 16px;
-            color: white;
-            margin-top: 60px;
+          padding: 60px 20px;
         }
-        
-        .cta-section h3 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .cta-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-        
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-        
-        .cta-btn.secondary {
-            background: transparent;
-            border: 2px solid white;
-            color: white;
-        }
-        
-        @media (max-width: 768px) {
-            .pricing-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .pricing-category {
-                padding: 25px;
-            }
-            
-            .category-header {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body class="pricing-page">
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <h1>StarFrame</h1>
-                    <span class="nav-tagline">Animation Studio</span>
-                </a>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="index.html#services" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
-                <li class="nav-item"><a href="pricing-guide.html" class="nav-link">Pricing</a></li>
-                <li class="nav-item"><a href="commission.html" class="nav-link commission-btn">Commission</a></li>
-            </ul>
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <h1>StarFrame</h1>
+            <span class="nav-tagline">Animation Studio</span>
+          </a>
         </div>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item">
+            <a href="index.html#about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html#services" class="nav-link">Services</a>
+          </li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+          <li class="nav-item">
+            <a href="pricing-guide.html" class="nav-link">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a href="login.html" class="nav-link" id="authNavLink">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="commission.html" class="nav-link commission-btn"
+              >Commission</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="pricing-hero">
-        <div class="container">
-            <h1><i class="fas fa-rupee-sign"></i> Transparent Pricing Guide</h1>
-            <p>Clear, honest pricing for all our services. No hidden costs, no surprises. Explore detailed breakdowns with real project examples to help you budget your creative vision.</p>
-        </div>
+      <div class="container">
+        <h1><i class="fas fa-sparkles"></i> Transparent Pricing Guide</h1>
+        <p>
+          Clear, honest pricing for all our services. No hidden costs, no
+          surprises. Explore detailed breakdowns with real project examples to
+          help you budget your creative vision.
+        </p>
+      </div>
     </section>
 
     <!-- Pricing Content -->
     <div class="pricing-content">
-        <!-- Introduction -->
-        <div class="section-intro">
-            <h2>Understanding Our Pricing</h2>
-            <p>Every project is unique, but we believe in transparency. Below you'll find detailed pricing tiers, real project examples, and factors that influence costs. Our goal is to help you understand exactly what you're paying for and why.</p>
+      <!-- Introduction -->
+      <div class="section-intro">
+        <h2>Understanding Our Pricing</h2>
+        <p>
+          Every project is unique, but we believe in transparency. Below you'll
+          find detailed pricing tiers, real project examples, and factors that
+          influence costs. Our goal is to help you understand exactly what
+          you're paying for and why.
+        </p>
+      </div>
+
+      <!-- Digital Illustration Pricing -->
+      <div class="pricing-category">
+        <div class="category-header">
+          <div class="category-icon">
+            <i class="fas fa-palette"></i>
+          </div>
+          <div class="category-title">
+            <h3>Digital Illustration</h3>
+            <div class="price-range">₹1,200 – ₹3,500 ($15 – $42 USD)</div>
+          </div>
         </div>
 
-        <!-- Digital Illustration Pricing -->
-        <div class="pricing-category">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <div class="category-title">
-                    <h3>Digital Illustration</h3>
-                    <div class="price-range">₹1,200 – ₹3,500 ($15 – $42 USD)</div>
-                </div>
+        <div class="pricing-tiers">
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-name">Basic Illustration</div>
+              <div class="tier-price">₹1,200 – ₹1,800</div>
+              <div class="tier-price-usd">~$15 – $22 USD</div>
             </div>
-
-            <div class="pricing-tiers">
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <div class="tier-name">Basic Illustration</div>
-                        <div class="tier-price">₹1,200 – ₹1,800</div>
-                        <div class="tier-price-usd">~$15 – $22 USD</div>
-                    </div>
-                    <div class="tier-description">
-                        Perfect for simple character portraits, icons, or social media graphics.
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> Single character or simple scene</li>
-                        <li><i class="fas fa-check-circle"></i> Simple or transparent background</li>
-                        <li><i class="fas fa-check-circle"></i> 2K resolution (2000x2000px)</li>
-                        <li><i class="fas fa-check-circle"></i> 2 revision rounds</li>
-                        <li><i class="fas fa-check-circle"></i> Personal use license</li>
-                        <li><i class="fas fa-check-circle"></i> Delivery: 5-7 days</li>
-                    </ul>
-                </div>
-
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <div class="tier-name">Standard Illustration</div>
-                        <div class="tier-price">₹2,000 – ₹2,800</div>
-                        <div class="tier-price-usd">~$24 – $34 USD</div>
-                    </div>
-                    <div class="tier-description">
-                        Detailed artwork with more complex compositions and backgrounds.
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> 1-2 characters with interaction</li>
-                        <li><i class="fas fa-check-circle"></i> Detailed background or environment</li>
-                        <li><i class="fas fa-check-circle"></i> 4K resolution (4000x4000px)</li>
-                        <li><i class="fas fa-check-circle"></i> 3 revision rounds</li>
-                        <li><i class="fas fa-check-circle"></i> Print-ready quality</li>
-                        <li><i class="fas fa-check-circle"></i> Commercial license available (+₹500)</li>
-                        <li><i class="fas fa-check-circle"></i> Delivery: 7-10 days</li>
-                    </ul>
-                </div>
-
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <div class="tier-name">Premium Illustration</div>
-                        <div class="tier-price">₹3,000 – ₹3,500</div>
-                        <div class="tier-price-usd">~$36 – $42 USD</div>
-                    </div>
-                    <div class="tier-description">
-                        Complex scenes with multiple characters and highly detailed environments.
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> 3+ characters or complex scene</li>
-                        <li><i class="fas fa-check-circle"></i> Highly detailed environment</li>
-                        <li><i class="fas fa-check-circle"></i> 6K resolution or larger</li>
-                        <li><i class="fas fa-check-circle"></i> Unlimited revisions (within reason)</li>
-                        <li><i class="fas fa-check-circle"></i> Source files (PSD/AI)</li>
-                        <li><i class="fas fa-check-circle"></i> Commercial license included</li>
-                        <li><i class="fas fa-check-circle"></i> Delivery: 10-14 days</li>
-                    </ul>
-                </div>
+            <div class="tier-description">
+              Perfect for simple character portraits, icons, or social media
+              graphics.
             </div>
+            <ul class="tier-features">
+              <li>
+                <i class="fas fa-check-circle"></i> Single character or simple
+                scene
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Simple or transparent
+                background
+              </li>
+              <li><i class="fas fa-check-circle"></i> 2K resolution</li>
+              <li><i class="fas fa-check-circle"></i> 2 revision rounds</li>
+              <li><i class="fas fa-check-circle"></i> Personal use license</li>
+              <li><i class="fas fa-check-circle"></i> Delivery: 5-7 days</li>
+            </ul>
+          </div>
 
-            <div class="example-projects">
-                <h4><i class="fas fa-star"></i> Real Project Examples</h4>
-                <div class="example-grid">
-                    <div class="example-card">
-                        <h5>Fantasy Character Portrait</h5>
-                        <div class="example-specs">
-                            • Single character, fantasy theme<br>
-                            • Gradient background<br>
-                            • 2K resolution, 2 revisions
-                        </div>
-                        <div class="example-price">₹1,500</div>
-                    </div>
-                    <div class="example-card">
-                        <h5>Book Cover Illustration</h5>
-                        <div class="example-specs">
-                            • Two characters, mystical setting<br>
-                            • Detailed background<br>
-                            • Print-ready 4K, 3 revisions
-                        </div>
-                        <div class="example-price">₹2,500</div>
-                    </div>
-                    <div class="example-card">
-                        <h5>Epic Battle Scene</h5>
-                        <div class="example-specs">
-                            • 4 characters in action<br>
-                            • Complex environment<br>
-                            • 6K + source files
-                        </div>
-                        <div class="example-price">₹3,200</div>
-                    </div>
-                </div>
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-name">Standard Illustration</div>
+              <div class="tier-price">₹2,000 – ₹2,800</div>
+              <div class="tier-price-usd">~$24 – $34 USD</div>
             </div>
+            <div class="tier-description">
+              Detailed artwork with more complex compositions and backgrounds.
+            </div>
+            <ul class="tier-features">
+              <li>
+                <i class="fas fa-check-circle"></i> 1-2 characters with
+                interaction
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Detailed background or
+                environment
+              </li>
+              <li><i class="fas fa-check-circle"></i> 4K resolution</li>
+              <li><i class="fas fa-check-circle"></i> 3 revision rounds</li>
+              <li><i class="fas fa-check-circle"></i> Print-ready quality</li>
+              <li>
+                <i class="fas fa-check-circle"></i> Commercial license options
+              </li>
+              <li><i class="fas fa-check-circle"></i> Delivery: 7-10 days</li>
+            </ul>
+          </div>
 
-            <div class="pricing-factors">
-                <h4><i class="fas fa-info-circle"></i> What Affects the Price?</h4>
-                <ul>
-                    <li><i class="fas fa-arrow-right"></i> Number of characters or subjects</li>
-                    <li><i class="fas fa-arrow-right"></i> Background complexity (simple vs detailed environment)</li>
-                    <li><i class="fas fa-arrow-right"></i> Resolution and file format requirements</li>
-                    <li><i class="fas fa-arrow-right"></i> Commercial licensing needs</li>
-                    <li><i class="fas fa-arrow-right"></i> Rush delivery (under 5 days: +30% fee)</li>
-                </ul>
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-name">Premium Illustration</div>
+              <div class="tier-price">₹3,000 – ₹3,500</div>
+              <div class="tier-price-usd">~$36 – $42 USD</div>
             </div>
+            <div class="tier-description">
+              Complex scenes with multiple characters and highly detailed
+              environments.
+            </div>
+            <ul class="tier-features">
+              <li>
+                <i class="fas fa-check-circle"></i> 3+ characters or complex
+                scene
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Highly detailed environment
+              </li>
+              <li><i class="fas fa-check-circle"></i> 6K resolution or larger</li>
+              <li>
+                <i class="fas fa-check-circle"></i> Unlimited revisions (within
+                reason)
+              </li>
+              <li><i class="fas fa-check-circle"></i> Source files (PSD/AI)</li>
+              <li><i class="fas fa-check-circle"></i> Commercial license</li>
+              <li><i class="fas fa-check-circle"></i> Delivery: 10-14 days</li>
+            </ul>
+          </div>
         </div>
 
-        <!-- 2D Animation Pricing -->
-        <div class="pricing-category">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-video"></i>
-                </div>
-                <div class="category-title">
-                    <h3>2D Animation</h3>
-                    <div class="price-range">₹2,500 – ₹15,000+ ($30 – $180+ USD)</div>
-                </div>
+        <div class="example-projects">
+          <h4><i class="fas fa-magic"></i> Real Project Examples</h4>
+          <div class="example-grid">
+            <div class="example-card">
+              <h5>Fantasy Character Portrait</h5>
+              <div class="example-specs">
+                • Single character, fantasy theme<br />
+                • Gradient background<br />
+                • 2K resolution, 2 revisions
+              </div>
+              <div class="example-price">₹1,500</div>
             </div>
-
-            <div class="pricing-tiers">
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <div class="tier-name">Simple Loop (5-10 sec)</div>
-                        <div class="tier-price">₹2,500 – ₹4,500</div>
-                        <div class="tier-price-usd">~$30 – $55 USD</div>
-                    </div>
-                    <div class="tier-description">
-                        Short looping animations perfect for social media, GIFs, or icons.
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> 5-10 second seamless loop</li>
-                        <li><i class="fas fa-check-circle"></i> Simple character or object</li>
-                        <li><i class="fas fa-check-circle"></i> Basic background</li>
-                        <li><i class="fas fa-check-circle"></i> 1080p HD quality</li>
-                        <li><i class="fas fa-check-circle"></i> 1-2 revision rounds</li>
-                        <li><i class="fas fa-check-circle"></i> MP4 + GIF formats</li>
-                        <li><i class="fas fa-check-circle"></i> Delivery: 1-2 weeks</li>
-                    </ul>
-                </div>
-
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <div class="tier-name">Short Animation (15-30 sec)</div>
-                        <div class="tier-price">₹5,000 – ₹9,000</div>
-                        <div class="tier-price-usd">~$60 – $110 USD</div>
-                    </div>
-                    <div class="tier-description">
-                        Ideal for explainer videos, social media content, or promotional clips.
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> 15-30 second animation</li>
-                        <li><i class="fas fa-check-circle"></i> Multiple scenes or characters</li>
-                        <li><i class="fas fa-check-circle"></i> Detailed backgrounds</li>
-                        <li><i class="fas fa-check-circle"></i> 1080p HD quality</li>
-                        <li><i class="fas fa-check-circle"></i> 2-3 revision rounds</li>
-                        <li><i class="fas fa-check-circle"></i> Background music sync</li>
-                        <li><i class="fas fa-check-circle"></i> Delivery: 2-3 weeks</li>
-                    </ul>
-                </div>
-
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <div class="tier-name">Full Production (1+ min)</div>
-                        <div class="tier-price">₹10,000+</div>
-                        <div class="tier-price-usd">~$120+ USD</div>
-                    </div>
-                    <div class="tier-description">
-                        Complete animated videos with storytelling, multiple scenes, and full production.
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> 60+ seconds of animation</li>
-                        <li><i class="fas fa-check-circle"></i> Story development & script support</li>
-                        <li><i class="fas fa-check-circle"></i> Multiple characters & locations</li>
-                        <li><i class="fas fa-check-circle"></i> Up to 4K quality available</li>
-                        <li><i class="fas fa-check-circle"></i> Unlimited revisions (reasonable)</li>
-                        <li><i class="fas fa-check-circle"></i> Sound design & music</li>
-                        <li><i class="fas fa-check-circle"></i> Custom timeline (quote-based)</li>
-                    </ul>
-                </div>
+            <div class="example-card">
+              <h5>Book Cover Illustration</h5>
+              <div class="example-specs">
+                • Two characters, mystical setting<br />
+                • Detailed background<br />
+                • Print-ready 4K, 3 revisions
+              </div>
+              <div class="example-price">₹2,500</div>
             </div>
-
-            <div class="example-projects">
-                <h4><i class="fas fa-star"></i> Real Project Examples</h4>
-                <div class="example-grid">
-                    <div class="example-card">
-                        <h5>Social Media Logo Animation</h5>
-                        <div class="example-specs">
-                            • 8-second loop<br>
-                            • Logo transformation effect<br>
-                            • Transparent background
-                        </div>
-                        <div class="example-price">₹3,000</div>
-                    </div>
-                    <div class="example-card">
-                        <h5>Product Explainer Video</h5>
-                        <div class="example-specs">
-                            • 25-second animation<br>
-                            • 3 scenes, simple characters<br>
-                            • Music sync
-                        </div>
-                        <div class="example-price">₹7,500</div>
-                    </div>
-                    <div class="example-card">
-                        <h5>Animated Short Story</h5>
-                        <div class="example-specs">
-                            • 90-second narrative<br>
-                            • 5 scenes, 3 characters<br>
-                            • Full sound design
-                        </div>
-                        <div class="example-price">₹14,000</div>
-                    </div>
-                </div>
+            <div class="example-card">
+              <h5>Epic Battle Scene</h5>
+              <div class="example-specs">
+                • 4 characters in action<br />
+                • Complex environment<br />
+                • 6K + source files
+              </div>
+              <div class="example-price">₹3,200</div>
             </div>
-
-            <div class="pricing-factors">
-                <h4><i class="fas fa-info-circle"></i> Animation Pricing Factors</h4>
-                <ul>
-                    <li><i class="fas fa-arrow-right"></i> Animation length and complexity</li>
-                    <li><i class="fas fa-arrow-right"></i> Number of unique scenes and transitions</li>
-                    <li><i class="fas fa-arrow-right"></i> Character design complexity and quantity</li>
-                    <li><i class="fas fa-arrow-right"></i> Frame rate (12fps vs 24fps vs 60fps)</li>
-                    <li><i class="fas fa-arrow-right"></i> Sound design, voice-over, or music integration</li>
-                    <li><i class="fas fa-arrow-right"></i> Deadline urgency (rush fees may apply)</li>
-                </ul>
-            </div>
+          </div>
         </div>
 
-        <!-- Character Design Pricing -->
-        <div class="pricing-category">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-user-friends"></i>
-                </div>
-                <div class="category-title">
-                    <h3>Character Design</h3>
-                    <div class="price-range">₹1,800 – ₹5,000 ($22 – $60 USD)</div>
-                </div>
-            </div>
+        <div class="pricing-factors">
+          <h4><i class="fas fa-info-circle"></i> What Affects the Price?</h4>
+          <ul>
+            <li>
+              <i class="fas fa-arrow-right"></i> Number of characters or
+              subjects
+            </li>
+            <li>
+              <i class="fas fa-arrow-right"></i> Background complexity (simple
+              vs detailed)
+            </li>
+            <li>
+              <i class="fas fa-arrow-right"></i> Resolution and file format
+              requirements
+            </li>
+            <li><i class="fas fa-arrow-right"></i> Commercial licensing needs</li>
+            <li>
+              <i class="fas fa-arrow-right"></i> Rush delivery (under 5 days:
+              +30%)
+            </li>
+          </ul>
+        </div>
+      </div>
 
-            <div class="pricing-tiers">
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <div class="tier-name">Basic Character</div>
-                        <div class="tier-price">₹1,800 – ₹2,500</div>
-                        <div class="tier-price-usd">~$22 – $30 USD</div>
-                    </div>
-                    <div class="tier-description">
-                        Simple character design with basic details and limited poses.
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> 1 character design</li>
-                        <li><i class="fas fa-check-circle"></i> Front view + 1 expression</li>
-                        <li><i class="fas fa-check-circle"></i> Color palette included</li>
-                        <li><i class="fas fa-check-circle"></i> 2 revision rounds</li>
-                        <li><i class="fas fa-check-circle"></i> High-res PNG delivery</li>
-                        <li><i class="fas fa-check-circle"></i> Delivery: 5-7 days</li>
-                    </ul>
-                </div>
-
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <div class="tier-name">Full Turnaround</div>
-                        <div class="tier-price">₹3,000 – ₹4,000</div>
-                        <div class="tier-price-usd">~$36 – $48 USD</div>
-                    </div>
-                    <div class="tier-description">
-                        Complete character sheet with multiple views and expressions.
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> 3-view turnaround (front/side/back)</li>
-                        <li><i class="fas fa-check-circle"></i> 3-5 expressions/poses</li>
-                        <li><i class="fas fa-check-circle"></i> Detailed accessories</li>
-                        <li><i class="fas fa-check-circle"></i> 3 revision rounds</li>
-                        <li><i class="fas fa-check-circle"></i> Character reference sheet</li>
-                        <li><i class="fas fa-check-circle"></i> Source files included</li>
-                        <li><i class="fas fa-check-circle"></i> Delivery: 7-10 days</li>
-                    </ul>
-                </div>
-
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <div class="tier-name">Premium Character Pack</div>
-                        <div class="tier-price">₹4,500 – ₹5,000</div>
-                        <div class="tier-price-usd">~$54 – $60 USD</div>
-                    </div>
-                    <div class="tier-description">
-                        Complete character package with extensive variations and detailed documentation.
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> Full 360° turnaround</li>
-                        <li><i class="fas fa-check-circle"></i> 7+ expressions and poses</li>
-                        <li><i class="fas fa-check-circle"></i> Multiple outfit variations</li>
-                        <li><i class="fas fa-check-circle"></i> Concept sketches included</li>
-                        <li><i class="fas fa-check-circle"></i> Detailed style guide</li>
-                        <li><i class="fas fa-check-circle"></i> Commercial rights included</li>
-                        <li><i class="fas fa-check-circle"></i> Delivery: 10-14 days</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="example-projects">
-                <h4><i class="fas fa-star"></i> Real Project Examples</h4>
-                <div class="example-grid">
-                    <div class="example-card">
-                        <h5>Mascot Design</h5>
-                        <div class="example-specs">
-                            • Simple character for brand<br>
-                            • Front view + happy expression<br>
-                            • Logo-friendly design
-                        </div>
-                        <div class="example-price">₹2,200</div>
-                    </div>
-                    <div class="example-card">
-                        <h5>Game Character Sheet</h5>
-                        <div class="example-specs">
-                            • 3-view turnaround<br>
-                            • 4 action poses<br>
-                            • Weapon variations
-                        </div>
-                        <div class="example-price">₹3,500</div>
-                    </div>
-                    <div class="example-card">
-                        <h5>Complete Character Bible</h5>
-                        <div class="example-specs">
-                            • 360° views<br>
-                            • 8 expressions, multiple outfits<br>
-                            • Full style guide
-                        </div>
-                        <div class="example-price">₹4,800</div>
-                    </div>
-                </div>
-            </div>
+      <!-- 2D Animation Pricing -->
+      <div class="pricing-category">
+        <div class="category-header">
+          <div class="category-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <div class="category-title">
+            <h3>2D Animation</h3>
+            <div class="price-range">₹2,500 – ₹15,000+ ($30 – $180+ USD)</div>
+          </div>
         </div>
 
-        <!-- Payment Information -->
-        <div class="payment-info">
-            <h3><i class="fas fa-credit-card"></i> Payment Terms & Methods</h3>
-            <p>We offer flexible payment options to accommodate clients worldwide.</p>
-            
-            <div class="payment-grid">
-                <div class="payment-card">
-                    <h4><i class="fas fa-calendar-check"></i> Payment Schedule</h4>
-                    <ul>
-                        <li><i class="fas fa-check"></i> 50% advance to start project</li>
-                        <li><i class="fas fa-check"></i> 50% upon completion before delivery</li>
-                        <li><i class="fas fa-check"></i> Flexible installments for large projects (₹25,000+)</li>
-                    </ul>
-                </div>
-                
-                <div class="payment-card">
-                    <h4><i class="fas fa-credit-card"></i> Indian Clients</h4>
-                    <ul>
-                        <li><i class="fas fa-check"></i> UPI (Google Pay, PhonePe, Paytm)</li>
-                        <li><i class="fas fa-check"></i> Direct bank transfer (NEFT/IMPS)</li>
-                        <li><i class="fas fa-check"></i> GST invoice provided for businesses</li>
-                    </ul>
-                </div>
-                
-                <div class="payment-card">
-                    <h4><i class="fas fa-globe"></i> International Clients</h4>
-                    <ul>
-                        <li><i class="fas fa-check"></i> PayPal (instant invoicing)</li>
-                        <li><i class="fas fa-check"></i> Wire transfer / SWIFT</li>
-                        <li><i class="fas fa-check"></i> Wise (TransferWise) - lower fees</li>
-                        <li><i class="fas fa-check"></i> Prices automatically converted to your currency</li>
-                    </ul>
-                </div>
+        <div class="pricing-tiers">
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-name">Simple Loop (5-10 sec)</div>
+              <div class="tier-price">₹2,500 – ₹4,500</div>
+              <div class="tier-price-usd">~$30 – $55 USD</div>
             </div>
+            <div class="tier-description">
+              Short looping animations perfect for social media, GIFs, or icons.
+            </div>
+            <ul class="tier-features">
+              <li>
+                <i class="fas fa-check-circle"></i> 5-10 second seamless loop
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Simple character or object
+              </li>
+              <li><i class="fas fa-check-circle"></i> Basic background</li>
+              <li><i class="fas fa-check-circle"></i> 1080p HD quality</li>
+              <li><i class="fas fa-check-circle"></i> 1-2 revision rounds</li>
+              <li><i class="fas fa-check-circle"></i> MP4 + GIF formats</li>
+              <li><i class="fas fa-check-circle"></i> Delivery: 1-2 weeks</li>
+            </ul>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-name">Short Animation (15-30 sec)</div>
+              <div class="tier-price">₹5,000 – ₹9,000</div>
+              <div class="tier-price-usd">~$60 – $110 USD</div>
+            </div>
+            <div class="tier-description">
+              Ideal for explainer videos, social media content, or promotional
+              clips.
+            </div>
+            <ul class="tier-features">
+              <li><i class="fas fa-check-circle"></i> 15-30 second animation</li>
+              <li>
+                <i class="fas fa-check-circle"></i> Multiple scenes or
+                characters
+              </li>
+              <li><i class="fas fa-check-circle"></i> Detailed backgrounds</li>
+              <li><i class="fas fa-check-circle"></i> 1080p HD quality</li>
+              <li><i class="fas fa-check-circle"></i> 2-3 revision rounds</li>
+              <li><i class="fas fa-check-circle"></i> Background music sync</li>
+              <li><i class="fas fa-check-circle"></i> Delivery: 2-3 weeks</li>
+            </ul>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-name">Full Production (1+ min)</div>
+              <div class="tier-price">₹10,000+</div>
+              <div class="tier-price-usd">~$120+ USD</div>
+            </div>
+            <div class="tier-description">
+              Complete animated videos with storytelling, multiple scenes, and
+              full production.
+            </div>
+            <ul class="tier-features">
+              <li><i class="fas fa-check-circle"></i> 60+ seconds of animation</li>
+              <li>
+                <i class="fas fa-check-circle"></i> Story development & script
+                support
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Multiple characters &
+                locations
+              </li>
+              <li><i class="fas fa-check-circle"></i> Up to 4K available</li>
+              <li>
+                <i class="fas fa-check-circle"></i> Unlimited revisions (within
+                reason)
+              </li>
+              <li><i class="fas fa-check-circle"></i> Sound design & music</li>
+              <li><i class="fas fa-check-circle"></i> Custom timeline</li>
+            </ul>
+          </div>
         </div>
 
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <h3>Ready to Bring Your Vision to Life?</h3>
-            <p>Get a custom quote tailored to your specific project needs. We'll work within your budget to create something amazing.</p>
-            <div class="cta-buttons">
-                <a href="commission.html" class="cta-btn">Request a Quote</a>
-                <a href="shop.html" class="cta-btn secondary">Browse Ready-Made Art</a>
+        <div class="example-projects">
+          <h4><i class="fas fa-film"></i> Animation Examples</h4>
+          <div class="example-grid">
+            <div class="example-card">
+              <h5>Social Media Logo Animation</h5>
+              <div class="example-specs">
+                • 8-second loop<br />
+                • Logo transformation effect<br />
+                • Transparent background
+              </div>
+              <div class="example-price">₹3,000</div>
             </div>
+            <div class="example-card">
+              <h5>Product Explainer Video</h5>
+              <div class="example-specs">
+                • 25-second animation<br />
+                • 3 scenes, simple characters<br />
+                • Music sync
+              </div>
+              <div class="example-price">₹7,500</div>
+            </div>
+            <div class="example-card">
+              <h5>Animated Short Story</h5>
+              <div class="example-specs">
+                • 90-second narrative<br />
+                • 5 scenes, 3 characters<br />
+                • Full sound design
+              </div>
+              <div class="example-price">₹14,000</div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Payment Information -->
+      <div class="payment-info">
+        <h3><i class="fas fa-credit-card"></i> Payment Terms & Methods</h3>
+        <p>We offer flexible payment options to accommodate clients worldwide.</p>
+
+        <div class="payment-grid">
+          <div class="payment-card">
+            <h4><i class="fas fa-calendar-check"></i> Payment Schedule</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> 50% advance to start project</li>
+              <li>
+                <i class="fas fa-check"></i> 50% upon completion before delivery
+              </li>
+              <li>
+                <i class="fas fa-check"></i> Flexible installments for large
+                projects
+              </li>
+            </ul>
+          </div>
+
+          <div class="payment-card">
+            <h4><i class="fas fa-id-card"></i> Indian Clients</h4>
+            <ul>
+              <li>
+                <i class="fas fa-check"></i> UPI (Google Pay, PhonePe, Paytm)
+              </li>
+              <li><i class="fas fa-check"></i> Direct bank transfer (NEFT)</li>
+              <li><i class="fas fa-check"></i> GST invoice provided</li>
+            </ul>
+          </div>
+
+          <div class="payment-card">
+            <h4><i class="fas fa-globe"></i> International Clients</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> PayPal (instant invoicing)</li>
+              <li><i class="fas fa-check"></i> Wise (TransferWise) - low fees</li>
+              <li>
+                <i class="fas fa-check"></i> Currency conversion at current
+                rates
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="cta-section">
+        <h3>Ready to Bring Your Vision to Life?</h3>
+        <p>
+          Get a custom quote tailored to your specific project needs. We'll work
+          within your budget to create something amazing.
+        </p>
+        <div class="cta-buttons">
+          <a href="commission.html" class="cta-btn">Request a Quote</a>
+          <a href="shop.html" class="cta-btn secondary">Browse Art Shop</a>
+        </div>
+      </div>
     </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>StarFrame Animation Studio</h3>
-                    <p>Transparent pricing, exceptional quality, creative excellence.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="buyer-guide.html">Buyer's Guide</a></li>
-                        <li><a href="commission.html">Commission</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-envelope"></i> starframeanimationstudio@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +91 8960356600</p>
-                </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-brand">
+              <h3>StarFrame</h3>
+              <span class="footer-tagline"
+                >Where imagination and emotion come alive</span
+              >
+              <p>
+                A warm, creative studio devoted to creating art and animation
+                filled with soul, peace, and quiet magic. Rooted in heartfelt
+                storytelling and whimsical imagination.
+              </p>
+              <div class="social-links">
+                <a
+                  href="https://www.instagram.com/starframeanimationstudios/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Starframe on Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                  href="https://x.com/StarFrame1527"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Starframe on X"
+                  ><i class="fab fa-x-twitter"></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Starframe on LinkedIn"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+                <a
+                  href="https://www.youtube.com/@StarFrameAnimation"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Starframe on YouTube"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+              </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 StarFrame Animation Studio. All rights reserved.</p>
+            <div class="footer-contact">
+              <h4>Let's Connect</h4>
+              <p>
+                <i class="fas fa-envelope"></i>
+                <a
+                  href="mailto:starframeanimationstudios@gmail.com"
+                  class="footer-email"
+                  >starframeanimationstudios@gmail.com</a
+                >
+              </p>
+              <p><i class="fas fa-phone"></i> +91 8960356600</p>
+              <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
+              <div style="margin-top: 1.5rem">
+                <a
+                  href="https://wa.me/918960356600"
+                  class="footer-cta"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+              </div>
             </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-section">
+              <h4>Studio</h4>
+              <ul>
+                <li><a href="index.html#about">Our Story</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="shop.html">Art Shop</a></li>
+                <li><a href="commission.html">Commission</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                <li><a href="refund-policy.html">Refund Policy</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 StarFrame Animation Studio. All rights reserved. Made
+            with ❤️ for artists everywhere.
+          </p>
+        </div>
+      </div>
     </footer>
-</body>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script>
+      (function initAuthNavigation() {
+        if (!window.starframeFirebase || !window.starframeFirebase.isConfigured)
+          return;
+
+        const auth = window.starframeFirebase.getAuth();
+        auth.onAuthStateChanged(function (user) {
+          const authNavLink = document.getElementById("authNavLink");
+          if (!authNavLink) return;
+
+          if (user) {
+            authNavLink.textContent = window.starframeFirebase.isAdminEmail(
+              user.email,
+            )
+              ? "Admin Panel"
+              : "My Dashboard";
+            authNavLink.href = window.starframeFirebase.isAdminEmail(user.email)
+              ? "admin/"
+              : "dashboard.html";
+          } else {
+            authNavLink.textContent = "Login";
+            authNavLink.href = "login.html";
+          }
+        });
+      })();
+    </script>
+    <script src="js/script-new.js"></script>
+  </body>
 </html>
