@@ -17,9 +17,14 @@ const Database = require('./models/Database');
 
 // Load routes
 const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin');
+const analyticsRoutes = require('./routes/analytics');
 const commissionRoutes = require('./routes/commission');
+const contactRoutes = require('./routes/contact');
 const invoiceRoutes = require('./routes/invoice');
 const paymentRoutes = require('./routes/payment');
+const securityRoutes = require('./routes/security');
+const systemRoutes = require('./routes/system');
 
 const app = express();
 const server = http.createServer(app);
@@ -149,9 +154,25 @@ async function startServer() {
                     defaultSrc: ["'self'"],
                     styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://fonts.googleapis.com"],
                     fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
-                    scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://vitals.vercel-insights.com"],
+                    scriptSrc: [
+                        "'self'",
+                        "'unsafe-inline'",
+                        "https://cdnjs.cloudflare.com",
+                        "https://vitals.vercel-insights.com",
+                        "https://www.gstatic.com",
+                        "https://www.googleapis.com"
+                    ],
                     imgSrc: ["'self'", "data:", "https:"],
-                    connectSrc: ["'self'", "http://localhost:" + PORT, "https://vitals.vercel-insights.com"]
+                    connectSrc: [
+                        "'self'",
+                        "http://localhost:" + PORT,
+                        "https://vitals.vercel-insights.com",
+                        "https://identitytoolkit.googleapis.com",
+                        "https://securetoken.googleapis.com",
+                        "https://firestore.googleapis.com",
+                        "https://firebaseinstallations.googleapis.com",
+                        "https://www.googleapis.com"
+                    ]
                 }
             }
         }));
@@ -219,7 +240,12 @@ async function startServer() {
 
         // Routes
         app.use('/api/auth', authRoutes);
-app.use('/api/commission', commissionRoutes);
+        app.use('/api/admin', adminRoutes);
+        app.use('/api/analytics', analyticsRoutes);
+        app.use('/api/security', securityRoutes);
+        app.use('/api/system', systemRoutes);
+        app.use('/api/contact', contactRoutes);
+        app.use('/api/commission', commissionRoutes);
         app.use('/api/invoice', invoiceRoutes);
         app.use('/api/payment', paymentRoutes);
 

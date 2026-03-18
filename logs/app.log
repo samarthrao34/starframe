@@ -3830,3 +3830,33 @@
 2025-12-16 23:31:23 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
 2025-12-16 23:31:23 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
 2025-12-16 23:31:23 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-12-16 23:33:21 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-12-17 00:46:41 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-12-17 00:46:41 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-12-17 00:46:41 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-12-17 00:46:41 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-12-17 00:46:41 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2025-12-17 00:46:41 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
+2025-12-17 00:46:42 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-12-17 00:46:42 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-12-17 00:46:42 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2025-12-17 00:46:42 [INFO]: Database initialized {"service":"starframe-admin"}
+2025-12-17 00:46:42 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2025-12-17 00:46:42 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2025-12-17 00:46:42 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2025-12-17 00:46:42 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2025-12-17 00:46:42 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}

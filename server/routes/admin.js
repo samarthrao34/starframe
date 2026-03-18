@@ -6,6 +6,9 @@ const logger = require('../utils/logger');
 
 const router = express.Router();
 
+// Protect all admin routes.
+router.use(auth.requireAuth);
+
 // Apply activity logging to all routes
 router.use(auth.logActivity);
 

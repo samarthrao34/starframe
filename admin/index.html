@@ -30,7 +30,7 @@
     <!-- Security Headers -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://vitals.vercel-insights.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://vitals.vercel-insights.com;"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://vitals.vercel-insights.com https://www.gstatic.com https://www.googleapis.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://vitals.vercel-insights.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://firebaseinstallations.googleapis.com https://www.googleapis.com;"
     />
 
     <!-- Vercel Web Analytics for non-Next.js sites -->
@@ -55,13 +55,13 @@
 
         <form id="loginForm" class="login-form">
           <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username">Admin Email</label>
             <input
-              type="text"
+              type="email"
               id="username"
               name="username"
               required
-              autocomplete="username"
+              autocomplete="email"
             />
           </div>
 
@@ -363,7 +363,7 @@
 
               <!-- Recent Activity -->
               <div class="activity-row">
-                <div class="activity-card">
+                <div class="activity-card card-fancy">
                   <div class="card-header">
                     <h3>Recent Activities</h3>
                     <a href="#logs" class="view-all">View All</a>
@@ -371,7 +371,7 @@
                   <div class="activity-list" id="recentActivities">
                     <div class="activity-item">
                       <div class="activity-icon">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-magic"></i>
                       </div>
                       <div class="activity-content">
                         <div class="activity-text">System initialized</div>
@@ -381,32 +381,38 @@
                   </div>
                 </div>
 
-                <div class="quick-actions-card">
+                <div class="quick-actions-card card-fancy">
                   <div class="card-header">
                     <h3>Quick Actions</h3>
                   </div>
-                  <div class="quick-actions">
-                    <button class="quick-action" data-action="backup">
-                      <i class="fas fa-download"></i>
-                      <span>Create Backup</span>
+                  <div class="quick-actions-grid">
+                    <button class="quick-action-btn" data-action="backup">
+                      <i class="fas fa-cloud-download-alt"></i>
+                      <span>Backup</span>
                     </button>
-                    <button class="quick-action" data-action="security-scan">
-                      <i class="fas fa-search"></i>
-                      <span>Security Scan</span>
+                    <button class="quick-action-btn" data-action="security-scan">
+                      <i class="fas fa-shield-virus"></i>
+                      <span>Scan</span>
                     </button>
-                    <button class="quick-action" data-action="clear-cache">
+                    <button class="quick-action-btn" data-action="clear-cache">
                       <i class="fas fa-broom"></i>
-                      <span>Clear Cache</span>
+                      <span>Clean</span>
                     </button>
-                    <button class="quick-action" data-action="update-content">
-                      <i class="fas fa-sync"></i>
-                      <span>Sync Content</span>
+                    <button class="quick-action-btn" data-action="update-content">
+                      <i class="fas fa-sync-alt"></i>
+                      <span>Sync</span>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
           </section>
+
+    <!-- Magic Elements -->
+    <div class="magic-star" style="top: 10%; right: 5%; font-size: 1.5rem;"><i class="fas fa-star"></i></div>
+    <div class="magic-star" style="top: 40%; right: 12%; font-size: 0.8rem; animation-delay: 1s;"><i class="fas fa-star"></i></div>
+    <div class="magic-star" style="top: 70%; right: 8%; font-size: 1.2rem; animation-delay: 2s;"><i class="fas fa-star"></i></div>
+
 
           <!-- Other sections will be loaded dynamically -->
           <section id="analytics-section" class="content-section">
@@ -471,6 +477,56 @@
               </table>
             </div>
           </section>
+
+          <section id="content-section" class="content-section">
+            <div class="section-header">
+              <h2>Content Management</h2>
+            </div>
+            <div
+              class="section-placeholder"
+              style="text-align: left; max-width: 760px"
+            >
+              <p>
+                These fields update the live homepage in real time for every
+                visitor.
+              </p>
+              <div class="form-group" style="margin-top: 1rem">
+                <label for="heroTitleInput">Homepage Hero Title</label>
+                <input
+                  id="heroTitleInput"
+                  type="text"
+                  placeholder="Where Imagination and Emotion Come Alive"
+                />
+              </div>
+              <div class="form-group" style="margin-top: 1rem">
+                <label for="heroSubtitleInput">Homepage Hero Subtitle</label>
+                <textarea
+                  id="heroSubtitleInput"
+                  rows="3"
+                  placeholder="A warm, creative studio where dreams take shape through the magic of animation"
+                ></textarea>
+              </div>
+              <button
+                id="saveContentButton"
+                class="btn btn-primary"
+                style="margin-top: 1rem"
+              >
+                <i class="fas fa-save"></i>
+                Save & Publish Worldwide
+              </button>
+            </div>
+          </section>
+
+          <section id="logs-section" class="content-section">
+            <div class="section-placeholder">
+              <i class="fas fa-scroll"></i>
+              <h3>System Logs</h3>
+              <p>
+                Detailed logs are available via the backend API and analytics
+                streams.
+              </p>
+            </div>
+          </section>
         </div>
       </main>
     </div>
@@ -507,12 +563,16 @@
     </div>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top-btn" title="Go to top">
+    <button id="backToTop" class="back-to-top" title="Go to top">
       <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="/js/firebase-config.js"></script>
     <script src="js/admin.js"></script>
   </body>
 </html>

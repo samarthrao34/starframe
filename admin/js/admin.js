@@ -3,12 +3,18 @@ class AdminDashboard {
     constructor() {
         this.currentUser = null;
         this.isAuthenticated = false;
+        this.authMode = 'backend';
+        this.firebaseAuth = null;
+        this.firestore = null;
+        this.liveContentUnsubscribe = null;
         this.charts = {};
         this.refreshInterval = null;
         this.init();
     }
 
     async init() {
+        this.initFirebase();
+
         // Always setup login event listeners first
         this.setupLoginEventListeners();
         
@@ -18,15 +24,52 @@ class AdminDashboard {
         if (this.isAuthenticated) {
             this.showDashboard();
             this.setupEventListeners();
-            await this.loadDashboardData();
-            this.startAutoRefresh();
+            if (this.authMode === 'backend') {
+                await this.loadDashboardData();
+                this.startAutoRefresh();
+            } else {
+                this.navigateToSection('content');
+            }
         } else {
             this.showLogin();
         }
     }
 
     // Authentication Methods
+    initFirebase() {
+        if (!window.starframeFirebase || !window.starframeFirebase.isConfigured) {
+            return;
+        }
+
+        this.firebaseAuth = window.starframeFirebase.getAuth();
+        this.firestore = window.starframeFirebase.getFirestore();
+    }
+
+    isAdminEmail(email) {
+        if (!email) return false;
+        if (window.starframeFirebase && typeof window.starframeFirebase.isAdminEmail === 'function') {
+            return window.starframeFirebase.isAdminEmail(email);
+        }
+
+        return false;
+    }
+
     async checkAuthStatus() {
+        if (this.firebaseAuth && this.firebaseAuth.currentUser) {
+            const firebaseUser = this.firebaseAuth.currentUser;
+            if (this.isAdminEmail(firebaseUser.email)) {
+                this.isAuthenticated = true;
+                this.authMode = 'firebase';
+                this.currentUser = {
+                    id: firebaseUser.uid,
+                    username: firebaseUser.displayName || firebaseUser.email,
+                    email: firebaseUser.email
+                };
+
+                return;
+            }
+        }
+
         try {
             const response = await this.apiCall('/api/auth/status');
             this.isAuthenticated = response.isAuthenticated;
@@ -42,6 +85,36 @@ class AdminDashboard {
     }
 
     async login(username, password, twoFactorCode = null) {
+        if (this.firebaseAuth) {
+            const loginResult = await this.firebaseAuth.signInWithEmailAndPassword(username, password);
+            const firebaseUser = loginResult.user;
+
+            if (!this.isAdminEmail(firebaseUser.email)) {
+                await this.firebaseAuth.signOut();
+                throw new Error('This account is not authorized for admin access.');
+            }
+
+            this.authMode = 'firebase';
+            this.isAuthenticated = true;
+            this.currentUser = {
+                id: firebaseUser.uid,
+                username: firebaseUser.displayName || firebaseUser.email,
+                email: firebaseUser.email
+            };
+
+            try {
+                const idToken = await firebaseUser.getIdToken();
+                await this.apiCall('/api/auth/firebase-login', {
+                    method: 'POST',
+                    body: JSON.stringify({ idToken })
+                });
+            } catch (sessionError) {
+                console.warn('Firebase login succeeded but server session sync failed:', sessionError.message);
+            }
+
+            return { success: true };
+        }
+
         try {
             const requestBody = { username, password, twoFactorCode };
             
@@ -55,6 +128,7 @@ class AdminDashboard {
             }
 
             if (response.success) {
+                this.authMode = 'backend';
                 this.isAuthenticated = true;
                 this.currentUser = response.user;
                 return { success: true };
@@ -66,10 +140,19 @@ class AdminDashboard {
 
     async logout() {
         try {
-            await this.apiCall('/api/auth/logout', { method: 'POST' });
+            if (this.authMode === 'firebase' && this.firebaseAuth) {
+                await this.firebaseAuth.signOut();
+            } else {
+                await this.apiCall('/api/auth/logout', { method: 'POST' });
+            }
         } catch (error) {
             console.error('Logout error:', error);
         } finally {
+            if (this.liveContentUnsubscribe) {
+                this.liveContentUnsubscribe();
+                this.liveContentUnsubscribe = null;
+            }
+
             this.isAuthenticated = false;
             this.currentUser = null;
             this.showLogin();
@@ -90,9 +173,12 @@ class AdminDashboard {
         this.showElement('dashboard');
         
         if (this.currentUser) {
-            document.getElementById('currentUsername').textContent = this.currentUser.username;
-            document.getElementById('userMenuName').textContent = this.currentUser.username;
+            const label = this.currentUser.username || this.currentUser.email || 'Admin';
+            document.getElementById('currentUsername').textContent = label;
+            document.getElementById('userMenuName').textContent = label;
         }
+
+        this.bindRealtimeContentEditor();
     }
 
     showLoading() {
@@ -149,6 +235,13 @@ class AdminDashboard {
                 this.navigateToSection(section);
             });
         });
+
+        const saveContentButton = document.getElementById('saveContentButton');
+        if (saveContentButton) {
+            saveContentButton.addEventListener('click', () => {
+                this.saveLiveContent();
+            });
+        }
 
         // Sidebar toggle (mobile)
         const sidebarToggle = document.getElementById('sidebarToggle');
@@ -225,8 +318,12 @@ class AdminDashboard {
             } else if (result.success) {
                 this.showDashboard();
                 this.setupEventListeners();
-                await this.loadDashboardData();
-                this.startAutoRefresh();
+                if (this.authMode === 'backend') {
+                    await this.loadDashboardData();
+                    this.startAutoRefresh();
+                } else {
+                    this.navigateToSection('content');
+                }
                 this.showNotification('Login successful!', 'success');
             }
         } catch (error) {
@@ -242,13 +339,23 @@ class AdminDashboard {
         document.querySelectorAll('.menu-item').forEach(item => {
             item.classList.remove('active');
         });
-        document.querySelector(`[data-section="${section}"]`).classList.add('active');
+        const currentMenuItem = document.querySelector(`[data-section="${section}"]`);
+        if (currentMenuItem) {
+            currentMenuItem.classList.add('active');
+        }
 
         // Show selected section
         document.querySelectorAll('.content-section').forEach(sec => {
             sec.classList.remove('active');
         });
-        document.getElementById(`${section}-section`).classList.add('active');
+        const targetSectionId = `${section}-section`;
+        let targetSection = document.getElementById(targetSectionId);
+        if (!targetSection) {
+            targetSection = this.createPlaceholderSection(section, targetSectionId);
+        }
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
 
         // Update page title
         const titles = {
@@ -300,9 +407,11 @@ class AdminDashboard {
                 this.apiCall('/api/analytics/realtime')
             ]);
 
+            const liveData = realtimeData.data || realtimeData;
+
             this.updateDashboardStats(dashboardData.stats);
             this.updateRecentActivities(dashboardData.recentActivities);
-            this.updateLiveVisitors(realtimeData.activeVisitors);
+            this.updateLiveVisitors(liveData.activeVisitors || 0);
             this.createCharts(dashboardData);
 
         } catch (error) {
@@ -491,11 +600,80 @@ class AdminDashboard {
         this.refreshInterval = setInterval(async () => {
             try {
                 const realtimeData = await this.apiCall('/api/analytics/realtime');
-                this.updateLiveVisitors(realtimeData.activeVisitors);
+                const liveData = realtimeData.data || realtimeData;
+                this.updateLiveVisitors(liveData.activeVisitors || 0);
             } catch (error) {
                 console.error('Auto-refresh error:', error);
             }
         }, 30000); // Refresh every 30 seconds
+    }
+
+    createPlaceholderSection(section, sectionId) {
+        const wrapper = document.querySelector('.content-wrapper');
+        if (!wrapper) return null;
+
+        const sectionElement = document.createElement('section');
+        sectionElement.id = sectionId;
+        sectionElement.className = 'content-section';
+        sectionElement.innerHTML = `
+            <div class="section-placeholder">
+                <i class="fas fa-tools"></i>
+                <h3>${section.charAt(0).toUpperCase() + section.slice(1)} section</h3>
+                <p>This panel is available but not yet configured in this build.</p>
+            </div>
+        `;
+
+        wrapper.appendChild(sectionElement);
+        return sectionElement;
+    }
+
+    async bindRealtimeContentEditor() {
+        if (!this.firestore) return;
+
+        const heroTitleInput = document.getElementById('heroTitleInput');
+        const heroSubtitleInput = document.getElementById('heroSubtitleInput');
+        if (!heroTitleInput || !heroSubtitleInput) return;
+
+        if (this.liveContentUnsubscribe) {
+            this.liveContentUnsubscribe();
+        }
+
+        this.liveContentUnsubscribe = this.firestore
+            .collection('siteContent')
+            .doc('home')
+            .onSnapshot((snapshot) => {
+                if (!snapshot.exists) {
+                    return;
+                }
+
+                const data = snapshot.data();
+                heroTitleInput.value = data.heroTitle || '';
+                heroSubtitleInput.value = data.heroSubtitle || '';
+            });
+    }
+
+    async saveLiveContent() {
+        if (!this.firestore || !this.currentUser) {
+            this.showNotification('Firebase is not configured for live content.', 'error');
+            return;
+        }
+
+        const heroTitleInput = document.getElementById('heroTitleInput');
+        const heroSubtitleInput = document.getElementById('heroSubtitleInput');
+
+        try {
+            await this.firestore.collection('siteContent').doc('home').set({
+                heroTitle: heroTitleInput ? heroTitleInput.value.trim() : '',
+                heroSubtitle: heroSubtitleInput ? heroSubtitleInput.value.trim() : '',
+                updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
+                updatedBy: this.currentUser.email || this.currentUser.username || 'admin'
+            }, { merge: true });
+
+            this.showNotification('Website content published successfully.', 'success');
+        } catch (error) {
+            console.error('Failed to save live content:', error);
+            this.showNotification('Could not publish content. Check Firebase permissions.', 'error');
+        }
     }
 
     stopAutoRefresh() {
@@ -940,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize real-time features after dashboard is ready
     setTimeout(() => {
-        if (window.adminDashboard.isAuthenticated) {
+        if (window.adminDashboard.isAuthenticated && window.adminDashboard.authMode === 'backend') {
             const realTimeExtension = new RealTimeAdminExtension(window.adminDashboard);
             realTimeExtension.initialize();
             window.realTimeExtension = realTimeExtension;
@@ -1029,26 +1207,21 @@ function addFloatingCards() {
 }
 
 // Back to top button with smooth scroll
-const backToTopButton = document.getElementById("back-to-top-btn");
+const backToTopBtn = document.getElementById("backToTop");
 
-window.onscroll = function() {
-    scrollFunction();
-};
+if (backToTopBtn) {
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add("visible");
+        } else {
+            backToTopBtn.classList.remove("visible");
+        }
+    });
 
-function scrollFunction() {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        backToTopButton.style.display = "flex";
-        backToTopButton.style.animation = "fadeInUp 0.3s ease-out";
-    } else {
-        backToTopButton.style.display = "none";
-    }
-}
-
-backToTopButton.addEventListener("click", backToTop);
-
-function backToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     });
 }

@@ -136,6 +136,10 @@ function initNavigation() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
+    if (!navbar || !hamburger || !navMenu) {
+        return;
+    }
+
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
@@ -297,53 +301,10 @@ function initPortfolioFilter() {
     });
 }
 
-// Commission form functionality
+// Commission form functionality - specialized logic is handled on the commission page
 function initCommissionForm() {
-    const form = document.getElementById('commissionForm');
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
-            
-            // Simple validation
-            if (!data.name || !data.email || !data.service || !data.budget) {
-                showNotification('Please fill in all required fields.', 'error');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                return;
-            }
-            
-            // Simulate form submission
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                showNotification('Thank you for reaching out! We\'ve received your project details and will get back to you within 24 hours with a personalized proposal. ✨', 'success');
-                form.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
-        });
-
-        // Add real-time validation feedback
-        const inputs = form.querySelectorAll('input, select, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('blur', validateField);
-            input.addEventListener('input', clearFieldError);
-        });
-    }
+    // This is intentionally left empty or for global form logic only
+    // Specialized project/payment logic is in commission.html
 }
 
 // Field validation
@@ -496,34 +457,20 @@ function initParallaxEffect() {
     const heroBackground = document.querySelector('.hero-bg-image');
     
     if (heroSection && heroBackground) {
+        let ticking = false;
+
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = scrolled * 0.5;
-            
-            heroBackground.style.transform = `translateY(${parallax}px)`;
-        });
+            if (ticking) return;
+
+            ticking = true;
+            requestAnimationFrame(() => {
+                const scrolled = window.pageYOffset;
+                const parallax = Math.min(scrolled * 0.2, 120);
+                heroBackground.style.transform = `translateY(${parallax}px)`;
+                ticking = false;
+            });
+        }, { passive: true });
     }
-    
-    // Mouse parallax for team cards
-    document.addEventListener('mousemove', (e) => {
-        const interactiveCards = document.querySelectorAll('.team-member');
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-        
-        interactiveCards.forEach((card) => {
-            const rect = card.getBoundingClientRect();
-            const cardX = rect.left + rect.width / 2;
-            const cardY = rect.top + rect.height / 2;
-            
-            const distanceX = (mouseX * window.innerWidth - cardX) / window.innerWidth;
-            const distanceY = (mouseY * window.innerHeight - cardY) / window.innerHeight;
-            
-            const moveX = distanceX * 10;
-            const moveY = distanceY * 10;
-            
-            card.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
-        });
-    });
 }
 
 // Scroll progress indicator
@@ -1233,26 +1180,4 @@ document.addEventListener('DOMContentLoaded', function() {
         initBackToTopButton();
     }, 1500);
 });
-
-// Back to top button
-const backToTopButton = document.getElementById("back-to-top-btn");
-
-window.onscroll = function() {
-    scrollFunction();
-};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        backToTopButton.style.display = "block";
-    } else {
-        backToTopButton.style.display = "none";
-    }
-}
-
-backToTopButton.addEventListener("click", backToTop);
-
-function backToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
 
