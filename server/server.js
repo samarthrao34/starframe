@@ -17,15 +17,26 @@ const Database = require('./models/Database');
 
 // Load routes
 const authRoutes = require('./routes/auth');
+<<<<<<< HEAD
 const commissionsRoutes = require('./routes/commissions');
 // const legacyCommissionRoutes = require('./routes/commission'); // Deprecated legacy route
+=======
+const adminRoutes = require('./routes/admin');
+const analyticsRoutes = require('./routes/analytics');
+const commissionRoutes = require('./routes/commission');
+const contactRoutes = require('./routes/contact');
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 const invoiceRoutes = require('./routes/invoice');
-const reviewsRoutes = require('./routes/reviews');
 const paymentRoutes = require('./routes/payment');
+<<<<<<< HEAD
 const clientRoutes = require('./routes/client');
 const payRoutes = require('./routes/pay');
 const shopRoutes = require('./routes/shop');
 const adminRoutes = require('./routes/admin');
+=======
+const securityRoutes = require('./routes/security');
+const systemRoutes = require('./routes/system');
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
 const app = express();
 const server = http.createServer(app);
@@ -155,9 +166,31 @@ async function startServer() {
                     defaultSrc: ["'self'"],
                     styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://fonts.googleapis.com"],
                     fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
+<<<<<<< HEAD
                     scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://checkout.razorpay.com"],
                     imgSrc: ["'self'", "data:", "https:", "https://cdn.razorpay.com"],
                     connectSrc: ["'self'", "http://localhost:" + PORT, "https://lumberjack.razorpay.com", "https://api.razorpay.com"]
+=======
+                    scriptSrc: [
+                        "'self'",
+                        "'unsafe-inline'",
+                        "https://cdnjs.cloudflare.com",
+                        "https://vitals.vercel-insights.com",
+                        "https://www.gstatic.com",
+                        "https://www.googleapis.com"
+                    ],
+                    imgSrc: ["'self'", "data:", "https:"],
+                    connectSrc: [
+                        "'self'",
+                        "http://localhost:" + PORT,
+                        "https://vitals.vercel-insights.com",
+                        "https://identitytoolkit.googleapis.com",
+                        "https://securetoken.googleapis.com",
+                        "https://firestore.googleapis.com",
+                        "https://firebaseinstallations.googleapis.com",
+                        "https://www.googleapis.com"
+                    ]
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
                 }
             }
         }));
@@ -224,10 +257,18 @@ async function startServer() {
 
         // Routes
         app.use('/api/auth', authRoutes);
+<<<<<<< HEAD
         app.use('/api/commissions', commissionsRoutes);
         app.use('/api/commission', commissionsRoutes); // Alias for backward compatibility/typo safety
+=======
+        app.use('/api/admin', adminRoutes);
+        app.use('/api/analytics', analyticsRoutes);
+        app.use('/api/security', securityRoutes);
+        app.use('/api/system', systemRoutes);
+        app.use('/api/contact', contactRoutes);
+        app.use('/api/commission', commissionRoutes);
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         app.use('/api/invoice', invoiceRoutes);
-        app.use('/api/reviews', reviewsRoutes);
         app.use('/api/payment', paymentRoutes);
         app.use('/api/client', clientRoutes);
         app.use('/api/pay', payRoutes);

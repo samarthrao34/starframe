@@ -4,9 +4,50 @@ const qrcode = require('qrcode');
 const passport = require('passport');
 const Database = require('../models/Database');
 const auth = require('../middleware/auth');
+const firebaseAdmin = require('../utils/firebaseAdmin');
 const logger = require('../utils/logger');
 
 const router = express.Router();
+
+const ADMIN_EMAIL = 'samarthrao34@gmail.com';
+
+// Firebase ID token login endpoint.
+router.post('/firebase-login', [
+    body('idToken').notEmpty().withMessage('Firebase ID token is required')
+], async (req, res) => {
+    try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ error: 'Invalid input', details: errors.array() });
+        }
+
+        const { idToken } = req.body;
+        const decoded = await firebaseAdmin.verifyIdToken(idToken);
+        const email = String(decoded.email || '').toLowerCase();
+        const isAdmin = email === ADMIN_EMAIL;
+
+        req.session.firebaseUser = {
+            uid: decoded.uid,
+            email,
+            name: decoded.name || email,
+            isAdmin
+        };
+        req.session.lastActivity = Date.now();
+
+        res.json({
+            success: true,
+            user: {
+                id: decoded.uid,
+                username: decoded.name || email,
+                email,
+                isAdmin
+            }
+        });
+    } catch (error) {
+        logger.error('Firebase login error:', error);
+        res.status(401).json({ error: 'Invalid Firebase token' });
+    }
+});
 
 // Login endpoint
 router.post('/login', [
@@ -351,6 +392,18 @@ router.post('/logout', auth.requireAuth, (req, res) => {
 // Get current user info
 router.get('/me', auth.requireAuth, async (req, res) => {
     try {
+        if (req.user.isFirebaseUser) {
+            return res.json({
+                user: {
+                    id: req.user.id,
+                    username: req.user.username,
+                    email: req.user.email,
+                    isFirebaseUser: true,
+                    isAdmin: !!req.user.isAdmin
+                }
+            });
+        }
+
         const user = await Database.get(
             'SELECT id, username, email, is_2fa_enabled, last_login, created_at FROM admin_users WHERE id = ?',
             [req.user.id]
@@ -374,11 +427,14 @@ router.get('/me', auth.requireAuth, async (req, res) => {
 
 // Check authentication status
 router.get('/status', (req, res) => {
-    const isAuthenticated = !!(req.session.token && req.session.userId);
+    const isFirebaseAuthenticated = !!req.session.firebaseUser;
+    const isAuthenticated = isFirebaseAuthenticated || !!(req.session.token && req.session.userId);
     const is2FAVerified = !!req.session.is2FAVerified;
 
     res.json({
         isAuthenticated,
+        isFirebaseAuthenticated,
+        isAdmin: isFirebaseAuthenticated ? !!req.session.firebaseUser.isAdmin : false,
         is2FAVerified,
         sessionId: req.session.id
     });

@@ -40,6 +40,7 @@ Set these environment variables for production use (examples):
 - `SESSION_SECRET` — strong secret for session cookies
 - `INVOICE_JWT_SECRET` — signing secret for short-lived invoice tokens
 - `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USER`, `EMAIL_PASS`, `EMAIL_FROM` — SMTP settings for invoice emails
+- `FIREBASE_SERVICE_ACCOUNT_JSON` — Firebase Admin service-account JSON as a single-line JSON string for secure server-side token verification
 
 For Vercel deployment, add the same variables in the project settings.
 

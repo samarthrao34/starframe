@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8">
@@ -318,8 +319,586 @@
                 flex-direction: column;
                 justify-content: center;
             }
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - StarFrame Animation Studio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style-new.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-warm: #d4a574;
+        --primary-dark: #b8935f;
+        --secondary-warm: #e8d5b7;
+        --accent-pink: #f4b5a0;
+        --text-dark: #3c3c3c;
+        --text-medium: #666666;
+        --text-light: #999999;
+        --background-cream: #fefcf8;
+        --background-warm: #f9f6f2;
+        --white: #ffffff;
+        --shadow-soft: 0 8px 25px rgba(60, 60, 60, 0.12);
+        --shadow-hover: 0 15px 40px rgba(60, 60, 60, 0.18);
+        --border-radius: 12px;
+        --border-radius-large: 20px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background-color: var(--background-cream);
+        position: relative;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .hero-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+      }
+
+      .hero-bg-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        filter: brightness(1.1);
+      }
+
+      .login-container {
+        background: var(--white);
+        border-radius: var(--border-radius-large);
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 440px;
+        text-align: center;
+        box-shadow: var(--shadow-hover);
+        border: 1px solid rgba(212, 165, 116, 0.2);
+        position: relative;
+        z-index: 10;
+        animation: fadeInUp 0.6s ease-out;
+        max-height: 95vh;
+        overflow-y: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .login-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .login-header {
+        margin-bottom: 1.5rem;
+      }
+
+      .login-header h1 {
+        font-family: "Playfair Display", serif;
+        background: linear-gradient(
+          135deg,
+          var(--primary-warm) 0%,
+          var(--primary-dark) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 2.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        text-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+      }
+
+      .login-header p {
+        color: var(--text-medium);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .login-options {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .email-login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        text-align: left;
+      }
+
+      .email-login-form label {
+        color: var(--text-dark);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .email-login-form input {
+        width: 100%;
+        border: 1px solid rgba(212, 165, 116, 0.35);
+        border-radius: 10px;
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+        outline: none;
+      }
+
+      .email-login-form input:focus {
+        border-color: var(--primary-warm);
+        box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.16);
+      }
+
+      .email-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .auth-help {
+        font-size: 0.85rem;
+        color: var(--text-medium);
+        text-align: left;
+      }
+
+      .google-login-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.875rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-warm) 0%,
+          var(--primary-dark) 100%
+        );
+        color: var(--white);
+        border: none;
+        padding: 1.125rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.05rem;
+        transition: var(--transition);
+        box-shadow: var(--shadow-soft);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .google-login-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .google-login-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .google-login-btn:hover::before {
+        left: 100%;
+      }
+
+      .google-icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        margin: 2rem 0;
+        color: var(--text-light);
+      }
+
+      .divider::before,
+      .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(212, 165, 116, 0.3);
+      }
+
+      .divider span {
+        padding: 0 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .admin-login-btn {
+        background: transparent;
+        color: var(--primary-dark);
+        border: 2px solid var(--primary-warm);
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.625rem;
+      }
+
+      .admin-login-btn:hover {
+        background: var(--primary-warm);
+        color: var(--white);
+        border-color: var(--primary-warm);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .features-list {
+        text-align: left;
+        margin: 2rem 0;
+        padding: 2rem;
+        background: var(--background-warm);
+        border-radius: var(--border-radius);
+        border-left: 4px solid var(--primary-warm);
+        box-shadow: 0 4px 15px rgba(212, 165, 116, 0.1);
+      }
+
+      .features-list h3 {
+        font-family: "Playfair Display", serif;
+        color: var(--text-dark);
+        font-size: 1.15rem;
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+      }
+
+      .features-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .features-list li {
+        padding: 0.625rem 0;
+        color: var(--text-medium);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.95rem;
+        transition: var(--transition);
+      }
+
+      .features-list li:hover {
+        color: var(--primary-dark);
+        transform: translateX(3px);
+      }
+
+      .features-list li i {
+        color: var(--primary-warm);
+        width: 18px;
+        font-size: 1rem;
+      }
+
+      .error-message {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #dc2626;
+        padding: 1rem 1.25rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 1.25rem;
+        display: none;
+        font-size: 0.9rem;
+        animation: shake 0.5s;
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+
+      .sparkles {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .sparkle {
+        position: absolute;
+        color: var(--primary-warm);
+        animation: float 6s ease-in-out infinite;
+        pointer-events: none;
+        opacity: 0.4;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+          opacity: 0;
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg);
+          opacity: 0.6;
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .hero-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(254, 252, 248, 0.92) 0%,
+          rgba(249, 246, 242, 0.85) 50%,
+          rgba(212, 165, 116, 0.3) 100%
+        );
+        z-index: 0;
+      }
+
+      .hero-overlay::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(212, 165, 116, 0.12) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(232, 213, 183, 0.15) 0%,
+            transparent 60%
+          );
+        animation: breathe 15s ease-in-out infinite;
+      }
+
+      @keyframes breathe {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--primary-dark);
+        border: 2px solid var(--primary-warm);
+        padding: 0.875rem 1.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary-warm) !important;
+        color: var(--white) !important;
+        border-color: var(--primary-warm);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      /* Back to home button positioning */
+      .back-home-btn {
+        position: fixed;
+        top: 2rem;
+        left: 2rem;
+        z-index: 100;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .login-container {
+          padding: 2rem 1.5rem;
+          max-width: 90%;
+          margin: 1rem;
+        }
+
+        .login-header h1 {
+          font-size: 1.75rem;
+        }
+
+        .login-header p {
+          font-size: 0.9rem;
+        }
+
+        .google-login-btn {
+          padding: 1rem 1.5rem;
+          font-size: 1rem;
+        }
+
+        .features-list {
+          padding: 1.5rem;
+        }
+
+        .back-home-btn {
+          top: 1rem;
+          left: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .login-container {
+          padding: 1.75rem 1.25rem;
+        }
+
+        .login-header h1 {
+          font-size: 1.5rem;
+        }
+
+        .features-list h3 {
+          font-size: 1rem;
+        }
+
+        .features-list li {
+          font-size: 0.875rem;
+        }
+      }
+
+      /* Floating Sparkle Star Styles */
+      .sparkle-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 5;
+        overflow: hidden;
+      }
+
+      .star {
+        position: absolute;
+        color: var(--primary-warm);
+        filter: drop-shadow(0 0 8px var(--primary-warm));
+        animation: twinkle 3s ease-in-out infinite;
+        pointer-events: auto;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .star:hover {
+        transform: scale(1.3) rotate(15deg);
+        filter: drop-shadow(0 0 15px var(--primary-warm));
+      }
+
+      #big-star {
+        font-size: 2rem;
+        animation:
+          twinkle 3s ease-in-out infinite,
+          float 4s ease-in-out infinite;
+      }
+
+      .small-star {
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.7;
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
     </style>
+<<<<<<< HEAD
 </head>
 
 <body>
@@ -566,3 +1145,465 @@
 </body>
 
 </html>
+=======
+  </head>
+  <body>
+    <a href="/" class="btn btn-secondary back-home-btn">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+    <div class="hero-background">
+      <img
+        src="images/StarFrame Animation Studio/landscape.jpeg"
+        alt="Hero Background"
+        class="hero-bg-image"
+      />
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="sparkles" id="sparkles"></div>
+
+    <div class="login-container">
+      <div class="login-header">
+        <h1>✨ Welcome to StarFrame</h1>
+        <p>Sign in to access your personalized animation studio experience</p>
+      </div>
+
+      <div id="errorMessage" class="error-message"></div>
+
+      <div class="login-options">
+        <form id="emailLoginForm" class="email-login-form">
+          <label for="emailInput">Email</label>
+          <input
+            id="emailInput"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+
+          <label for="passwordInput">Password</label>
+          <input
+            id="passwordInput"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+
+          <div class="email-actions">
+            <button type="submit" class="google-login-btn">
+              Sign In with Email
+            </button>
+            <button type="button" id="createAccountBtn" class="admin-login-btn">
+              Create Account
+            </button>
+          </div>
+
+          <div class="auth-help">
+            Use your email and password. Admin access is granted to
+            samarthrao34@gmail.com after successful login.
+          </div>
+        </form>
+
+        <div class="divider">
+          <span>or</span>
+        </div>
+
+        <!-- Google Login Button -->
+        <button type="button" id="googleLoginBtn" class="google-login-btn">
+          <svg class="google-icon" viewBox="0 0 24 24">
+            <path
+              fill="#4285F4"
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+            />
+            <path
+              fill="#34A853"
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+            />
+            <path
+              fill="#FBBC05"
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+            />
+            <path
+              fill="#EA4335"
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+            />
+          </svg>
+          Continue with Google
+        </button>
+
+        <div class="features-list">
+          <h3>What You'll Experience:</h3>
+          <ul>
+            <li><i class="fas fa-user-circle"></i> Personalized dashboard</li>
+            <li><i class="fas fa-bell"></i> Real-time project updates</li>
+            <li><i class="fas fa-history"></i> Activity tracking</li>
+            <li><i class="fas fa-cog"></i> Custom preferences</li>
+            <li><i class="fas fa-rocket"></i> Priority support</li>
+          </ul>
+        </div>
+
+        <!-- Admin Login -->
+        <a href="/admin" class="admin-login-btn">
+          <i class="fas fa-shield-alt"></i> Admin Access
+        </a>
+      </div>
+    </div>
+
+    <!-- Floating Sparkle Star -->
+    <div class="sparkle-container">
+      <div id="big-star" class="star">
+        <i class="fas fa-star fa-2x"></i>
+      </div>
+      <div class="small-star star"><i class="fas fa-star"></i></div>
+      <div class="small-star star"><i class="fas fa-star"></i></div>
+      <div class="small-star star"><i class="fas fa-star"></i></div>
+      <div class="small-star star"><i class="fas fa-star"></i></div>
+      <div class="small-star star"><i class="fas fa-star"></i></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/sparkle-star.js"></script>
+    <script>
+      async function signInWithEmailPassword(email, password) {
+        if (
+          !window.starframeFirebase ||
+          !window.starframeFirebase.isConfigured
+        ) {
+          throw new Error(
+            "Firebase is not configured. Set STARFRAME_FIREBASE_CONFIG first.",
+          );
+        }
+
+        const auth = window.starframeFirebase.getAuth();
+        const result = await auth.signInWithEmailAndPassword(email, password);
+        return result.user;
+      }
+
+      async function createEmailAccount(email, password) {
+        const auth = window.starframeFirebase.getAuth();
+        const db = window.starframeFirebase.getFirestore();
+        const result = await auth.createUserWithEmailAndPassword(
+          email,
+          password,
+        );
+
+        await db
+          .collection("users")
+          .doc(result.user.uid)
+          .set(
+            {
+              email: result.user.email,
+              name: result.user.displayName || email.split("@")[0],
+              role: window.starframeFirebase.isAdminEmail(result.user.email)
+                ? "admin"
+                : "user",
+              preferences: {
+                emailNotifications: true,
+                realTimeUpdates: true,
+                marketing: false,
+                activityTracking: true,
+              },
+              createdAt: window.firebase.firestore.FieldValue.serverTimestamp(),
+            },
+            { merge: true },
+          );
+
+        return result.user;
+      }
+
+      function redirectByRole(user) {
+        if (window.starframeFirebase.isAdminEmail(user.email)) {
+          window.location.href = "/admin";
+          return;
+        }
+
+        window.location.href = "/dashboard.html?welcome=true";
+      }
+
+      async function signInWithGoogle() {
+        if (!window.starframeFirebase || !window.starframeFirebase.isConfigured) {
+          throw new Error("Firebase is not configured.");
+        }
+        const provider = new window.firebase.auth.GoogleAuthProvider();
+        const auth = window.starframeFirebase.getAuth();
+        const result = await auth.signInWithPopup(provider);
+        const db = window.starframeFirebase.getFirestore();
+        
+        // Save user info to Firestore
+        await db.collection("users").doc(result.user.uid).set({
+          email: result.user.email,
+          name: result.user.displayName,
+          role: window.starframeFirebase.isAdminEmail(result.user.email) ? "admin" : "user",
+          lastLogin: window.firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+        
+        return result.user;
+      }
+
+      function bindEmailAuthEvents() {
+        const errorMessage = document.getElementById("errorMessage");
+        const form = document.getElementById("emailLoginForm");
+        const createAccountBtn = document.getElementById("createAccountBtn");
+        const googleLoginBtn = document.getElementById("googleLoginBtn");
+
+        googleLoginBtn.addEventListener("click", async function() {
+          errorMessage.style.display = "none";
+          try {
+            const user = await signInWithGoogle();
+            redirectByRole(user);
+          } catch (error) {
+            errorMessage.textContent = error.message || "Unable to sign in with Google.";
+            errorMessage.style.display = "block";
+          }
+        });
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          errorMessage.style.display = "none";
+
+          const email = document.getElementById("emailInput").value.trim();
+          const password = document.getElementById("passwordInput").value;
+
+          try {
+            const user = await signInWithEmailPassword(email, password);
+            redirectByRole(user);
+          } catch (error) {
+            errorMessage.textContent = error.message || "Unable to sign in.";
+            errorMessage.style.display = "block";
+          }
+        });
+
+        createAccountBtn.addEventListener("click", async function () {
+          errorMessage.style.display = "none";
+          const email = document.getElementById("emailInput").value.trim();
+          const password = document.getElementById("passwordInput").value;
+
+          if (!email || !password || password.length < 6) {
+            errorMessage.textContent =
+              "Use a valid email and password of at least 6 characters.";
+            errorMessage.style.display = "block";
+            return;
+          }
+
+          try {
+            const user = await createEmailAccount(email, password);
+            redirectByRole(user);
+          } catch (error) {
+            errorMessage.textContent =
+              error.message || "Unable to create account.";
+            errorMessage.style.display = "block";
+          }
+        });
+      }
+
+      // Page entrance animation
+      document.addEventListener("DOMContentLoaded", function () {
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          document.body.style.transition = "opacity 0.5s ease";
+          document.body.style.opacity = "1";
+        }, 100);
+      });
+
+      // Create floating sparkles with warm colors
+      function createSparkles() {
+        const sparklesContainer = document.getElementById("sparkles");
+        const sparkleEmojis = ["✨", "⭐", "🌟", "💫", "⭐"];
+
+        for (let i = 0; i < 25; i++) {
+          setTimeout(() => {
+            const sparkle = document.createElement("div");
+            sparkle.className = "sparkle";
+            sparkle.textContent =
+              sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+            sparkle.style.left = Math.random() * 100 + "%";
+            sparkle.style.top = Math.random() * 100 + "%";
+            sparkle.style.animationDelay = Math.random() * 6 + "s";
+            sparkle.style.fontSize = Math.random() * 12 + 18 + "px";
+
+            sparklesContainer.appendChild(sparkle);
+
+            // Remove sparkle after animation completes
+            setTimeout(() => {
+              sparkle.remove();
+            }, 6000);
+          }, i * 250);
+        }
+      }
+
+      // Check for error messages in URL
+      function checkForErrors() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get("error");
+        const errorMessage = document.getElementById("errorMessage");
+
+        if (error) {
+          let message = "";
+          switch (error) {
+            case "oauth_failed":
+              message = "⚠️ Google authentication failed. Please try again.";
+              break;
+            case "oauth_error":
+              message = "⚠️ An error occurred during login. Please try again.";
+              break;
+            default:
+              message = "⚠️ An unexpected error occurred. Please try again.";
+          }
+
+          errorMessage.textContent = message;
+          errorMessage.style.display = "block";
+
+          // Clear error from URL
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname,
+          );
+        }
+      }
+
+      // Track page visit
+      function trackPageVisit() {
+        // Simple analytics tracking
+        if (typeof gtag !== "undefined") {
+          gtag("event", "page_view", {
+            page_title: "Login Page",
+            page_location: window.location.href,
+          });
+        }
+      }
+
+      // Add ripple effect to buttons
+      function addRippleEffect() {
+        document.addEventListener("click", function (e) {
+          if (
+            e.target.closest(
+              ".google-login-btn, .admin-login-btn, .btn-secondary",
+            )
+          ) {
+            const button = e.target.closest(
+              ".google-login-btn, .admin-login-btn, .btn-secondary",
+            );
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            const ripple = document.createElement("span");
+            ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.3);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                    `;
+
+            button.style.position = "relative";
+            button.style.overflow = "hidden";
+            button.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 600);
+          }
+        });
+
+        // Add ripple animation
+        if (!document.getElementById("ripple-animation")) {
+          const style = document.createElement("style");
+          style.id = "ripple-animation";
+          style.textContent = `
+                    @keyframes ripple {
+                        to {
+                            transform: scale(2.5);
+                            opacity: 0;
+                        }
+                    }
+                `;
+          document.head.appendChild(style);
+        }
+      }
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        bindEmailAuthEvents();
+        createSparkles();
+        checkForErrors();
+        trackPageVisit();
+        addRippleEffect();
+
+        // Recreate sparkles periodically
+        setInterval(createSparkles, 12000);
+
+        // Add click tracking
+        document.querySelectorAll("a, button").forEach((element) => {
+          element.addEventListener("click", function () {
+            const action = this.textContent.trim();
+            console.log("User clicked:", action);
+          });
+        });
+
+        // Add hover effect to features list items
+        document.querySelectorAll(".features-list li").forEach((item) => {
+          item.addEventListener("mouseenter", function () {
+            this.style.paddingLeft = "0.5rem";
+          });
+          item.addEventListener("mouseleave", function () {
+            this.style.paddingLeft = "0";
+          });
+        });
+      });
+
+      // Add subtle mouse trail effect
+      let lastMouseMove = 0;
+      document.addEventListener("mousemove", function (e) {
+        const now = Date.now();
+        if (now - lastMouseMove < 100) return; // Throttle
+        lastMouseMove = now;
+
+        if (Math.random() > 0.7) {
+          // Only occasionally create sparkles
+          const sparkle = document.createElement("div");
+          sparkle.style.position = "fixed";
+          sparkle.style.left = e.clientX + "px";
+          sparkle.style.top = e.clientY + "px";
+          sparkle.style.color = "rgba(212, 165, 116, 0.6)";
+          sparkle.style.fontSize = "10px";
+          sparkle.style.pointerEvents = "none";
+          sparkle.style.zIndex = "999";
+          sparkle.textContent = "✨";
+          sparkle.style.animation = "fadeOut 1s ease-out forwards";
+
+          document.body.appendChild(sparkle);
+
+          setTimeout(() => {
+            sparkle.remove();
+          }, 1000);
+        }
+      });
+
+      // Add fadeOut animation
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(1.5) translateY(-25px);
+                }
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f

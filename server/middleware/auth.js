@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const speakeasy = require('speakeasy');
 const Database = require('../models/Database');
+const firebaseAdmin = require('../utils/firebaseAdmin');
 const logger = require('../utils/logger');
 
 class AuthMiddleware {
@@ -156,9 +157,28 @@ class AuthMiddleware {
     // Middleware to require admin authentication
     requireAuth = async (req, res, next) => {
         try {
+<<<<<<< HEAD
             const token = req.header('Authorization')?.replace('Bearer ', '') ||
                 req.session.token ||
                 req.cookies?.authToken;
+=======
+            if (req.session?.firebaseUser?.uid) {
+                req.user = {
+                    id: req.session.firebaseUser.uid,
+                    username: req.session.firebaseUser.name || req.session.firebaseUser.email,
+                    email: req.session.firebaseUser.email,
+                    isFirebaseUser: true,
+                    isAdmin: !!req.session.firebaseUser.isAdmin
+                };
+
+                req.session.lastActivity = Date.now();
+                return next();
+            }
+
+            const token = req.header('Authorization')?.replace('Bearer ', '') || 
+                         req.session.token ||
+                         req.cookies?.authToken;
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
             if (!token) {
                 // If no token, check session
@@ -172,7 +192,27 @@ class AuthMiddleware {
                 return res.status(401).json({ error: 'No authentication token provided' });
             }
 
-            const decoded = this.verifyToken(token);
+            let decoded = this.verifyToken(token);
+
+            // If JWT verification fails, try Firebase ID token verification.
+            if (!decoded && req.header('Authorization')?.startsWith('Bearer ')) {
+                try {
+                    const firebaseDecoded = await firebaseAdmin.verifyIdToken(token);
+                    const email = String(firebaseDecoded.email || '').toLowerCase();
+                    req.user = {
+                        id: firebaseDecoded.uid,
+                        username: firebaseDecoded.name || email || firebaseDecoded.uid,
+                        email,
+                        isFirebaseUser: true,
+                        isAdmin: email === 'samarthrao34@gmail.com'
+                    };
+                    req.session.lastActivity = Date.now();
+                    return next();
+                } catch (firebaseError) {
+                    logger.security('Invalid Firebase token verification attempt', { error: firebaseError.message });
+                }
+            }
+
             if (!decoded) {
                 return res.status(401).json({ error: 'Invalid or expired token' });
             }
@@ -278,6 +318,10 @@ class AuthMiddleware {
         res.send = function (body) {
             // Only log successful requests (2xx status codes)
             if (res.statusCode >= 200 && res.statusCode < 300 && req.user) {
+                if (req.user.isFirebaseUser) {
+                    return originalSend.call(this, body);
+                }
+
                 Database.logActivity({
                     user_id: req.user.id,
                     action: `${req.method} ${req.originalUrl}`,

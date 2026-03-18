@@ -15,6 +15,12 @@ Deploying this project to Vercel (quick guide)
 
 4) Client-side: update the client to fetch `/api/invoice/token` on the deployed origin before calling `/api/invoice/send`.
 
+5) Firebase Setup:
+- Ensure `js/firebase-config.js` is correctly configured with your project's credentials.
+- In the Firebase Console, add your Vercel deployment domain (e.g., `*.vercel.app`) to the "Authorized domains" list in the Authentication settings.
+- Enable Cloud Firestore and Authentication (Email/Password and Google) in your Firebase project.
+
 Notes:
-- Vercel serverless functions have execution time limits — sending an email with PDF generation should be fine on typical small invoices, but if you generate large PDFs or process heavy images, consider offloading to a background worker or external service.
-- For production email, consider using a transactional email provider (SendGrid, Mailgun, Postmark) which integrates well with Vercel.
+- The site now uses Firebase for Authentication and Content Management, which is perfectly suited for Vercel's serverless environment.
+- Traditional features like Socket.IO or SQLite won't work on Vercel; these have been replaced or augmented by Firebase.
+- Environment variables for Payment (RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET) and Invoices should still be set in the Vercel dashboard.

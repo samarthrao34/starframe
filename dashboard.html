@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8">
@@ -15,11 +16,32 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your StarFrame Dashboard - Personalized Experience</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style-new.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
     <!-- Socket.IO for real-time features -->
     <script src="/socket.io/socket.io.js"></script>
 
     <style>
+<<<<<<< HEAD
         .dashboard-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -168,59 +190,445 @@
 
         .status-offline {
             color: #dc3545;
+=======
+      :root {
+        --dash-primary: #d4a574;
+        --dash-primary-dark: #b88a5d;
+        --dash-bg: #fdfbf7;
+        --dash-card-bg: #ffffff;
+        --dash-text: #2d2d2d;
+        --dash-text-light: #666666;
+        --dash-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        --dash-grad: linear-gradient(135deg, #2d2d2d 0%, #4a4a4a 100%);
+      }
+
+      body {
+        background-color: var(--dash-bg);
+        color: var(--dash-text);
+        font-family: "Inter", sans-serif;
+      }
+
+      .dashboard-header {
+        background: var(--dash-grad);
+        color: white;
+        padding: 5rem 0 4rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dashboard-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 20% 30%, rgba(212, 165, 116, 0.1) 0%, transparent 50%);
+      }
+
+      .user-avatar-container {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+      }
+
+      .user-avatar {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        object-fit: cover;
+      }
+
+      .status-dot {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        width: 18px;
+        height: 18px;
+        background: #28a745;
+        border: 3px solid #2d2d2d;
+        border-radius: 50%;
+      }
+
+      .dashboard-header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .dashboard-header .lead {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+      }
+
+      .dashboard-content {
+        max-width: 1200px;
+        margin: -3rem auto 4rem;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+
+      .dashboard-main {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .dashboard-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .dashboard-card {
+        background: var(--dash-card-bg);
+        border-radius: 20px;
+        box-shadow: var(--dash-shadow);
+        padding: 2.5rem;
+        border: 1px solid rgba(212, 165, 116, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .dashboard-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .dashboard-card h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+        color: var(--dash-text);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .dashboard-card h2 i {
+        color: var(--dash-primary);
+        font-size: 1.4rem;
+      }
+
+      /* Quick Actions Grid */
+      .actions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+      }
+
+      .action-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem 1rem;
+        background: var(--dash-bg);
+        border-radius: 16px;
+        text-decoration: none;
+        color: var(--dash-text);
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .action-btn i {
+        font-size: 1.5rem;
+        color: var(--dash-primary);
+        margin-bottom: 5px;
+      }
+
+      .action-btn:hover {
+        background: var(--dash-primary);
+        color: white;
+        border-color: var(--dash-primary);
+        transform: translateY(-3px);
+      }
+
+      .action-btn:hover i {
+        color: white;
+      }
+
+      .action-btn.primary {
+        background: var(--dash-primary);
+        color: white;
+      }
+
+      .action-btn.primary i {
+        color: white;
+      }
+
+      /* Project Items */
+      .project-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .project-item {
+        display: flex;
+        align-items: center;
+        padding: 1.2rem;
+        background: var(--dash-bg);
+        border-radius: 16px;
+        gap: 1.5rem;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .project-item:hover {
+        border-color: var(--dash-primary);
+        background: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      }
+
+      .project-thumb {
+        width: 60px;
+        height: 60px;
+        background: var(--dash-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.4rem;
+      }
+
+      .project-details {
+        flex: 1;
+      }
+
+      .project-details h4 {
+        margin: 0 0 4px;
+        font-size: 1.1rem;
+      }
+
+      .project-details p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--dash-text-light);
+      }
+
+      .project-status {
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .status-pending { background: #fff4e5; color: #b88a5d; }
+      .status-active { background: #e6f7ff; color: #1890ff; }
+      .status-completed { background: #f6ffed; color: #52c41a; }
+
+      /* Activity Feed */
+      .activity-feed {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .activity-item {
+        display: flex;
+        gap: 1rem;
+        position: relative;
+      }
+
+      .activity-item::before {
+        content: '';
+        position: absolute;
+        left: 17px;
+        top: 35px;
+        bottom: -20px;
+        width: 2px;
+        background: #f0f0f0;
+      }
+
+      .activity-item:last-child::before {
+        display: none;
+      }
+
+      .activity-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--dash-bg);
+        border: 2px solid white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dash-primary);
+        font-size: 0.9rem;
+        z-index: 1;
+      }
+
+      .activity-info h5 {
+        margin: 0 0 2px;
+        font-size: 0.95rem;
+      }
+
+      .activity-info span {
+        font-size: 0.8rem;
+        color: var(--dash-text-light);
+      }
+
+      /* Preferences */
+      .pref-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .pref-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .pref-text h6 {
+        margin: 0 0 2px;
+        font-size: 1rem;
+      }
+
+      .pref-text p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--dash-text-light);
+      }
+
+      .toggle {
+        width: 48px;
+        height: 24px;
+        background: #e0e0e0;
+        border-radius: 50px;
+        position: relative;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .toggle::after {
+        content: '';
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: white;
+        border-radius: 50%;
+        top: 3px;
+        left: 3px;
+        transition: transform 0.3s;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .toggle.active {
+        background: var(--dash-primary);
+      }
+
+      .toggle.active::after {
+        transform: translateX(24px);
+      }
+
+      /* Navbar Fixes */
+      .nav-logo-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: opacity 0.3s;
+      }
+
+      .nav-logo-link:hover {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 992px) {
+        .dashboard-content {
+          grid-template-columns: 1fr;
+          margin-top: -2rem;
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         }
+      }
+
+      @media (max-width: 600px) {
+        .dashboard-header h1 { font-size: 2rem; }
+        .dashboard-content { padding: 0 1rem; }
+        .actions-grid { grid-template-columns: 1fr 1fr; }
+      }
     </style>
+<<<<<<< HEAD
 </head>
 
 <body>
+=======
+  </head>
+  <body>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h1>StarFrame</h1>
-                <span class="nav-tagline">Your Personal Studio</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#dashboard" class="nav-link">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">My Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#activity" class="nav-link">Activity</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#preferences" class="nav-link">Settings</a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void(0)" onclick="logout()" class="nav-link" style="color: #dc3545;">Logout</a>
-                </li>
-            </ul>
-            <div class="user-profile" id="userProfile">
-                <!-- User profile will be loaded here -->
-            </div>
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="javascript:void(0)" onclick="reloadHomepage()" class="nav-logo-link" aria-label="StarFrame Home">
+            <h1>StarFrame</h1>
+            <span class="nav-tagline">Your Personal Studio</span>
+          </a>
         </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#dashboard" class="nav-link">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a href="#projects" class="nav-link">My Projects</a>
+          </li>
+          <li class="nav-item">
+            <a href="#preferences" class="nav-link">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="javascript:void(0)"
+              onclick="logout()"
+              class="nav-link"
+              style="color: #dc3545; font-weight: 700;"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Dashboard Header -->
-    <section class="dashboard-header">
-        <div class="container">
-            <img id="userAvatar" class="user-avatar" src="" alt="User Avatar" style="display: none;">
-            <h1 id="welcomeMessage">Welcome to Your Personal StarFrame Experience!</h1>
-            <p id="userEmail" class="lead"></p>
-            <div class="status-indicator">
-                <span class="status-online">
-                    <i class="fas fa-circle"></i> Online
-                </span>
-            </div>
+    <header class="dashboard-header">
+      <div class="container">
+        <div class="user-avatar-container">
+          <img
+            id="userAvatar"
+            class="user-avatar"
+            src="https://via.placeholder.com/150"
+            alt="User Avatar"
+          />
+          <div class="status-dot"></div>
         </div>
-    </section>
+        <h1 id="welcomeMessage">Welcome back!</h1>
+        <p id="userEmail" class="lead"></p>
+      </div>
+    </header>
 
     <!-- Main Dashboard Content -->
     <main class="dashboard-content">
+      <div class="dashboard-main">
         <!-- Quick Actions -->
         <section id="dashboard" class="dashboard-card">
+<<<<<<< HEAD
             <h2><i class="fas fa-tachometer-alt"></i> Quick Actions</h2>
             <div
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
@@ -237,10 +645,32 @@
                     <i class="fas fa-home"></i> Main Site
                 </a>
             </div>
+=======
+          <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+          <div class="actions-grid">
+            <a href="commission.html" class="action-btn primary">
+              <i class="fas fa-plus-circle"></i>
+              New Project
+            </a>
+            <a href="shop.html" class="action-btn">
+              <i class="fas fa-shopping-bag"></i>
+              Art Shop
+            </a>
+            <a href="pricing-guide.html" class="action-btn">
+              <i class="fas fa-tags"></i>
+              Pricing
+            </a>
+            <a href="buyer-guide.html" class="action-btn">
+              <i class="fas fa-map"></i>
+              Guide
+            </a>
+          </div>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         </section>
 
-        <!-- Personal Projects -->
+        <!-- Your Projects -->
         <section id="projects" class="dashboard-card">
+<<<<<<< HEAD
             <h2><i class="fas fa-folder-open"></i> Your Projects</h2>
             <p>Here are your commissioned projects and their current status.</p>
 
@@ -253,25 +683,38 @@
                         <a href="commission.html" class="btn btn-primary btn-sm">Commission Now</a>
                     </div>
                 </div>
+=======
+          <h2><i class="fas fa-layer-group"></i> Recent Projects</h2>
+          <div class="project-list" id="projectList">
+            <div class="project-item">
+              <div class="project-thumb"><i class="fas fa-palette"></i></div>
+              <div class="project-details">
+                <h4>No Active Projects</h4>
+                <p>You haven't commissioned any projects yet.</p>
+              </div>
+              <a href="commission.html" class="btn btn-primary btn-sm" style="padding: 8px 16px; font-size: 0.8rem;">Start Now</a>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
             </div>
+          </div>
         </section>
+      </div>
 
+      <div class="dashboard-sidebar">
         <!-- Activity Feed -->
-        <section id="activity" class="dashboard-card">
-            <h2><i class="fas fa-history"></i> Your Activity</h2>
-            <div class="activity-feed" id="activityFeed">
-                <div class="activity-item">
-                    <div class="activity-icon">
-                        <i class="fas fa-sign-in-alt"></i>
-                    </div>
-                    <div>
-                        <strong>Logged in to your dashboard</strong>
-                        <div style="font-size: 0.9em; color: #666;">Just now</div>
-                    </div>
-                </div>
+        <section id="activity" class="dashboard-card" style="padding: 2rem;">
+          <h2><i class="fas fa-stream"></i> Activity</h2>
+          <div class="activity-feed" id="activityFeed">
+            <div class="activity-item">
+              <div class="activity-icon"><i class="fas fa-user-check"></i></div>
+              <div class="activity-info">
+                <h5>Dashboard Access</h5>
+                <span>Securely logged in just now</span>
+              </div>
             </div>
+          </div>
         </section>
 
+<<<<<<< HEAD
         <!-- Preferences -->
         <section id="preferences" class="dashboard-card">
             <h2><i class="fas fa-cog"></i> Preferences</h2>
@@ -315,12 +758,37 @@
                 <button onclick="savePreferences()" class="btn btn-primary">
                     <i class="fas fa-save"></i> Save Preferences
                 </button>
+=======
+        <!-- Settings/Preferences -->
+        <section id="preferences" class="dashboard-card" style="padding: 2rem;">
+          <h2><i class="fas fa-sliders-h"></i> Settings</h2>
+          <div class="pref-group">
+            <div class="pref-item">
+              <div class="pref-text">
+                <h6>Notifications</h6>
+                <p>Email updates</p>
+              </div>
+              <div class="toggle active" onclick="togglePreference('emailNotifications')"></div>
             </div>
+            <div class="pref-item">
+              <div class="pref-text">
+                <h6>Real-time</h6>
+                <p>Instant alerts</p>
+              </div>
+              <div class="toggle active" onclick="togglePreference('realTimeUpdates')"></div>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+            </div>
+            <button onclick="savePreferences()" class="btn btn-primary w-100" style="margin-top: 1rem; background: var(--dash-primary); border: none;">
+              Save Settings
+            </button>
+          </div>
         </section>
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
+<<<<<<< HEAD
         <div class="container">
             <div class="footer-content">
                 <div class="footer-main">
@@ -334,20 +802,33 @@
                             id="footerUserName"></span>.</p>
                 </div>
             </div>
+=======
+      <div class="container">
+        <div class="footer-bottom" style="border: none; padding-top: 0;">
+          <p>
+            &copy; 2025 StarFrame Animation Studio. All rights reserved.<br>
+            Personalized Studio for <span id="footerUserName" style="color: var(--primary-warm); font-weight: 600;"></span>
+          </p>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         </div>
+      </div>
     </footer>
 
-    <script>
-        // Global variables
-        let socket;
-        let userPreferences = {
-            emailNotifications: true,
-            realTimeUpdates: true,
-            marketing: false,
-            activityTracking: true
-        };
-        let currentUser = null;
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
 
+    <script>
+      let socket, auth, db, currentUser = null;
+      let userPreferences = {
+        emailNotifications: true,
+        realTimeUpdates: true,
+        activityTracking: true
+      };
+
+<<<<<<< HEAD
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function () {
             initializeSocket();
@@ -360,8 +841,55 @@
             if (urlParams.get('welcome') === 'true') {
                 showWelcomeMessage();
             }
-        });
+=======
+      function reloadHomepage() {
+        window.location.href = "index.html?reload=" + Date.now();
+      }
 
+      async function logout() {
+        try {
+          if (auth) {
+            await auth.signOut();
+            // Clear any local session indicators if any
+            localStorage.removeItem('starframe_user');
+            // Redirect to home with a logout flag
+            window.location.href = "index.html?logout=success";
+          }
+        } catch (error) {
+          console.error("Logout error:", error);
+          window.location.href = "index.html";
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeFirebaseDashboard();
+        // Initialize Socket.io if available
+        if (typeof io !== 'undefined') {
+          socket = io();
+          socket.on('connect', () => console.log('Real-time active'));
+        }
+      });
+
+      function initializeFirebaseDashboard() {
+        if (!window.starframeFirebase?.isConfigured) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        auth = window.starframeFirebase.getAuth();
+        db = window.starframeFirebase.getFirestore();
+
+        auth.onAuthStateChanged(async function (user) {
+          if (!user) {
+            window.location.href = "login.html";
+            return;
+          }
+          await loadUserInfo(user);
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+        });
+      }
+
+<<<<<<< HEAD
         // Initialize Socket.IO connection
         function initializeSocket() {
             socket = io();
@@ -392,8 +920,38 @@
             socket.on('disconnect', function () {
                 console.log('Disconnected from real-time server');
             });
-        }
+=======
+      async function loadUserInfo(authUser) {
+        try {
+          const userDocRef = db.collection("users").doc(authUser.uid);
+          const snapshot = await userDocRef.get();
+          const storedData = snapshot.exists ? snapshot.data() : {};
 
+          currentUser = {
+            id: authUser.uid,
+            name: storedData.name || authUser.displayName || authUser.email.split("@")[0],
+            email: authUser.email,
+            picture: authUser.photoURL || storedData.picture || "https://ui-avatars.com/api/?name=" + (authUser.displayName || authUser.email) + "&background=d4a574&color=fff",
+            preferences: storedData.preferences || userPreferences
+          };
+
+          displayUserInfo(currentUser);
+          userPreferences = { ...userPreferences, ...currentUser.preferences };
+          updatePreferencesUI();
+
+          await userDocRef.set({
+            email: currentUser.email,
+            name: currentUser.name,
+            lastSeen: window.firebase.firestore.FieldValue.serverTimestamp()
+          }, { merge: true });
+
+        } catch (error) {
+          console.error("Error:", error);
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+        }
+      }
+
+<<<<<<< HEAD
         // Load user information
         async function loadUserInfo() {
             try {
@@ -757,18 +1315,50 @@
                 const target = e.target.textContent.trim() || e.target.className;
                 trackAction('click', target);
             }
-        });
-    </script>
+=======
+      function displayUserInfo(user) {
+        document.getElementById("welcomeMessage").textContent = `Welcome back, ${user.name.split(' ')[0]}!`;
+        document.getElementById("userEmail").textContent = user.email;
+        document.getElementById("footerUserName").textContent = user.name;
+        document.getElementById("userAvatar").src = user.picture;
+        document.title = `${user.name} | StarFrame Studio`;
+      }
 
+      function togglePreference(pref) {
+        const el = event.target;
+        el.classList.toggle('active');
+        userPreferences[pref] = el.classList.contains('active');
+      }
+
+      function updatePreferencesUI() {
+        Object.keys(userPreferences).forEach(pref => {
+          const el = document.querySelector(`[onclick="togglePreference('${pref}')"]`);
+          if (el) userPreferences[pref] ? el.classList.add('active') : el.classList.remove('active');
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+        });
+      }
+
+      async function savePreferences() {
+        try {
+          await db.collection("users").doc(currentUser.id).update({ preferences: userPreferences });
+          alert("Settings saved! ✨");
+        } catch (e) { alert("Error saving settings"); }
+      }
+    </script>
     <!-- Back to Top Button -->
-    <button id="back-to-top-btn" title="Go to top">
-        <i class="fas fa-arrow-up"></i>
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
     </button>
 
     <script src="js/ui-effects.js"></script>
     <script src="js/commission-dialog.js"></script>
     <script src="js/sparkle-effects.js"></script>
     <script src="js/script-new.js"></script>
+<<<<<<< HEAD
 </body>
 
 </html>
+=======
+  </body>
+</html>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f

@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8">
@@ -17,11 +18,37 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/admin.css">
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StarFrame Admin Dashboard</title>
+    <meta
+      name="description"
+      content="Admin dashboard for StarFrame Animation Studio"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Stylesheets -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/admin.css" />
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
     <!-- Socket.IO for real-time features -->
     <script src="/socket.io/socket.io.js"></script>
 
     <!-- Security Headers -->
+<<<<<<< HEAD
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline' https://vitals.vercel-insights.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://vitals.vercel-insights.com;">
 
@@ -30,16 +57,28 @@
 </head>
 
 <body>
+=======
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://vitals.vercel-insights.com https://www.gstatic.com https://www.googleapis.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://vitals.vercel-insights.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://firebaseinstallations.googleapis.com https://www.googleapis.com;"
+    />
+
+    <!-- Vercel Web Analytics for non-Next.js sites -->
+    <script defer src="/_vercel/insights/script.js"></script>
+  </head>
+  <body>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
     <!-- Loading Screen -->
     <div id="loadingScreen" class="loading-screen">
-        <div class="loading-spinner">
-            <i class="fas fa-star fa-spin"></i>
-        </div>
-        <div class="loading-text">Loading StarFrame Admin...</div>
+      <div class="loading-spinner">
+        <i class="fas fa-star fa-spin"></i>
+      </div>
+      <div class="loading-text">Loading StarFrame Admin...</div>
     </div>
 
     <!-- Login Screen -->
     <div id="loginScreen" class="login-screen hidden">
+<<<<<<< HEAD
         <div class="login-container">
             <div class="login-header">
                 <h1>StarFrame Admin</h1>
@@ -76,18 +115,177 @@
                     <span>Protected by Advanced Security</span>
                 </div>
             </div>
+=======
+      <div class="login-container">
+        <div class="login-header">
+          <h1>StarFrame Admin</h1>
+          <p>Welcome back! Sign in to access your creative control center</p>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         </div>
+
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <label for="username">Admin Email</label>
+            <input
+              type="email"
+              id="username"
+              name="username"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              autocomplete="current-password"
+            />
+          </div>
+
+          <div id="twoFactorGroup" class="form-group hidden">
+            <label for="twoFactorCode">2FA Code</label>
+            <input
+              type="text"
+              id="twoFactorCode"
+              name="twoFactorCode"
+              maxlength="6"
+              placeholder="000000"
+            />
+          </div>
+
+          <button type="submit" id="loginButton" class="login-button">
+            <i class="fas fa-sign-in-alt"></i>
+            Sign In
+          </button>
+
+          <div id="loginError" class="error-message hidden"></div>
+        </form>
+
+        <div class="login-footer">
+          <div class="security-info">
+            <i class="fas fa-shield-alt"></i>
+            <span>Protected by Advanced Security</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Main Dashboard -->
     <div id="dashboard" class="dashboard hidden">
-        <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="sidebar-header">
-                <h2>✨ StarFrame</h2>
-                <span class="admin-badge">Admin Panel</span>
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <h2>✨ StarFrame</h2>
+          <span class="admin-badge">Admin Panel</span>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li>
+            <a
+              href="#dashboard-overview"
+              class="menu-item active"
+              data-section="overview"
+            >
+              <i class="fas fa-sparkles"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#analytics" class="menu-item" data-section="analytics">
+              <i class="fas fa-chart-line"></i>
+              Analytics
+            </a>
+          </li>
+          <li>
+            <a href="#visitors" class="menu-item" data-section="visitors">
+              <i class="fas fa-users"></i>
+              Visitors
+            </a>
+          </li>
+          <li>
+            <a href="#security" class="menu-item" data-section="security">
+              <i class="fas fa-shield-alt"></i>
+              Security
+            </a>
+          </li>
+          <li>
+            <a href="#clients" class="menu-item" data-section="clients">
+              <i class="fas fa-user-tie"></i>
+              Clients
+            </a>
+          </li>
+          <li>
+            <a href="#payments" class="menu-item" data-section="payments">
+              <i class="fas fa-credit-card"></i>
+              Payments
+            </a>
+          </li>
+          <li>
+            <a href="#commissions" class="menu-item" data-section="commissions">
+              <i class="fas fa-palette"></i>
+              Commissions
+            </a>
+          </li>
+          <li>
+            <a href="#content" class="menu-item" data-section="content">
+              <i class="fas fa-pen-fancy"></i>
+              Content
+            </a>
+          </li>
+          <li>
+            <a href="#system" class="menu-item" data-section="system">
+              <i class="fas fa-cogs"></i>
+              System
+            </a>
+          </li>
+          <li>
+            <a href="#logs" class="menu-item" data-section="logs">
+              <i class="fas fa-scroll"></i>
+              Logs
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span id="currentUsername">Admin</span>
+          </div>
+          <button id="logoutButton" class="logout-button">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+          </button>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+          <div class="header-left">
+            <button id="sidebarToggle" class="sidebar-toggle">
+              <i class="fas fa-bars"></i>
+            </button>
+            <h1 id="pageTitle">Dashboard Overview</h1>
+          </div>
+
+          <div class="header-right">
+            <div class="header-stats">
+              <div class="stat-item">
+                <i class="fas fa-circle text-green"></i>
+                <span>Online</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <span id="liveVisitors">0</span> <small>live</small>
+              </div>
             </div>
 
+<<<<<<< HEAD
             <ul class="sidebar-menu">
                 <li><a href="#dashboard-overview" class="menu-item active" data-section="overview">
                         <i class="fas fa-sparkles"></i>
@@ -143,24 +341,198 @@
                 <div class="user-info">
                     <i class="fas fa-user-circle"></i>
                     <span id="currentUsername">Admin</span>
-                </div>
-                <button id="logoutButton" class="logout-button">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Logout
-                </button>
+=======
+            <div class="user-menu">
+              <button class="user-menu-toggle">
+                <i class="fas fa-user-circle"></i>
+                <span id="userMenuName">Admin</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="user-menu-dropdown hidden">
+                <a href="#" id="profileSettings"
+                  ><i class="fas fa-user"></i> Profile</a
+                >
+                <a href="#" id="securitySettings"
+                  ><i class="fas fa-shield-alt"></i> Security</a
+                >
+                <a href="#" id="logoutLink"
+                  ><i class="fas fa-sign-out-alt"></i> Logout</a
+                >
+              </div>
             </div>
-        </nav>
+          </div>
+        </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Header -->
-            <header class="dashboard-header">
-                <div class="header-left">
-                    <button id="sidebarToggle" class="sidebar-toggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <h1 id="pageTitle">Dashboard Overview</h1>
+        <!-- Content Sections -->
+        <div class="content-wrapper">
+          <!-- Overview Section -->
+          <section id="overview-section" class="content-section active">
+            <div class="overview-grid">
+              <!-- Quick Stats -->
+              <div class="stats-row">
+                <div class="stat-card">
+                  <div class="stat-icon">
+                    <i class="fas fa-eye"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-value" id="totalVisitors">0</div>
+                    <div class="stat-label">Total Visitors</div>
+                    <div class="stat-change positive">
+                      <i class="fas fa-arrow-up"></i>
+                      <span id="visitorsChange">0%</span> from last week
+                    </div>
+                  </div>
                 </div>
+
+                <div class="stat-card">
+                  <div
+                    class="stat-icon"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #f39c12 0%,
+                        #e67e22 100%
+                      );
+                    "
+                  >
+                    <i class="fas fa-shield-alt"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-value" id="securityAlerts">0</div>
+                    <div class="stat-label">Security Alerts</div>
+                    <div class="stat-change" id="alertsChange">
+                      <i class="fas fa-check"></i>
+                      <span>All Clear</span>
+                    </div>
+                  </div>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+                </div>
+
+                <div class="stat-card">
+                  <div
+                    class="stat-icon"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #3498db 0%,
+                        #2980b9 100%
+                      );
+                    "
+                  >
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-value" id="newInquiries">0</div>
+                    <div class="stat-label">New Inquiries</div>
+                    <div class="stat-change positive">
+                      <i class="fas fa-plus"></i>
+                      <span id="inquiriesChange">0</span> today
+                    </div>
+                  </div>
+                </div>
+
+                <div class="stat-card">
+                  <div
+                    class="stat-icon"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #27ae60 0%,
+                        #229954 100%
+                      );
+                    "
+                  >
+                    <i class="fas fa-server"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-value" id="systemUptime">99.9%</div>
+                    <div class="stat-label">System Uptime</div>
+                    <div class="stat-change positive">
+                      <i class="fas fa-check"></i>
+                      <span>Excellent</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Charts Row -->
+              <div class="charts-row">
+                <div class="chart-card">
+                  <div class="chart-header">
+                    <h3>Visitor Analytics</h3>
+                    <div class="chart-controls">
+                      <select id="visitorsTimeframe">
+                        <option value="24h">Last 24 Hours</option>
+                        <option value="7d">Last 7 Days</option>
+                        <option value="30d">Last 30 Days</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="visitorsChart"></canvas>
+                  </div>
+                </div>
+
+                <div class="chart-card">
+                  <div class="chart-header">
+                    <h3>Security Events</h3>
+                    <div class="chart-controls">
+                      <select id="securityTimeframe">
+                        <option value="24h">Last 24 Hours</option>
+                        <option value="7d">Last 7 Days</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="securityChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recent Activity -->
+              <div class="activity-row">
+                <div class="activity-card card-fancy">
+                  <div class="card-header">
+                    <h3>Recent Activities</h3>
+                    <a href="#logs" class="view-all">View All</a>
+                  </div>
+                  <div class="activity-list" id="recentActivities">
+                    <div class="activity-item">
+                      <div class="activity-icon">
+                        <i class="fas fa-magic"></i>
+                      </div>
+                      <div class="activity-content">
+                        <div class="activity-text">System initialized</div>
+                        <div class="activity-time">Just now</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="quick-actions-card card-fancy">
+                  <div class="card-header">
+                    <h3>Quick Actions</h3>
+                  </div>
+                  <div class="quick-actions-grid">
+                    <button class="quick-action-btn" data-action="backup">
+                      <i class="fas fa-cloud-download-alt"></i>
+                      <span>Backup</span>
+                    </button>
+                    <button class="quick-action-btn" data-action="security-scan">
+                      <i class="fas fa-shield-virus"></i>
+                      <span>Scan</span>
+                    </button>
+                    <button class="quick-action-btn" data-action="clear-cache">
+                      <i class="fas fa-broom"></i>
+                      <span>Clean</span>
+                    </button>
+                    <button class="quick-action-btn" data-action="update-content">
+                      <i class="fas fa-sync-alt"></i>
+                      <span>Sync</span>
+                    </button>
+                  </div>
+                </div>
+<<<<<<< HEAD
 
                 <div class="header-right">
                     <div class="header-stats">
@@ -490,49 +862,183 @@
                         </table>
                     </div>
                 </section>
+=======
+              </div>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
             </div>
-        </main>
+          </section>
+
+    <!-- Magic Elements -->
+    <div class="magic-star" style="top: 10%; right: 5%; font-size: 1.5rem;"><i class="fas fa-star"></i></div>
+    <div class="magic-star" style="top: 40%; right: 12%; font-size: 0.8rem; animation-delay: 1s;"><i class="fas fa-star"></i></div>
+    <div class="magic-star" style="top: 70%; right: 8%; font-size: 1.2rem; animation-delay: 2s;"><i class="fas fa-star"></i></div>
+
+
+          <!-- Other sections will be loaded dynamically -->
+          <section id="analytics-section" class="content-section">
+            <div class="section-placeholder">
+              <i class="fas fa-chart-line"></i>
+              <h3>Analytics & Insights</h3>
+              <p>
+                Comprehensive analytics and data visualization tools coming
+                soon.
+              </p>
+            </div>
+          </section>
+
+          <section id="security-section" class="content-section">
+            <div class="section-placeholder">
+              <i class="fas fa-shield-alt"></i>
+              <h3>Security Center</h3>
+              <p>
+                Advanced security monitoring and threat management dashboard.
+              </p>
+            </div>
+          </section>
+
+          <section id="system-section" class="content-section">
+            <div class="section-placeholder">
+              <i class="fas fa-cogs"></i>
+              <h3>System Management</h3>
+              <p>System configuration and maintenance control panel.</p>
+            </div>
+          </section>
+
+          <section id="commissions-section" class="content-section">
+            <div class="section-header">
+              <h2>Commission Requests</h2>
+              <div class="search-bar">
+                <input
+                  type="text"
+                  id="commissionSearch"
+                  placeholder="Search by ID..."
+                />
+                <button id="commissionSearchBtn">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+            <div class="table-container">
+              <table class="commission-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Service</th>
+                    <th>Budget</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="commissionsTableBody">
+                  <!-- Commission rows will be inserted here -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="content-section" class="content-section">
+            <div class="section-header">
+              <h2>Content Management</h2>
+            </div>
+            <div
+              class="section-placeholder"
+              style="text-align: left; max-width: 760px"
+            >
+              <p>
+                These fields update the live homepage in real time for every
+                visitor.
+              </p>
+              <div class="form-group" style="margin-top: 1rem">
+                <label for="heroTitleInput">Homepage Hero Title</label>
+                <input
+                  id="heroTitleInput"
+                  type="text"
+                  placeholder="Where Imagination and Emotion Come Alive"
+                />
+              </div>
+              <div class="form-group" style="margin-top: 1rem">
+                <label for="heroSubtitleInput">Homepage Hero Subtitle</label>
+                <textarea
+                  id="heroSubtitleInput"
+                  rows="3"
+                  placeholder="A warm, creative studio where dreams take shape through the magic of animation"
+                ></textarea>
+              </div>
+              <button
+                id="saveContentButton"
+                class="btn btn-primary"
+                style="margin-top: 1rem"
+              >
+                <i class="fas fa-save"></i>
+                Save & Publish Worldwide
+              </button>
+            </div>
+          </section>
+
+          <section id="logs-section" class="content-section">
+            <div class="section-placeholder">
+              <i class="fas fa-scroll"></i>
+              <h3>System Logs</h3>
+              <p>
+                Detailed logs are available via the backend API and analytics
+                streams.
+              </p>
+            </div>
+          </section>
+        </div>
+      </main>
     </div>
 
     <!-- Notification Toast -->
     <div id="notification" class="notification hidden">
-        <div class="notification-content">
-            <i class="notification-icon"></i>
-            <div class="notification-text"></div>
-        </div>
-        <button class="notification-close">
-            <i class="fas fa-times"></i>
-        </button>
+      <div class="notification-content">
+        <i class="notification-icon"></i>
+        <div class="notification-text"></div>
+      </div>
+      <button class="notification-close">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
 
     <!-- Modal Container -->
     <div id="modalContainer" class="modal-container hidden">
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Modal Title</h3>
-                <button class="modal-close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Dynamic content -->
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary modal-cancel">Cancel</button>
-                <button class="btn btn-primary modal-confirm">Confirm</button>
-            </div>
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Modal Title</h3>
+          <button class="modal-close">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
+        <div class="modal-body">
+          <!-- Dynamic content -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary modal-cancel">Cancel</button>
+          <button class="btn btn-primary modal-confirm">Confirm</button>
+        </div>
+      </div>
     </div>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top-btn" title="Go to top">
-        <i class="fas fa-arrow-up"></i>
+    <button id="backToTop" class="back-to-top" title="Go to top">
+      <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="/js/firebase-config.js"></script>
     <script src="js/admin.js"></script>
+<<<<<<< HEAD
 </body>
 
 </html>
+=======
+  </body>
+</html>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f

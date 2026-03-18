@@ -9,6 +9,7 @@ const fs = require('fs');
 
 const router = express.Router();
 
+<<<<<<< HEAD
 // Configure multer for product uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -26,6 +27,10 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({ storage: storage });
+=======
+// Protect all admin routes.
+router.use(auth.requireAuth);
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
 // Apply activity logging to all routes
 router.use(auth.logActivity);

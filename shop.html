@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8">
@@ -36,15 +37,881 @@
 
     <!-- Razorpay SDK -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Art Shop - Ready-Made Digital Art & Prints | StarFrame Animation Studio
+    </title>
+    <meta
+      name="description"
+      content="Browse and purchase ready-made digital art, illustrations, and prints instantly. High-quality artwork available for immediate download or shipping worldwide."
+    />
+    <meta
+      name="keywords"
+      content="buy digital art, ready-made illustrations, art prints, instant download art, digital artwork shop"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Art Shop - StarFrame Animation Studio" />
+    <meta
+      property="og:description"
+      content="Browse and purchase ready-made digital art, illustrations, and prints instantly."
+    />
+    <meta
+      property="og:image"
+      content="images/StarFrame Animation Studio/landscape.jpeg"
+    />
+    <meta property="og:url" content="https://starframe.studio/shop" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="Art Shop - StarFrame Animation Studio"
+    />
+    <meta
+      property="twitter:description"
+      content="Browse and purchase ready-made digital art instantly."
+    />
+    <meta
+      property="twitter:image"
+      content="images/StarFrame Animation Studio/landscape.jpeg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <link rel="stylesheet" href="css/style-new.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
     <style>
-        .shop-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 120px 0 80px;
-            text-align: center;
-            color: white;
+      :root {
+        --shop-ink: #2f2925;
+        --shop-line: rgba(184, 147, 95, 0.16);
+        --shop-panel: rgba(255, 255, 255, 0.78);
+        --shop-shadow: 0 20px 60px rgba(60, 60, 60, 0.12);
+      }
+
+      .shop-page {
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(244, 181, 160, 0.2),
+            transparent 34%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(212, 165, 116, 0.18),
+            transparent 28%
+          ),
+          linear-gradient(180deg, #fbf6ee 0%, #fefcf8 36%, #f7f1e8 100%);
+      }
+
+      .shop-page::before,
+      .shop-page::after {
+        content: "";
+        position: fixed;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 0;
+        filter: blur(14px);
+        opacity: 0.45;
+      }
+
+      .shop-page::before {
+        top: 72px;
+        left: -120px;
+        background: rgba(244, 181, 160, 0.35);
+      }
+
+      .shop-page::after {
+        right: -140px;
+        bottom: 10%;
+        background: rgba(212, 165, 116, 0.28);
+      }
+
+      .shop-shell {
+        position: relative;
+        z-index: 1;
+      }
+
+      .shop-hero {
+        padding: 132px 0 48px;
+      }
+
+      .shop-hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: 2rem;
+        align-items: stretch;
+      }
+
+      .shop-hero-copy,
+      .shop-hero-panel,
+      .shop-toolbar,
+      .product-card,
+      .cart-sidebar,
+      .modal-content {
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .shop-hero-copy {
+        padding: 3rem;
+        border-radius: 32px;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 253, 249, 0.92),
+          rgba(255, 247, 237, 0.76)
+        );
+        border: 1px solid rgba(184, 147, 95, 0.18);
+        box-shadow: var(--shop-shadow);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.55rem 1rem;
+        border-radius: 999px;
+        background: rgba(212, 165, 116, 0.16);
+        color: var(--primary-dark);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+      }
+
+      .shop-hero h1 {
+        font-size: clamp(2.9rem, 5vw, 4.6rem);
+        color: var(--shop-ink);
+        margin-bottom: 1rem;
+      }
+
+      .shop-hero p {
+        font-size: 1.08rem;
+        max-width: 44rem;
+        color: var(--text-medium);
+        margin-bottom: 1.75rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .hero-highlights {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .hero-highlight {
+        padding: 1rem 1.1rem;
+        background: rgba(255, 255, 255, 0.65);
+        border: 1px solid var(--shop-line);
+        border-radius: 20px;
+      }
+
+      .hero-highlight strong {
+        display: block;
+        font-size: 1.3rem;
+        color: var(--shop-ink);
+        margin-bottom: 0.2rem;
+      }
+
+      .hero-highlight span {
+        color: var(--text-medium);
+        font-size: 0.92rem;
+      }
+
+      .shop-hero-panel {
+        position: relative;
+        border-radius: 32px;
+        background: linear-gradient(
+          150deg,
+          rgba(77, 59, 35, 0.95),
+          rgba(184, 147, 95, 0.88)
+        );
+        color: var(--white);
+        padding: 2.2rem;
+        box-shadow: var(--shop-shadow);
+        overflow: hidden;
+      }
+
+      .shop-hero-panel::before {
+        content: "";
+        position: absolute;
+        inset: auto -10% -20% auto;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .hero-panel-card {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-panel-card h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--white);
+      }
+
+      .hero-panel-card p {
+        color: rgba(255, 255, 255, 0.84);
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-panel-list {
+        list-style: none;
+        display: grid;
+        gap: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-panel-list li {
+        display: flex;
+        gap: 0.8rem;
+        align-items: flex-start;
+      }
+
+      .hero-panel-list i {
+        color: #ffe6b0;
+        margin-top: 0.2rem;
+      }
+
+      .hero-note {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.85rem 1rem;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .shop-toolbar-wrap {
+        position: sticky;
+        top: 88px;
+        z-index: 40;
+        padding: 0 0 1.5rem;
+      }
+
+      .shop-toolbar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 26px;
+        border: 1px solid rgba(184, 147, 95, 0.2);
+        background: rgba(255, 252, 247, 0.86);
+        box-shadow: 0 12px 30px rgba(60, 60, 60, 0.08);
+      }
+
+      .toolbar-filters {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.9rem;
+      }
+
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+      }
+
+      .filter-group label {
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .filter-group select,
+      .filter-group input {
+        width: 100%;
+        padding: 0.95rem 1rem;
+        border-radius: 16px;
+        border: 1px solid rgba(184, 147, 95, 0.2);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--text-dark);
+        font-size: 0.96rem;
+        transition:
+          border-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .filter-group select:focus,
+      .filter-group input:focus {
+        outline: none;
+        border-color: rgba(212, 165, 116, 0.6);
+        box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .cart-icon {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.95rem 1.25rem;
+        border-radius: 999px;
+        cursor: pointer;
+        background: linear-gradient(
+          135deg,
+          var(--primary-warm),
+          var(--primary-dark)
+        );
+        color: var(--white);
+        border: none;
+        box-shadow: 0 16px 32px rgba(184, 147, 95, 0.26);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .cart-icon:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 22px 40px rgba(184, 147, 95, 0.32);
+      }
+
+      .cart-count {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        color: var(--white);
+        border-radius: 999px;
+        min-width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 0 0.5rem;
+      }
+
+      .shop-gallery {
+        padding: 0 0 4.5rem;
+      }
+
+      .gallery-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 1rem;
+        margin: 0 0 1.5rem;
+      }
+
+      .gallery-header p {
+        max-width: 42rem;
+        color: var(--text-medium);
+      }
+
+      .results-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.7rem 1rem;
+        border-radius: 999px;
+        background: rgba(212, 165, 116, 0.14);
+        border: 1px solid rgba(184, 147, 95, 0.2);
+        color: var(--primary-dark);
+        font-weight: 700;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 1.6rem;
+      }
+
+      .product-card {
+        position: relative;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.94),
+          rgba(255, 250, 243, 0.9)
+        );
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 18px 42px rgba(60, 60, 60, 0.1);
+        border: 1px solid rgba(184, 147, 95, 0.16);
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease,
+          border-color 0.35s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 26px 54px rgba(60, 60, 60, 0.15);
+        border-color: rgba(184, 147, 95, 0.3);
+      }
+
+      .product-visual {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4 / 3;
+        background: linear-gradient(
+          135deg,
+          rgba(232, 213, 183, 0.55),
+          rgba(255, 244, 230, 0.2)
+        );
+      }
+
+      .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .product-card:hover .product-image {
+        transform: scale(1.06);
+      }
+
+      .product-badges {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 0.8rem;
+        pointer-events: none;
+      }
+
+      .product-category,
+      .product-format {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.5rem 0.85rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid rgba(184, 147, 95, 0.14);
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--shop-ink);
+      }
+
+      .product-info {
+        padding: 1.4rem 1.4rem 1.5rem;
+      }
+
+      .product-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-bottom: 0.7rem;
+      }
+
+      .product-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.45rem;
+        color: var(--shop-ink);
+      }
+
+      .product-description {
+        color: var(--text-medium);
+        font-size: 0.95rem;
+        line-height: 1.65;
+        margin-bottom: 1rem;
+      }
+
+      .product-meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .meta-card {
+        padding: 0.85rem 0.9rem;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid var(--shop-line);
+      }
+
+      .meta-card span {
+        display: block;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-light);
+        margin-bottom: 0.2rem;
+      }
+
+      .meta-card strong {
+        color: var(--shop-ink);
+        font-size: 0.95rem;
+      }
+
+      .product-details {
+        display: flex;
+        gap: 0.55rem;
+        margin-bottom: 1.15rem;
+        flex-wrap: wrap;
+      }
+
+      .detail-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: rgba(212, 165, 116, 0.12);
+        padding: 0.5rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        color: var(--shop-ink);
+      }
+
+      .product-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(184, 147, 95, 0.16);
+      }
+
+      .product-price {
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        line-height: 1;
+      }
+
+      .price-usd {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--text-light);
+        font-weight: 500;
+        margin-top: 0.35rem;
+      }
+
+      .add-to-cart-btn,
+      .checkout-btn,
+      .payment-option {
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 700;
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease,
+          opacity 0.28s ease;
+      }
+
+      .add-to-cart-btn {
+        padding: 0.92rem 1.2rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-warm),
+          var(--primary-dark)
+        );
+        color: var(--white);
+        box-shadow: 0 12px 24px rgba(184, 147, 95, 0.22);
+      }
+
+      .add-to-cart-btn:hover,
+      .checkout-btn:hover,
+      .payment-option:hover {
+        transform: translateY(-2px);
+      }
+
+      .add-to-cart-btn:disabled {
+        opacity: 0.72;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 3rem 1.5rem;
+        border-radius: 28px;
+        border: 1px dashed rgba(184, 147, 95, 0.35);
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .empty-state i {
+        font-size: 2.8rem;
+        color: var(--primary-dark);
+        margin-bottom: 0.85rem;
+      }
+
+      .cart-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(41, 32, 24, 0.42);
+        backdrop-filter: blur(8px);
+        z-index: 999;
+        display: none;
+      }
+
+      .cart-overlay.active {
+        display: block;
+      }
+
+      .cart-sidebar {
+        position: fixed;
+        right: -420px;
+        top: 0;
+        width: min(420px, 100vw);
+        height: 100vh;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 253, 249, 0.97),
+          rgba(249, 242, 233, 0.98)
+        );
+        box-shadow: -16px 0 48px rgba(60, 60, 60, 0.18);
+        transition: right 0.35s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid rgba(184, 147, 95, 0.16);
+      }
+
+      .cart-sidebar.active {
+        right: 0;
+      }
+
+      .cart-header {
+        padding: 1.35rem;
+        color: var(--shop-ink);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(184, 147, 95, 0.16);
+      }
+
+      .cart-close {
+        background: rgba(212, 165, 116, 0.14);
+        border: none;
+        color: var(--shop-ink);
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      .cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.2rem;
+        display: grid;
+        gap: 0.9rem;
+        align-content: start;
+      }
+
+      .cart-item {
+        display: grid;
+        grid-template-columns: 82px minmax(0, 1fr) auto;
+        gap: 0.9rem;
+        padding: 0.9rem;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(184, 147, 95, 0.14);
+      }
+
+      .cart-item-image {
+        width: 82px;
+        height: 82px;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+
+      .cart-item-title {
+        font-weight: 700;
+        color: var(--shop-ink);
+        margin-bottom: 0.3rem;
+      }
+
+      .cart-item-meta {
+        color: var(--text-light);
+        font-size: 0.84rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .cart-item-price {
+        color: var(--primary-dark);
+        font-weight: 700;
+      }
+
+      .cart-item-remove {
+        background: rgba(231, 76, 60, 0.12);
+        color: #cc493d;
+        border: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        cursor: pointer;
+        align-self: start;
+      }
+
+      .cart-footer {
+        padding: 1.25rem;
+        border-top: 1px solid rgba(184, 147, 95, 0.16);
+        background: rgba(255, 255, 255, 0.66);
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--shop-ink);
+      }
+
+      .cart-subtotal-note {
+        color: var(--text-light);
+        font-size: 0.88rem;
+        margin-top: -0.35rem;
+        margin-bottom: 1rem;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        padding: 1rem 1.2rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-warm),
+          var(--primary-dark)
+        );
+        color: var(--white);
+        box-shadow: 0 14px 30px rgba(184, 147, 95, 0.24);
+      }
+
+      .empty-cart {
+        text-align: center;
+        padding: 3rem 1.25rem;
+        color: var(--text-light);
+      }
+
+      .empty-cart i {
+        font-size: 2.6rem;
+        color: var(--primary-dark);
+        margin-bottom: 1rem;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        inset: 0;
+        background-color: rgba(41, 32, 24, 0.54);
+        padding: 1.5rem;
+      }
+
+      .modal-content {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 253, 249, 0.97),
+          rgba(249, 242, 233, 0.96)
+        );
+        margin: 4vh auto;
+        padding: 2rem;
+        border-radius: 28px;
+        width: min(720px, 100%);
+        max-height: 88vh;
+        overflow-y: auto;
+        box-shadow: 0 24px 70px rgba(60, 60, 60, 0.22);
+        border: 1px solid rgba(184, 147, 95, 0.2);
+      }
+
+      .modal-close {
+        float: right;
+        font-size: 1.75rem;
+        font-weight: bold;
+        cursor: pointer;
+        color: var(--text-light);
+      }
+
+      .modal-close:hover {
+        color: var(--shop-ink);
+      }
+
+      .summary-panel,
+      .payment-panel,
+      .payment-details {
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(184, 147, 95, 0.16);
+        padding: 1.25rem;
+      }
+
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(184, 147, 95, 0.12);
+      }
+
+      .summary-item:last-child {
+        border-bottom: none;
+      }
+
+      .payment-grid {
+        display: grid;
+        gap: 0.85rem;
+        margin-top: 1rem;
+      }
+
+      .payment-option {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.1rem;
+        background: rgba(255, 255, 255, 0.86);
+        color: var(--shop-ink);
+        border: 1px solid rgba(184, 147, 95, 0.16);
+      }
+
+      .payment-option strong {
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+
+      .payment-option span {
+        color: var(--text-medium);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 1100px) {
+        .shop-hero-grid,
+        .toolbar-filters {
+          grid-template-columns: 1fr;
         }
 
+<<<<<<< HEAD
         .shop-hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -95,19 +962,16 @@
             font-size: 0.95rem;
         }
 
-        .cart-icon {
-            margin-left: auto;
-            position: relative;
-            background: #667eea;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
+=======
+        .shop-toolbar {
+          grid-template-columns: 1fr;
         }
+
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+        .cart-icon {
+          justify-content: center;
+        }
+<<<<<<< HEAD
 
         .cart-icon:hover {
             background: #5568d3;
@@ -389,17 +1253,22 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
 
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
+=======
+      }
+
+      @media (max-width: 768px) {
+        .shop-hero {
+          padding-top: 108px;
         }
 
+        .shop-hero-copy,
+        .shop-hero-panel,
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+        .modal-content {
+          padding: 1.4rem;
+        }
+
+<<<<<<< HEAD
         .modal-close {
             float: right;
             font-size: 28px;
@@ -425,8 +1294,35 @@
             .products-grid {
                 grid-template-columns: 1fr;
             }
+=======
+        .shop-hero h1 {
+          font-size: 2.35rem;
         }
+
+        .hero-highlights,
+        .product-meta,
+        .product-footer,
+        .gallery-header {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .product-footer {
+          align-items: stretch;
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+        }
+
+        .product-head {
+          flex-direction: column;
+        }
+
+        .cart-sidebar {
+          width: 100%;
+          right: -100%;
+        }
+      }
     </style>
+<<<<<<< HEAD
 </head>
 
 <body>
@@ -447,50 +1343,191 @@
                 <li class="nav-item"><a href="track-commission.html" class="nav-link">Track Order</a></li>
                 <li class="nav-item"><a href="commission.html" class="nav-link commission-btn">Commission</a></li>
             </ul>
+=======
+  </head>
+  <body class="shop-page">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <h1>StarFrame</h1>
+            <span class="nav-tagline">Animation Studio</span>
+          </a>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html#about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html#services" class="nav-link">Services</a>
+          </li>
+          <li class="nav-item">
+            <a href="shop.html" class="nav-link">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a href="login.html" class="nav-link" id="authNavLink">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="commission.html" class="nav-link commission-btn"
+              >Commission</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="shop-hero">
+    <div class="shop-shell">
+      <!-- Hero Section -->
+      <section class="shop-hero">
         <div class="container">
+<<<<<<< HEAD
             <h1><i class="fas fa-shopping-bag"></i> Art Shop</h1>
             <p>Browse our collection of ready-made digital art, illustrations, and prints. Purchase instantly and
                 download immediately or have it shipped to you anywhere in the world.</p>
         </div>
     </section>
+=======
+          <div class="shop-hero-grid">
+            <div class="shop-hero-copy">
+              <span class="eyebrow"
+                ><i class="fas fa-sparkles"></i> Curated StarFrame
+                Editions</span
+              >
+              <h1>Ready-made art with the same warmth as our custom worlds.</h1>
+              <p>
+                Shop collectible illustrations, character sheets, motion loops,
+                and print-ready artwork crafted in StarFrame’s editorial style.
+                Each piece is polished, licensed clearly, and delivered fast.
+              </p>
+              <div class="hero-actions">
+                <a href="#catalog" class="btn btn-primary">Browse Collection</a>
+                <a href="commission.html" class="btn btn-secondary"
+                  >Need Something Custom?</a
+                >
+              </div>
+              <div class="hero-highlights">
+                <div class="hero-highlight">
+                  <strong>Instant</strong>
+                  <span>Digital delivery for eligible pieces</span>
+                </div>
+                <div class="hero-highlight">
+                  <strong>Licensed</strong>
+                  <span>Usage clarity before you checkout</span>
+                </div>
+                <div class="hero-highlight">
+                  <strong>Studio-made</strong>
+                  <span>Visuals aligned with the main portfolio</span>
+                </div>
+              </div>
+            </div>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
-    <!-- Filters -->
-    <div class="shop-filters">
-        <div class="filter-container">
+            <aside class="shop-hero-panel">
+              <div class="hero-panel-card">
+                <h2>What makes this shop better</h2>
+                <p>
+                  The catalogue now reflects the same calm, handcrafted
+                  experience as the rest of the site instead of feeling like a
+                  separate storefront.
+                </p>
+                <ul class="hero-panel-list">
+                  <li>
+                    <i class="fas fa-check-circle"></i
+                    ><span
+                      >Smarter filters for category, budget, and quick title
+                      search.</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i
+                    ><span
+                      >Richer product cards with format, license, and delivery
+                      cues upfront.</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i
+                    ><span
+                      >A cleaner cart and checkout summary with clearer payment
+                      paths.</span
+                    >
+                  </li>
+                </ul>
+                <div class="hero-note">
+                  <i class="fas fa-clock"></i
+                  ><span
+                    >Typical manual fulfillment follow-up within 24 hours for
+                    invoice-based purchases.</span
+                  >
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filters -->
+      <div class="container shop-toolbar-wrap">
+        <div class="shop-toolbar">
+          <div class="toolbar-filters">
             <div class="filter-group">
-                <label for="categoryFilter">Category:</label>
-                <select id="categoryFilter" onchange="filterProducts()">
-                    <option value="all">All</option>
-                    <option value="illustration">Illustration</option>
-                    <option value="character">Character Design</option>
-                    <option value="animation">Animation Loop</option>
-                    <option value="print">Print Ready</option>
-                </select>
+              <label for="categoryFilter">Category</label>
+              <select id="categoryFilter" onchange="filterProducts()">
+                <option value="all">All collections</option>
+                <option value="illustration">Illustration</option>
+                <option value="character">Character Design</option>
+                <option value="animation">Animation Loop</option>
+                <option value="print">Print Ready</option>
+              </select>
             </div>
 
             <div class="filter-group">
-                <label for="priceFilter">Price Range:</label>
-                <select id="priceFilter" onchange="filterProducts()">
-                    <option value="all">All Prices</option>
-                    <option value="0-2000">₹0 - ₹2,000</option>
-                    <option value="2000-5000">₹2,000 - ₹5,000</option>
-                    <option value="5000+">₹5,000+</option>
-                </select>
+              <label for="priceFilter">Budget</label>
+              <select id="priceFilter" onchange="filterProducts()">
+                <option value="all">Any budget</option>
+                <option value="0-2000">₹0 - ₹2,000</option>
+                <option value="2000-5000">₹2,000 - ₹5,000</option>
+                <option value="5000+">₹5,000+</option>
+              </select>
             </div>
 
+<<<<<<< HEAD
             <div class="cart-icon" onclick="toggleCart()">
                 <i class="fas fa-shopping-cart"></i>
                 <span>Cart</span>
                 <span class="cart-count" id="cartCount">0</span>
+=======
+            <div class="filter-group">
+              <label for="searchFilter">Quick Search</label>
+              <input
+                type="search"
+                id="searchFilter"
+                placeholder="Search by title or mood"
+                oninput="filterProducts()"
+              />
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
             </div>
-        </div>
-    </div>
+          </div>
 
+          <button
+            class="cart-icon"
+            type="button"
+            onclick="toggleCart()"
+            aria-label="Open shopping cart"
+          >
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+        </div>
+      </div>
+
+<<<<<<< HEAD
     <!-- Shop Gallery -->
     <section class="shop-gallery">
         <div class="products-grid" id="productsGrid">
@@ -499,36 +1536,519 @@
                 <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #667eea;"></i>
                 <p>Loading products...</p>
             </div>
-        </div>
-    </section>
+=======
+      <!-- Shop Gallery -->
+      <section class="shop-gallery" id="catalog">
+        <div class="container">
+          <div class="gallery-header">
+            <div>
+              <h2
+                class="section-title"
+                style="text-align: left; margin-bottom: 0.6rem"
+              >
+                Shop The Collection
+              </h2>
+              <p>
+                Pieces are organized to support quick browsing without losing
+                the story and production context behind each artwork.
+              </p>
+            </div>
+            <div class="results-pill">
+              <i class="fas fa-grid-2"></i
+              ><span id="resultsCount">6 pieces available</span>
+            </div>
+          </div>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-    <div class="cart-sidebar" id="cartSidebar">
+          <div class="products-grid" id="productsGrid">
+            <article
+              class="product-card"
+              data-category="illustration"
+              data-price="1500"
+              data-search="mystic landscape serene atmospheric print wallpaper"
+              data-image="images/StarFrame Animation Studio/landscape.jpeg"
+            >
+              <div class="product-visual">
+                <img
+                  src="images/StarFrame Animation Studio/landscape.jpeg"
+                  alt="Mystic Landscape digital artwork preview"
+                  class="product-image"
+                />
+                <div class="product-badges">
+                  <span class="product-category"
+                    ><i class="fas fa-palette"></i> Digital Illustration</span
+                  >
+                  <span class="product-format">Instant JPG + PNG</span>
+                </div>
+              </div>
+              <div class="product-info">
+                <div class="product-head">
+                  <h3 class="product-title">Mystic Landscape</h3>
+                  <span class="detail-badge"
+                    ><i class="fas fa-bolt"></i> Fast delivery</span
+                  >
+                </div>
+                <p class="product-description">
+                  A serene digital landscape with mystical elements, perfect for
+                  prints or digital use.
+                </p>
+                <div class="product-meta">
+                  <div class="meta-card">
+                    <span>Best for</span
+                    ><strong>Wall art, covers, posters</strong>
+                  </div>
+                  <div class="meta-card">
+                    <span>License</span
+                    ><strong>Personal / extended by request</strong>
+                  </div>
+                </div>
+                <div class="product-details">
+                  <span class="detail-badge"
+                    ><i class="fas fa-file-image"></i> 4K Resolution</span
+                  >
+                  <span class="detail-badge"
+                    ><i class="fas fa-download"></i> Instant Download</span
+                  >
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    ₹1,500
+                    <span class="price-usd">~$18 USD</span>
+                  </div>
+                  <button
+                    class="add-to-cart-btn"
+                    type="button"
+                    onclick="
+                      addToCart(
+                        1,
+                        'Mystic Landscape',
+                        1500,
+                        'illustration',
+                        'images/StarFrame Animation Studio/landscape.jpeg',
+                        '4K illustration',
+                        this,
+                      )
+                    "
+                  >
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="product-card"
+              data-category="character"
+              data-price="2200"
+              data-search="fantasy character pack expressions poses commercial design"
+              data-image="images/StarFrame Animation Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg"
+            >
+              <div class="product-visual">
+                <img
+                  src="images/StarFrame Animation Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg"
+                  alt="Fantasy Character Pack artwork preview"
+                  class="product-image"
+                />
+                <div class="product-badges">
+                  <span class="product-category"
+                    ><i class="fas fa-user-astronaut"></i> Character
+                    Design</span
+                  >
+                  <span class="product-format">Layered pack</span>
+                </div>
+              </div>
+              <div class="product-info">
+                <div class="product-head">
+                  <h3 class="product-title">Fantasy Character Pack</h3>
+                  <span class="detail-badge"
+                    ><i class="fas fa-briefcase"></i> Commercial-ready</span
+                  >
+                </div>
+                <p class="product-description">
+                  Complete character design with multiple expressions and poses.
+                  Commercial license included.
+                </p>
+                <div class="product-meta">
+                  <div class="meta-card">
+                    <span>Best for</span
+                    ><strong>Games, comics, pitch decks</strong>
+                  </div>
+                  <div class="meta-card">
+                    <span>License</span><strong>Commercial included</strong>
+                  </div>
+                </div>
+                <div class="product-details">
+                  <span class="detail-badge"
+                    ><i class="fas fa-users"></i> 5 Poses</span
+                  >
+                  <span class="detail-badge"
+                    ><i class="fas fa-smile"></i> 3 Expressions</span
+                  >
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    ₹2,200
+                    <span class="price-usd">~$27 USD</span>
+                  </div>
+                  <button
+                    class="add-to-cart-btn"
+                    type="button"
+                    onclick="
+                      addToCart(
+                        2,
+                        'Fantasy Character Pack',
+                        2200,
+                        'character',
+                        'images/StarFrame Animation Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg',
+                        'Pose + expression sheets',
+                        this,
+                      )
+                    "
+                  >
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="product-card"
+              data-category="animation"
+              data-price="4500"
+              data-search="magical sparkle effect motion loop social media broadcast"
+              data-image="images/StarFrame Animation Studio/landscape.jpeg"
+            >
+              <div class="product-visual">
+                <img
+                  src="images/StarFrame Animation Studio/landscape.jpeg"
+                  alt="Magical Sparkle Effect animation preview"
+                  class="product-image"
+                />
+                <div class="product-badges">
+                  <span class="product-category"
+                    ><i class="fas fa-film"></i> Animation Loop</span
+                  >
+                  <span class="product-format">MP4 + alpha notes</span>
+                </div>
+              </div>
+              <div class="product-info">
+                <div class="product-head">
+                  <h3 class="product-title">Magical Sparkle Effect</h3>
+                  <span class="detail-badge"
+                    ><i class="fas fa-wand-magic-sparkles"></i> Motion
+                    asset</span
+                  >
+                </div>
+                <p class="product-description">
+                  Seamless 5-second animation loop perfect for social media,
+                  websites, or video projects.
+                </p>
+                <div class="product-meta">
+                  <div class="meta-card">
+                    <span>Best for</span
+                    ><strong>Social reels, intros, overlays</strong>
+                  </div>
+                  <div class="meta-card">
+                    <span>License</span><strong>Single-brand usage</strong>
+                  </div>
+                </div>
+                <div class="product-details">
+                  <span class="detail-badge"
+                    ><i class="fas fa-video"></i> 1080p HD</span
+                  >
+                  <span class="detail-badge"
+                    ><i class="fas fa-infinity"></i> Seamless Loop</span
+                  >
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    ₹4,500
+                    <span class="price-usd">~$55 USD</span>
+                  </div>
+                  <button
+                    class="add-to-cart-btn"
+                    type="button"
+                    onclick="
+                      addToCart(
+                        3,
+                        'Magical Sparkle Effect',
+                        4500,
+                        'animation',
+                        'images/StarFrame Animation Studio/landscape.jpeg',
+                        '5-second looping asset',
+                        this,
+                      )
+                    "
+                  >
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="product-card"
+              data-category="print"
+              data-price="1800"
+              data-search="botanical art series decor print home set"
+              data-image="images/StarFrame Animation Studio/landscape.jpeg"
+            >
+              <div class="product-visual">
+                <img
+                  src="images/StarFrame Animation Studio/landscape.jpeg"
+                  alt="Botanical Art Series print preview"
+                  class="product-image"
+                />
+                <div class="product-badges">
+                  <span class="product-category"
+                    ><i class="fas fa-print"></i> Print Ready</span
+                  >
+                  <span class="product-format">A3 / A4 ratios</span>
+                </div>
+              </div>
+              <div class="product-info">
+                <div class="product-head">
+                  <h3 class="product-title">Botanical Art Series</h3>
+                  <span class="detail-badge"
+                    ><i class="fas fa-home"></i> Decor set</span
+                  >
+                </div>
+                <p class="product-description">
+                  Set of 3 botanical illustrations in print-ready format.
+                  Perfect for home decor.
+                </p>
+                <div class="product-meta">
+                  <div class="meta-card">
+                    <span>Best for</span
+                    ><strong>Frames, cafes, studio walls</strong>
+                  </div>
+                  <div class="meta-card">
+                    <span>License</span><strong>Personal use included</strong>
+                  </div>
+                </div>
+                <div class="product-details">
+                  <span class="detail-badge"
+                    ><i class="fas fa-print"></i> Print Ready</span
+                  >
+                  <span class="detail-badge"
+                    ><i class="fas fa-layer-group"></i> 3 Designs</span
+                  >
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    ₹1,800
+                    <span class="price-usd">~$22 USD</span>
+                  </div>
+                  <button
+                    class="add-to-cart-btn"
+                    type="button"
+                    onclick="
+                      addToCart(
+                        4,
+                        'Botanical Art Series',
+                        1800,
+                        'print',
+                        'images/StarFrame Animation Studio/landscape.jpeg',
+                        '3 print-ready artworks',
+                        this,
+                      )
+                    "
+                  >
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="product-card"
+              data-category="illustration"
+              data-price="1200"
+              data-search="cosmic dreams stars wallpaper mobile desktop"
+              data-image="images/StarFrame Animation Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg"
+            >
+              <div class="product-visual">
+                <img
+                  src="images/StarFrame Animation Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg"
+                  alt="Cosmic Dreams illustration preview"
+                  class="product-image"
+                />
+                <div class="product-badges">
+                  <span class="product-category"
+                    ><i class="fas fa-star"></i> Digital Illustration</span
+                  >
+                  <span class="product-format">Wallpaper pack</span>
+                </div>
+              </div>
+              <div class="product-info">
+                <div class="product-head">
+                  <h3 class="product-title">Cosmic Dreams</h3>
+                  <span class="detail-badge"
+                    ><i class="fas fa-mobile-screen"></i> Device-ready</span
+                  >
+                </div>
+                <p class="product-description">
+                  Vibrant cosmic illustration with stars and nebulas. Great for
+                  digital wallpapers.
+                </p>
+                <div class="product-meta">
+                  <div class="meta-card">
+                    <span>Best for</span
+                    ><strong>Phones, desktops, socials</strong>
+                  </div>
+                  <div class="meta-card">
+                    <span>License</span><strong>Personal use included</strong>
+                  </div>
+                </div>
+                <div class="product-details">
+                  <span class="detail-badge"
+                    ><i class="fas fa-desktop"></i> Desktop & Mobile</span
+                  >
+                  <span class="detail-badge"
+                    ><i class="fas fa-download"></i> HD Quality</span
+                  >
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    ₹1,200
+                    <span class="price-usd">~$15 USD</span>
+                  </div>
+                  <button
+                    class="add-to-cart-btn"
+                    type="button"
+                    onclick="
+                      addToCart(
+                        5,
+                        'Cosmic Dreams',
+                        1200,
+                        'illustration',
+                        'images/StarFrame Animation Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg',
+                        'Wallpaper-ready artwork',
+                        this,
+                      )
+                    "
+                  >
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="product-card"
+              data-category="character"
+              data-price="3200"
+              data-search="warrior character set armor variants weapon commercial"
+              data-image="images/StarFrame Animation Studio/landscape.jpeg"
+            >
+              <div class="product-visual">
+                <img
+                  src="images/StarFrame Animation Studio/landscape.jpeg"
+                  alt="Warrior Character Set preview"
+                  class="product-image"
+                />
+                <div class="product-badges">
+                  <span class="product-category"
+                    ><i class="fas fa-shield-halved"></i> Character Design</span
+                  >
+                  <span class="product-format">Multi-variant pack</span>
+                </div>
+              </div>
+              <div class="product-info">
+                <div class="product-head">
+                  <h3 class="product-title">Warrior Character Set</h3>
+                  <span class="detail-badge"
+                    ><i class="fas fa-layer-group"></i> 3 variants</span
+                  >
+                </div>
+                <p class="product-description">
+                  Complete warrior character with armor variants and weapon
+                  designs. Commercial use allowed.
+                </p>
+                <div class="product-meta">
+                  <div class="meta-card">
+                    <span>Best for</span
+                    ><strong>Game prototyping, key art</strong>
+                  </div>
+                  <div class="meta-card">
+                    <span>License</span><strong>Commercial use allowed</strong>
+                  </div>
+                </div>
+                <div class="product-details">
+                  <span class="detail-badge"
+                    ><i class="fas fa-shield-alt"></i> 3 Variants</span
+                  >
+                  <span class="detail-badge"
+                    ><i class="fas fa-copyright"></i> Commercial License</span
+                  >
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    ₹3,200
+                    <span class="price-usd">~$39 USD</span>
+                  </div>
+                  <button
+                    class="add-to-cart-btn"
+                    type="button"
+                    onclick="
+                      addToCart(
+                        6,
+                        'Warrior Character Set',
+                        3200,
+                        'character',
+                        'images/StarFrame Animation Studio/landscape.jpeg',
+                        'Variant pack with weapons',
+                        this,
+                      )
+                    "
+                  >
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
+        </div>
+      </section>
+
+      <!-- Cart Sidebar -->
+      <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+      <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
-            <button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+          <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+          <button class="cart-close" onclick="toggleCart()">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
         <div class="cart-items" id="cartItems">
-            <div class="empty-cart">
-                <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 15px;"></i>
-                <p>Your cart is empty</p>
-            </div>
+          <div class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <p>Your cart is empty</p>
+            <small
+              >Add pieces from the collection and they will appear here
+              instantly.</small
+            >
+          </div>
         </div>
         <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotal">₹0</span>
-            </div>
-            <button class="checkout-btn" onclick="checkout()">
-                <i class="fas fa-lock"></i> Proceed to Checkout
-            </button>
+          <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">₹0</span>
+          </div>
+          <p class="cart-subtotal-note">
+            Digital goods are delivered first. Print and invoice details are
+            confirmed after checkout.
+          </p>
+          <button class="checkout-btn" onclick="checkout()">
+            <i class="fas fa-lock"></i> Proceed to Checkout
+          </button>
         </div>
-    </div>
+      </div>
 
-    <!-- Checkout Modal -->
-    <div id="checkoutModal" class="modal">
+      <!-- Checkout Modal -->
+      <div id="checkoutModal" class="modal">
         <div class="modal-content">
+<<<<<<< HEAD
             <span class="modal-close" onclick="closeCheckoutModal()">&times;</span>
             <h2 style="margin-bottom: 20px;"><i class="fas fa-credit-card" style="color: #667eea;"></i> Checkout</h2>
 
@@ -566,40 +2086,155 @@
                 <p style="color: #666; margin-bottom: 30px;">Your digital art is ready. Download using the links below:</p>
                 <div id="downloadLinks" style="text-align: left;"></div>
                 <p style="font-size: 0.85rem; color: #999; margin-top: 20px;">Download links have also been sent to your email.</p>
+=======
+          <span class="modal-close" onclick="closeCheckoutModal()"
+            >&times;</span
+          >
+          <h2 style="margin-bottom: 20px">
+            <i class="fas fa-credit-card"></i> Checkout
+          </h2>
+
+          <div class="summary-panel" style="margin-bottom: 20px">
+            <h3>Order Summary</h3>
+            <div id="orderSummary"></div>
+            <div
+              style="
+                border-top: 1px solid rgba(184, 147, 95, 0.14);
+                margin-top: 15px;
+                padding-top: 15px;
+                font-size: 1.2rem;
+                font-weight: bold;
+              "
+            >
+              Total: <span id="modalTotal"></span>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
             </div>
+          </div>
+
+          <h3 style="margin-bottom: 15px">Payment Options</h3>
+
+          <div class="payment-grid">
+            <button class="payment-option" onclick="showUPIPayment()">
+              <strong
+                ><i class="fas fa-qrcode"></i> Pay with UPI (India)</strong
+              >
+              <span
+                >Fastest option for domestic checkout and instant
+                confirmation.</span
+              >
+            </button>
+            <button class="payment-option" onclick="showPayPalPayment()">
+              <strong
+                ><i class="fab fa-paypal"></i> Pay with PayPal
+                (International)</strong
+              >
+              <span
+                >Best for overseas buyers who prefer invoiced checkout.</span
+              >
+            </button>
+            <button class="payment-option" onclick="showBankTransfer()">
+              <strong><i class="fas fa-university"></i> Bank Transfer</strong>
+              <span>Recommended for larger orders or business purchases.</span>
+            </button>
+          </div>
+
+          <div
+            id="paymentDetails"
+            class="payment-details"
+            style="margin-top: 20px; display: none"
+          >
+            <!-- Payment details will be shown here -->
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>StarFrame Animation Studio</h3>
-                    <p>Where imagination comes alive through handcrafted animation and art.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="commission.html">Commission</a></li>
-                        <li><a href="pricing-guide.html">Pricing Guide</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-envelope"></i> starframeanimationstudio@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +91 8960356600</p>
-                </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-brand">
+              <h3>StarFrame</h3>
+              <span class="footer-tagline">Where imagination and emotion come alive</span>
+              <p>
+                A warm, creative studio devoted to creating art and animation
+                filled with soul, peace, and quiet magic. Rooted in heartfelt storytelling and whimsical imagination.
+              </p>
+              <div class="social-links">
+                <a href="https://www.instagram.com/starframeanimationstudios/" target="_blank" rel="noopener" aria-label="Starframe on Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/StarFrame1527" target="_blank" rel="noopener" aria-label="Starframe on X">
+                  <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/starframe-animation-studio-379b723b7/" target="_blank" rel="noopener" aria-label="Starframe on LinkedIn">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.youtube.com/@StarFrameAnimation" target="_blank" rel="noopener" aria-label="Starframe on YouTube">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 StarFrame Animation Studio. All rights reserved.</p>
+            <div class="footer-contact">
+              <h4>Let's Connect</h4>
+              <p>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:starframeanimationstudios@gmail.com" class="footer-email">starframeanimationstudios@gmail.com</a>
+              </p>
+              <p><i class="fas fa-phone"></i> +91 8960356600</p>
+              <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
+              <div style="margin-top: 1.5rem;">
+                <a href="https://wa.me/918960356600" class="footer-cta" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+              </div>
             </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-section">
+              <h4>Studio</h4>
+              <ul>
+                <li><a href="index.html#about">Our Story</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="shop.html">Art Shop</a></li>
+                <li><a href="commission.html">Commission</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                <li><a href="refund-policy.html">Refund Policy</a></li>
+                <li><a href="accessibility.html">Accessibility</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 StarFrame Animation Studio. All rights reserved. Made
+            with ❤️ for artists everywhere.
+          </p>
+        </div>
+      </div>
     </footer>
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    
+    <!-- Scripts -->
+    <script src="js/script-new.js"></script>
     <script>
+<<<<<<< HEAD
         let cart = [];
         let loadedProducts = [];
 
@@ -686,11 +2321,71 @@
 
             if (cart.length === 0) {
                 cartItems.innerHTML = `
+=======
+      let cart = [];
+      let emptyStateElement = null;
+
+      (function initAuthNavigation() {
+        if (!window.starframeFirebase || !window.starframeFirebase.isConfigured) return;
+        
+        const auth = window.starframeFirebase.getAuth();
+        auth.onAuthStateChanged(function(user) {
+          const authNavLink = document.getElementById('authNavLink');
+          if (!authNavLink) return;
+          
+          if (user) {
+            authNavLink.textContent = window.starframeFirebase.isAdminEmail(user.email) ? 'Admin Panel' : 'My Dashboard';
+            authNavLink.href = window.starframeFirebase.isAdminEmail(user.email) ? 'admin/' : 'dashboard.html';
+          } else {
+            authNavLink.textContent = 'Login';
+            authNavLink.href = 'login.html';
+          }
+        });
+      })();
+
+      function addToCart(id, name, price, category, image, format, button) {
+        const existingItem = cart.find((item) => item.id === id);
+        if (existingItem) {
+          alert("This item is already in your cart!");
+          return;
+        }
+
+        cart.push({ id, name, price, category, image, format });
+        updateCart();
+
+        // Show feedback
+        const btn = button;
+        btn.innerHTML = '<i class="fas fa-check"></i> Added!';
+        btn.style.background = "linear-gradient(135deg, #71b87f, #4b8f5a)";
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
+          btn.style.background =
+            "linear-gradient(135deg, var(--primary-warm), var(--primary-dark))";
+        }, 2000);
+      }
+
+      function removeFromCart(id) {
+        cart = cart.filter((item) => item.id !== id);
+        updateCart();
+      }
+
+      function updateCart() {
+        const cartCount = document.getElementById("cartCount");
+        const cartItems = document.getElementById("cartItems");
+        const cartTotal = document.getElementById("cartTotal");
+
+        cartCount.textContent = cart.length;
+
+        if (cart.length === 0) {
+          cartItems.innerHTML = `
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
                     <div class="empty-cart">
-                        <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <i class="fas fa-shopping-cart"></i>
                         <p>Your cart is empty</p>
+                        <small>Add pieces from the collection and they will appear here instantly.</small>
                     </div>
                 `;
+<<<<<<< HEAD
                 cartTotal.textContent = '₹0';
                 return;
             }
@@ -701,8 +2396,22 @@
                 return `
                     <div class="cart-item">
                         <img src="${item.image || 'images/StarFrame Animation Studio/landscape.jpeg'}" alt="${item.name}" class="cart-item-image">
+=======
+          cartTotal.textContent = "₹0";
+          return;
+        }
+
+        let total = 0;
+        cartItems.innerHTML = cart
+          .map((item) => {
+            total += item.price;
+            return `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
                         <div class="cart-item-info">
                             <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-meta">${item.category} · ${item.format || "Studio asset"}</div>
                             <div class="cart-item-price">₹${item.price}</div>
                         </div>
                         <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
@@ -710,6 +2419,7 @@
                         </button>
                     </div>
                 `;
+<<<<<<< HEAD
             }).join('');
 
             cartTotal.textContent = `₹${total}`;
@@ -857,6 +2567,73 @@
             const details = document.getElementById('paymentDetails');
             details.innerHTML = `
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+=======
+          })
+          .join("");
+
+        cartTotal.textContent = `₹${total}`;
+      }
+
+      function toggleCart() {
+        const sidebar = document.getElementById("cartSidebar");
+        const overlay = document.getElementById("cartOverlay");
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      }
+
+      function checkout() {
+        if (cart.length === 0) {
+          alert("Your cart is empty!");
+          return;
+        }
+
+        const modal = document.getElementById("checkoutModal");
+        const orderSummary = document.getElementById("orderSummary");
+        const modalTotal = document.getElementById("modalTotal");
+
+        let total = 0;
+        orderSummary.innerHTML = cart
+          .map((item) => {
+            total += item.price;
+            return `
+                    <div class="summary-item">
+                        <div>
+                            <strong>${item.name}</strong>
+                            <div style="color: var(--text-light); font-size: 0.88rem; margin-top: 0.15rem;">${item.category} · ${item.format || "Studio asset"}</div>
+                        </div>
+                        <span>₹${item.price}</span>
+                    </div>
+                `;
+          })
+          .join("");
+
+        modalTotal.textContent = `₹${total} (~$${Math.round(total / 83)} USD)`;
+        modal.style.display = "block";
+      }
+
+      function closeCheckoutModal() {
+        document.getElementById("checkoutModal").style.display = "none";
+        document.getElementById("paymentDetails").style.display = "none";
+      }
+
+      function showUPIPayment() {
+        const details = document.getElementById("paymentDetails");
+        details.innerHTML = `
+                <div style="text-align: center;">
+                    <h4>Scan QR Code to Pay</h4>
+                    <img src="qrcode.png" alt="UPI QR Code" style="max-width: 200px; margin: 20px 0;">
+                    <p><strong>UPI ID:</strong> mvp102719-1@okhdfcbank</p>
+                    <p>After payment, please send the transaction ID to our WhatsApp: +91 8960356600</p>
+                </div>
+            `;
+        details.style.display = "block";
+      }
+
+      function showPayPalPayment() {
+        const details = document.getElementById("paymentDetails");
+        details.innerHTML = `
+                <div>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
                     <h4>PayPal Payment</h4>
                     <p>For international payments, please contact us at:</p>
                     <p><strong>Email:</strong> starframeanimationstudio@gmail.com</p>
@@ -864,6 +2641,7 @@
                     <p>We'll send you a PayPal invoice with the exact amount in your currency.</p>
                 </div>
             `;
+<<<<<<< HEAD
             details.style.display = 'block';
         }
 
@@ -871,6 +2649,15 @@
             const details = document.getElementById('paymentDetails');
             details.innerHTML = `
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+=======
+        details.style.display = "block";
+      }
+
+      function showBankTransfer() {
+        const details = document.getElementById("paymentDetails");
+        details.innerHTML = `
+                <div>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
                     <h4>Bank Transfer Details</h4>
                     <p>Please contact us for bank transfer details:</p>
                     <p><strong>Email:</strong> starframeanimationstudio@gmail.com</p>
@@ -878,9 +2665,30 @@
                     <p>SWIFT and wire transfer options available for international customers.</p>
                 </div>
             `;
-            details.style.display = 'block';
+        details.style.display = "block";
+      }
+
+      function filterProducts() {
+        const category = document.getElementById("categoryFilter").value;
+        const priceRange = document.getElementById("priceFilter").value;
+        const products = document.querySelectorAll(".product-card");
+        const searchTerm = document
+          .getElementById("searchFilter")
+          .value.trim()
+          .toLowerCase();
+        const productsGrid = document.getElementById("productsGrid");
+        const resultsCount = document.getElementById("resultsCount");
+        let visibleCount = 0;
+
+        if (!emptyStateElement) {
+          emptyStateElement = document.createElement("div");
+          emptyStateElement.className = "empty-state";
+          emptyStateElement.innerHTML =
+            '<i class="fas fa-stars"></i><h3>No pieces match these filters yet.</h3><p>Try a wider budget or search term, or switch to a different collection.</p>';
+          productsGrid.appendChild(emptyStateElement);
         }
 
+<<<<<<< HEAD
         function filterProducts() {
             const category = document.getElementById('categoryFilter').value.toLowerCase();
             const priceRange = document.getElementById('priceFilter').value;
@@ -913,8 +2721,53 @@
             const downloadModal = document.getElementById('downloadModal');
             if (event.target === checkoutModal) closeCheckoutModal();
             if (event.target === downloadModal) downloadModal.style.display = 'none';
+=======
+        products.forEach((product) => {
+          const productCategory = product.dataset.category;
+          const productPrice = parseInt(product.dataset.price);
+          const searchableText = product.dataset.search || "";
+
+          let showCategory = category === "all" || productCategory === category;
+          let showPrice = true;
+          let showSearch = !searchTerm || searchableText.includes(searchTerm);
+
+          if (priceRange !== "all") {
+            if (priceRange === "0-2000") {
+              showPrice = productPrice <= 2000;
+            } else if (priceRange === "2000-5000") {
+              showPrice = productPrice > 2000 && productPrice <= 5000;
+            } else if (priceRange === "5000+") {
+              showPrice = productPrice > 5000;
+            }
+          }
+
+          const isVisible = showCategory && showPrice && showSearch;
+          product.style.display = isVisible ? "block" : "none";
+          if (isVisible) {
+            visibleCount += 1;
+          }
+        });
+
+        emptyStateElement.style.display = visibleCount === 0 ? "block" : "none";
+        resultsCount.textContent = `${visibleCount} ${visibleCount === 1 ? "piece" : "pieces"} available`;
+      }
+
+      document.addEventListener("DOMContentLoaded", filterProducts);
+
+      // Close modal when clicking outside
+      window.onclick = function (event) {
+        const modal = document.getElementById("checkoutModal");
+        if (event.target == modal) {
+          closeCheckoutModal();
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         }
+      };
     </script>
+<<<<<<< HEAD
 </body>
 
 </html>
+=======
+  </body>
+</html>
+>>>>>>> 31422cd7ed8da057f23c498151957b317926130f
