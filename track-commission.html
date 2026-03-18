@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Commission - StarFrame Animation Studio</title>
+    <meta name="description" content="Track the real-time status of your animation commission with StarFrame.">
+    <link rel="stylesheet" href="css/style-new.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #d4a574;
+            --secondary-color: #1a1a1a;
+            --bg-light: #f9f9f9;
+            --text-dark: #333;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        .tracker-hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, #fff5eb 0%, #fff 100%);
+            text-align: center;
+        }
+
+        .tracker-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .tracker-hero p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Lookup Section */
+        .lookup-section {
+            padding: 60px 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .lookup-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .lookup-card h3 {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .lookup-form {
+            display: flex;
+            gap: 12px;
+        }
+
+        .lookup-form input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .lookup-form input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .lookup-form button {
+            padding: 14px 28px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .lookup-form button:hover {
+            background: #c4954e;
+            transform: translateY(-2px);
+        }
+
+        .or-divider {
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #999;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        /* Commission List (logged-in users) */
+        .commissions-section {
+            padding: 40px 0 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .commission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .commission-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px 30px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border-left: 5px solid #ddd;
+        }
+
+        .commission-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .commission-item.status-queued { border-left-color: #ffc107; }
+        .commission-item.status-in_progress { border-left-color: #2196f3; }
+        .commission-item.status-sketch { border-left-color: #9c27b0; }
+        .commission-item.status-final { border-left-color: #ff9800; }
+        .commission-item.status-completed { border-left-color: #4caf50; }
+
+        .commission-meta {
+            flex: 1;
+        }
+
+        .commission-meta h4 {
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+        }
+
+        .commission-meta p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .status-badge.queued { background: #fff3cd; color: #856404; }
+        .status-badge.in_progress { background: #cce5ff; color: #004085; }
+        .status-badge.sketch { background: #e8daef; color: #6c3483; }
+        .status-badge.final { background: #ffecd2; color: #e65100; }
+        .status-badge.completed { background: #d4edda; color: #155724; }
+
+        /* Commission Detail View */
+        .commission-detail {
+            display: none;
+            padding: 60px 0 80px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .commission-detail.active {
+            display: block;
+        }
+
+        .detail-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .detail-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+        }
+
+        .back-btn {
+            background: none;
+            border: 2px solid #ddd;
+            padding: 8px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #666;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            display: flex;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .progress-tracker::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 30px;
+            right: 30px;
+            height: 4px;
+            background: #eee;
+            z-index: 0;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 1.2rem;
+            color: #999;
+            transition: var(--transition);
+            border: 3px solid transparent;
+        }
+
+        .progress-step.active .step-circle {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.4);
+        }
+
+        .progress-step.completed .step-circle {
+            background: #4caf50;
+            color: #fff;
+            border-color: #4caf50;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .progress-step.active .step-label,
+        .progress-step.completed .step-label {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Detail Info Grid */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .detail-field {
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 12px;
+        }
+
+        .detail-field label {
+            display: block;
+            font-size: 0.8rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .detail-field span {
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .detail-description {
+            grid-column: 1 / -1;
+        }
+
+        .login-prompt {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .login-prompt a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .no-commissions {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .no-commissions i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .error-message {
+            background: #fce4ec;
+            color: #c62828;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .tracker-hero h1 { font-size: 2rem; }
+            .lookup-form { flex-direction: column; }
+            .commission-item { flex-direction: column; gap: 15px; align-items: flex-start; }
+            .detail-grid { grid-template-columns: 1fr; }
+            .progress-tracker { flex-wrap: wrap; gap: 10px; }
+            .progress-tracker::before { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <h1>StarFrame</h1>
+                    <span class="nav-tagline">Animation Studio</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                <li class="nav-item"><a href="pricing-guide.html" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="buyer-guide.html" class="nav-link">Guide</a></li>
+                <li class="nav-item"><a href="index.html#reviews" class="nav-link">Reviews</a></li>
+                <li class="nav-item"><a href="track-commission.html" class="nav-link">Track Order</a></li>
+                <li class="nav-item"><a href="commission.html" class="nav-link commission-btn">Commission</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="tracker-hero">
+        <div class="container">
+            <h1><i class="fas fa-search" style="color: var(--primary-color);"></i> Track Your Commission</h1>
+            <p>Follow the progress of your custom artwork in real time. From initial sketch to the final masterpiece.</p>
+        </div>
+    </section>
+
+    <!-- Lookup by Commission ID -->
+    <section class="lookup-section" id="lookupSection">
+        <div class="container">
+            <div class="lookup-card">
+                <h3><i class="fas fa-hashtag" style="color: var(--primary-color);"></i> Look Up by Commission ID</h3>
+                <p style="color: #888; margin-bottom: 20px;">Enter the commission ID from your confirmation email</p>
+                <div class="lookup-form">
+                    <input type="text" id="commissionIdInput" placeholder="e.g., SF-COM-1709308800-123">
+                    <button onclick="lookupCommission()"><i class="fas fa-search"></i> Track</button>
+                </div>
+                <div class="error-message" id="lookupError"></div>
+
+                <div class="or-divider">or</div>
+
+                <div id="authActions">
+                    <p style="margin-bottom: 15px;">Sign in to see all your commissions</p>
+                    <a href="login.html?redirect=track-commission.html" class="btn btn-primary" style="display: inline-block; padding: 12px 30px; border-radius: 12px; text-decoration: none;">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </a>
+                </div>
+                <div id="myCommissionsLink" style="display: none;">
+                    <p>You're signed in. <a href="#" onclick="showMyCommissions(); return false;" style="color: var(--primary-color); font-weight: 600;">View all your commissions</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Commissions List -->
+    <section class="commissions-section" id="commissionsSection" style="display: none;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h2 style="font-family: 'Playfair Display', serif;">My Commissions</h2>
+                <button class="back-btn" onclick="showLookup()"><i class="fas fa-arrow-left"></i> Back</button>
+            </div>
+            <div class="commission-list" id="commissionList">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Commission Detail View -->
+    <section class="commission-detail" id="commissionDetail">
+        <div class="container">
+            <div class="detail-card">
+                <div class="detail-header">
+                    <div>
+                        <h2 id="detailId">Commission Details</h2>
+                        <p style="color: #888;" id="detailDate"></p>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <span class="status-badge" id="detailStatus"></span>
+                        <button class="back-btn" onclick="goBackFromDetail()"><i class="fas fa-arrow-left"></i> Back</button>
+                    </div>
+                </div>
+
+                <!-- Progress Tracker -->
+                <div class="progress-tracker" id="progressTracker">
+                    <div class="progress-step" data-step="queued">
+                        <div class="step-circle"><i class="fas fa-inbox"></i></div>
+                        <div class="step-label">Submitted</div>
+                    </div>
+                    <div class="progress-step" data-step="in_progress">
+                        <div class="step-circle"><i class="fas fa-palette"></i></div>
+                        <div class="step-label">In Progress</div>
+                    </div>
+                    <div class="progress-step" data-step="sketch">
+                        <div class="step-circle"><i class="fas fa-pencil-alt"></i></div>
+                        <div class="step-label">Sketch Ready</div>
+                    </div>
+                    <div class="progress-step" data-step="final">
+                        <div class="step-circle"><i class="fas fa-paint-brush"></i></div>
+                        <div class="step-label">Final Art</div>
+                    </div>
+                    <div class="progress-step" data-step="completed">
+                        <div class="step-circle"><i class="fas fa-check"></i></div>
+                        <div class="step-label">Completed</div>
+                    </div>
+                </div>
+
+                <!-- Detail Grid -->
+                <div class="detail-grid" id="detailGrid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <h3>StarFrame</h3>
+                        <p class="footer-tagline">Where imagination and emotion come alive</p>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Let's Connect</h4>
+                        <p><i class="fas fa-envelope"></i> starframeanimationstudios@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Varanasi, India</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 StarFrame Animation Studio. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/ui-effects.js"></script>
+    <script>
+        let isLoggedIn = false;
+        let previousView = 'lookup'; // track navigation
+
+        // Check auth on load
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const resp = await fetch('/api/client/me');
+                if (resp.ok) {
+                    isLoggedIn = true;
+                    document.getElementById('authActions').style.display = 'none';
+                    document.getElementById('myCommissionsLink').style.display = 'block';
+                }
+            } catch (e) { /* not logged in */ }
+
+            // Check URL params for direct lookup
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            if (id) {
+                document.getElementById('commissionIdInput').value = id;
+                lookupCommission();
+            }
+        });
+
+        async function lookupCommission() {
+            const id = document.getElementById('commissionIdInput').value.trim();
+            const errorEl = document.getElementById('lookupError');
+            errorEl.style.display = 'none';
+
+            if (!id) {
+                errorEl.textContent = 'Please enter a commission ID.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            try {
+                const resp = await fetch(`/api/commissions/status/${encodeURIComponent(id)}`);
+                if (!resp.ok) {
+                    const err = await resp.json();
+                    throw new Error(err.error || 'Commission not found');
+                }
+                const commission = await resp.json();
+                previousView = 'lookup';
+                showCommissionDetail(commission);
+            } catch (err) {
+                errorEl.textContent = err.message;
+                errorEl.style.display = 'block';
+            }
+        }
+
+        async function showMyCommissions() {
+            try {
+                const resp = await fetch('/api/commissions/my');
+                if (!resp.ok) throw new Error('Failed to load commissions');
+                const commissions = await resp.json();
+
+                const listEl = document.getElementById('commissionList');
+
+                if (commissions.length === 0) {
+                    listEl.innerHTML = `
+                        <div class="no-commissions">
+                            <i class="fas fa-inbox"></i>
+                            <h3>No Commissions Yet</h3>
+                            <p>You haven't submitted any commission requests.</p>
+                            <a href="commission.html" class="btn btn-primary" style="display: inline-block; margin-top: 15px; padding: 12px 30px; border-radius: 12px; text-decoration: none;">
+                                <i class="fas fa-plus"></i> Start a Commission
+                            </a>
+                        </div>
+                    `;
+                } else {
+                    listEl.innerHTML = commissions.map(c => `
+                        <div class="commission-item status-${c.status}" onclick="loadAndShowDetail('${c.id}')">
+                            <div class="commission-meta">
+                                <h4>${c.id}</h4>
+                                <p><strong>${c.service || 'Custom'}</strong> &middot; ${new Date(c.created_at).toLocaleDateString()}</p>
+                            </div>
+                            <span class="status-badge ${c.status}">${formatStatus(c.status)}</span>
+                        </div>
+                    `).join('');
+                }
+
+                document.getElementById('lookupSection').style.display = 'none';
+                document.getElementById('commissionsSection').style.display = 'block';
+                document.getElementById('commissionDetail').classList.remove('active');
+            } catch (err) {
+                alert('Error: ' + err.message);
+            }
+        }
+
+        async function loadAndShowDetail(id) {
+            try {
+                const resp = await fetch(`/api/commissions/status/${encodeURIComponent(id)}`);
+                if (!resp.ok) throw new Error('Failed to load commission');
+                const commission = await resp.json();
+                previousView = 'list';
+                showCommissionDetail(commission);
+            } catch (err) {
+                alert('Error: ' + err.message);
+            }
+        }
+
+        function showCommissionDetail(c) {
+            document.getElementById('lookupSection').style.display = 'none';
+            document.getElementById('commissionsSection').style.display = 'none';
+            document.getElementById('commissionDetail').classList.add('active');
+
+            document.getElementById('detailId').textContent = c.id;
+            document.getElementById('detailDate').textContent = 'Submitted: ' + new Date(c.created_at).toLocaleDateString();
+
+            const statusEl = document.getElementById('detailStatus');
+            statusEl.textContent = formatStatus(c.status);
+            statusEl.className = 'status-badge ' + c.status;
+
+            // Update progress tracker
+            const statusOrder = ['queued', 'in_progress', 'sketch', 'final', 'completed'];
+            const currentIdx = statusOrder.indexOf(c.status);
+            document.querySelectorAll('.progress-step').forEach((step, idx) => {
+                step.classList.remove('active', 'completed');
+                if (idx < currentIdx) step.classList.add('completed');
+                if (idx === currentIdx) step.classList.add('active');
+            });
+
+            // Build detail grid
+            const grid = document.getElementById('detailGrid');
+            grid.innerHTML = `
+                <div class="detail-field">
+                    <label>Service</label>
+                    <span>${c.service || '—'}</span>
+                </div>
+                <div class="detail-field">
+                    <label>Budget</label>
+                    <span>${c.budget || '—'}</span>
+                </div>
+                <div class="detail-field">
+                    <label>Timeline</label>
+                    <span>${c.timeline || '—'}</span>
+                </div>
+                <div class="detail-field">
+                    <label>Purpose</label>
+                    <span>${c.purpose || '—'}</span>
+                </div>
+                <div class="detail-field">
+                    <label>Payment Status</label>
+                    <span>${c.payment_status ? c.payment_status.toUpperCase() : 'Pending'}</span>
+                </div>
+                <div class="detail-field">
+                    <label>Amount Paid</label>
+                    <span>${c.paid_amount ? '₹' + c.paid_amount : '—'}</span>
+                </div>
+                <div class="detail-field detail-description">
+                    <label>Description</label>
+                    <span>${c.description || '—'}</span>
+                </div>
+                ${c.reference_links ? `
+                <div class="detail-field detail-description">
+                    <label>References</label>
+                    <span>${c.reference_links}</span>
+                </div>` : ''}
+            `;
+        }
+
+        function goBackFromDetail() {
+            document.getElementById('commissionDetail').classList.remove('active');
+            if (previousView === 'list') {
+                document.getElementById('commissionsSection').style.display = 'block';
+            } else {
+                document.getElementById('lookupSection').style.display = 'block';
+            }
+        }
+
+        function showLookup() {
+            document.getElementById('commissionsSection').style.display = 'none';
+            document.getElementById('commissionDetail').classList.remove('active');
+            document.getElementById('lookupSection').style.display = 'block';
+        }
+
+        function formatStatus(status) {
+            const map = {
+                'queued': 'Submitted',
+                'in_progress': 'In Progress',
+                'sketch': 'Sketch Ready',
+                'final': 'Final Art',
+                'completed': 'Completed'
+            };
+            return map[status] || status;
+        }
+
+        // Submit lookup on Enter key
+        document.getElementById('commissionIdInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') lookupCommission();
+        });
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@ const path = require('path');
 const helmet = require('helmet');
 const cors = require('cors');
 const session = require('express-session');
-const SQLiteStore = require('connect-sqlite3')(session);
+// const SQLiteStore = require('connect-sqlite3')(session);
 const http = require('http');
 const socketIo = require('socket.io');
 const passport = require('passport');
@@ -17,10 +17,15 @@ const Database = require('./models/Database');
 
 // Load routes
 const authRoutes = require('./routes/auth');
-const commissionRoutes = require('./routes/commission');
+const commissionsRoutes = require('./routes/commissions');
+// const legacyCommissionRoutes = require('./routes/commission'); // Deprecated legacy route
 const invoiceRoutes = require('./routes/invoice');
 const reviewsRoutes = require('./routes/reviews');
 const paymentRoutes = require('./routes/payment');
+const clientRoutes = require('./routes/client');
+const payRoutes = require('./routes/pay');
+const shopRoutes = require('./routes/shop');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 const server = http.createServer(app);
@@ -31,7 +36,7 @@ const io = socketIo(server, {
     cors: {
         origin: [
             'http://localhost:8000',
-            'http://localhost:3000', 
+            'http://localhost:3000',
             'http://localhost:3001',
             'http://127.0.0.1:8000',
             'http://127.0.0.1:3001',
@@ -57,9 +62,9 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
                 accessToken,
                 refreshToken
             };
-            
-            const user = await Database.upsertUser(userData);
-            
+
+            const user = await Database.upsertClient(userData);
+
             // Emit real-time notification to admin
             io.emit('user-login', {
                 user: {
@@ -71,7 +76,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
                 },
                 type: 'google_login'
             });
-            
+
             return done(null, user);
         } catch (error) {
             logger.error('Google OAuth error:', error);
@@ -88,7 +93,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     try {
-        const user = await Database.getUserById(id);
+        const user = await Database.getClientById(id);
         done(null, user);
     } catch (error) {
         done(error, null);
@@ -98,7 +103,7 @@ passport.deserializeUser(async (id, done) => {
 // Socket.IO connection handling
 io.on('connection', (socket) => {
     logger.info(`Socket connected: ${socket.id}`);
-    
+
     // Track visitor activity
     socket.on('page-visit', async (data) => {
         try {
@@ -112,23 +117,23 @@ io.on('connection', (socket) => {
                 timestamp: new Date().toISOString(),
                 userId: data.userId || null
             };
-            
+
             // Save to database
             await Database.trackVisitorRealtime(visitorData);
-            
+
             // Emit real-time update to admin
             io.emit('visitor-activity', {
                 type: 'page-visit',
                 visitor: visitorData,
                 timestamp: new Date().toISOString()
             });
-            
+
             logger.info(`Page visit tracked: ${data.page} - ${socket.id}`);
         } catch (error) {
             logger.error('Error tracking page visit:', error);
         }
     });
-    
+
     socket.on('disconnect', () => {
         logger.info(`Socket disconnected: ${socket.id}`);
     });
@@ -150,25 +155,23 @@ async function startServer() {
                     defaultSrc: ["'self'"],
                     styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://fonts.googleapis.com"],
                     fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
-                    scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://vitals.vercel-insights.com"],
-                    imgSrc: ["'self'", "data:", "https:"],
-                    connectSrc: ["'self'", "http://localhost:" + PORT, "https://vitals.vercel-insights.com"]
+                    scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://checkout.razorpay.com"],
+                    imgSrc: ["'self'", "data:", "https:", "https://cdn.razorpay.com"],
+                    connectSrc: ["'self'", "http://localhost:" + PORT, "https://lumberjack.razorpay.com", "https://api.razorpay.com"]
                 }
             }
         }));
 
         // CORS configuration
         app.use(cors({
-            origin: function(origin, callback) {
+            origin: function (origin, callback) {
                 const allowedOrigins = [
                     'http://localhost:8000',
                     'http://localhost:3000',
                     'http://localhost:3001',
-                    // 'http://127.0.0.1:8000',
-                    // 'http://127.0.0.1:3001',
-                    // 'http://0.0.0.0:8000'
+                    'http://127.0.0.1:3001'
                 ];
-                if (!origin || allowedOrigins.includes(origin)) {
+                if (!origin || allowedOrigins.includes(origin) || origin.startsWith('http://localhost:')) {
                     callback(null, true);
                 } else {
                     callback(new Error('Not allowed by CORS'));
@@ -178,23 +181,20 @@ async function startServer() {
         }));
 
         // Session configuration
-        const sessionSecret = process.env.SESSION_SECRET || 'dev-session-secret-change-me';
+        // const sessionSecret = process.env.SESSION_SECRET || 'dev-session-secret-change-me'; // This variable is no longer needed
         if (!process.env.SESSION_SECRET) {
             logger.warn('SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production.');
         }
 
         app.use(session({
-            store: new SQLiteStore({
-                db: 'sessions.db',
-                dir: './data'
-            }),
-            secret: sessionSecret,
+            // store: new SQLiteStore({ db: 'sessions.db', dir: './data' }),
+            secret: process.env.SESSION_SECRET || 'starframe-secret-key',
             resave: false,
             saveUninitialized: false,
             cookie: {
                 secure: process.env.NODE_ENV === 'production',
                 httpOnly: true,
-                maxAge: parseInt(process.env.SESSION_TIMEOUT) || 3600000
+                maxAge: 24 * 60 * 60 * 1000 // 24 hours
             }
         }));
 
@@ -208,7 +208,11 @@ async function startServer() {
 
         // Logging middleware
         app.use((req, res, next) => {
-            logger.info(`${req.method} ${req.url} - ${req.ip}`);
+            if (req.url.startsWith('/api/')) {
+                logger.info(`${req.method} ${req.url} - ${req.ip} - Body: ${JSON.stringify(req.body)}`);
+            } else {
+                logger.info(`${req.method} ${req.url} - ${req.ip}`);
+            }
             next();
         });
 
@@ -220,10 +224,15 @@ async function startServer() {
 
         // Routes
         app.use('/api/auth', authRoutes);
-app.use('/api/commission', commissionRoutes);
+        app.use('/api/commissions', commissionsRoutes);
+        app.use('/api/commission', commissionsRoutes); // Alias for backward compatibility/typo safety
         app.use('/api/invoice', invoiceRoutes);
         app.use('/api/reviews', reviewsRoutes);
         app.use('/api/payment', paymentRoutes);
+        app.use('/api/client', clientRoutes);
+        app.use('/api/pay', payRoutes);
+        app.use('/api/shop', shopRoutes);
+        app.use('/api/admin', adminRoutes);
 
         // Health check
         app.get('/api/health', (req, res) => {
@@ -237,9 +246,9 @@ app.use('/api/commission', commissionRoutes);
         // Global error handler
         app.use((err, req, res, next) => {
             logger.error('Unhandled error:', err);
-            
+
             if (req.url.startsWith('/api/')) {
-                res.status(500).json({ 
+                res.status(500).json({
                     error: 'Internal server error',
                     ...(process.env.NODE_ENV === 'development' && { details: err.message })
                 });

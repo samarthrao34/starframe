@@ -5,18 +5,18 @@ const Database = require('../models/Database');
 const logger = require('../utils/logger');
 
 class AuthMiddleware {
-    
+
     // Generate JWT token
     generateToken(user) {
         return jwt.sign(
-            { 
-                id: user.id, 
+            {
+                id: user.id,
                 username: user.username,
                 email: user.email,
                 timestamp: Date.now()
             },
             process.env.JWT_SECRET,
-            { 
+            {
                 expiresIn: '24h',
                 issuer: 'starframe-admin',
                 subject: user.id.toString()
@@ -87,7 +87,7 @@ class AuthMiddleware {
     async handleFailedLogin(user, ipAddress, userAgent) {
         const maxAttempts = parseInt(process.env.MAX_LOGIN_ATTEMPTS) || 5;
         const lockoutTime = parseInt(process.env.LOCKOUT_TIME) || 900000; // 15 minutes
-        
+
         const newFailedAttempts = (user.failed_attempts || 0) + 1;
         let lockedUntil = null;
 
@@ -153,14 +153,22 @@ class AuthMiddleware {
         });
     }
 
-    // Middleware to require authentication
+    // Middleware to require admin authentication
     requireAuth = async (req, res, next) => {
         try {
-            const token = req.header('Authorization')?.replace('Bearer ', '') || 
-                         req.session.token ||
-                         req.cookies?.authToken;
+            const token = req.header('Authorization')?.replace('Bearer ', '') ||
+                req.session.token ||
+                req.cookies?.authToken;
 
             if (!token) {
+                // If no token, check session
+                if (req.session && req.session.userId && req.session.isAdmin) {
+                    const user = await Database.get('SELECT * FROM admin_users WHERE id = ? AND is_active = 1', [req.session.userId]);
+                    if (user) {
+                        req.user = user;
+                        return next();
+                    }
+                }
                 return res.status(401).json({ error: 'No authentication token provided' });
             }
 
@@ -178,7 +186,7 @@ class AuthMiddleware {
             // Check if user is locked
             const lockStatus = await this.isUserLocked(user);
             if (lockStatus.locked) {
-                return res.status(423).json({ 
+                return res.status(423).json({
                     error: 'Account is locked',
                     remainingTime: lockStatus.remaining
                 });
@@ -202,6 +210,44 @@ class AuthMiddleware {
         }
     };
 
+    // Middleware to require client authentication
+    requireClientAuth = async (req, res, next) => {
+        try {
+            // Check session first (for web clients)
+            if (req.session && req.session.userId && !req.session.isAdmin) {
+                const client = await Database.getClientById(req.session.userId);
+                if (client && client.is_active) {
+                    req.user = client;
+                    return next();
+                }
+            }
+
+            // Check for token (for API/Mobile clients)
+            const token = req.header('Authorization')?.replace('Bearer ', '') ||
+                req.cookies?.clientToken;
+
+            if (!token) {
+                return res.status(401).json({ error: 'Authentication required' });
+            }
+
+            const decoded = this.verifyToken(token);
+            if (!decoded) {
+                return res.status(401).json({ error: 'Invalid or expired token' });
+            }
+
+            const client = await Database.getClientById(decoded.id);
+            if (!client || !client.is_active) {
+                return res.status(401).json({ error: 'Client account not found or inactive' });
+            }
+
+            req.user = client;
+            next();
+        } catch (error) {
+            logger.error('Client authentication middleware error:', error);
+            res.status(500).json({ error: 'Authentication error' });
+        }
+    };
+
     // Middleware to require 2FA verification
     require2FA = async (req, res, next) => {
         try {
@@ -210,11 +256,11 @@ class AuthMiddleware {
             }
 
             const user = await Database.get('SELECT * FROM admin_users WHERE id = ?', [req.user.id]);
-            
+
             if (user.is_2fa_enabled && !req.session.is2FAVerified) {
-                return res.status(403).json({ 
+                return res.status(403).json({
                     error: '2FA verification required',
-                    require2FA: true 
+                    require2FA: true
                 });
             }
 
@@ -228,8 +274,8 @@ class AuthMiddleware {
     // Middleware to log user activities
     logActivity = async (req, res, next) => {
         const originalSend = res.send;
-        
-        res.send = function(body) {
+
+        res.send = function (body) {
             // Only log successful requests (2xx status codes)
             if (res.statusCode >= 200 && res.statusCode < 300 && req.user) {
                 Database.logActivity({
@@ -245,10 +291,10 @@ class AuthMiddleware {
                     logger.error('Failed to log activity:', err);
                 });
             }
-            
+
             originalSend.call(this, body);
         };
-        
+
         next();
     };
 
@@ -257,13 +303,13 @@ class AuthMiddleware {
         if (req.session.lastActivity) {
             const sessionTimeout = parseInt(process.env.SESSION_TIMEOUT) || 3600000; // 1 hour
             const timeSinceLastActivity = Date.now() - req.session.lastActivity;
-            
+
             if (timeSinceLastActivity > sessionTimeout) {
                 req.session.destroy();
                 return res.status(401).json({ error: 'Session expired' });
             }
         }
-        
+
         next();
     };
 }

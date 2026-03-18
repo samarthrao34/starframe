@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment - StarFrame Animation Studio</title>
+    <link rel="stylesheet" href="css/style-new.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d4a574;
+            --primary-dark: #b88a5d;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.7);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #050505;
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .pay-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        .pay-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            margin: 0;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .commission-info {
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-left: 3px solid var(--primary);
+            text-align: left;
+        }
+
+        .commission-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+
+        .commission-info p {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .qr-section {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .qr-section img {
+            width: 220px;
+            height: 220px;
+            display: block;
+        }
+
+        .upi-details {
+            margin-bottom: 30px;
+        }
+
+        .upi-id {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 1rem;
+            border: 1px dashed var(--glass-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .upi-id:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.875rem;
+            color: var(--text-dim);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+        }
+
+        input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 12px 15px 12px 45px;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(212, 165, 116, 0.4);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            z-index: 1000;
+            transform: translateX(150%);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: rgba(34, 197, 94, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .notification.error {
+            background: rgba(239, 68, 68, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .receipt-card {
+            display: none;
+            background: white;
+            color: #333;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .receipt-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .receipt-footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="stars"></div>
+
+    <div class="pay-container">
+        <div class="pay-card" id="payMain">
+            <div class="logo">
+                <h1>StarFrame</h1>
+                <p style="color: var(--text-dim); font-size: 0.875rem; margin-top: 0.5rem;">Secure Payment Portal</p>
+            </div>
+
+            <div class="commission-info" id="commInfo">
+                <h4>Commission Request</h4>
+                <p id="commIdDisplay">Loading details...</p>
+                <p id="commServiceDisplay" style="font-size: 0.875rem; color: var(--text-dim);"></p>
+            </div>
+
+            <div class="qr-section">
+                <img src="qrcode.png" alt="UPI QR Code">
+            </div>
+
+            <div class="upi-details">
+                <p style="color: var(--text-dim); font-size: 0.875rem; margin-bottom: 8px;">Scan with any UPI app</p>
+                <div class="upi-id" onclick="copyUpiId()">
+                    <span id="upiId">mvp102719-1@okhdfcbank</span>
+                    <i class="fas fa-copy" style="margin-left: 8px; font-size: 0.8rem;"></i>
+                </div>
+            </div>
+
+            <form id="payForm">
+                <div class="form-group">
+                    <label for="utr">Transaction ID / UTR Number</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="utr" placeholder="12-digit number from your app" required>
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Amount Paid (INR)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="amount" placeholder="Enter amount paid" required>
+                        <i class="fas fa-indian-rupee-sign"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    <span id="btnText">Submit Declaration</span>
+                    <i class="fas fa-shield-check"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Provisional Receipt -->
+        <div class="receipt-card" id="receiptCard">
+            <div class="receipt-header">
+                <div>
+                    <h3 style="margin: 0; color: #d4a574;">StarFrame</h3>
+                    <p style="font-size: 0.7rem; margin: 2px 0;">Animation Studio</p>
+                </div>
+                <div style="text-align: right;">
+                    <p style="font-size: 0.8rem; font-weight: 600; margin: 0;">PROVISIONAL RECEIPT</p>
+                    <p id="receiptNo" style="font-size: 0.7rem; margin: 2px 0;"></p>
+                </div>
+            </div>
+
+            <div class="receipt-row">
+                <span>UTR Number:</span>
+                <strong id="rUtr"></strong>
+            </div>
+            <div class="receipt-row">
+                <span>Amount:</span>
+                <strong id="rAmount"></strong>
+            </div>
+            <div class="receipt-row">
+                <span>Date:</span>
+                <span id="rDate"></span>
+            </div>
+            <div class="receipt-row">
+                <span>Status:</span>
+                <span style="color: #d4a574; font-weight: 600;">PENDING VERIFICATION</span>
+            </div>
+
+            <div class="receipt-footer">
+                <p>This is an automated provisional receipt. Your commission status will update to "In Progress" once
+                    the transaction is verified by our team.</p>
+                <button onclick="window.location.href='/dashboard.html'" class="btn-primary"
+                    style="margin-top: 15px; background: #333; color: #fff;">Go to Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification">
+        <i id="notifIcon" class="fas"></i>
+        <span id="notifMessage"></span>
+    </div>
+
+    <script>
+        // Stars background
+        function createStars() {
+            const container = document.getElementById('stars');
+            const count = 100;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+                container.appendChild(star);
+            }
+        }
+        createStars();
+
+        function showNotification(message, type = 'success') {
+            const notif = document.getElementById('notification');
+            const icon = document.getElementById('notifIcon');
+            const msg = document.getElementById('notifMessage');
+
+            notif.className = `notification show ${type}`;
+            icon.className = `fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}`;
+            msg.textContent = message;
+
+            setTimeout(() => notif.classList.remove('show'), 3000);
+        }
+
+        function copyUpiId() {
+            const upiId = document.getElementById('upiId').textContent;
+            navigator.clipboard.writeText(upiId).then(() => {
+                showNotification('UPI ID copied to clipboard!');
+            });
+        }
+
+        // Get Details
+        const urlParams = new URLSearchParams(window.location.search);
+        const commissionId = urlParams.get('id');
+        const productId = urlParams.get('product_id');
+        const amountParam = urlParams.get('amount');
+
+        if (!commissionId && !productId) {
+            window.location.href = '/dashboard.html';
+        }
+
+        if (amountParam) {
+            document.getElementById('amount').value = amountParam;
+            document.getElementById('amount').readOnly = true;
+            document.getElementById('amount').style.opacity = '0.8';
+        }
+
+        async function loadDetails() {
+            if (commissionId) {
+                try {
+                    const response = await fetch(`/api/commissions/status/${commissionId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        document.getElementById('commIdDisplay').textContent = `Commission ID: ${data.id}`;
+                        document.getElementById('commServiceDisplay').textContent = data.service;
+                    }
+                } catch (err) {
+                    console.error('Failed to load commission:', err);
+                }
+            } else if (productId) {
+                try {
+                    const response = await fetch(`/api/shop/product/${productId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.success && data.product) {
+                            document.getElementById('commInfo').querySelector('h4').textContent = "Digital Art Purchase";
+                            document.getElementById('commIdDisplay').textContent = `Product: ${data.product.title}`;
+                            document.getElementById('commServiceDisplay').textContent = `Category: ${data.product.category}`;
+                        }
+                    }
+                } catch (err) {
+                    console.error('Failed to load product:', err);
+                }
+            }
+        }
+
+        loadDetails();
+
+        // Handle Payment Declaration
+        document.getElementById('payForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const utr = document.getElementById('utr').value;
+            const amount = document.getElementById('amount').value;
+            const btnText = document.getElementById('btnText');
+            const submitBtn = document.getElementById('submitBtn');
+
+            btnText.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+
+            try {
+                // Step 1: Declare Payment via existing endpoint
+                const response = await fetch('/api/pay/declare', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount, utrNumber: utr })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    let isShopPurchase = false;
+                    let downloadToken = null;
+
+                    // Step 2: If it's a product, record the purchase to link it
+                    if (productId) {
+                        const recordResponse = await fetch('/api/shop/record-purchase', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ product_id: parseInt(productId), payment_id: result.paymentId })
+                        });
+                        const recordData = await recordResponse.json();
+                        if (recordData.success) {
+                            isShopPurchase = true;
+                            downloadToken = recordData.download_token;
+                        }
+                    }
+
+                    showNotification('Declaration submitted successfully!');
+
+                    // Show Receipt
+                    document.getElementById('payMain').style.display = 'none';
+                    document.getElementById('receiptCard').style.display = 'block';
+
+                    document.getElementById('rUtr').textContent = utr;
+                    document.getElementById('rAmount').textContent = `₹${amount}`;
+                    document.getElementById('rDate').textContent = new Date().toLocaleString();
+                    document.getElementById('receiptNo').textContent = `NO: SF-RE-${Date.now().toString().slice(-6)}`;
+
+                    if (isShopPurchase) {
+                        const receiptFooter = document.querySelector('.receipt-footer');
+                        receiptFooter.innerHTML = `
+                            <p style="color: #2ecc71; font-weight: bold; margin-bottom: 20px;">
+                                <i class="fas fa-check-circle"></i> Purchase Recorded!
+                            </p>
+                            <p>Once admin verifies your UPI Transaction ID, your download link will become active.</p>
+                            <a href="/api/shop/download/${downloadToken}" target="_blank" class="btn-primary" style="margin-top: 15px; background: #667eea; color: #fff; text-decoration: none;">
+                                <i class="fas fa-download"></i> Access Download Link
+                            </a>
+                            <button onclick="window.location.href='/dashboard.html'" class="btn-primary" style="margin-top: 10px; background: #333; color: #fff;">Go to Dashboard</button>
+                        `;
+                    }
+                } else {
+                    showNotification(result.error || 'Failed to submit', 'error');
+                    btnText.textContent = 'Submit Declaration';
+                    submitBtn.disabled = false;
+                }
+            } catch (err) {
+                showNotification('Connection error', 'error');
+                btnText.textContent = 'Submit Declaration';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

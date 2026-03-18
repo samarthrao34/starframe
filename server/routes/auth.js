@@ -20,7 +20,7 @@ router.post('/login', [
             headers: req.headers,
             contentType: req.get('Content-Type')
         });
-        
+
         // Check validation errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -35,20 +35,20 @@ router.post('/login', [
         // Find user
         const user = await Database.getUserByUsername(username);
         if (!user) {
-            logger.security('Login attempt with invalid username', { 
-                username, 
-                ip: clientIP, 
-                userAgent 
+            logger.security('Login attempt with invalid username', {
+                username,
+                ip: clientIP,
+                userAgent
             });
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
         // Check if user is active
         if (!user.is_active) {
-            logger.security('Login attempt by inactive user', { 
-                username: user.username, 
-                ip: clientIP, 
-                userAgent 
+            logger.security('Login attempt by inactive user', {
+                username: user.username,
+                ip: clientIP,
+                userAgent
             });
             return res.status(401).json({ error: 'Account is inactive' });
         }
@@ -56,9 +56,9 @@ router.post('/login', [
         // Check if user is locked
         const lockStatus = await auth.isUserLocked(user);
         if (lockStatus.locked) {
-            return res.status(423).json({ 
-                error: 'Account is locked', 
-                remainingTime: lockStatus.remaining 
+            return res.status(423).json({
+                error: 'Account is locked',
+                remainingTime: lockStatus.remaining
             });
         }
 
@@ -72,9 +72,9 @@ router.post('/login', [
         // Check 2FA if enabled
         if (user.is_2fa_enabled) {
             if (!twoFactorCode) {
-                return res.status(200).json({ 
+                return res.status(200).json({
                     requireTwoFactor: true,
-                    message: '2FA code required' 
+                    message: '2FA code required'
                 });
             }
 
@@ -90,10 +90,11 @@ router.post('/login', [
 
         // Generate token
         const token = auth.generateToken(user);
-        
+
         // Set session data
         req.session.token = token;
         req.session.userId = user.id;
+        req.session.isAdmin = true;
         req.session.is2FAVerified = user.is_2fa_enabled;
         req.session.lastActivity = Date.now();
 
@@ -128,7 +129,7 @@ router.post('/verify-2fa', [
 
         const { username, twoFactorCode } = req.body;
         const user = await Database.getUserByUsername(username);
-        
+
         if (!user || !user.is_2fa_enabled) {
             return res.status(400).json({ error: 'Invalid request' });
         }
@@ -154,14 +155,14 @@ router.post('/verify-2fa', [
 router.post('/setup-2fa', auth.requireAuth, async (req, res) => {
     try {
         const user = await Database.get('SELECT * FROM admin_users WHERE id = ?', [req.user.id]);
-        
+
         if (user.is_2fa_enabled) {
             return res.status(400).json({ error: '2FA is already enabled' });
         }
 
         // Generate secret
         const secret = auth.generate2FASecret(user.username);
-        
+
         // Generate QR code
         const qrCodeUrl = await qrcode.toDataURL(secret.otpauth_url);
 
@@ -331,13 +332,13 @@ router.post('/change-password', auth.requireAuth, [
 router.post('/logout', auth.requireAuth, (req, res) => {
     try {
         logger.audit('User logged out', { userId: req.user.id, username: req.user.username });
-        
+
         req.session.destroy((err) => {
             if (err) {
                 logger.error('Session destruction error:', err);
                 return res.status(500).json({ error: 'Logout error' });
             }
-            
+
             res.clearCookie('connect.sid');
             res.json({ success: true, message: 'Logged out successfully' });
         });
@@ -375,7 +376,7 @@ router.get('/me', auth.requireAuth, async (req, res) => {
 router.get('/status', (req, res) => {
     const isAuthenticated = !!(req.session.token && req.session.userId);
     const is2FAVerified = !!req.session.is2FAVerified;
-    
+
     res.json({
         isAuthenticated,
         is2FAVerified,
@@ -388,22 +389,23 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 
-router.get('/google/callback', 
+router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/login?error=oauth_failed' }),
     async (req, res) => {
         try {
             // User is authenticated, redirect to personalized dashboard
             const user = req.user;
-            
+
             // Log the successful login
             logger.info('Google OAuth login successful:', {
                 userId: user.id,
                 email: user.email,
                 name: user.name
             });
-            
+
             // Set session data
             req.session.userId = user.id;
+            req.session.isAdmin = false; // Google login is for clients
             req.session.isOAuthUser = true;
             req.session.user = {
                 id: user.id,
@@ -411,10 +413,10 @@ router.get('/google/callback',
                 email: user.email,
                 picture: user.picture
             };
-            
+
             // Redirect to personalized dashboard
             res.redirect(`/dashboard?welcome=true&user=${encodeURIComponent(user.name)}`);
-            
+
         } catch (error) {
             logger.error('Google OAuth callback error:', error);
             res.redirect('/login?error=oauth_error');
@@ -428,12 +430,12 @@ router.get('/oauth/me', async (req, res) => {
         if (!req.session.userId || !req.session.isOAuthUser) {
             return res.status(401).json({ error: 'Not authenticated' });
         }
-        
-        const user = await Database.getUserById(req.session.userId);
+
+        const user = await Database.getClientById(req.session.userId);
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
-        
+
         res.json({
             user: {
                 id: user.id,
@@ -457,10 +459,10 @@ router.post('/oauth/preferences', async (req, res) => {
         if (!req.session.userId || !req.session.isOAuthUser) {
             return res.status(401).json({ error: 'Not authenticated' });
         }
-        
+
         const { preferences } = req.body;
-        await Database.updateUserPreferences(req.session.userId, preferences);
-        
+        await Database.updateClientPreferences(req.session.userId, preferences);
+
         res.json({ success: true, message: 'Preferences updated' });
     } catch (error) {
         logger.error('Update preferences error:', error);
@@ -473,8 +475,8 @@ router.post('/oauth/logout', async (req, res) => {
     try {
         if (req.session.userId && req.session.isOAuthUser) {
             // Update user session in database
-            await Database.updateUserSession(req.session.userId, null);
-            
+            await Database.updateClientSession(req.session.userId, null);
+
             // Get Socket.IO instance from app
             const io = req.app.get('io');
             if (io) {
@@ -484,13 +486,13 @@ router.post('/oauth/logout', async (req, res) => {
                 });
             }
         }
-        
+
         req.session.destroy((err) => {
             if (err) {
                 logger.error('Session destruction error:', err);
                 return res.status(500).json({ error: 'Logout error' });
             }
-            
+
             res.clearCookie('connect.sid');
             res.json({ success: true, message: 'Logged out successfully' });
         });

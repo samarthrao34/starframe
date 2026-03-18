@@ -352,6 +352,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             initializeSocket();
             loadUserInfo();
+            loadUserCommissions();
             trackPageVisit();
 
             // Get welcome parameter from URL
@@ -396,12 +397,12 @@
         // Load user information
         async function loadUserInfo() {
             try {
-                const response = await fetch('/api/auth/oauth/me');
+                const response = await fetch('/api/client/me');
                 if (response.ok) {
                     const data = await response.json();
-                    currentUser = data.user;
-                    displayUserInfo(data.user);
-                    userPreferences = { ...userPreferences, ...data.user.preferences };
+                    currentUser = data.client;
+                    displayUserInfo(data.client);
+                    userPreferences = { ...userPreferences, ...data.client.preferences };
                     updatePreferencesUI();
                 } else {
                     // User not authenticated, redirect to login
@@ -410,6 +411,120 @@
             } catch (error) {
                 console.error('Error loading user info:', error);
                 window.location.href = '/login.html';
+            }
+
+            // Load user commissions
+            async function loadUserCommissions() {
+                try {
+                    const response = await fetch('/api/commissions/my');
+                    if (response.ok) {
+                        const commissions = await response.json();
+                        displayCommissions(commissions);
+                    }
+                } catch (error) {
+                    console.error('Error loading commissions:', error);
+                }
+            }
+
+            // Display commissions in the gallery
+            function displayCommissions(commissions) {
+                const gallery = document.querySelector('.project-gallery');
+                if (!commissions || commissions.length === 0) {
+                    gallery.innerHTML = `
+                    <div class="project-item">
+                        <div class="project-info">
+                            <h4>No Projects Yet</h4>
+                            <p>Ready to start your first animation project?</p>
+                            <a href="commission.html" class="btn btn-primary btn-sm">Commission Now</a>
+                        </div>
+                    </div>
+                `;
+                    return;
+                }
+
+                gallery.innerHTML = commissions.map(c => `
+                <div class="project-item" style="box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #f0f0f0;">
+                    <div class="project-info" style="padding: 24px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                            <span class="badge" style="background: ${getStatusColor(c.status)}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; text-transform: uppercase; font-weight: 600;">
+                                ${c.status.replace('_', ' ')}
+                            </span>
+                            <span style="font-size: 0.7rem; color: #999;">${new Date(c.created_at).toLocaleDateString()}</span>
+                        </div>
+                        <h4 style="margin: 0 0 5px 0;">${c.service}</h4>
+                        <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">ID: ${c.id}</p>
+                        
+                        <!-- Visual Pipeline Tracker -->
+                        <div class="tracker-container" style="margin: 20px 0 30px 0;">
+                            <div class="tracker-steps" style="display: flex; justify-content: space-between; position: relative; margin-bottom: 10px;">
+                                <div style="position: absolute; top: 12px; left: 10%; width: 80%; height: 4px; background: #eee; z-index: 0; border-radius: 2px;"></div>
+                                <div style="position: absolute; top: 12px; left: 10%; width: ${getProgressWidth(c.status)}; height: 4px; background: var(--primary-color); z-index: 1; border-radius: 2px; transition: width 0.3s ease;"></div>
+                                
+                                ${getTrackerStep(c.status, 'queued', 'fas fa-clipboard-list', 'Queued', 0)}
+                                ${getTrackerStep(c.status, 'in_progress', 'fas fa-paint-brush', 'Working', 1)}
+                                ${getTrackerStep(c.status, 'sketch', 'fas fa-pencil-ruler', 'Review', 2)}
+                                ${getTrackerStep(c.status, 'completed', 'fas fa-check-circle', 'Done', 3)}
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px;">
+                            <a href="/pay.html?id=${c.id}" class="btn btn-outline btn-sm" style="flex: 1; font-size: 0.75rem;">
+                                <i class="fas fa-indian-rupee-sign"></i> Payments
+                            </a>
+                            <a href="/commission.html" class="btn btn-primary btn-sm" style="flex: 1; font-size: 0.75rem;">
+                                <i class="fas fa-plus"></i> New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            }
+
+            function getProgressWidth(status) {
+                if (status === 'queued') return '0%';
+                if (status === 'in_progress') return '33%';
+                if (status === 'sketch' || status === 'final') return '66%';
+                if (status === 'completed') return '100%';
+                if (status === 'rejected') return '0%'; // Or custom color logic
+                return '0%';
+            }
+
+            function getTrackerStep(currentStatus, stepName, iconClass, label, stepIndex) {
+                const statuses = ['queued', 'in_progress', 'sketch', 'completed'];
+                const currentIndex = statuses.indexOf(currentStatus === 'final' ? 'sketch' : currentStatus);
+                const isActive = stepIndex <= currentIndex;
+                const isCurrent = stepIndex === currentIndex;
+
+                const bgColor = isActive ? 'var(--primary-color)' : '#fff';
+                const borderColor = isActive ? 'var(--primary-color)' : '#ddd';
+                const iconColor = isActive ? '#fff' : '#ccc';
+                const labelColor = isActive ? '#333' : '#999';
+                const labelWeight = isCurrent ? 'bold' : 'normal';
+
+                return `
+                <div style="display: flex; flex-direction: column; align-items: center; z-index: 2; width: 45px;">
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: ${bgColor}; border: 2px solid ${borderColor}; display: flex; align-items: center; justify-content: center; margin-bottom: 5px; box-shadow: ${isCurrent ? '0 0 0 3px rgba(212,165,116,0.2)' : 'none'};">
+                        <i class="${iconClass}" style="font-size: 10px; color: ${iconColor};"></i>
+                    </div>
+                    <span style="font-size: 0.6rem; color: ${labelColor}; font-weight: ${labelWeight}; text-align: center;">${label}</span>
+                </div>
+                `;
+            }
+
+            function getStatusColor(status) {
+                const colors = {
+                    'queued': '#6c757d',
+                    'in_progress': '#007bff',
+                    'sketch': '#17a2b8',
+                    'final': '#ffc107',
+                    'completed': '#28a745',
+                    'rejected': '#dc3545'
+                };
+                return colors[status] || '#6c757d';
+            }
+
+            async function viewProjectDetails(id) {
+                window.location.href = `/pay.html?id=${id}`; // For now, track via pay page which shows status
             }
         }
 
@@ -481,7 +596,7 @@
         // Save preferences
         async function savePreferences() {
             try {
-                const response = await fetch('/api/auth/oauth/preferences', {
+                const response = await fetch('/api/client/preferences', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -506,7 +621,7 @@
             try {
                 trackAction('logout', 'auth-system');
 
-                const response = await fetch('/api/auth/oauth/logout', {
+                const response = await fetch('/api/client/logout', {
                     method: 'POST'
                 });
 

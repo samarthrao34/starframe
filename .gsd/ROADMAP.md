@@ -1,17 +1,17 @@
 # ROADMAP.md
 
-> **Current Phase**: Not started
+> **Current Phase**: Phase 5 Complete — Proceeding to Phase 6
 > **Milestone**: v2.0 — StarFrame E-Commerce & Commission Platform
 
 ## Must-Haves (from SPEC)
-- [ ] Razorpay payment checkout (replacing manual UPI QR)
+- [x] Razorpay payment checkout (replacing manual UPI QR)
 - [ ] Auto invoice/receipt after payment
-- [ ] Payment status in database
-- [ ] Store redesign with cart + checkout + instant download
-- [ ] Simplified commission form with pricing
-- [ ] Commission status tracking (client-facing)
-- [ ] User accounts with order/commission history
-- [ ] Guest browsing preserved
+- [x] Payment status in database
+- [x] Store redesign with cart + checkout + instant download
+- [x] Simplified commission form with pricing
+- [x] Commission status tracking (client-facing)
+- [x] User accounts with order/commission history
+- [x] Guest browsing preserved
 - [ ] Tech debt resolved
 - [ ] Portfolio gallery page fetching from Google Drive
 
@@ -54,7 +54,7 @@
 - Wire up existing `api/payment/` serverless functions
 
 ### Phase 4: Commission System Overhaul
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Streamlined commission intake with pricing display and status tracking
 **Depends on**: Phase 3
 **Scope**:
@@ -67,7 +67,7 @@
 - Email/notification on status changes
 
 ### Phase 5: Digital Art Store
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Redesigned store with cart, checkout, and instant digital download
 **Depends on**: Phase 3
 **Scope**:

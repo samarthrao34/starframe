@@ -3,8 +3,29 @@ const { body, validationResult } = require('express-validator');
 const Database = require('../models/Database');
 const auth = require('../middleware/auth');
 const logger = require('../utils/logger');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 
 const router = express.Router();
+
+// Configure multer for product uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        let uploadPath = path.join(__dirname, '../../uploads/products');
+        if (file.fieldname === 'productFile') {
+            uploadPath = path.join(__dirname, '../../uploads/downloads');
+        }
+        // Ensure directories exist
+        fs.mkdirSync(uploadPath, { recursive: true });
+        cb(null, uploadPath);
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage: storage });
 
 // Apply activity logging to all routes
 router.use(auth.logActivity);
@@ -16,11 +37,11 @@ router.get('/dashboard', async (req, res) => {
         const totalVisitors = await Database.get(
             'SELECT COUNT(*) as count FROM visitor_analytics WHERE timestamp >= datetime("now", "-30 days")'
         );
-        
+
         const todayVisitors = await Database.get(
             'SELECT COUNT(*) as count FROM visitor_analytics WHERE date(timestamp) = date("now")'
         );
-        
+
         const yesterdayVisitors = await Database.get(
             'SELECT COUNT(*) as count FROM visitor_analytics WHERE date(timestamp) = date("now", "-1 day")'
         );
@@ -41,7 +62,7 @@ router.get('/dashboard', async (req, res) => {
         );
 
         // Calculate visitor change percentage
-        const visitorsChange = yesterdayVisitors.count > 0 
+        const visitorsChange = yesterdayVisitors.count > 0
             ? ((todayVisitors.count - yesterdayVisitors.count) / yesterdayVisitors.count * 100).toFixed(1)
             : '0';
 
@@ -97,10 +118,10 @@ router.get('/dashboard', async (req, res) => {
 router.get('/analytics/visitors', async (req, res) => {
     try {
         const { timeframe = '24h' } = req.query;
-        
+
         let timeFilter;
         let groupBy;
-        
+
         switch (timeframe) {
             case '24h':
                 timeFilter = 'datetime("now", "-24 hours")';
@@ -182,7 +203,7 @@ router.get('/analytics/visitors', async (req, res) => {
 router.get('/security/events', async (req, res) => {
     try {
         const { timeframe = '24h', severity, type } = req.query;
-        
+
         let timeFilter = 'datetime("now", "-24 hours")';
         if (timeframe === '7d') timeFilter = 'datetime("now", "-7 days")';
         if (timeframe === '30d') timeFilter = 'datetime("now", "-30 days")';
@@ -238,7 +259,7 @@ router.get('/security/events', async (req, res) => {
 router.get('/clients/inquiries', async (req, res) => {
     try {
         const { status, priority } = req.query;
-        
+
         let whereClause = 'WHERE 1=1';
         const params = [];
 
@@ -328,7 +349,7 @@ router.put('/clients/inquiries/:id', [
 router.get('/payments/transactions', async (req, res) => {
     try {
         const { status, period } = req.query;
-        
+
         let whereClause = 'WHERE 1=1';
         const params = [];
 
@@ -353,7 +374,7 @@ router.get('/payments/transactions', async (req, res) => {
 
         const transactions = await Database.all(`
             SELECT *
-            FROM payment_transactions
+            FROM payments
             ${whereClause}
             ORDER BY created_at DESC
             LIMIT 100
@@ -365,7 +386,7 @@ router.get('/payments/transactions', async (req, res) => {
                 status,
                 COUNT(*) as count,
                 SUM(amount) as total_amount
-            FROM payment_transactions
+            FROM payments
             ${whereClause}
             GROUP BY status
         `, params);
@@ -381,6 +402,183 @@ router.get('/payments/transactions', async (req, res) => {
     }
 });
 
+// Verify payment transaction
+router.post('/payments/:id/verify', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Update payment status to verified
+        await Database.run('UPDATE payments SET status = "verified" WHERE id = ?', [id]);
+
+        // Find the commission associated with this payment ID and update it too
+        // In the schema, commissions has a payment_id foreign key
+        await Database.run('UPDATE commissions SET status = "in_progress" WHERE payment_id = ?', [id]);
+
+        res.json({ success: true, message: 'Payment verified and commission updated.' });
+    } catch (error) {
+        logger.error('Payment verification error:', error);
+        res.status(500).json({ error: 'Failed to verify payment' });
+    }
+});
+
+// GET all products for Admin
+router.get('/products', async (req, res) => {
+    try {
+        const products = await Database.getProducts(); // Admin gets all, active or not
+        res.json({ success: true, products });
+    } catch (error) {
+        logger.error('Error fetching admin products:', error);
+        res.status(500).json({ error: 'Failed to fetch products' });
+    }
+});
+
+// POST new product
+router.post('/products', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'productFile', maxCount: 1 }]), async (req, res) => {
+    try {
+        const { title, description, category, price_inr, is_active } = req.body;
+
+        const image_url = req.files['image'] ? '/uploads/products/' + req.files['image'][0].filename : '/images/StarFrame Animation Studio/landscape.jpeg';
+        const file_url = req.files['productFile'] ? '/uploads/downloads/' + req.files['productFile'][0].filename : '';
+
+        const productId = await Database.createProduct({
+            category,
+            title,
+            description,
+            price_inr: parseFloat(price_inr),
+            image_url,
+            file_url,
+            is_active: is_active === 'true' || is_active === true ? 1 : 0
+        });
+
+        res.json({ success: true, productId, message: 'Product created successfully' });
+    } catch (error) {
+        logger.error('Error creating product:', error);
+        res.status(500).json({ error: 'Failed to create product' });
+    }
+});
+
+// DELETE product
+router.delete('/products/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Database.deleteProduct(id);
+        res.json({ success: true, message: 'Product deleted successfully' });
+    } catch (error) {
+        logger.error('Error deleting product:', error);
+        res.status(500).json({ error: 'Failed to delete product' });
+    }
+});
+
+// ========================================
+// === COMMISSION MANAGEMENT ===
+// ========================================
+
+// GET all commissions (admin)
+router.get('/commissions', async (req, res) => {
+    try {
+        const { status, search, limit = 50 } = req.query;
+
+        let whereClause = 'WHERE 1=1';
+        const params = [];
+
+        if (status && status !== 'all') {
+            whereClause += ' AND c.status = ?';
+            params.push(status);
+        }
+
+        if (search) {
+            whereClause += ' AND (c.id LIKE ? OR c.name LIKE ? OR c.email LIKE ?)';
+            const searchTerm = `%${search}%`;
+            params.push(searchTerm, searchTerm, searchTerm);
+        }
+
+        params.push(parseInt(limit));
+
+        const commissions = await Database.all(`
+            SELECT c.*, p.amount as paid_amount, p.status as payment_status
+            FROM commissions c
+            LEFT JOIN payments p ON c.payment_id = p.id
+            ${whereClause}
+            ORDER BY c.created_at DESC
+            LIMIT ?
+        `, params);
+
+        const statusCounts = await Database.all(`
+            SELECT status, COUNT(*) as count FROM commissions GROUP BY status
+        `);
+
+        res.json({ success: true, commissions, statusCounts });
+    } catch (error) {
+        logger.error('Admin commissions error:', error);
+        res.status(500).json({ error: 'Failed to fetch commissions' });
+    }
+});
+
+// GET single commission detail (admin)
+router.get('/commissions/:id', async (req, res) => {
+    try {
+        const commission = await Database.get(`
+            SELECT c.*, p.amount as paid_amount, p.status as payment_status, p.utr_number,
+                   cl.name as client_name, cl.email as client_email
+            FROM commissions c
+            LEFT JOIN payments p ON c.payment_id = p.id
+            LEFT JOIN clients cl ON c.client_id = cl.id
+            WHERE c.id = ?
+        `, [req.params.id]);
+
+        if (!commission) {
+            return res.status(404).json({ error: 'Commission not found' });
+        }
+
+        res.json({ success: true, commission });
+    } catch (error) {
+        logger.error('Admin commission detail error:', error);
+        res.status(500).json({ error: 'Failed to fetch commission' });
+    }
+});
+
+// PUT update commission status (admin) — triggers email notification
+router.put('/commissions/:id/status', async (req, res) => {
+    try {
+        const { status, note } = req.body;
+        const validStatuses = ['queued', 'in_progress', 'sketch', 'final', 'completed'];
+
+        if (!validStatuses.includes(status)) {
+            return res.status(400).json({ error: 'Invalid status. Valid: ' + validStatuses.join(', ') });
+        }
+
+        const commission = await Database.getCommission(req.params.id);
+        if (!commission) {
+            return res.status(404).json({ error: 'Commission not found' });
+        }
+
+        await Database.updateCommissionStatus(req.params.id, status);
+
+        // Send email notification
+        try {
+            const { sendStatusUpdateEmail } = require('../utils/notifications');
+            await sendStatusUpdateEmail(commission, status, note);
+        } catch (emailErr) {
+            logger.error('Email notification failed (non-fatal):', emailErr);
+        }
+
+        // Emit real-time update via Socket.IO
+        const io = req.app.get('io');
+        if (io) {
+            io.emit('commission-status-update', {
+                commissionId: req.params.id,
+                status,
+                timestamp: new Date().toISOString()
+            });
+        }
+
+        res.json({ success: true, message: `Commission status updated to ${status}` });
+    } catch (error) {
+        logger.error('Commission status update error:', error);
+        res.status(500).json({ error: 'Failed to update commission status' });
+    }
+});
+
 // System health check
 router.get('/system/health', async (req, res) => {
     try {
@@ -391,7 +589,7 @@ router.get('/system/health', async (req, res) => {
         // Get disk usage (simplified)
         const fs = require('fs');
         const stats = fs.statSync('./');
-        
+
         // Get memory usage
         const memUsage = process.memoryUsage();
 
@@ -422,7 +620,7 @@ router.get('/system/health', async (req, res) => {
 
     } catch (error) {
         logger.error('System health check error:', error);
-        res.status(500).json({ 
+        res.status(500).json({
             status: 'error',
             error: 'Health check failed',
             details: error.message
@@ -435,7 +633,7 @@ router.post('/system/backup', async (req, res) => {
     try {
         const fs = require('fs');
         const path = require('path');
-        
+
         const backupDir = path.join(__dirname, '../../backups');
         if (!fs.existsSync(backupDir)) {
             fs.mkdirSync(backupDir, { recursive: true });
@@ -446,12 +644,12 @@ router.post('/system/backup', async (req, res) => {
 
         // Simple SQLite backup (in production, use proper backup tools)
         const dbPath = process.env.DATABASE_PATH || path.join(__dirname, '../../data/starframe.db');
-        
+
         if (fs.existsSync(dbPath)) {
             fs.copyFileSync(dbPath, backupPath);
-            
+
             const stats = fs.statSync(backupPath);
-            
+
             // Log backup in database
             await Database.run(`
                 INSERT INTO backups (backup_type, file_path, file_size, status, created_by)
@@ -481,9 +679,9 @@ router.post('/system/backup', async (req, res) => {
 router.get('/system/logs', async (req, res) => {
     try {
         const { type = 'activity', limit = 100 } = req.query;
-        
+
         let logs;
-        
+
         switch (type) {
             case 'activity':
                 logs = await Database.all(`
@@ -496,7 +694,7 @@ router.get('/system/logs', async (req, res) => {
                     LIMIT ?
                 `, [limit]);
                 break;
-                
+
             case 'security':
                 logs = await Database.all(`
                     SELECT 
@@ -508,7 +706,7 @@ router.get('/system/logs', async (req, res) => {
                     LIMIT ?
                 `, [limit]);
                 break;
-                
+
             default:
                 logs = [];
         }
@@ -525,23 +723,23 @@ router.get('/system/logs', async (req, res) => {
 router.post('/system/actions/:action', async (req, res) => {
     try {
         const { action } = req.params;
-        
+
         switch (action) {
             case 'clear-cache':
                 // Clear any cached data (implement as needed)
                 res.json({ success: true, message: 'Cache cleared successfully' });
                 break;
-                
+
             case 'security-scan':
                 // Run security scan (implement as needed)
                 res.json({ success: true, message: 'Security scan completed' });
                 break;
-                
+
             case 'update-content':
                 // Trigger content update (implement as needed)
                 res.json({ success: true, message: 'Content update initiated' });
                 break;
-                
+
             default:
                 res.status(400).json({ error: 'Unknown action' });
         }

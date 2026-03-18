@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StarFrame Admin Dashboard</title>
     <meta name="description" content="Admin dashboard for StarFrame Animation Studio">
     <meta name="robots" content="noindex, nofollow">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
+
     <!-- Stylesheets -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/admin.css">
-    
+
     <!-- Socket.IO for real-time features -->
     <script src="/socket.io/socket.io.js"></script>
-    
+
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://vitals.vercel-insights.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://vitals.vercel-insights.com;">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://vitals.vercel-insights.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://vitals.vercel-insights.com;">
 
     <!-- Vercel Web Analytics for non-Next.js sites -->
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div id="loadingScreen" class="loading-screen">
@@ -40,31 +45,31 @@
                 <h1>StarFrame Admin</h1>
                 <p>Welcome back! Sign in to access your creative control center</p>
             </div>
-            
+
             <form id="loginForm" class="login-form">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required autocomplete="username">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required autocomplete="current-password">
                 </div>
-                
+
                 <div id="twoFactorGroup" class="form-group hidden">
                     <label for="twoFactorCode">2FA Code</label>
                     <input type="text" id="twoFactorCode" name="twoFactorCode" maxlength="6" placeholder="000000">
                 </div>
-                
+
                 <button type="submit" id="loginButton" class="login-button">
                     <i class="fas fa-sign-in-alt"></i>
                     Sign In
                 </button>
-                
+
                 <div id="loginError" class="error-message hidden"></div>
             </form>
-            
+
             <div class="login-footer">
                 <div class="security-info">
                     <i class="fas fa-shield-alt"></i>
@@ -82,54 +87,58 @@
                 <h2>✨ StarFrame</h2>
                 <span class="admin-badge">Admin Panel</span>
             </div>
-            
+
             <ul class="sidebar-menu">
                 <li><a href="#dashboard-overview" class="menu-item active" data-section="overview">
-                    <i class="fas fa-sparkles"></i>
-                    Dashboard
-                </a></li>
+                        <i class="fas fa-sparkles"></i>
+                        Dashboard
+                    </a></li>
                 <li><a href="#analytics" class="menu-item" data-section="analytics">
-                    <i class="fas fa-chart-line"></i>
-                    Analytics
-                </a></li>
+                        <i class="fas fa-chart-line"></i>
+                        Analytics
+                    </a></li>
                 <li><a href="#visitors" class="menu-item" data-section="visitors">
-                    <i class="fas fa-users"></i>
-                    Visitors
-                </a></li>
+                        <i class="fas fa-users"></i>
+                        Visitors
+                    </a></li>
                 <li><a href="#security" class="menu-item" data-section="security">
-                    <i class="fas fa-shield-alt"></i>
-                    Security
-                </a></li>
+                        <i class="fas fa-shield-alt"></i>
+                        Security
+                    </a></li>
                 <li><a href="#clients" class="menu-item" data-section="clients">
-                    <i class="fas fa-user-tie"></i>
-                    Clients
-                </a></li>
+                        <i class="fas fa-user-tie"></i>
+                        Clients
+                    </a></li>
                 <li><a href="#payments" class="menu-item" data-section="payments">
-                    <i class="fas fa-credit-card"></i>
-                    Payments
-                </a></li>
+                        <i class="fas fa-credit-card"></i>
+                        Payments
+                    </a></li>
                 <li><a href="#commissions" class="menu-item" data-section="commissions">
-                    <i class="fas fa-palette"></i>
-                    Commissions
-                </a></li>
+                        <i class="fas fa-palette"></i>
+                        Commissions
+                    </a></li>
                 <li><a href="#reviews" class="menu-item" data-section="reviews">
-                    <i class="fas fa-star"></i>
-                    Reviews
-                </a></li>
+                        <i class="fas fa-star"></i>
+                        Reviews
+                    </a></li>
+                <li><a href="#products" class="menu-item" data-section="products">
+                        <i class="fas fa-store"></i>
+                        Products
+                    </a></li>
                 <li><a href="#content" class="menu-item" data-section="content">
-                    <i class="fas fa-pen-fancy"></i>
-                    Content
-                </a></li>
+                        <i class="fas fa-pen-fancy"></i>
+                        Content
+                    </a></li>
                 <li><a href="#system" class="menu-item" data-section="system">
-                    <i class="fas fa-cogs"></i>
-                    System
-                </a></li>
+                        <i class="fas fa-cogs"></i>
+                        System
+                    </a></li>
                 <li><a href="#logs" class="menu-item" data-section="logs">
-                    <i class="fas fa-scroll"></i>
-                    Logs
-                </a></li>
+                        <i class="fas fa-scroll"></i>
+                        Logs
+                    </a></li>
             </ul>
-            
+
             <div class="sidebar-footer">
                 <div class="user-info">
                     <i class="fas fa-user-circle"></i>
@@ -152,7 +161,7 @@
                     </button>
                     <h1 id="pageTitle">Dashboard Overview</h1>
                 </div>
-                
+
                 <div class="header-right">
                     <div class="header-stats">
                         <div class="stat-item">
@@ -164,7 +173,7 @@
                             <span id="liveVisitors">0</span> <small>live</small>
                         </div>
                     </div>
-                    
+
                     <div class="user-menu">
                         <button class="user-menu-toggle">
                             <i class="fas fa-user-circle"></i>
@@ -202,7 +211,8 @@
                             </div>
 
                             <div class="stat-card">
-                                <div class="stat-icon" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                                <div class="stat-icon"
+                                    style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
                                     <i class="fas fa-shield-alt"></i>
                                 </div>
                                 <div class="stat-content">
@@ -216,7 +226,8 @@
                             </div>
 
                             <div class="stat-card">
-                                <div class="stat-icon" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
+                                <div class="stat-icon"
+                                    style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="stat-content">
@@ -230,7 +241,8 @@
                             </div>
 
                             <div class="stat-card">
-                                <div class="stat-icon" style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%);">
+                                <div class="stat-icon"
+                                    style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%);">
                                     <i class="fas fa-server"></i>
                                 </div>
                                 <div class="stat-content">
@@ -350,12 +362,12 @@
                     </div>
                 </section>
 
-                <section id="commissions-section" class="content-section">
+                <section id="payments-section" class="content-section">
                     <div class="section-header">
-                        <h2>Commission Requests</h2>
+                        <h2>Payment Verification</h2>
                         <div class="search-bar">
-                            <input type="text" id="commissionSearch" placeholder="Search by ID...">
-                            <button id="commissionSearchBtn"><i class="fas fa-search"></i></button>
+                            <input type="text" id="paymentSearch" placeholder="Search by UTR...">
+                            <button id="paymentSearchBtn"><i class="fas fa-search"></i></button>
                         </div>
                     </div>
                     <div class="table-container">
@@ -363,11 +375,51 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Client ID</th>
+                                    <th>Amount (₹)</th>
+                                    <th>UTR Number</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentsTableBody">
+                                <!-- Payment rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="commissions-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Commission Management</h2>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                            <div class="filter-tabs" id="commissionStatusFilter" style="display: flex; gap: 5px;">
+                                <button class="filter-tab active" data-status="all" style="padding:6px 14px; border-radius:20px; border:1px solid #ddd; background:#fff; cursor:pointer; font-size:0.85rem;">All</button>
+                                <button class="filter-tab" data-status="queued" style="padding:6px 14px; border-radius:20px; border:1px solid #ffc107; background:#fff8e1; cursor:pointer; font-size:0.85rem;">Queued</button>
+                                <button class="filter-tab" data-status="in_progress" style="padding:6px 14px; border-radius:20px; border:1px solid #2196f3; background:#e3f2fd; cursor:pointer; font-size:0.85rem;">In Progress</button>
+                                <button class="filter-tab" data-status="sketch" style="padding:6px 14px; border-radius:20px; border:1px solid #9c27b0; background:#f3e5f5; cursor:pointer; font-size:0.85rem;">Sketch</button>
+                                <button class="filter-tab" data-status="completed" style="padding:6px 14px; border-radius:20px; border:1px solid #4caf50; background:#e8f5e9; cursor:pointer; font-size:0.85rem;">Completed</button>
+                            </div>
+                            <div class="search-bar">
+                                <input type="text" id="commissionSearch" placeholder="Search by ID, name, or email...">
+                                <button id="commissionSearchBtn"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Status summary cards -->
+                    <div id="commissionStatusSummary" style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;"></div>
+                    <div class="table-container">
+                        <table class="commission-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Client</th>
                                     <th>Service</th>
                                     <th>Budget</th>
+                                    <th>Payment</th>
                                     <th>Status</th>
+                                    <th>Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -401,6 +453,39 @@
                             </thead>
                             <tbody id="reviewsTableBody">
                                 <!-- Review rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="products-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Digital Art Store Products</h2>
+                        <div style="display: flex; gap: 10px;">
+                            <div class="search-bar">
+                                <input type="text" id="productSearch" placeholder="Search products...">
+                                <button id="productSearchBtn"><i class="fas fa-search"></i></button>
+                            </div>
+                            <button id="add-product-btn" class="btn btn-primary"
+                                style="padding: 8px 15px; border-radius: 8px;"><i class="fas fa-plus"></i> Add
+                                Product</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="commission-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Price (INR)</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Product rows will be inserted here -->
                             </tbody>
                         </table>
                     </div>
@@ -449,4 +534,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="js/admin.js"></script>
 </body>
+
 </html>

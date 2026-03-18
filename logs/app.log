@@ -3830,3 +3830,578 @@
 2025-12-16 23:31:23 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
 2025-12-16 23:31:23 [INFO]: Connected to SQLite database {"service":"starframe-admin"}
 2025-12-16 23:31:23 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2026-03-01 23:25:38 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2026-03-01 23:25:38 [INFO]: Connected to SQLite database (native) {"service":"starframe-admin"}
+2026-03-01 23:25:38 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2026-03-01 23:25:38 [INFO]: Database initialized {"service":"starframe-admin"}
+2026-03-01 23:25:38 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2026-03-01 23:25:38 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2026-03-01 23:25:38 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2026-03-01 23:25:38 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2026-03-01 23:25:38 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2026-03-01 23:25:38 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2026-03-01 23:28:01 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:28:03 [INFO]: GET /favicon.ico - ::1 {"service":"starframe-admin"}
+2026-03-01 23:31:53 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:41:08 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:41:31 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-01 23:41:33 [ERROR]: Database run error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:41:33 [ERROR]: Client registration error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:41:48 [INFO]: POST /api/client/login - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:17 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:17 [ERROR]: Database run error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:42:17 [ERROR]: Client registration error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:42:44 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:45 [ERROR]: Database run error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:42:45 [ERROR]: Client registration error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:42:52 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:52 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:52 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:52 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:52 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:52 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:52 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:54 [INFO]: GET /favicon-32x32.png - ::1 {"service":"starframe-admin"}
+2026-03-01 23:42:54 [INFO]: GET /favicon-16x16.png - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:11 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:11 [INFO]: GET /login.html?redirect=commission.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:28 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:28 [ERROR]: Database run error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:44:28 [ERROR]: Client registration error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:44:59 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:59 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:59 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:59 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:59 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:59 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:59 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:59 [INFO]: Socket connected: QTb0oxpUWLE_CQOgAAAB {"service":"starframe-admin"}
+2026-03-01 23:44:59 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:44:59 [INFO]: Socket disconnected: QTb0oxpUWLE_CQOgAAAB {"service":"starframe-admin"}
+2026-03-01 23:45:36 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-01 23:45:36 [ERROR]: Database run error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:45:36 [ERROR]: Client registration error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:45:51 [INFO]: POST /api/client/login - ::1 {"service":"starframe-admin"}
+2026-03-01 23:45:59 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:04 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:20 [INFO]: GET /js/login.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:24 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /pay.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /api/commissions/status/null - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: Socket connected: uJPGRrRrTWn82EDOAAAD {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:46:34 [INFO]: Socket disconnected: uJPGRrRrTWn82EDOAAAD {"service":"starframe-admin"}
+2026-03-01 23:49:23 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-01 23:49:23 [ERROR]: Database run error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:49:23 [ERROR]: Client registration error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:50:23 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-01 23:50:23 [ERROR]: Database run error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:50:23 [ERROR]: Client registration error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:50:44 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:50:44 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-01 23:50:44 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-01 23:50:44 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:50:44 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:50:44 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:50:44 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:52:08 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-01 23:52:08 [INFO]: GET /login.html?redirect=commission.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:52:54 [INFO]: POST /api/client/login - ::1 {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: Socket connected: h1Gcb1kpmHxw8CiVAAAF {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:53:03 [INFO]: Socket disconnected: h1Gcb1kpmHxw8CiVAAAF {"service":"starframe-admin"}
+2026-03-01 23:53:28 [INFO]: GET /logs/error.log - ::1 {"service":"starframe-admin"}
+2026-03-01 23:55:37 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:55:58 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-01 23:55:59 [ERROR]: Database run error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:55:59 [ERROR]: Client registration error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:57:53 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-01 23:57:53 [ERROR]: Database run error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:57:53 [ERROR]: Client registration error: NOT NULL constraint failed: clients.google_id {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1299,"errstr":"constraint failed","stack":"Error: NOT NULL constraint failed: clients.google_id\n    at Database.run (D:\\starframe\\server\\models\\Database.js:67:33)\n    at Database.createClient (D:\\starframe\\server\\models\\Database.js:420:27)\n    at D:\\starframe\\server\\routes\\client.js:37:39"}
+2026-03-01 23:58:03 [INFO]: GET /logs/error.log - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:24 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:24 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:24 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:24 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:24 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:24 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:24 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:24 [INFO]: Socket connected: uMAn5L7GwwB5xJTQAAAH {"service":"starframe-admin"}
+2026-03-01 23:58:24 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:34 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:34 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:34 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:34 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:34 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:34 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:58:35 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-01 23:59:09 [INFO]: Socket disconnected: uMAn5L7GwwB5xJTQAAAH {"service":"starframe-admin"}
+2026-03-01 23:59:47 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-01 23:59:47 [INFO]: GET /login.html?redirect=commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:22 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:43 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:44 [INFO]: GET /dashboard.html?welcome=true - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:44 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:44 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:44 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:44 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:44 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:44 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:44 [INFO]: Socket connected: T4jV1pnlRVnyEhFWAAAJ {"service":"starframe-admin"}
+2026-03-02 00:02:58 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:58 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:58 [INFO]: Socket disconnected: T4jV1pnlRVnyEhFWAAAJ {"service":"starframe-admin"}
+2026-03-02 00:02:58 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:58 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:58 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:58 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:02:58 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:04:12 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:04:12 [INFO]: POST /api/commissions/create - ::1 {"service":"starframe-admin"}
+2026-03-02 00:04:57 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:05:30 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:05:36 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:06:07 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:06:07 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:06:07 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:06:07 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:06:07 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:06:07 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:06:07 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:07:17 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:08:11 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:08:11 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:08:11 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:08:11 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:08:11 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:08:11 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:08:11 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:08:12 [INFO]: Socket connected: oezEMfkXQ8F0pym7AAAL {"service":"starframe-admin"}
+2026-03-02 00:09:59 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:10:04 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:10:04 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:10:04 [INFO]: Socket disconnected: oezEMfkXQ8F0pym7AAAL {"service":"starframe-admin"}
+2026-03-02 00:10:04 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:10:04 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:10:04 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:10:04 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:10:04 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:10:36 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:05 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:10 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:34 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:34 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:34 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:34 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:34 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:34 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:34 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:34 [INFO]: Socket connected: 13aymtuWqWl1GPhWAAAN {"service":"starframe-admin"}
+2026-03-02 00:11:40 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:40 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:40 [INFO]: Socket disconnected: 13aymtuWqWl1GPhWAAAN {"service":"starframe-admin"}
+2026-03-02 00:11:40 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:40 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:40 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:40 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:11:40 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:23 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:23 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:23 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:23 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:23 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:23 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:23 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:23 [INFO]: Socket connected: uCYlcxPBwV-Kv4EqAAAP {"service":"starframe-admin"}
+2026-03-02 00:12:43 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:43 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:43 [INFO]: Socket disconnected: uCYlcxPBwV-Kv4EqAAAP {"service":"starframe-admin"}
+2026-03-02 00:12:43 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:43 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:43 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:43 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:12:43 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:13:29 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:13:43 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:13:43 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:13:43 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:13:43 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:13:43 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:13:43 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:13:43 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:03 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:03 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:03 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:03 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:03 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:03 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:03 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:03 [INFO]: Socket connected: kNPC1DJizBo0-MF3AAAR {"service":"starframe-admin"}
+2026-03-02 00:14:09 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:09 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:09 [INFO]: Socket disconnected: kNPC1DJizBo0-MF3AAAR {"service":"starframe-admin"}
+2026-03-02 00:14:09 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:09 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:09 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:09 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:09 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:20 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:20 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:20 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:20 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:20 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:20 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:20 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:56 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:56 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:56 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:56 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:56 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:56 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:14:56 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:04 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:26 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:27 [INFO]: GET /dashboard.html?welcome=true - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:27 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:27 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:27 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:27 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:27 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:27 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:27 [INFO]: Socket connected: yMSV8eoJDGMJJmoxAAAT {"service":"starframe-admin"}
+2026-03-02 00:16:44 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:44 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:44 [INFO]: Socket disconnected: yMSV8eoJDGMJJmoxAAAT {"service":"starframe-admin"}
+2026-03-02 00:16:44 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:44 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:44 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:44 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:16:44 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:01 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:01 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:01 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:01 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:01 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:01 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:01 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:06 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:10 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:17:54 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:06 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:25 [INFO]: POST /api/client/login - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:27 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:27 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:27 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:27 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:27 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:27 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:27 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:27 [INFO]: Socket connected: _IX-jZJTxcMYOTziAAAV {"service":"starframe-admin"}
+2026-03-02 00:18:37 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:37 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:37 [INFO]: Socket disconnected: _IX-jZJTxcMYOTziAAAV {"service":"starframe-admin"}
+2026-03-02 00:18:37 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:37 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:37 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:37 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:18:37 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:30 [INFO]: POST /api/client/login - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:31 [INFO]: GET /dashboard.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:31 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:31 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:31 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:31 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:31 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:31 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:31 [INFO]: Socket connected: zBE-8rRiPkfXC9x0AAAX {"service":"starframe-admin"}
+2026-03-02 00:19:33 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:33 [INFO]: POST /api/commissions/create - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:59 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:59 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:59 [INFO]: Socket disconnected: zBE-8rRiPkfXC9x0AAAX {"service":"starframe-admin"}
+2026-03-02 00:19:59 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:59 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:59 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:59 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:19:59 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:20:39 [INFO]: GET /api/client/me - ::1 {"service":"starframe-admin"}
+2026-03-02 00:20:39 [INFO]: POST /api/commissions/create - ::1 {"service":"starframe-admin"}
+2026-03-02 00:22:49 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:23:29 [INFO]: GET /logs/error.log - ::1 {"service":"starframe-admin"}
+2026-03-02 00:23:41 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 00:25:15 [INFO]: GET /login.html - ::1 {"service":"starframe-admin"}
+2026-03-02 00:28:14 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-02 00:28:14 [INFO]: POST /api/commissions/create - ::1 {"service":"starframe-admin"}
+2026-03-02 00:29:00 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-02 00:29:00 [INFO]: POST /api/commissions/create - ::1 {"service":"starframe-admin"}
+2026-03-02 00:29:21 [INFO]: POST /api/client/register - ::1 {"service":"starframe-admin"}
+2026-03-02 00:29:21 [INFO]: POST /api/commissions/create - ::1 {"service":"starframe-admin"}
+2026-03-02 00:34:57 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2026-03-02 00:34:57 [INFO]: Connected to SQLite database (native) {"service":"starframe-admin"}
+2026-03-02 00:34:57 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2026-03-02 00:34:57 [INFO]: Database initialized {"service":"starframe-admin"}
+2026-03-02 00:34:57 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2026-03-02 00:34:57 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2026-03-02 00:34:57 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2026-03-02 00:34:57 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2026-03-02 00:34:57 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2026-03-02 00:34:57 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2026-03-02 00:35:11 [INFO]: POST /api/client/register - ::1 - Body: {"name":"API Tester","email":"test_1772391911160@starframe.com","password":"password123"} {"service":"starframe-admin"}
+2026-03-02 00:35:11 [INFO]: POST /api/commissions/create - ::1 - Body: {"name":"API Tester","email":"test_1772391911160@starframe.com","phone":"1234567890","location":"Test City","service":"2d-animation","budget":"2500-8000","timeline":"standard","purpose":"personal","description":"Test commission from API script","gst":false} {"service":"starframe-admin"}
+2026-03-02 00:35:11 [ERROR]: Database run error: Provided value cannot be bound to SQLite parameter 3. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 3.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createCommission (D:\\starframe\\server\\models\\Database.js:662:27)\n    at D:\\starframe\\server\\routes\\commissions.js:20:24\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at requireClientAuth (D:\\starframe\\server\\middleware\\auth.js:221:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 00:35:11 [ERROR]: Error creating commission: Provided value cannot be bound to SQLite parameter 3. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 3.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createCommission (D:\\starframe\\server\\models\\Database.js:662:27)\n    at D:\\starframe\\server\\routes\\commissions.js:20:24\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at requireClientAuth (D:\\starframe\\server\\middleware\\auth.js:221:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 00:36:12 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2026-03-02 00:36:12 [INFO]: Connected to SQLite database (native) {"service":"starframe-admin"}
+2026-03-02 00:36:12 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2026-03-02 00:36:12 [INFO]: Database initialized {"service":"starframe-admin"}
+2026-03-02 00:36:12 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2026-03-02 00:36:12 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2026-03-02 00:36:12 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2026-03-02 00:36:12 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2026-03-02 00:36:12 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2026-03-02 00:36:12 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2026-03-02 00:36:22 [INFO]: POST /api/client/register - ::1 - Body: {"name":"API Tester","email":"test_1772391982449@starframe.com","password":"password123"} {"service":"starframe-admin"}
+2026-03-02 00:36:22 [INFO]: POST /api/commissions/create - ::1 - Body: {"name":"API Tester","email":"test_1772391982449@starframe.com","phone":"1234567890","location":"Test City","service":"2d-animation","budget":"2500-8000","timeline":"standard","purpose":"personal","description":"Test commission from API script","gst":false} {"service":"starframe-admin"}
+2026-03-02 00:36:23 [INFO]: Commission created by client 7: ID SF-COM-1772391982911-544 {"service":"starframe-admin"}
+2026-03-02 00:39:03 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2026-03-02 00:39:03 [INFO]: Connected to SQLite database (native) {"service":"starframe-admin"}
+2026-03-02 00:39:03 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2026-03-02 00:39:03 [INFO]: Database initialized {"service":"starframe-admin"}
+2026-03-02 00:39:03 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2026-03-02 00:39:03 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2026-03-02 00:39:03 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2026-03-02 00:39:03 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2026-03-02 00:39:03 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2026-03-02 00:39:03 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2026-03-02 00:47:52 [INFO]: Connected to SQLite database (native) {"service":"starframe-admin"}
+2026-03-02 00:47:52 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2026-03-02 01:01:25 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2026-03-02 01:01:25 [INFO]: Connected to SQLite database (native) {"service":"starframe-admin"}
+2026-03-02 01:01:25 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2026-03-02 01:01:25 [INFO]: Database initialized {"service":"starframe-admin"}
+2026-03-02 01:01:25 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2026-03-02 01:28:36 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2026-03-02 01:28:36 [INFO]: Connected to SQLite database (native) {"service":"starframe-admin"}
+2026-03-02 01:28:36 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2026-03-02 01:28:36 [INFO]: Database initialized {"service":"starframe-admin"}
+2026-03-02 01:28:36 [WARN]: SESSION_SECRET not set in environment — using a development fallback. Set SESSION_SECRET in production. {"service":"starframe-admin"}
+2026-03-02 01:28:36 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2026-03-02 01:28:36 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2026-03-02 01:28:36 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2026-03-02 01:28:36 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2026-03-02 01:28:36 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2026-03-02 01:29:02 [INFO]: SIGINT received, shutting down gracefully {"service":"starframe-admin"}
+2026-03-02 01:29:43 [INFO]: Google OAuth not configured: set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to enable Google login. {"service":"starframe-admin"}
+2026-03-02 01:29:43 [INFO]: Connected to SQLite database (native) {"service":"starframe-admin"}
+2026-03-02 01:29:43 [INFO]: Database initialized successfully {"service":"starframe-admin"}
+2026-03-02 01:29:44 [INFO]: Database initialized {"service":"starframe-admin"}
+2026-03-02 01:29:44 [INFO]: ✅ StarFrame Admin System running on port 3001 {"service":"starframe-admin"}
+2026-03-02 01:29:44 [INFO]: ✅ Admin dashboard: http://localhost:3001/admin {"service":"starframe-admin"}
+2026-03-02 01:29:44 [INFO]: ✅ OAuth login: http://localhost:3001/api/auth/google {"service":"starframe-admin"}
+2026-03-02 01:29:44 [INFO]: ✅ Environment: development {"service":"starframe-admin"}
+2026-03-02 01:29:44 [INFO]: ✅ Socket.IO enabled for real-time features {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET / - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/landscape.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/fat-oldman.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/hounted-house.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/654e2ada-a1f1-409b-b473-ee5c390dc56f.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /js/sparkle-star.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /_vercel/insights/script.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/perspective.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/bf76fc47-09d6-4fc2-9c3c-1b498411c3e9.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/52129dbd-7499-4455-ab47-2dda8e0736f6.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Image%202025-08-13%20at%207.35.06%20PM.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/f0b9cc3f-8782-4be1-9c19-044c5aedc84d.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/3587bd37-4ea4-4b6f-be36-0da7f99c8384.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.03%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.05%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:23 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.14%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:30:24 [INFO]: GET /api/reviews - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:30:24 [ERROR]: Failed to fetch reviews: Database.getRecentReviews is not a function {"service":"starframe-admin","stack":"TypeError: Database.getRecentReviews is not a function\n    at D:\\starframe\\server\\routes\\reviews.js:13:36\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+2026-03-02 01:30:24 [INFO]: GET /api/auth/oauth/me - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:30:24 [INFO]: Socket connected: vOhvnh89KsBL3EPHAAAC {"service":"starframe-admin"}
+2026-03-02 01:30:24 [INFO]: Socket connected: uwGt90In2U4mN3PEAAAD {"service":"starframe-admin"}
+2026-03-02 01:30:24 [INFO]: Page visit tracked: home - uwGt90In2U4mN3PEAAAD {"service":"starframe-admin"}
+2026-03-02 01:30:24 [INFO]: GET /favicon.ico - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET / - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /images/StarFrame%20Animation%20Studio/landscape.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /js/sparkle-star.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /_vercel/insights/script.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.03%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.05%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:10 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.14%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:11 [INFO]: GET /images/StarFrame%20Animation%20Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:11 [INFO]: GET /api/reviews - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:31:11 [ERROR]: Failed to fetch reviews: Database.getRecentReviews is not a function {"service":"starframe-admin","stack":"TypeError: Database.getRecentReviews is not a function\n    at D:\\starframe\\server\\routes\\reviews.js:13:36\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+2026-03-02 01:31:11 [INFO]: GET /api/auth/oauth/me - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:31:11 [INFO]: Socket connected: 1xXIlFMrqj0nCp6dAAAG {"service":"starframe-admin"}
+2026-03-02 01:31:11 [INFO]: Socket connected: GhwKVTY0GwSuIVPRAAAH {"service":"starframe-admin"}
+2026-03-02 01:31:11 [INFO]: Page visit tracked: home - GhwKVTY0GwSuIVPRAAAH {"service":"starframe-admin"}
+2026-03-02 01:31:12 [INFO]: GET /favicon.ico - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:27 [INFO]: GET /images/StarFrame%20Animation%20Studio/fat-oldman.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:27 [INFO]: GET /images/StarFrame%20Animation%20Studio/hounted-house.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:38 [INFO]: GET /images/StarFrame%20Animation%20Studio/perspective.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:38 [INFO]: GET /images/StarFrame%20Animation%20Studio/bf76fc47-09d6-4fc2-9c3c-1b498411c3e9.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:39 [INFO]: GET /images/StarFrame%20Animation%20Studio/654e2ada-a1f1-409b-b473-ee5c390dc56f.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:39 [INFO]: GET /images/StarFrame%20Animation%20Studio/52129dbd-7499-4455-ab47-2dda8e0736f6.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:41 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Image%202025-08-13%20at%207.35.06%20PM.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:41 [INFO]: GET /images/StarFrame%20Animation%20Studio/f0b9cc3f-8782-4be1-9c19-044c5aedc84d.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:41 [INFO]: GET /images/StarFrame%20Animation%20Studio/3587bd37-4ea4-4b6f-be36-0da7f99c8384.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:57 [INFO]: GET /shop.html - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:57 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:31:57 [INFO]: Socket disconnected: 1xXIlFMrqj0nCp6dAAAG {"service":"starframe-admin"}
+2026-03-02 01:31:57 [INFO]: Socket disconnected: GhwKVTY0GwSuIVPRAAAH {"service":"starframe-admin"}
+2026-03-02 01:31:57 [INFO]: GET /api/shop/products - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:32:12 [INFO]: GET /track-commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 01:32:12 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:32:12 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:32:12 [INFO]: GET /api/client/me - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:32:19 [INFO]: GET /api/commissions/status/64 - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:32:24 [INFO]: GET /login.html?redirect=track-commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 01:32:40 [INFO]: POST /api/client/login - ::1 - Body: {"email":"sam@gmail.com","password":"S#tar1527"} {"service":"starframe-admin"}
+2026-03-02 01:40:17 [INFO]: GET /admin - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:17 [INFO]: GET /admin/ - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:17 [INFO]: GET /admin/css/admin.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:18 [INFO]: GET /_vercel/insights/script.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:18 [INFO]: GET /admin/js/admin.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:18 [INFO]: GET /api/auth/status - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:40:21 [INFO]: POST /api/auth/login - ::1 - Body: {"username":"sam","password":"S#tar1527","twoFactorCode":""} {"service":"starframe-admin"}
+2026-03-02 01:40:21 [INFO]: Login request received: {"service":"starframe-admin","body":{"username":"sam","password":"S#tar1527","twoFactorCode":""},"headers":{"host":"localhost:3001","connection":"keep-alive","content-length":"60","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36","sec-ch-ua":"\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"","content-type":"application/json","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:3001","sec-fetch-site":"same-origin","sec-fetch-mode":"cors","sec-fetch-dest":"empty","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"rzp_unified_session_id=SM5OiXdhwksJxe"},"contentType":"application/json"}
+2026-03-02 01:40:21 [INFO]: [AUDIT] User logged in successfully {"service":"starframe-admin","userId":2,"username":"sam","ipAddress":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36","type":"audit"}
+2026-03-02 01:40:21 [INFO]: GET /api/admin/dashboard - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:40:21 [ERROR]: Database get error: no such column: "now" - should this be a string literal in single-quotes? {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1,"errstr":"SQL logic error","stack":"Error: no such column: \"now\" - should this be a string literal in single-quotes?\n    at Database.get (D:\\starframe\\server\\models\\Database.js:102:34)\n    at D:\\starframe\\server\\routes\\admin.js:37:46\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at logActivity (D:\\starframe\\server\\middleware\\auth.js:298:9)"}
+2026-03-02 01:40:21 [ERROR]: Dashboard data error: no such column: "now" - should this be a string literal in single-quotes? {"service":"starframe-admin","code":"ERR_SQLITE_ERROR","errcode":1,"errstr":"SQL logic error","stack":"Error: no such column: \"now\" - should this be a string literal in single-quotes?\n    at Database.get (D:\\starframe\\server\\models\\Database.js:102:34)\n    at D:\\starframe\\server\\routes\\admin.js:37:46\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at logActivity (D:\\starframe\\server\\middleware\\auth.js:298:9)"}
+2026-03-02 01:40:21 [INFO]: GET /api/analytics/realtime - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:40:27 [INFO]: GET /api/admin/commissions? - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:40:44 [INFO]: GET /home - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET / - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /images/StarFrame%20Animation%20Studio/landscape.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /js/sparkle-star.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /_vercel/insights/script.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.03%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.05%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:49 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.14%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:50 [INFO]: GET /images/StarFrame%20Animation%20Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:50 [INFO]: GET /api/reviews - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:40:50 [ERROR]: Failed to fetch reviews: Database.getRecentReviews is not a function {"service":"starframe-admin","stack":"TypeError: Database.getRecentReviews is not a function\n    at D:\\starframe\\server\\routes\\reviews.js:13:36\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+2026-03-02 01:40:50 [INFO]: GET /api/auth/oauth/me - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:40:50 [INFO]: Socket connected: jt5MdujHZ3wePeCrAAAK {"service":"starframe-admin"}
+2026-03-02 01:40:50 [INFO]: Socket connected: h6YBLT3Ve-91z_0dAAAL {"service":"starframe-admin"}
+2026-03-02 01:40:50 [INFO]: Page visit tracked: home - h6YBLT3Ve-91z_0dAAAL {"service":"starframe-admin"}
+2026-03-02 01:40:56 [INFO]: GET /images/StarFrame%20Animation%20Studio/fat-oldman.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:56 [INFO]: GET /images/StarFrame%20Animation%20Studio/hounted-house.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:56 [INFO]: GET /images/StarFrame%20Animation%20Studio/perspective.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:56 [INFO]: GET /images/StarFrame%20Animation%20Studio/bf76fc47-09d6-4fc2-9c3c-1b498411c3e9.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:56 [INFO]: GET /images/StarFrame%20Animation%20Studio/654e2ada-a1f1-409b-b473-ee5c390dc56f.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:56 [INFO]: GET /images/StarFrame%20Animation%20Studio/52129dbd-7499-4455-ab47-2dda8e0736f6.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:56 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Image%202025-08-13%20at%207.35.06%20PM.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:56 [INFO]: GET /images/StarFrame%20Animation%20Studio/f0b9cc3f-8782-4be1-9c19-044c5aedc84d.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:56 [INFO]: GET /images/StarFrame%20Animation%20Studio/3587bd37-4ea4-4b6f-be36-0da7f99c8384.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: Socket disconnected: jt5MdujHZ3wePeCrAAAK {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: Socket disconnected: h6YBLT3Ve-91z_0dAAAL {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: GET /favicon-32x32.png - ::1 {"service":"starframe-admin"}
+2026-03-02 01:40:58 [INFO]: GET /favicon-16x16.png - ::1 {"service":"starframe-admin"}
+2026-03-02 01:41:55 [INFO]: GET /api/client/me - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:41:57 [INFO]: GET /login.html?redirect=commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:13 [INFO]: POST /api/client/login - ::1 - Body: {"email":"samarthrao34@gmail.com","password":"S#tar1527"} {"service":"starframe-admin"}
+2026-03-02 01:42:13 [INFO]: POST /api/client/login - ::1 - Body: {"email":"samarthrao34@gmail.com","password":"S#tar1527"} {"service":"starframe-admin"}
+2026-03-02 01:42:32 [INFO]: POST /api/client/register - ::1 - Body: {"name":"Sam","email":"samarthrao34@gmail.com","password":"A#ashok1"} {"service":"starframe-admin"}
+2026-03-02 01:42:33 [INFO]: GET /dashboard.html?welcome=true - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:33 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:33 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:33 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:33 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:33 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:33 [INFO]: GET /api/client/me - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:42:33 [INFO]: Socket connected: xnB5lme1NzoyJ7ucAAAN {"service":"starframe-admin"}
+2026-03-02 01:42:59 [INFO]: GET /commission.html - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:59 [INFO]: Socket disconnected: xnB5lme1NzoyJ7ucAAAN {"service":"starframe-admin"}
+2026-03-02 01:42:59 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:59 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:59 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:59 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:59 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:42:59 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:43:27 [INFO]: GET /api/client/me - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:43:27 [INFO]: POST /api/commissions/create - ::1 - Body: {"name":"Sam","email":"otakusam3469@gmail.com","phone":"8960356600","location":"Varanasi , India","service":"2d-animation","budget":"2500-8000","timeline":"flexible","purpose":"animation-short","description":"i am just testing it out ","references":"","gst":true,"gstin":"","terms":"on"} {"service":"starframe-admin"}
+2026-03-02 01:43:27 [INFO]: Commission created by client 8: ID SF-COM-1772396007389-166 {"service":"starframe-admin"}
+2026-03-02 01:43:27 [INFO]: GET /pay.html?id=SF-COM-1772396007389-166 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:43:27 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:43:27 [INFO]: GET /qrcode.png - ::1 {"service":"starframe-admin"}
+2026-03-02 01:43:27 [INFO]: GET /api/commissions/status/SF-COM-1772396007389-166 - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:43:29 [ERROR]: Failed to send confirmation email for SF-COM-1772396007389-166: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-3593dcc777esm11107147a91.5 - gsmtp {"service":"starframe-admin","code":"EAUTH","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-3593dcc777esm11107147a91.5 - gsmtp","responseCode":535,"command":"AUTH PLAIN","stack":"Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-3593dcc777esm11107147a91.5 - gsmtp\n    at SMTPConnection._formatError (D:\\starframe\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:809:19)\n    at SMTPConnection._actionAUTHComplete (D:\\starframe\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1588:34)\n    at SMTPConnection.<anonymous> (D:\\starframe\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:556:26)\n    at SMTPConnection._processResponse (D:\\starframe\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:993:20)\n    at SMTPConnection._onData (D:\\starframe\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:774:14)\n    at SMTPConnection._onSocketData (D:\\starframe\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:195:44)\n    at TLSSocket.emit (node:events:524:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)"}
+2026-03-02 01:45:15 [INFO]: POST /api/pay/declare - ::1 - Body: {"amount":"1","utrNumber":"014432813647"} {"service":"starframe-admin"}
+2026-03-02 01:45:15 [ERROR]: Database run error: Provided value cannot be bound to SQLite parameter 4. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 4.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createPayment (D:\\starframe\\server\\models\\Database.js:663:27)\n    at D:\\starframe\\server\\routes\\pay.js:29:39\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 01:45:15 [ERROR]: Error declaring payment: Provided value cannot be bound to SQLite parameter 4. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 4.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createPayment (D:\\starframe\\server\\models\\Database.js:663:27)\n    at D:\\starframe\\server\\routes\\pay.js:29:39\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 01:45:23 [INFO]: POST /api/pay/declare - ::1 - Body: {"amount":"8000","utrNumber":"014432813647"} {"service":"starframe-admin"}
+2026-03-02 01:45:23 [ERROR]: Database run error: Provided value cannot be bound to SQLite parameter 4. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 4.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createPayment (D:\\starframe\\server\\models\\Database.js:663:27)\n    at D:\\starframe\\server\\routes\\pay.js:29:39\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 01:45:23 [ERROR]: Error declaring payment: Provided value cannot be bound to SQLite parameter 4. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 4.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createPayment (D:\\starframe\\server\\models\\Database.js:663:27)\n    at D:\\starframe\\server\\routes\\pay.js:29:39\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 01:45:37 [INFO]: POST /api/pay/declare - ::1 - Body: {"amount":"8000","utrNumber":"014432813647"} {"service":"starframe-admin"}
+2026-03-02 01:45:37 [ERROR]: Database run error: Provided value cannot be bound to SQLite parameter 4. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 4.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createPayment (D:\\starframe\\server\\models\\Database.js:663:27)\n    at D:\\starframe\\server\\routes\\pay.js:29:39\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 01:45:37 [ERROR]: Error declaring payment: Provided value cannot be bound to SQLite parameter 4. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 4.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createPayment (D:\\starframe\\server\\models\\Database.js:663:27)\n    at D:\\starframe\\server\\routes\\pay.js:29:39\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 01:46:07 [INFO]: POST /api/pay/declare - ::1 - Body: {"amount":"8000","utrNumber":"014432813647"} {"service":"starframe-admin"}
+2026-03-02 01:46:07 [ERROR]: Database run error: Provided value cannot be bound to SQLite parameter 4. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 4.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createPayment (D:\\starframe\\server\\models\\Database.js:663:27)\n    at D:\\starframe\\server\\routes\\pay.js:29:39\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 01:46:07 [ERROR]: Error declaring payment: Provided value cannot be bound to SQLite parameter 4. {"service":"starframe-admin","code":"ERR_INVALID_ARG_TYPE","stack":"TypeError: Provided value cannot be bound to SQLite parameter 4.\n    at Database.run (D:\\starframe\\server\\models\\Database.js:92:33)\n    at Database.createPayment (D:\\starframe\\server\\models\\Database.js:663:27)\n    at D:\\starframe\\server\\routes\\pay.js:29:39\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2026-03-02 01:47:32 [INFO]: GET / - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /css/style-new.css - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /images/StarFrame%20Animation%20Studio/landscape.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /js/sparkle-star.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /js/ui-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /js/commission-dialog.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /js/sparkle-effects.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /js/script-new.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /_vercel/insights/script.js - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.03%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.05%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /images/StarFrame%20Animation%20Studio/WhatsApp%20Video%202025-08-13%20at%207.35.14%20PM.mp4 - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:32 [INFO]: GET /images/StarFrame%20Animation%20Studio/67dc7951-2b5d-40f5-b4bb-80aaf22eaead.jpeg - ::1 {"service":"starframe-admin"}
+2026-03-02 01:47:33 [INFO]: GET /api/reviews - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:47:33 [ERROR]: Failed to fetch reviews: Database.getRecentReviews is not a function {"service":"starframe-admin","stack":"TypeError: Database.getRecentReviews is not a function\n    at D:\\starframe\\server\\routes\\reviews.js:13:36\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\starframe\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\starframe\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\starframe\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\starframe\\node_modules\\express\\lib\\router\\index.js:47:12)"}
+2026-03-02 01:47:33 [INFO]: GET /api/auth/oauth/me - ::1 - Body: {} {"service":"starframe-admin"}
+2026-03-02 01:47:33 [INFO]: Socket connected: Sz-50UPNB_zQ6yMaAAAQ {"service":"starframe-admin"}
+2026-03-02 01:47:33 [INFO]: Socket connected: YWfatDaqzB6kmPXIAAAR {"service":"starframe-admin"}
+2026-03-02 01:47:33 [INFO]: Page visit tracked: home - YWfatDaqzB6kmPXIAAAR {"service":"starframe-admin"}
+2026-03-02 01:47:34 [INFO]: Socket disconnected: Sz-50UPNB_zQ6yMaAAAQ {"service":"starframe-admin"}
+2026-03-02 01:47:34 [INFO]: Socket disconnected: YWfatDaqzB6kmPXIAAAR {"service":"starframe-admin"}
+2026-03-02 01:47:36 [INFO]: Socket disconnected: vOhvnh89KsBL3EPHAAAC {"service":"starframe-admin"}
+2026-03-02 01:47:36 [INFO]: Socket disconnected: uwGt90In2U4mN3PEAAAD {"service":"starframe-admin"}

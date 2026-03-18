@@ -309,6 +309,7 @@
                 <li class="nav-item"><a href="index.html#reviews" class="nav-link">Reviews</a></li>
                 <li class="nav-item"><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
                 <li class="nav-item"><a href="index.html#team" class="nav-link">Team</a></li>
+                <li class="nav-item"><a href="track-commission.html" class="nav-link">Track Order</a></li>
                 <li class="nav-item"><a href="commission.html" class="nav-link commission-btn">Commission</a></li>
             </ul>
             <div class="hamburger">
@@ -455,8 +456,9 @@
 
     <!-- Commission Form Section -->
     <section class="commission-form-section">
-        <div class="container">
-            <div class="commission-form">
+        <div class="container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: start;">
+            <!-- Left Column: Form -->
+            <div class="commission-form" style="max-width: none; margin: 0;">
                 <form id="commissionForm">
                     <div class="form-header">
                         <i class="fas fa-paint-brush"
@@ -490,7 +492,7 @@
                     <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div class="form-group">
                             <label for="service">Service Required *</label>
-                            <select id="service" name="service" required>
+                            <select id="service" name="service" required onchange="calculatePrice()">
                                 <option value="">Select your service</option>
                                 <option value="2d-animation">2D Animation</option>
                                 <option value="character-design">Character Design</option>
@@ -500,7 +502,7 @@
                         </div>
                         <div class="form-group">
                             <label for="budget">Budget Range (INR) *</label>
-                            <select id="budget" name="budget" required>
+                            <select id="budget" name="budget" required onchange="calculatePrice()">
                                 <option value="">Select your budget</option>
                                 <option value="2500-8000">₹2,500 - ₹8,000</option>
                                 <option value="8000-15000">₹8,000 - ₹15,000</option>
@@ -515,7 +517,7 @@
                     <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div class="form-group">
                             <label for="timeline">Project Timeline *</label>
-                            <select id="timeline" name="timeline" required>
+                            <select id="timeline" name="timeline" required onchange="calculatePrice()">
                                 <option value="">Select timeline</option>
                                 <option value="urgent">Urgent (1-2 weeks)</option>
                                 <option value="standard">Standard (2-4 weeks)</option>
@@ -556,8 +558,8 @@
                     </div>
 
                     <div class="form-checkbox" style="margin-bottom: 15px;">
-                        <input type="checkbox" id="gst" name="gst">
-                        <label for="gst">I need GST invoice for business purposes</label>
+                        <input type="checkbox" id="gst" name="gst" onchange="calculatePrice()">
+                        <label for="gst">I need GST invoice for business purposes (+18%)</label>
                     </div>
                     <div id="gstDetails" style="display: none; margin-bottom: 20px;">
                         <label for="gstin">GSTIN (if applicable)</label>
@@ -566,8 +568,8 @@
 
                     <div class="form-checkbox" style="margin-bottom: 30px;">
                         <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">I agree to the payment terms (50% advance) and understand that pricing may
-                            vary based on project complexity *</label>
+                        <label for="terms">I agree to the payment terms (50% advance) and understand that the final
+                            pricing might vary based on requirements *</label>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-full">
@@ -576,7 +578,56 @@
                     </button>
                 </form>
             </div>
+
+            <!-- Right Column: Live Pricing Sidebar -->
+            <div class="pricing-sidebar"
+                style="background: white; padding: 30px; border-radius: 20px; box-shadow: var(--card-shadow); position: sticky; top: 100px;">
+                <h3 style="margin-bottom: 20px; color: var(--secondary-color); font-size: 1.4rem;">
+                    <i class="fas fa-calculator" style="color: var(--primary-color);"></i> Estimated Price
+                </h3>
+
+                <div class="price-breakdown" style="margin-bottom: 20px; font-size: 0.95rem; color: #555;">
+                    <div
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #ddd;">
+                        <span>Base Service:</span>
+                        <span id="calcBasePrice">₹0</span>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #ddd;">
+                        <span>Timeline Modifier:</span>
+                        <span id="calcTimelineMod">+₹0</span>
+                    </div>
+                    <div id="calcGstRow"
+                        style="display: none; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #ddd;">
+                        <span>GST (18%):</span>
+                        <span id="calcGstAmount">+₹0</span>
+                    </div>
+                </div>
+
+                <div
+                    style="background: #f8f9fa; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Estimated Total</div>
+                    <div id="calcTotal" style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">₹0
+                    </div>
+                    <div style="font-size: 0.8rem; color: #999; margin-top: 5px;">Subject to final review</div>
+                </div>
+
+                <div
+                    style="background: #e3f2fd; color: #1565c0; padding: 15px; border-radius: 10px; font-size: 0.9rem; line-height: 1.5;">
+                    <i class="fas fa-info-circle"></i> <strong>Note:</strong> A 50% upfront deposit is required to begin
+                    work. The remaining balance is due upon completion.
+                </div>
+            </div>
         </div>
+
+        <!-- Mobile Layout CSS applied dynamically -->
+        <style>
+            @media (max-width: 900px) {
+                .commission-form-section .container {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+        </style>
     </section>
 
     <!-- Payment Modal -->
@@ -744,12 +795,66 @@
             return estimated;
         }
 
+        // Live Pricing Calculation
+        function calculatePrice() {
+            const service = document.getElementById('service').value;
+            const budget = document.getElementById('budget').value;
+            const timeline = document.getElementById('timeline').value;
+            const isGst = document.getElementById('gst').checked;
+
+            // Base Price
+            let basePrice = 0;
+            if (service && budget) {
+                basePrice = computeEstimatedForService(service, budget);
+            }
+
+            // Timeline Modifier
+            let timelineMod = 0;
+            if (basePrice > 0) {
+                if (timeline === 'urgent') {
+                    timelineMod = Math.round(basePrice * 0.4); // +40% for urgent
+                } else if (timeline === 'extended' || timeline === 'flexible') {
+                    timelineMod = -Math.round(basePrice * 0.1); // -10% discount
+                }
+            }
+
+            let subtotal = basePrice + timelineMod;
+
+            // GST
+            let gstAmount = 0;
+            const gstRow = document.getElementById('calcGstRow');
+            if (isGst) {
+                gstAmount = Math.round(subtotal * 0.18);
+                if (gstRow) gstRow.style.display = 'flex';
+            } else {
+                if (gstRow) gstRow.style.display = 'none';
+            }
+
+            const total = subtotal + gstAmount;
+
+            // Update UI
+            if (document.getElementById('calcBasePrice')) {
+                document.getElementById('calcBasePrice').textContent = '₹' + basePrice.toLocaleString('en-IN');
+
+                const modPrefix = timelineMod >= 0 ? '+' : '';
+                document.getElementById('calcTimelineMod').textContent = modPrefix + '₹' + timelineMod.toLocaleString('en-IN');
+
+                document.getElementById('calcGstAmount').textContent = '+₹' + gstAmount.toLocaleString('en-IN');
+                document.getElementById('calcTotal').textContent = '₹' + total.toLocaleString('en-IN');
+            }
+        }
+
         // Toggle GSTIN input
         const gstCheckbox = document.getElementById('gst');
         const gstDetails = document.getElementById('gstDetails');
-        gstCheckbox.addEventListener('change', () => {
-            gstDetails.style.display = gstCheckbox.checked ? 'block' : 'none';
-        });
+        if (gstCheckbox) {
+            gstCheckbox.addEventListener('change', () => {
+                if (gstDetails) gstDetails.style.display = gstCheckbox.checked ? 'block' : 'none';
+            });
+        }
+
+        // Initial calculation on load
+        document.addEventListener('DOMContentLoaded', calculatePrice);
 
         // Elements
         const commissionForm = document.getElementById('commissionForm');
@@ -784,46 +889,46 @@
             gstin: ''
         };
 
-        commissionForm.addEventListener('submit', function (event) {
+        commissionForm.addEventListener('submit', async function (event) {
             event.preventDefault();
+
+            // Check if user is logged in
+            try {
+                const authCheck = await fetch('/api/client/me');
+                if (!authCheck.ok) {
+                    alert('Please login to submit a commission request.');
+                    window.location.href = '/login.html?redirect=commission.html';
+                    return;
+                }
+            } catch (err) {
+                console.error('Auth check failed:', err);
+            }
 
             const formData = new FormData(commissionForm);
             const data = Object.fromEntries(formData.entries());
-            data.serviceLabel = document.getElementById('service').selectedOptions[0].text;
-            data.budgetLabel = document.getElementById('budget').selectedOptions[0].text;
-            data.timelineLabel = document.getElementById('timeline').selectedOptions[0].text;
-            data.purposeLabel = document.getElementById('purpose').selectedOptions[0].text;
-            data.gstNeeded = document.getElementById('gst').checked;
-            data.gstin = document.getElementById('gstin').value || '';
 
-            const serviceValue = document.getElementById('service').value;
-            const budgetValue = document.getElementById('budget').value;
-            const estimated = computeEstimatedForService(serviceValue, budgetValue);
-            const suggestedDeposit = Math.max(Math.round(estimated * 0.5), 100);
+            // Add boolean for GST
+            data.gst = document.getElementById('gst').checked;
 
-            paymentModal._formData = data;
-            paymentModal._estimated = estimated;
-            paymentModal._suggestedDeposit = suggestedDeposit;
+            try {
+                const response = await fetch('/api/commissions/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
 
-            payServiceSummary.textContent = `${data.serviceLabel} — Estimated project amount: ₹${estimated}`;
-            suggestedDepositSpan.textContent = `₹${suggestedDeposit}`;
-            payAmountInput.value = suggestedDeposit;
-            payAmountInput.readOnly = true;
-            unlockAmountBtn.textContent = 'Edit';
-
-            unlockAmountBtn.onclick = () => {
-                if (payAmountInput.readOnly) {
-                    payAmountInput.readOnly = false;
-                    payAmountInput.focus();
-                    unlockAmountBtn.textContent = 'Lock';
+                if (response.ok) {
+                    const result = await response.json();
+                    // Redirect to payment page with commission ID
+                    window.location.href = `/pay.html?id=${result.commissionId}`;
                 } else {
-                    payAmountInput.readOnly = true;
-                    unlockAmountBtn.textContent = 'Edit';
+                    const err = await response.json();
+                    alert('Error: ' + (err.error || 'Failed to submit request'));
                 }
-            };
-
-            upiArea.style.display = 'none';
-            paymentModal.style.display = 'block';
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Connection error. Please try again.');
+            }
         });
 
         closePayment.addEventListener('click', () => paymentModal.style.display = 'none');

@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/overview', async (req, res) => {
     try {
         const { period = '30d' } = req.query;
-        
+
         let timeFilter = 'datetime("now", "-30 days")';
         switch (period) {
             case '7d': timeFilter = 'datetime("now", "-7 days")'; break;
@@ -104,10 +104,10 @@ router.post('/track', async (req, res) => {
         const trackingData = req.body;
         const ip = req.ip || req.connection.remoteAddress;
         const userAgent = req.get('User-Agent');
-        
+
         // Parse device info if not already present
         const deviceInfo = parseUserAgent(userAgent);
-        
+
         // Store detailed interaction data
         await Database.run(`
             INSERT INTO visitor_analytics (
@@ -128,7 +128,7 @@ router.post('/track', async (req, res) => {
             trackingData.type,
             JSON.stringify(trackingData)
         ]);
-        
+
         // Update active visitors in real-time
         analytics.updateActiveVisitors({
             ip_address: ip,
@@ -138,7 +138,7 @@ router.post('/track', async (req, res) => {
             browser: deviceInfo.browser,
             timestamp: new Date(trackingData.timestamp)
         });
-        
+
         // Log significant events
         if (['page_view', 'form_submission', 'link_click'].includes(trackingData.type)) {
             logger.info(`Real-time tracking: ${trackingData.type}`, {
@@ -146,9 +146,9 @@ router.post('/track', async (req, res) => {
                 ip: ip.substring(0, 10) + '...' // Partial IP for privacy
             });
         }
-        
+
         res.json({ success: true, received: trackingData.type });
-        
+
     } catch (error) {
         logger.error('Real-time tracking error:', error);
         res.status(500).json({ error: 'Failed to track event' });
@@ -158,7 +158,7 @@ router.post('/track', async (req, res) => {
 // Helper function to parse user agent
 function parseUserAgent(userAgent) {
     const ua = (userAgent || '').toLowerCase();
-    
+
     let deviceType = 'desktop';
     if (/mobile|android|iphone|ipad|phone|tablet/.test(ua)) {
         if (/tablet|ipad/.test(ua)) {
@@ -167,21 +167,21 @@ function parseUserAgent(userAgent) {
             deviceType = 'mobile';
         }
     }
-    
+
     let browser = 'unknown';
     if (ua.includes('chrome')) browser = 'Chrome';
     else if (ua.includes('firefox')) browser = 'Firefox';
     else if (ua.includes('safari')) browser = 'Safari';
     else if (ua.includes('edge')) browser = 'Edge';
     else if (ua.includes('opera')) browser = 'Opera';
-    
+
     let os = 'unknown';
     if (ua.includes('windows')) os = 'Windows';
     else if (ua.includes('mac')) os = 'macOS';
     else if (ua.includes('linux')) os = 'Linux';
     else if (ua.includes('android')) os = 'Android';
     else if (ua.includes('ios')) os = 'iOS';
-    
+
     return { deviceType, browser, os };
 }
 
@@ -190,7 +190,7 @@ router.get('/realtime', async (req, res) => {
     try {
         // Check if this is an authenticated admin request
         const isAdmin = req.session && req.session.token;
-        
+
         if (isAdmin) {
             // Return detailed stats for admin
             const stats = await Database.getRealtimeStats();
@@ -199,14 +199,14 @@ router.get('/realtime', async (req, res) => {
                 data: stats
             });
         }
-        
+
         // Return basic stats for public use
         const recentPageViews = await Database.get(`
             SELECT COUNT(*) as count
             FROM visitor_analytics 
             WHERE timestamp >= datetime("now", "-1 hour")
         `);
-        
+
         res.json({
             activeVisitors: 0, // Will be updated via socket
             currentPageViews: recentPageViews?.count || 0,
@@ -215,9 +215,9 @@ router.get('/realtime', async (req, res) => {
 
     } catch (error) {
         logger.error('Real-time analytics error:', error);
-        res.status(500).json({ 
+        res.status(500).json({
             success: false,
-            error: 'Failed to fetch real-time analytics' 
+            error: 'Failed to fetch real-time analytics'
         });
     }
 });
@@ -227,7 +227,7 @@ router.get('/visitors', auth.requireAuth, async (req, res) => {
     try {
         const { timeframe = '24h' } = req.query;
         const analytics = await Database.getVisitorAnalytics(timeframe);
-        
+
         res.json({
             success: true,
             data: analytics
@@ -245,8 +245,8 @@ router.get('/visitors', auth.requireAuth, async (req, res) => {
 router.get('/users', auth.requireAuth, async (req, res) => {
     try {
         const { timeframe = '24h' } = req.query;
-        const analytics = await Database.getUserAnalytics(timeframe);
-        
+        const analytics = await Database.getClientAnalytics(timeframe);
+
         res.json({
             success: true,
             data: analytics
@@ -264,32 +264,32 @@ router.get('/users', auth.requireAuth, async (req, res) => {
 router.get('/trends', auth.requireAuth, async (req, res) => {
     try {
         const { hours = 24 } = req.query;
-        
+
         // Generate hourly trends data
         const trends = [];
         const now = new Date();
-        
+
         for (let i = parseInt(hours) - 1; i >= 0; i--) {
             const hour = new Date(now);
             hour.setHours(hour.getHours() - i, 0, 0, 0);
-            
+
             // Get visitor count for this hour
             const hourEnd = new Date(hour);
             hourEnd.setHours(hourEnd.getHours() + 1);
-            
+
             const visitors = await Database.all(
                 `SELECT COUNT(*) as count FROM visitor_tracking 
                  WHERE timestamp >= ? AND timestamp < ?`,
                 [hour.toISOString(), hourEnd.toISOString()]
             );
-            
+
             trends.push({
                 hour: hour.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 visitors: visitors[0]?.count || 0,
                 timestamp: hour.toISOString()
             });
         }
-        
+
         res.json({
             success: true,
             trends: trends
