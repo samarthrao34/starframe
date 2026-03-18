@@ -1151,7 +1151,7 @@
         // Check if user is logged in via Firebase
         function checkUserAuth() {
           if (!window.starframeFirebase || !window.starframeFirebase.isConfigured) {
-            showLoginPrompt();
+            // showLoginPrompt();
             return;
           }
 
@@ -1169,7 +1169,7 @@
               }
             } else {
               // User not logged in, show login options
-              showLoginPrompt();
+              // showLoginPrompt();
             }
           });
         }
