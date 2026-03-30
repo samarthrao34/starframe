@@ -48,6 +48,21 @@ def should_skip(path):
     return False
 
 
+def make_dirs(ftp, dir_path):
+    """Recursively create directories on FTP server"""
+    if not dir_path:
+        return
+        
+    parts = dir_path.split('/')
+    current = ""
+    for part in parts:
+        if not part: continue
+        current = f"{current}/{part}" if current else part
+        try:
+            ftp.mkd(current)
+        except ftplib.error_perm:
+            pass  # Directory already exists
+
 def deploy():
     """Deploy files to Hostinger FTP"""
     
@@ -87,12 +102,8 @@ def deploy():
             remote_dir = '/'.join(remote_path.split('/')[:-1])
             
             try:
-                # Create remote directory if needed
-                if remote_dir:
-                    try:
-                        ftp.mkd(remote_dir)
-                    except ftplib.error_perm:
-                        pass  # Directory already exists
+                # Create remote directory recursively
+                make_dirs(ftp, remote_dir)
                 
                 # Upload file
                 with open(local_path, 'rb') as f:
