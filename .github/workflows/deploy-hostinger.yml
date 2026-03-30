@@ -19,6 +19,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Test FTP credentials
+        run: |
+          echo "Testing FTP connection..."
+          echo "Username length: ${#HOSTINGER_FTP_USERNAME}"
+          echo "Password length: ${#HOSTINGER_FTP_PASSWORD}"
+          
+          # Use ncftp to test connection
+          echo "quit" | ncftp -u "$HOSTINGER_FTP_USERNAME" -p "$HOSTINGER_FTP_PASSWORD" 147.93.99.197 2>&1 || echo "ncftp not found, trying ftp..."
+        env:
+          HOSTINGER_FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          HOSTINGER_FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+
       - name: Deploy static site over FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
