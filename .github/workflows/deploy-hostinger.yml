@@ -19,30 +19,97 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install FTP client
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Deploy static site over FTP
+      - name: Deploy to Hostinger via FTP
+        run: |
+          python3 << 'PYTHON_SCRIPT'
+          import ftplib
+          import os
+          import sys
+          from pathlib import Path
+          
+          # FTP Configuration
+          FTP_HOST = '147.93.99.197'
+          FTP_USER = os.environ['FTP_USER']
+          FTP_PASS = os.environ['FTP_PASS']
+          LOCAL_DIR = '.'
+          
+          # Patterns to exclude
+          EXCLUDE_PATTERNS = {
+              '.git', '.github', 'node_modules', '.vscode', 
+              'server', 'api', 'scripts', 'logs', 'data',
+              '.env', '.env.local', '.env.example',
+              'package-lock.json'
+          }
+          EXCLUDE_EXTENSIONS = {'.md'}
+          
+          def should_upload(file_path):
+              """Check if file should be uploaded"""
+              path_obj = Path(file_path)
+              
+              # Check extension
+              if path_obj.suffix in EXCLUDE_EXTENSIONS:
+                  return False
+              
+              # Check parts of path
+              for part in path_obj.parts:
+                  if part in EXCLUDE_PATTERNS or part.startswith('.'):
+                      return False
+              
+              return True
+          
+          try:
+              print(f"Connecting to {FTP_HOST}...")
+              ftp = ftplib.FTP(FTP_HOST)
+              ftp.login(FTP_USER, FTP_PASS)
+              print("✓ Logged in successfully")
+              
+              # Get list of files to upload
+              files_to_upload = []
+              for root, dirs, files in os.walk(LOCAL_DIR):
+                  # Filter out excluded directories
+                  dirs[:] = [d for d in dirs if should_upload(os.path.join(root, d))]
+                  
+                  for file in files:
+                      file_path = os.path.join(root, file)
+                      rel_path = os.path.relpath(file_path, LOCAL_DIR)
+                      
+                      if should_upload(rel_path):
+                          files_to_upload.append((file_path, rel_path))
+              
+              print(f"Found {len(files_to_upload)} files to upload")
+              
+              # Upload files
+              uploaded = 0
+              for local_path, remote_path in sorted(files_to_upload):
+                  remote_path = remote_path.replace('\\', '/')
+                  
+                  # Create directories if needed
+                  remote_dir = '/'.join(remote_path.split('/')[:-1])
+                  if remote_dir:
+                      try:
+                          ftp.mkd(remote_dir)
+                      except ftplib.all_errors:
+                          pass  # Directory might already exist
+                  
+                  # Upload file
+                  try:
+                      with open(local_path, 'rb') as f:
+                          ftp.storbinary(f'STOR {remote_path}', f)
+                      print(f"✓ {remote_path}")
+                      uploaded += 1
+                  except Exception as e:
+                      print(f"✗ Failed to upload {remote_path}: {e}")
+              
+              ftp.quit()
+              print(f"\n✓ Deployment complete: {uploaded}/{len(files_to_upload)} files uploaded")
+              
+          except ftplib.all_errors as e:
+              print(f"✗ FTP Error: {e}")
+              sys.exit(1)
+          except Exception as e:
+              print(f"✗ Error: {e}")
+              sys.exit(1)
+          PYTHON_SCRIPT
         env:
-          FTP_HOST: 147.93.99.197
-          FTP_PORT: 21
           FTP_USER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
           FTP_PASS: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-        run: |
-          # Create a temporary credentials file to avoid shell escaping issues
-          cat > ~/.netrc << EOF
-          machine 147.93.99.197
-          login $FTP_USER
-          password $FTP_PASS
-          EOF
-          chmod 600 ~/.netrc
-          
-          # Deploy using lftp with .netrc to FTP root
-          lftp -e "
-          set ftp:passive-mode true
-          set ftp:ssl-allow true
-          set ssl:verify-certificate no
-          open 147.93.99.197
-          mirror -R --verbose --exclude-glob .git* --exclude-glob .github --exclude-glob node_modules --exclude-glob .vscode --exclude-glob server --exclude-glob api --exclude-glob scripts --exclude-glob logs --exclude-glob data --exclude-glob '*.md' ./ ./
-          quit
-          " || exit 1
