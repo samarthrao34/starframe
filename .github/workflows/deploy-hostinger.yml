@@ -19,34 +19,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Test FTP credentials
-        run: |
-          echo "Testing FTP connection..."
-          echo "Username length: ${#HOSTINGER_FTP_USERNAME}"
-          echo "Password length: ${#HOSTINGER_FTP_PASSWORD}"
-          
-          # Use ncftp to test connection
-          echo "quit" | ncftp -u "$HOSTINGER_FTP_USERNAME" -p "$HOSTINGER_FTP_PASSWORD" 147.93.99.197 2>&1 || echo "ncftp not found, trying ftp..."
-        env:
-          HOSTINGER_FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-          HOSTINGER_FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+      - name: Install FTP client
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
       - name: Deploy static site over FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: 147.93.99.197
-          port: 21
-          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-          server-dir: public_html/
-          exclude: |
-            **/.git*
-            **/.github/**
-            **/node_modules/**
-            **/.vscode/**
-            **/server/**
-            **/api/**
-            **/scripts/**
-            **/logs/**
-            **/data/**
-            **/*.md
+        env:
+          FTP_HOST: 147.93.99.197
+          FTP_PORT: 21
+          FTP_USER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        run: |
+          # Create a temporary credentials file to avoid shell escaping issues
+          cat > ~/.netrc << EOF
+          machine 147.93.99.197
+          login $FTP_USER
+          password $FTP_PASS
+          EOF
+          chmod 600 ~/.netrc
+          
+          # Deploy using lftp with .netrc
+          lftp -e "
+          set ftp:passive-mode true
+          set ftp:ssl-allow true
+          set ssl:verify-certificate no
+          open 147.93.99.197
+          cd public_html
+          mirror -R --verbose --exclude-glob .git* --exclude-glob .github --exclude-glob node_modules --exclude-glob .vscode --exclude-glob server --exclude-glob api --exclude-glob scripts --exclude-glob logs --exclude-glob data --exclude-glob '*.md' ./ ./
+          quit
+          " || exit 1
