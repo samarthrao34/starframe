@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - feature1
   workflow_dispatch:
 
 concurrency:
@@ -18,57 +19,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install lftp
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y lftp
-
       - name: Deploy static site over FTP
-        env:
-          FTP_HOST: 147.93.99.197
-          FTP_PORT: 21
-          FTP_USER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-          FTP_PASS: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-        run: |
-          set -euo pipefail
-
-          if [ -z "${FTP_USER:-}" ]; then
-            echo "Missing secret: HOSTINGER_FTP_USERNAME"
-            exit 1
-          fi
-
-          if [ -z "${FTP_PASS:-}" ]; then
-            echo "Missing secret: HOSTINGER_FTP_PASSWORD"
-            exit 1
-          fi
-
-          upload() {
-            SSL_ALLOW="$1"
-            TARGET="$2"
-            echo "Trying ssl=${SSL_ALLOW} target=${TARGET}"
-
-            lftp -d -u "$FTP_USER","$FTP_PASS" -p "$FTP_PORT" "$FTP_HOST" -e "set cmd:fail-exit true; set ftp:passive-mode true; set ftp:ssl-allow ${SSL_ALLOW}; set ssl:verify-certificate no; set net:max-retries 2; set net:timeout 20; pwd; cls; mirror -R --verbose --exclude-glob .git* --exclude-glob .github --exclude-glob node_modules --exclude-glob .vscode --exclude-glob server --exclude-glob api --exclude-glob scripts --exclude-glob logs --exclude-glob data --exclude-glob '*.md' ./ ${TARGET}; bye"
-          }
-
-          if upload true /public_html/; then
-            echo "Deploy success via FTPS to /public_html/"
-            exit 0
-          fi
-
-          if upload true public_html/; then
-            echo "Deploy success via FTPS to public_html/"
-            exit 0
-          fi
-
-          if upload false /public_html/; then
-            echo "Deploy success via FTP to /public_html/"
-            exit 0
-          fi
-
-          if upload false public_html/; then
-            echo "Deploy success via FTP to public_html/"
-            exit 0
-          fi
-
-          echo "All deployment attempts failed. Verify FTP username/password and Hostinger FTP access permissions."
-          exit 1
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 147.93.99.197
+          port: 21
+          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          server-dir: /public_html/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            node_modules/**
+            .vscode/**
+            server/**
+            api/**
+            scripts/**
+            logs/**
+            data/**
+            **/*.md
