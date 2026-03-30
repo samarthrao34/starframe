@@ -37,13 +37,12 @@ jobs:
           EOF
           chmod 600 ~/.netrc
           
-          # Deploy using lftp with .netrc
+          # Deploy using lftp with .netrc to FTP root
           lftp -e "
           set ftp:passive-mode true
           set ftp:ssl-allow true
           set ssl:verify-certificate no
           open 147.93.99.197
-          cd public_html
           mirror -R --verbose --exclude-glob .git* --exclude-glob .github --exclude-glob node_modules --exclude-glob .vscode --exclude-glob server --exclude-glob api --exclude-glob scripts --exclude-glob logs --exclude-glob data --exclude-glob '*.md' ./ ./
           quit
           " || exit 1
