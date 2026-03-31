@@ -1,22 +1,5 @@
 <!doctype html>
 <html lang="en">
-<<<<<<< HEAD
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your StarFrame Dashboard - Personalized Experience</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/style-new.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=Playfair+Display:wght@400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-=======
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,162 +18,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
     <!-- Socket.IO for real-time features -->
     <script src="/socket.io/socket.io.js"></script>
 
     <style>
-<<<<<<< HEAD
-        .dashboard-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .user-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            margin: 0 auto 1rem;
-        }
-
-        .dashboard-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e0e0e0;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .dashboard-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .dashboard-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .preference-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .preference-item:last-child {
-            border-bottom: none;
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 50px;
-            height: 25px;
-            background-color: #ccc;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .toggle-switch.active {
-            background-color: #667eea;
-        }
-
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: white;
-            top: 2.5px;
-            left: 2.5px;
-            transition: transform 0.3s;
-        }
-
-        .toggle-switch.active::after {
-            transform: translateX(25px);
-        }
-
-        .activity-feed {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .activity-item {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
-
-        .activity-item:hover {
-            background: #e9ecef;
-        }
-
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            background: #667eea;
-            color: white;
-        }
-
-        .project-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .project-item {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .status-online {
-            color: #28a745;
-        }
-
-        .status-offline {
-            color: #dc3545;
-=======
       :root {
         --dash-primary: #d4a574;
         --dash-primary-dark: #b88a5d;
@@ -556,7 +388,6 @@
         .dashboard-content {
           grid-template-columns: 1fr;
           margin-top: -2rem;
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         }
       }
 
@@ -566,14 +397,8 @@
         .actions-grid { grid-template-columns: 1fr 1fr; }
       }
     </style>
-<<<<<<< HEAD
-</head>
-
-<body>
-=======
   </head>
   <body>
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
       <div class="nav-container">
@@ -628,24 +453,6 @@
       <div class="dashboard-main">
         <!-- Quick Actions -->
         <section id="dashboard" class="dashboard-card">
-<<<<<<< HEAD
-            <h2><i class="fas fa-tachometer-alt"></i> Quick Actions</h2>
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                <a href="commission.html" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> New Project
-                </a>
-                <a href="#projects" class="btn btn-secondary">
-                    <i class="fas fa-folder"></i> View Projects
-                </a>
-                <a href="#activity" class="btn btn-outline">
-                    <i class="fas fa-chart-line"></i> My Activity
-                </a>
-                <a href="/" class="btn btn-outline">
-                    <i class="fas fa-home"></i> Main Site
-                </a>
-            </div>
-=======
           <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
           <div class="actions-grid">
             <a href="commission.html" class="action-btn primary">
@@ -665,25 +472,10 @@
               Guide
             </a>
           </div>
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         </section>
 
         <!-- Your Projects -->
         <section id="projects" class="dashboard-card">
-<<<<<<< HEAD
-            <h2><i class="fas fa-folder-open"></i> Your Projects</h2>
-            <p>Here are your commissioned projects and their current status.</p>
-
-            <div class="project-gallery">
-                <!-- Projects will be loaded dynamically -->
-                <div class="project-item">
-                    <div class="project-info">
-                        <h4>No Projects Yet</h4>
-                        <p>Ready to start your first animation project?</p>
-                        <a href="commission.html" class="btn btn-primary btn-sm">Commission Now</a>
-                    </div>
-                </div>
-=======
           <h2><i class="fas fa-layer-group"></i> Recent Projects</h2>
           <div class="project-list" id="projectList">
             <div class="project-item">
@@ -693,7 +485,6 @@
                 <p>You haven't commissioned any projects yet.</p>
               </div>
               <a href="commission.html" class="btn btn-primary btn-sm" style="padding: 8px 16px; font-size: 0.8rem;">Start Now</a>
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
             </div>
           </div>
         </section>
@@ -714,51 +505,6 @@
           </div>
         </section>
 
-<<<<<<< HEAD
-        <!-- Preferences -->
-        <section id="preferences" class="dashboard-card">
-            <h2><i class="fas fa-cog"></i> Preferences</h2>
-            <div class="preferences-container">
-                <div class="preference-item">
-                    <div>
-                        <strong>Email Notifications</strong>
-                        <p style="margin: 0; font-size: 0.9em; color: #666;">Receive updates about your projects</p>
-                    </div>
-                    <div class="toggle-switch active" onclick="togglePreference('emailNotifications')"></div>
-                </div>
-
-                <div class="preference-item">
-                    <div>
-                        <strong>Real-time Updates</strong>
-                        <p style="margin: 0; font-size: 0.9em; color: #666;">Get instant notifications about project
-                            progress</p>
-                    </div>
-                    <div class="toggle-switch active" onclick="togglePreference('realTimeUpdates')"></div>
-                </div>
-
-                <div class="preference-item">
-                    <div>
-                        <strong>Marketing Communications</strong>
-                        <p style="margin: 0; font-size: 0.9em; color: #666;">Receive news and offers from StarFrame</p>
-                    </div>
-                    <div class="toggle-switch" onclick="togglePreference('marketing')"></div>
-                </div>
-
-                <div class="preference-item">
-                    <div>
-                        <strong>Activity Tracking</strong>
-                        <p style="margin: 0; font-size: 0.9em; color: #666;">Allow us to track your activity for better
-                            service</p>
-                    </div>
-                    <div class="toggle-switch active" onclick="togglePreference('activityTracking')"></div>
-                </div>
-            </div>
-
-            <div style="margin-top: 2rem;">
-                <button onclick="savePreferences()" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Save Preferences
-                </button>
-=======
         <!-- Settings/Preferences -->
         <section id="preferences" class="dashboard-card" style="padding: 2rem;">
           <h2><i class="fas fa-sliders-h"></i> Settings</h2>
@@ -776,7 +522,6 @@
                 <p>Instant alerts</p>
               </div>
               <div class="toggle active" onclick="togglePreference('realTimeUpdates')"></div>
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
             </div>
             <button onclick="savePreferences()" class="btn btn-primary w-100" style="margin-top: 1rem; background: var(--dash-primary); border: none;">
               Save Settings
@@ -788,28 +533,12 @@
 
     <!-- Footer -->
     <footer class="footer">
-<<<<<<< HEAD
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-main">
-                    <div class="footer-brand">
-                        <h3>StarFrame</h3>
-                        <p class="footer-tagline">Your personal animation studio experience</p>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2025 StarFrame Animation Studio. All rights reserved. Personalized for <span
-                            id="footerUserName"></span>.</p>
-                </div>
-            </div>
-=======
       <div class="container">
         <div class="footer-bottom" style="border: none; padding-top: 0;">
           <p>
             &copy; 2025 StarFrame Animation Studio. All rights reserved.<br>
             Personalized Studio for <span id="footerUserName" style="color: var(--primary-warm); font-weight: 600;"></span>
           </p>
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         </div>
       </div>
     </footer>
@@ -828,20 +557,6 @@
         activityTracking: true
       };
 
-<<<<<<< HEAD
-        // Initialize dashboard
-        document.addEventListener('DOMContentLoaded', function () {
-            initializeSocket();
-            loadUserInfo();
-            loadUserCommissions();
-            trackPageVisit();
-
-            // Get welcome parameter from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('welcome') === 'true') {
-                showWelcomeMessage();
-            }
-=======
       function reloadHomepage() {
         window.location.href = "index.html?reload=" + Date.now();
       }
@@ -885,42 +600,9 @@
             return;
           }
           await loadUserInfo(user);
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         });
       }
 
-<<<<<<< HEAD
-        // Initialize Socket.IO connection
-        function initializeSocket() {
-            socket = io();
-
-            socket.on('connect', function () {
-                console.log('Connected to real-time server');
-
-                // Authenticate user with socket
-                if (currentUser) {
-                    socket.emit('user-authenticated', {
-                        userId: currentUser.id
-                    });
-                }
-            });
-
-            socket.on('project-update', function (data) {
-                if (userPreferences.realTimeUpdates) {
-                    showNotification('Project Update', data.message, 'info');
-                    updateActivityFeed(data);
-                }
-            });
-
-            socket.on('admin-message', function (data) {
-                showNotification('Message from StarFrame', data.message, 'info');
-                updateActivityFeed(data);
-            });
-
-            socket.on('disconnect', function () {
-                console.log('Disconnected from real-time server');
-            });
-=======
       async function loadUserInfo(authUser) {
         try {
           const userDocRef = db.collection("users").doc(authUser.uid);
@@ -947,375 +629,9 @@
 
         } catch (error) {
           console.error("Error:", error);
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         }
       }
 
-<<<<<<< HEAD
-        // Load user information
-        async function loadUserInfo() {
-            try {
-                const response = await fetch('/api/client/me');
-                if (response.ok) {
-                    const data = await response.json();
-                    currentUser = data.client;
-                    displayUserInfo(data.client);
-                    userPreferences = { ...userPreferences, ...data.client.preferences };
-                    updatePreferencesUI();
-                } else {
-                    // User not authenticated, redirect to login
-                    window.location.href = '/login.html';
-                }
-            } catch (error) {
-                console.error('Error loading user info:', error);
-                window.location.href = '/login.html';
-            }
-
-            // Load user commissions
-            async function loadUserCommissions() {
-                try {
-                    const response = await fetch('/api/commissions/my');
-                    if (response.ok) {
-                        const commissions = await response.json();
-                        displayCommissions(commissions);
-                    }
-                } catch (error) {
-                    console.error('Error loading commissions:', error);
-                }
-            }
-
-            // Display commissions in the gallery
-            function displayCommissions(commissions) {
-                const gallery = document.querySelector('.project-gallery');
-                if (!commissions || commissions.length === 0) {
-                    gallery.innerHTML = `
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>No Projects Yet</h4>
-                            <p>Ready to start your first animation project?</p>
-                            <a href="commission.html" class="btn btn-primary btn-sm">Commission Now</a>
-                        </div>
-                    </div>
-                `;
-                    return;
-                }
-
-                gallery.innerHTML = commissions.map(c => `
-                <div class="project-item" style="box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #f0f0f0;">
-                    <div class="project-info" style="padding: 24px;">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                            <span class="badge" style="background: ${getStatusColor(c.status)}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; text-transform: uppercase; font-weight: 600;">
-                                ${c.status.replace('_', ' ')}
-                            </span>
-                            <span style="font-size: 0.7rem; color: #999;">${new Date(c.created_at).toLocaleDateString()}</span>
-                        </div>
-                        <h4 style="margin: 0 0 5px 0;">${c.service}</h4>
-                        <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">ID: ${c.id}</p>
-                        
-                        <!-- Visual Pipeline Tracker -->
-                        <div class="tracker-container" style="margin: 20px 0 30px 0;">
-                            <div class="tracker-steps" style="display: flex; justify-content: space-between; position: relative; margin-bottom: 10px;">
-                                <div style="position: absolute; top: 12px; left: 10%; width: 80%; height: 4px; background: #eee; z-index: 0; border-radius: 2px;"></div>
-                                <div style="position: absolute; top: 12px; left: 10%; width: ${getProgressWidth(c.status)}; height: 4px; background: var(--primary-color); z-index: 1; border-radius: 2px; transition: width 0.3s ease;"></div>
-                                
-                                ${getTrackerStep(c.status, 'queued', 'fas fa-clipboard-list', 'Queued', 0)}
-                                ${getTrackerStep(c.status, 'in_progress', 'fas fa-paint-brush', 'Working', 1)}
-                                ${getTrackerStep(c.status, 'sketch', 'fas fa-pencil-ruler', 'Review', 2)}
-                                ${getTrackerStep(c.status, 'completed', 'fas fa-check-circle', 'Done', 3)}
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; gap: 10px;">
-                            <a href="/pay.html?id=${c.id}" class="btn btn-outline btn-sm" style="flex: 1; font-size: 0.75rem;">
-                                <i class="fas fa-indian-rupee-sign"></i> Payments
-                            </a>
-                            <a href="/commission.html" class="btn btn-primary btn-sm" style="flex: 1; font-size: 0.75rem;">
-                                <i class="fas fa-plus"></i> New
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            }
-
-            function getProgressWidth(status) {
-                if (status === 'queued') return '0%';
-                if (status === 'in_progress') return '33%';
-                if (status === 'sketch' || status === 'final') return '66%';
-                if (status === 'completed') return '100%';
-                if (status === 'rejected') return '0%'; // Or custom color logic
-                return '0%';
-            }
-
-            function getTrackerStep(currentStatus, stepName, iconClass, label, stepIndex) {
-                const statuses = ['queued', 'in_progress', 'sketch', 'completed'];
-                const currentIndex = statuses.indexOf(currentStatus === 'final' ? 'sketch' : currentStatus);
-                const isActive = stepIndex <= currentIndex;
-                const isCurrent = stepIndex === currentIndex;
-
-                const bgColor = isActive ? 'var(--primary-color)' : '#fff';
-                const borderColor = isActive ? 'var(--primary-color)' : '#ddd';
-                const iconColor = isActive ? '#fff' : '#ccc';
-                const labelColor = isActive ? '#333' : '#999';
-                const labelWeight = isCurrent ? 'bold' : 'normal';
-
-                return `
-                <div style="display: flex; flex-direction: column; align-items: center; z-index: 2; width: 45px;">
-                    <div style="width: 28px; height: 28px; border-radius: 50%; background: ${bgColor}; border: 2px solid ${borderColor}; display: flex; align-items: center; justify-content: center; margin-bottom: 5px; box-shadow: ${isCurrent ? '0 0 0 3px rgba(212,165,116,0.2)' : 'none'};">
-                        <i class="${iconClass}" style="font-size: 10px; color: ${iconColor};"></i>
-                    </div>
-                    <span style="font-size: 0.6rem; color: ${labelColor}; font-weight: ${labelWeight}; text-align: center;">${label}</span>
-                </div>
-                `;
-            }
-
-            function getStatusColor(status) {
-                const colors = {
-                    'queued': '#6c757d',
-                    'in_progress': '#007bff',
-                    'sketch': '#17a2b8',
-                    'final': '#ffc107',
-                    'completed': '#28a745',
-                    'rejected': '#dc3545'
-                };
-                return colors[status] || '#6c757d';
-            }
-
-            async function viewProjectDetails(id) {
-                window.location.href = `/pay.html?id=${id}`; // For now, track via pay page which shows status
-            }
-        }
-
-        // Display user information
-        function displayUserInfo(user) {
-            document.getElementById('welcomeMessage').textContent = `Welcome back, ${user.name}!`;
-            document.getElementById('userEmail').textContent = user.email;
-            document.getElementById('footerUserName').textContent = user.name;
-
-            if (user.picture) {
-                const avatar = document.getElementById('userAvatar');
-                avatar.src = user.picture;
-                avatar.style.display = 'block';
-            }
-
-            // Update page title
-            document.title = `${user.name}'s StarFrame Dashboard`;
-        }
-
-        // Track page visit
-        function trackPageVisit() {
-            if (socket && socket.connected) {
-                socket.emit('page-visit', {
-                    page: 'dashboard',
-                    url: window.location.href,
-                    referrer: document.referrer,
-                    userAgent: navigator.userAgent,
-                    userId: currentUser ? currentUser.id : null
-                });
-            }
-        }
-
-        // Track user actions
-        function trackAction(action, target, value = null) {
-            if (socket && socket.connected && userPreferences.activityTracking) {
-                socket.emit('user-action', {
-                    action: action,
-                    target: target,
-                    value: value,
-                    page: 'dashboard',
-                    userId: currentUser ? currentUser.id : null
-                });
-            }
-        }
-
-        // Toggle preference
-        function togglePreference(preference) {
-            const toggle = event.target;
-            toggle.classList.toggle('active');
-            userPreferences[preference] = toggle.classList.contains('active');
-
-            trackAction('toggle-preference', preference, userPreferences[preference]);
-        }
-
-        // Update preferences UI
-        function updatePreferencesUI() {
-            Object.keys(userPreferences).forEach(pref => {
-                const element = document.querySelector(`[onclick="togglePreference('${pref}')"]`);
-                if (element) {
-                    if (userPreferences[pref]) {
-                        element.classList.add('active');
-                    } else {
-                        element.classList.remove('active');
-                    }
-                }
-            });
-        }
-
-        // Save preferences
-        async function savePreferences() {
-            try {
-                const response = await fetch('/api/client/preferences', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ preferences: userPreferences })
-                });
-
-                if (response.ok) {
-                    showNotification('Success', 'Preferences saved successfully!', 'success');
-                    trackAction('save-preferences', 'preferences', JSON.stringify(userPreferences));
-                } else {
-                    throw new Error('Failed to save preferences');
-                }
-            } catch (error) {
-                console.error('Error saving preferences:', error);
-                showNotification('Error', 'Failed to save preferences. Please try again.', 'error');
-            }
-        }
-
-        // Logout function
-        async function logout() {
-            try {
-                trackAction('logout', 'auth-system');
-
-                const response = await fetch('/api/client/logout', {
-                    method: 'POST'
-                });
-
-                if (response.ok) {
-                    window.location.href = '/';
-                } else {
-                    throw new Error('Logout failed');
-                }
-            } catch (error) {
-                console.error('Logout error:', error);
-                // Force redirect even if logout request fails
-                window.location.href = '/';
-            }
-        }
-
-        // Show welcome message for new logins
-        function showWelcomeMessage() {
-            setTimeout(() => {
-                showNotification('Welcome!', 'You have successfully logged in to your personalized StarFrame experience!', 'success');
-            }, 1000);
-        }
-
-        // Show notification
-        function showNotification(title, message, type = 'info') {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#007bff'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                z-index: 10000;
-                max-width: 300px;
-                animation: slideInRight 0.3s ease-out;
-            `;
-
-            notification.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <div>
-                        <strong>${title}</strong>
-                        <div style="margin-top: 0.25rem; font-size: 0.9em;">${message}</div>
-                    </div>
-                    <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; font-size: 1.2em; cursor: pointer; margin-left: 1rem;">&times;</button>
-                </div>
-            `;
-
-            document.body.appendChild(notification);
-
-            // Auto-remove after 5 seconds
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.remove();
-                }
-            }, 5000);
-        }
-
-        // Update activity feed
-        function updateActivityFeed(data) {
-            const feed = document.getElementById('activityFeed');
-            const item = document.createElement('div');
-            item.className = 'activity-item';
-            item.style.animation = 'fadeInUp 0.3s ease-out';
-
-            const icon = getActivityIcon(data.type);
-            const time = new Date().toLocaleTimeString();
-
-            item.innerHTML = `
-                <div class="activity-icon">
-                    <i class="${icon}"></i>
-                </div>
-                <div>
-                    <strong>${data.title || 'Activity Update'}</strong>
-                    <div style="font-size: 0.9em; color: #666;">${time}</div>
-                </div>
-            `;
-
-            feed.insertBefore(item, feed.firstChild);
-
-            // Keep only last 10 items
-            while (feed.children.length > 10) {
-                feed.removeChild(feed.lastChild);
-            }
-        }
-
-        // Get activity icon based on type
-        function getActivityIcon(type) {
-            const icons = {
-                'project-update': 'fas fa-project-diagram',
-                'message': 'fas fa-envelope',
-                'login': 'fas fa-sign-in-alt',
-                'preference-change': 'fas fa-cog',
-                'default': 'fas fa-bell'
-            };
-
-            return icons[type] || icons['default'];
-        }
-
-        // Add CSS animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes fadeInUp {
-                from {
-                    transform: translateY(10px);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Add click tracking to all interactive elements
-        document.addEventListener('click', function (e) {
-            if (e.target.matches('a, button, .nav-link, .btn')) {
-                const target = e.target.textContent.trim() || e.target.className;
-                trackAction('click', target);
-            }
-=======
       function displayUserInfo(user) {
         document.getElementById("welcomeMessage").textContent = `Welcome back, ${user.name.split(' ')[0]}!`;
         document.getElementById("userEmail").textContent = user.email;
@@ -1334,7 +650,6 @@
         Object.keys(userPreferences).forEach(pref => {
           const el = document.querySelector(`[onclick="togglePreference('${pref}')"]`);
           if (el) userPreferences[pref] ? el.classList.add('active') : el.classList.remove('active');
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
         });
       }
 
@@ -1354,11 +669,5 @@
     <script src="js/commission-dialog.js"></script>
     <script src="js/sparkle-effects.js"></script>
     <script src="js/script-new.js"></script>
-<<<<<<< HEAD
-</body>
-
-</html>
-=======
   </body>
 </html>
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f

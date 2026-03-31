@@ -303,199 +303,8 @@ function initPortfolioFilter() {
 
 // Commission form functionality - specialized logic is handled on the commission page
 function initCommissionForm() {
-<<<<<<< HEAD
-    const form = document.getElementById('commissionForm');
-
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Get form data
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
-
-            // Simple validation
-            if (!data.name || !data.email || !data.service || !data.budget) {
-                showNotification('Please fill in all required fields.', 'error');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                return;
-            }
-
-            // Simulate form submission
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                showNotification('Thank you for reaching out! We\'ve received your project details and will get back to you within 24 hours with a personalized proposal. ✨', 'success');
-                form.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
-        });
-
-        // Add real-time validation feedback
-        const inputs = form.querySelectorAll('input, select, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('blur', validateField);
-            input.addEventListener('input', clearFieldError);
-        });
-    }
-}
-
-// Reviews form functionality (server-backed with real-time updates)
-function initReviews() {
-    const form = document.getElementById('reviewForm');
-    const reviewList = document.getElementById('reviewList');
-
-    if (!form || !reviewList) {
-        return;
-    }
-
-    // Load existing reviews from server
-    fetch('/api/reviews')
-        .then(r => r.json())
-        .then(data => {
-            if (Array.isArray(data.reviews)) {
-                data.reviews.forEach(renderReviewCard);
-            }
-        })
-        .catch(() => { });
-
-    // Setup realtime listeners for new/deleted reviews
-    setupReviewRealtime();
-
-    form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        const nameInput = form.querySelector('#reviewerName');
-        const cityInput = form.querySelector('#reviewerCity');
-        const ratingSelect = form.querySelector('#reviewerRating');
-        const messageInput = form.querySelector('#reviewerMessage');
-
-        const name = nameInput.value.trim();
-        const city = cityInput.value.trim();
-        const rating = parseInt(ratingSelect.value, 10);
-        const message = messageInput.value.trim();
-
-        if (!name || !message || !rating) {
-            showNotification('Please share your name, rating, and experience before submitting.', 'error');
-            return;
-        }
-        if (message.length < 10) {
-            showNotification('Please share a little more detail in your review (minimum 10 characters).', 'error');
-            return;
-        }
-
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-
-        try {
-            const res = await fetch('/api/reviews', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, city, rating, message })
-            });
-            if (!res.ok) {
-                const err = await res.json().catch(() => ({}));
-                throw new Error(err.error || 'Failed to submit review');
-            }
-            form.reset();
-            showNotification('Thank you for reviewing Starframe! ✨', 'success');
-            // Rely on realtime event to render the new review for everyone
-        } catch (err) {
-            showNotification(err.message || 'Submission failed', 'error');
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalText;
-        }
-    });
-
-    function renderReviewCard(r) {
-        // r: {id, name, city, rating, message, created_at}
-        const card = document.createElement('article');
-        card.className = 'review-card';
-        card.dataset.reviewId = r.id;
-
-        const ratingEl = document.createElement('div');
-        ratingEl.className = 'review-rating';
-        ratingEl.setAttribute('aria-label', `${r.rating} star rating`);
-        for (let i = 0; i < 5; i++) {
-            const star = document.createElement('i');
-            star.className = i < r.rating ? 'fas fa-star' : 'far fa-star';
-            ratingEl.appendChild(star);
-        }
-
-        const quote = document.createElement('p');
-        quote.className = 'review-quote';
-        quote.textContent = `“${r.message}”`;
-
-        const meta = document.createElement('div');
-        meta.className = 'reviewer-meta';
-
-        const initials = document.createElement('div');
-        initials.className = 'reviewer-initials';
-        initials.textContent = getInitials(r.name);
-
-        const detailWrap = document.createElement('div');
-        const nameEl = document.createElement('span');
-        nameEl.className = 'reviewer-name';
-        nameEl.textContent = r.name;
-        const roleEl = document.createElement('span');
-        roleEl.className = 'reviewer-role';
-        roleEl.textContent = r.city || 'Shared via website';
-
-        detailWrap.appendChild(nameEl);
-        detailWrap.appendChild(roleEl);
-        meta.appendChild(initials);
-        meta.appendChild(detailWrap);
-
-        card.appendChild(ratingEl);
-        card.appendChild(quote);
-        card.appendChild(meta);
-
-        reviewList.prepend(card);
-    }
-
-    function setupReviewRealtime() {
-        try {
-            if (typeof io === 'undefined') return;
-            if (!window.reviewsSocket) {
-                window.reviewsSocket = io();
-            }
-            const socket = window.reviewsSocket;
-            socket.off && socket.off('review-created');
-            socket.off && socket.off('review-deleted');
-            socket.on('review-created', (review) => {
-                renderReviewCard(review);
-            });
-            socket.on('review-deleted', ({ id }) => {
-                const el = reviewList.querySelector(`[data-review-id="${id}"]`);
-                if (el) el.remove();
-            });
-        } catch (e) { /* noop */ }
-    }
-
-    function getInitials(fullName) {
-        const parts = fullName.split(' ').filter(Boolean);
-        if (parts.length === 0) return 'SF';
-        if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
-        return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
-    }
-=======
     // This is intentionally left empty or for global form logic only
     // Specialized project/payment logic is in commission.html
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 }
 
 // Field validation
@@ -651,35 +460,6 @@ function initParallaxEffect() {
         let ticking = false;
 
         window.addEventListener('scroll', () => {
-<<<<<<< HEAD
-            const scrolled = window.pageYOffset;
-            const parallax = scrolled * 0.5;
-
-            heroBackground.style.transform = `translateY(${parallax}px)`;
-        });
-    }
-
-    // Mouse parallax for team cards
-    document.addEventListener('mousemove', (e) => {
-        const interactiveCards = document.querySelectorAll('.team-member');
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-
-        interactiveCards.forEach((card) => {
-            const rect = card.getBoundingClientRect();
-            const cardX = rect.left + rect.width / 2;
-            const cardY = rect.top + rect.height / 2;
-
-            const distanceX = (mouseX * window.innerWidth - cardX) / window.innerWidth;
-            const distanceY = (mouseY * window.innerHeight - cardY) / window.innerHeight;
-
-            const moveX = distanceX * 10;
-            const moveY = distanceY * 10;
-
-            card.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
-        });
-    });
-=======
             if (ticking) return;
 
             ticking = true;
@@ -691,7 +471,6 @@ function initParallaxEffect() {
             });
         }, { passive: true });
     }
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 }
 
 // Scroll progress indicator
@@ -733,34 +512,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-<<<<<<< HEAD
-// Back to top button (legacy — kept for backward compatibility)
-const backToTopButton = document.getElementById("back-to-top-btn");
-
-window.onscroll = function () {
-    scrollFunction();
-};
-
-function scrollFunction() {
-    if (backToTopButton) {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style.display = "block";
-        } else {
-            backToTopButton.style.display = "none";
-        }
-    }
-}
-
-if (backToTopButton) {
-    backToTopButton.addEventListener("click", backToTop);
-}
-
-function backToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
-=======
 // Add loading animation
 function addLoadingAnimation() {
     const body = document.body;
@@ -1430,4 +1181,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1500);
 });
 
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f

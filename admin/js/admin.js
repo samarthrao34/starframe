@@ -376,20 +376,6 @@ class AdminDashboard {
             this.loadCommissions();
             this.setupCommissionsEventListeners();
         }
-<<<<<<< HEAD
-        if (section === 'reviews') {
-            this.loadReviews();
-            this.setupReviewsEventListeners();
-        }
-        if (section === 'payments') {
-            this.loadPayments();
-            this.setupPaymentsEventListeners();
-        }
-        if (section === 'products') {
-            this.loadProducts();
-            this.setupProductsEventListeners();
-        }
-=======
 >>>>>>> 31422cd7ed8da057f23c498151957b317926130f
     }
 
@@ -1343,7 +1329,6 @@ class AdminDashboard {
     }
 
 =======
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
     // Basic HTML escape to prevent XSS in table rendering
     escapeHtml(str) {
         if (str == null) return '';
@@ -1703,11 +1688,6 @@ function addFloatingCards() {
 // Back to top button with smooth scroll
 const backToTopBtn = document.getElementById("backToTop");
 
-<<<<<<< HEAD
-window.onscroll = function () {
-    scrollFunction();
-};
-=======
 if (backToTopBtn) {
     window.addEventListener("scroll", () => {
         if (window.scrollY > 300) {
@@ -1716,7 +1696,6 @@ if (backToTopBtn) {
             backToTopBtn.classList.remove("visible");
         }
     });
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
     backToTopBtn.addEventListener("click", () => {
         window.scrollTo({

@@ -9,28 +9,8 @@ const fs = require('fs');
 
 const router = express.Router();
 
-<<<<<<< HEAD
-// Configure multer for product uploads
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        let uploadPath = path.join(__dirname, '../../uploads/products');
-        if (file.fieldname === 'productFile') {
-            uploadPath = path.join(__dirname, '../../uploads/downloads');
-        }
-        // Ensure directories exist
-        fs.mkdirSync(uploadPath, { recursive: true });
-        cb(null, uploadPath);
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname));
-    }
-});
-const upload = multer({ storage: storage });
-=======
 // Protect all admin routes.
 router.use(auth.requireAuth);
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
 // Apply activity logging to all routes
 router.use(auth.logActivity);

@@ -157,11 +157,6 @@ class AuthMiddleware {
     // Middleware to require admin authentication
     requireAuth = async (req, res, next) => {
         try {
-<<<<<<< HEAD
-            const token = req.header('Authorization')?.replace('Bearer ', '') ||
-                req.session.token ||
-                req.cookies?.authToken;
-=======
             if (req.session?.firebaseUser?.uid) {
                 req.user = {
                     id: req.session.firebaseUser.uid,
@@ -178,7 +173,6 @@ class AuthMiddleware {
             const token = req.header('Authorization')?.replace('Bearer ', '') || 
                          req.session.token ||
                          req.cookies?.authToken;
->>>>>>> 31422cd7ed8da057f23c498151957b317926130f
 
             if (!token) {
                 // If no token, check session
