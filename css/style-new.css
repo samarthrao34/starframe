@@ -85,7 +85,26 @@ h4, h5, h6 {
     margin-right: auto;
 }
 
-/* Buttons */
+
+/* Neu Variables */
+:root {
+    --neu-bg: var(--background-warm, #f9f6f2);
+    --neu-shadow-dark: rgba(200, 195, 190, 0.6);
+    --neu-shadow-light: #ffffff;
+}
+
+/* Animations */
+.animate-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.animate-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Buttons (Neumorphism Redesign) */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -94,37 +113,57 @@ h4, h5, h6 {
     border: none;
     border-radius: 50px;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    will-change: transform, opacity;
+    will-change: transform, box-shadow;
+    background: var(--background-cream);
+    color: var(--primary-dark);
+    box-shadow: 6px 6px 12px var(--neu-shadow-dark),
+                -6px -6px 12px var(--neu-shadow-light);
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-warm) 0%, var(--primary-dark) 100%);
-    color: var(--white);
-    box-shadow: var(--shadow-soft);
+    background: var(--background-cream);
+    color: var(--primary-dark);
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-hover);
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 2px 2px 5px var(--neu-shadow-dark),
+                -2px -2px 5px var(--neu-shadow-light);
+}
+
+.btn-primary:active {
+    box-shadow: inset 4px 4px 8px var(--neu-shadow-dark),
+                inset -4px -4px 8px var(--neu-shadow-light);
 }
 
 .btn-secondary {
-    background: transparent;
-    color: var(--primary-dark);
-    border: 2px solid var(--primary-warm);
+    background: var(--background-cream);
+    color: var(--text-medium);
 }
 
 .btn-secondary:hover {
-    background: var(--primary-warm);
-    color: var(--white);
-    transform: translateY(-3px);
+    color: var(--primary-dark);
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 2px 2px 5px var(--neu-shadow-dark),
+                -2px -2px 5px var(--neu-shadow-light);
 }
+
+.btn-secondary:active {
+    box-shadow: inset 4px 4px 8px var(--neu-shadow-dark),
+                inset -4px -4px 8px var(--neu-shadow-light);
+}
+
+.btn-full {
+    width: 100%;
+    justify-content: center;
+}
+
 
 /* Navigation */
 .navbar {

@@ -211,48 +211,26 @@ function initScrollAnimations() {
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver(function (entries) {
+    const standardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Add different animation classes based on element type
-                if (entry.target.classList.contains('team-member')) {
-                    entry.target.style.transform = 'translateY(0)';
-                    entry.target.style.opacity = '1';
-                } else if (entry.target.classList.contains('portfolio-item')) {
-                    entry.target.style.transform = 'translateY(0)';
-                    entry.target.style.opacity = '1';
-                } else {
-                    entry.target.classList.add('animate-in');
-                }
-
-                // Add stagger effect for grid items
+                entry.target.classList.add('visible');
+                // Optional staggered delay for cards inside containers
                 const siblings = Array.from(entry.target.parentNode.children);
-                if (siblings.length > 1) {
+                if (siblings.length > 1 && entry.target.classList.contains('animate-in')) {
                     const index = siblings.indexOf(entry.target);
-                    entry.target.style.transitionDelay = `${index * 0.1}s`;
+                    entry.target.style.transitionDelay = ${index * 0.1}s;
                 }
+                standardObserver.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe sections and cards
-    const animatedElements = document.querySelectorAll(
-        '.about-text, .about-visual, .team-member, .portfolio-item, .commission-content, .section-header'
-    );
-
-    animatedElements.forEach((el, index) => {
-        if (el.classList.contains('team-member') ||
-            el.classList.contains('portfolio-item')) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-        }
-        observer.observe(el);
+    document.querySelectorAll('section:not(.hero), .service-card, .review-card, .portfolio-item, .team-member, .step').forEach(el => {
+        el.classList.add('animate-in');
+        standardObserver.observe(el);
     });
-}
-
-// Portfolio filter functionality
-function initPortfolioFilter() {
+}function initPortfolioFilter() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
