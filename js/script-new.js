@@ -142,12 +142,14 @@ function initNavigation() {
 
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
+        if (window.scrollY > 50) {
             navbar.style.background = 'rgba(254, 252, 248, 0.98)';
-            navbar.style.boxShadow = '0 8px 25px rgba(60, 60, 60, 0.12)';
+            navbar.style.boxShadow = '0 12px 40px rgba(212, 165, 116, 0.25)';
+            navbar.style.top = '10px';
         } else {
-            navbar.style.background = 'rgba(254, 252, 248, 0.95)';
-            navbar.style.boxShadow = 'none';
+            navbar.style.background = 'rgba(254, 252, 248, 0.85)';
+            navbar.style.boxShadow = '0 8px 32px rgba(212, 165, 116, 0.15)';
+            navbar.style.top = '15px';
         }
     });
 

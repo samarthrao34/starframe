@@ -111,24 +111,26 @@
       <div class="nav-container">
         <div class="nav-logo">
           <a
-            href="javascript:void(0)"
-            onclick="window.location.href='index.html?reload=' + Date.now()"
-            class="nav-logo-link"
+            href="index.html"
+            class="nav-logo-link home-link"
             aria-label="StarFrame Animation Studio home"
           >
-            <h1>StarFrame</h1>
-            <span class="nav-tagline">Animation Studio</span>
+            <img
+              src="logo.png"
+              alt="StarFrame Logo"
+              class="header-logo"
+              width="45"
+              height="45"
+            />
           </a>
         </div>
         <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
           <li class="nav-item">
-            <a href="#home" class="nav-link">Home</a>
+            <a href="index.html#about" class="nav-link">About</a>
           </li>
           <li class="nav-item">
-            <a href="#about" class="nav-link">About</a>
-          </li>
-          <li class="nav-item">
-            <a href="#services" class="nav-link">Services</a>
+            <a href="index.html#services" class="nav-link">Services</a>
           </li>
           <li class="nav-item">
             <a href="shop.html" class="nav-link">Shop</a>
@@ -137,10 +139,10 @@
             <a href="pricing-guide.html" class="nav-link">Pricing</a>
           </li>
           <li class="nav-item">
-            <a href="#portfolio" class="nav-link">Portfolio</a>
+            <a href="index.html#portfolio" class="nav-link">Portfolio</a>
           </li>
           <li class="nav-item">
-            <a href="#team" class="nav-link">Team</a>
+            <a href="index.html#team" class="nav-link">Team</a>
           </li>
           <li class="nav-item">
             <a href="login.html" class="nav-link" id="authNavLink">Login</a>
@@ -885,7 +887,7 @@
         <div class="footer-bottom">
           <p>
             &copy; 2025 StarFrame Animation Studio. All rights reserved. Made
-            with ❤️ for artists everywhere. | <span style="opacity: 0.6; font-size: 0.8rem;">v2.1 - LinkedIn Updated</span>
+            with ❤️ for artists everywhere.
           </p>
         </div>
       </div>
@@ -893,7 +895,7 @@
 
     <!-- Floating Sparkle Star -->
     <div class="sparkle-container">
-      <div id="big-star" class="star">
+      <div id="sparkle-star" class="star">
         <i class="fas fa-star fa-2x"></i>
       </div>
       <div class="small-star star"><i class="fas fa-star"></i></div>

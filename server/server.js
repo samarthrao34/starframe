@@ -25,6 +25,9 @@ const invoiceRoutes = require('./routes/invoice');
 const paymentRoutes = require('./routes/payment');
 const securityRoutes = require('./routes/security');
 const systemRoutes = require('./routes/system');
+const clientRoutes = require('./routes/client');
+const payRoutes = require('./routes/pay');
+const shopRoutes = require('./routes/shop');
 
 const app = express();
 const server = http.createServer(app);
